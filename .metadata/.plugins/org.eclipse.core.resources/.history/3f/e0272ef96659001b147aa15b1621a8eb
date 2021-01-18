@@ -67,11 +67,6 @@ uint32_t sine_val[100];
 #define PI 3.1415926
 
 void get_sineval(){
-
-	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2)
-	// ns = number of samples
-	// 0xFFF is 12 bit resolution
-
 	for(int i=0;i<100;i++){
 		sine_val[i] = ((sin(i*2*PI/100)+1)*(4096/2));
 	}
@@ -249,9 +244,9 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 9-1;
+  htim2.Init.Prescaler = 90-1;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 1;
+  htim2.Init.Period = 10;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)

@@ -1032,3 +1032,603 @@
 2021-01-18 10:04:28,058 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 3525mS.
 2021-01-18 10:04:28,060 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 1mS.
 2021-01-18 10:04:28,075 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 10:20:54,944 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 695209184 Bytes (1073741824)
+2021-01-18 10:20:56,042 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 711006264 Bytes (1073741824)
+2021-01-18 10:20:56,214 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 725753712 Bytes (1073741824)
+2021-01-18 10:20:56,378 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: TIM1_8
+2021-01-18 10:20:56,378 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: SYS
+2021-01-18 10:20:56,378 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: RCC
+2021-01-18 10:20:56,378 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: NVIC
+2021-01-18 10:20:56,378 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DMA
+2021-01-18 10:20:56,378 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DAC
+2021-01-18 10:20:56,378 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: GPIO
+2021-01-18 10:20:56,379 [INFO] CodeGenerator:603 - code generatio: config db path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.1.202004052303\\db\
+2021-01-18 10:20:56,381 [INFO] Argument:278 - Argument : hdmavalue: null
+2021-01-18 10:20:56,381 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:20:56,381 [INFO] Argument:278 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:20:56,381 [INFO] Argument:288 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:20:56,382 [INFO] Argument:278 - Argument : Initvalue: null
+2021-01-18 10:20:56,382 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:20:56,382 [INFO] Argument:278 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:20:56,382 [INFO] Argument:288 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:20:56,382 [INFO] Argument:278 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:20:56,382 [INFO] Argument:288 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:20:56,382 [INFO] Argument:278 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:20:56,382 [INFO] Argument:288 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:20:56,382 [INFO] Argument:278 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:20:56,382 [INFO] Argument:288 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:20:56,382 [INFO] Argument:278 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:20:56,382 [INFO] Argument:288 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:20:56,382 [INFO] Argument:278 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:20:56,382 [INFO] Argument:288 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:20:56,382 [INFO] Argument:278 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:20:56,382 [INFO] Argument:288 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:20:56,382 [INFO] Argument:278 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:20:56,383 [INFO] Argument:288 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:20:56,383 [INFO] Argument:278 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:20:56,383 [INFO] Argument:288 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:20:56,383 [INFO] Argument:278 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:288 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:278 - Argument : MemBurstvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:288 - Argument : MemBurstvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:278 - Argument : PeriphBurstvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:288 - Argument : PeriphBurstvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:278 - Argument : Lockvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:288 - Argument : Lockvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:278 - Argument : Statevalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:288 - Argument : Statevalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:278 - Argument : Parentvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:288 - Argument : Parentvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:278 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:288 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:20:56,383 [INFO] Argument:278 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:20:56,384 [INFO] Argument:288 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:20:56,384 [INFO] Argument:278 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:20:56,384 [INFO] Argument:288 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:20:56,384 [INFO] Argument:278 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:20:56,384 [INFO] Argument:288 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:20:56,384 [INFO] Argument:278 - Argument : ErrorCodevalue: null
+2021-01-18 10:20:56,384 [INFO] Argument:288 - Argument : ErrorCodevalue: null
+2021-01-18 10:20:56,546 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp_save
+2021-01-18 10:20:56,598 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp
+2021-01-18 10:20:56,606 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp_save
+2021-01-18 10:20:56,658 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp
+2021-01-18 10:20:56,692 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:20:56,693 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DAC
+2021-01-18 10:20:56,693 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:20:56,694 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:20:56,695 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DMA
+2021-01-18 10:20:56,695 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:20:56,700 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp_save
+2021-01-18 10:20:56,753 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp
+2021-01-18 10:20:56,758 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp_save
+2021-01-18 10:20:56,813 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp
+2021-01-18 10:20:56,814 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:20:56,815 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for TIM
+2021-01-18 10:20:56,816 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:20:56,816 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2021-01-18 10:20:56,817 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:20:56,824 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c_save
+2021-01-18 10:20:56,902 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c
+2021-01-18 10:20:56,908 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h_save
+2021-01-18 10:20:56,972 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h
+2021-01-18 10:20:56,982 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c_save
+2021-01-18 10:20:57,180 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c
+2021-01-18 10:20:57,185 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp_save
+2021-01-18 10:20:57,245 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp
+2021-01-18 10:20:57,251 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h_save
+2021-01-18 10:20:57,318 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h
+2021-01-18 10:20:57,330 [WARN] IPConfigManager:2701 - IP not found : TIM
+2021-01-18 10:20:57,331 [WARN] IPConfigManager:2701 - IP not found : gpio
+2021-01-18 10:20:57,331 [WARN] CodeGenerator:2649 - IP not found : TIM
+2021-01-18 10:20:57,332 [WARN] CodeGenerator:2649 - IP not found : gpio
+2021-01-18 10:20:57,338 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h_save
+2021-01-18 10:20:57,421 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h
+2021-01-18 10:20:57,431 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c_save
+2021-01-18 10:20:57,548 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c
+2021-01-18 10:20:58,019 [INFO] ProjectBuilder:2002 - Time for Copy HAL[1] : 120mS.
+2021-01-18 10:20:58,022 [INFO] ProjectBuilder:2727 - Project Generator version: 3.7.1
+2021-01-18 10:20:58,225 [INFO] ConfigFileManager:1066 - The Die is : DIE419
+2021-01-18 10:21:00,029 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 2007mS.
+2021-01-18 10:21:00,030 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 1mS.
+2021-01-18 10:21:00,037 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 10:23:27,442 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 549393000 Bytes (1073741824)
+2021-01-18 10:23:30,689 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 564595312 Bytes (1073741824)
+2021-01-18 10:23:30,962 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 578226800 Bytes (1073741824)
+2021-01-18 10:23:31,127 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: TIM1_8
+2021-01-18 10:23:31,127 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: SYS
+2021-01-18 10:23:31,127 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: RCC
+2021-01-18 10:23:31,127 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: NVIC
+2021-01-18 10:23:31,127 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DMA
+2021-01-18 10:23:31,127 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DAC
+2021-01-18 10:23:31,127 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: GPIO
+2021-01-18 10:23:31,128 [INFO] CodeGenerator:603 - code generatio: config db path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.1.202004052303\\db\
+2021-01-18 10:23:31,130 [INFO] Argument:278 - Argument : hdmavalue: null
+2021-01-18 10:23:31,131 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:23:31,131 [INFO] Argument:278 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:23:31,131 [INFO] Argument:288 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:23:31,131 [INFO] Argument:278 - Argument : Initvalue: null
+2021-01-18 10:23:31,131 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:23:31,131 [INFO] Argument:278 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:23:31,131 [INFO] Argument:288 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:23:31,131 [INFO] Argument:278 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:23:31,131 [INFO] Argument:288 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:23:31,131 [INFO] Argument:278 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:23:31,131 [INFO] Argument:288 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:23:31,131 [INFO] Argument:278 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:23:31,131 [INFO] Argument:288 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:23:31,131 [INFO] Argument:278 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:23:31,131 [INFO] Argument:288 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:23:31,131 [INFO] Argument:278 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:23:31,132 [INFO] Argument:288 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:23:31,132 [INFO] Argument:278 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:23:31,132 [INFO] Argument:288 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:23:31,132 [INFO] Argument:278 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:23:31,132 [INFO] Argument:288 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:23:31,132 [INFO] Argument:278 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:23:31,132 [INFO] Argument:288 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:23:31,132 [INFO] Argument:278 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:23:31,132 [INFO] Argument:288 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:23:31,132 [INFO] Argument:278 - Argument : MemBurstvalue: null
+2021-01-18 10:23:31,132 [INFO] Argument:288 - Argument : MemBurstvalue: null
+2021-01-18 10:23:31,132 [INFO] Argument:278 - Argument : PeriphBurstvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:288 - Argument : PeriphBurstvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:278 - Argument : Lockvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:288 - Argument : Lockvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:278 - Argument : Statevalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:288 - Argument : Statevalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:278 - Argument : Parentvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:288 - Argument : Parentvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:278 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:288 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:278 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:288 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:278 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:288 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:278 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:288 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:278 - Argument : ErrorCodevalue: null
+2021-01-18 10:23:31,133 [INFO] Argument:288 - Argument : ErrorCodevalue: null
+2021-01-18 10:23:31,274 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp_save
+2021-01-18 10:23:31,324 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp
+2021-01-18 10:23:31,333 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp_save
+2021-01-18 10:23:31,385 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp
+2021-01-18 10:23:31,420 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:23:31,421 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DAC
+2021-01-18 10:23:31,422 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:23:31,424 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:23:31,425 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DMA
+2021-01-18 10:23:31,426 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:23:31,432 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp_save
+2021-01-18 10:23:31,488 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp
+2021-01-18 10:23:31,493 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp_save
+2021-01-18 10:23:31,564 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp
+2021-01-18 10:23:31,566 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:23:31,567 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for TIM
+2021-01-18 10:23:31,567 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:23:31,569 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2021-01-18 10:23:31,569 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:23:31,576 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c_save
+2021-01-18 10:23:31,660 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c
+2021-01-18 10:23:31,667 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h_save
+2021-01-18 10:23:31,730 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h
+2021-01-18 10:23:31,739 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c_save
+2021-01-18 10:23:31,834 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c
+2021-01-18 10:23:31,840 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp_save
+2021-01-18 10:23:31,920 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp
+2021-01-18 10:23:31,930 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h_save
+2021-01-18 10:23:31,996 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h
+2021-01-18 10:23:32,008 [WARN] IPConfigManager:2701 - IP not found : TIM
+2021-01-18 10:23:32,008 [WARN] IPConfigManager:2701 - IP not found : gpio
+2021-01-18 10:23:32,008 [WARN] CodeGenerator:2649 - IP not found : TIM
+2021-01-18 10:23:32,008 [WARN] CodeGenerator:2649 - IP not found : gpio
+2021-01-18 10:23:32,014 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h_save
+2021-01-18 10:23:32,077 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h
+2021-01-18 10:23:32,085 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c_save
+2021-01-18 10:23:32,178 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c
+2021-01-18 10:23:32,851 [INFO] ProjectBuilder:2002 - Time for Copy HAL[1] : 97mS.
+2021-01-18 10:23:32,855 [INFO] ProjectBuilder:2727 - Project Generator version: 3.7.1
+2021-01-18 10:23:33,151 [INFO] ConfigFileManager:1066 - The Die is : DIE419
+2021-01-18 10:23:34,191 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 1336mS.
+2021-01-18 10:23:34,192 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 10:23:34,200 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 10:28:26,573 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 491366440 Bytes (1073741824)
+2021-01-18 10:28:26,623 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 500281376 Bytes (1073741824)
+2021-01-18 10:28:26,799 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 516010016 Bytes (1073741824)
+2021-01-18 10:28:26,954 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: TIM1_8
+2021-01-18 10:28:26,954 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: SYS
+2021-01-18 10:28:26,954 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: RCC
+2021-01-18 10:28:26,955 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: NVIC
+2021-01-18 10:28:26,955 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DMA
+2021-01-18 10:28:26,955 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DAC
+2021-01-18 10:28:26,955 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: GPIO
+2021-01-18 10:28:26,956 [INFO] CodeGenerator:603 - code generatio: config db path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.1.202004052303\\db\
+2021-01-18 10:28:26,958 [INFO] Argument:278 - Argument : hdmavalue: null
+2021-01-18 10:28:26,958 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:28:26,958 [INFO] Argument:278 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:28:26,958 [INFO] Argument:288 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:28:26,958 [INFO] Argument:278 - Argument : Initvalue: null
+2021-01-18 10:28:26,958 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:28:26,958 [INFO] Argument:278 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:28:26,958 [INFO] Argument:288 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:28:26,959 [INFO] Argument:278 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:28:26,959 [INFO] Argument:288 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:28:26,959 [INFO] Argument:278 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:28:26,959 [INFO] Argument:288 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:28:26,959 [INFO] Argument:278 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:28:26,959 [INFO] Argument:288 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:28:26,959 [INFO] Argument:278 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:28:26,959 [INFO] Argument:288 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:28:26,959 [INFO] Argument:278 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:28:26,959 [INFO] Argument:288 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:28:26,959 [INFO] Argument:278 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:28:26,960 [INFO] Argument:278 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:28:26,960 [INFO] Argument:278 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:28:26,960 [INFO] Argument:278 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:278 - Argument : MemBurstvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : MemBurstvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:278 - Argument : PeriphBurstvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : PeriphBurstvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:278 - Argument : Lockvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : Lockvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:278 - Argument : Statevalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : Statevalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:278 - Argument : Parentvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : Parentvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:278 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:278 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:278 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:28:26,960 [INFO] Argument:288 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:28:26,961 [INFO] Argument:278 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:28:26,961 [INFO] Argument:288 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:28:26,961 [INFO] Argument:278 - Argument : ErrorCodevalue: null
+2021-01-18 10:28:26,961 [INFO] Argument:288 - Argument : ErrorCodevalue: null
+2021-01-18 10:28:27,107 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp_save
+2021-01-18 10:28:27,157 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp
+2021-01-18 10:28:27,164 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp_save
+2021-01-18 10:28:27,216 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp
+2021-01-18 10:28:27,248 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:28:27,249 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DAC
+2021-01-18 10:28:27,250 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:28:27,251 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:28:27,252 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DMA
+2021-01-18 10:28:27,252 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:28:27,257 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp_save
+2021-01-18 10:28:27,309 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp
+2021-01-18 10:28:27,316 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp_save
+2021-01-18 10:28:27,368 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp
+2021-01-18 10:28:27,370 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:28:27,370 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for TIM
+2021-01-18 10:28:27,371 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:28:27,372 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2021-01-18 10:28:27,373 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:28:27,378 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c_save
+2021-01-18 10:28:27,459 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c
+2021-01-18 10:28:27,465 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h_save
+2021-01-18 10:28:27,528 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h
+2021-01-18 10:28:27,537 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c_save
+2021-01-18 10:28:27,631 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c
+2021-01-18 10:28:27,636 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp_save
+2021-01-18 10:28:27,692 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp
+2021-01-18 10:28:27,698 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h_save
+2021-01-18 10:28:27,765 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h
+2021-01-18 10:28:27,777 [WARN] IPConfigManager:2701 - IP not found : TIM
+2021-01-18 10:28:27,778 [WARN] IPConfigManager:2701 - IP not found : gpio
+2021-01-18 10:28:27,778 [WARN] CodeGenerator:2649 - IP not found : TIM
+2021-01-18 10:28:27,778 [WARN] CodeGenerator:2649 - IP not found : gpio
+2021-01-18 10:28:27,783 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h_save
+2021-01-18 10:28:27,846 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h
+2021-01-18 10:28:27,852 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c_save
+2021-01-18 10:28:27,942 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c
+2021-01-18 10:28:28,727 [INFO] ProjectBuilder:2002 - Time for Copy HAL[1] : 100mS.
+2021-01-18 10:28:28,729 [INFO] ProjectBuilder:2727 - Project Generator version: 3.7.1
+2021-01-18 10:28:29,099 [INFO] ConfigFileManager:1066 - The Die is : DIE419
+2021-01-18 10:28:30,245 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 1516mS.
+2021-01-18 10:28:30,246 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 1mS.
+2021-01-18 10:28:30,253 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 10:29:13,418 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 647885960 Bytes (1073741824)
+2021-01-18 10:29:13,638 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 662039696 Bytes (1073741824)
+2021-01-18 10:29:13,784 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 673051784 Bytes (1073741824)
+2021-01-18 10:29:13,940 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: TIM1_8
+2021-01-18 10:29:13,940 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: SYS
+2021-01-18 10:29:13,940 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: RCC
+2021-01-18 10:29:13,940 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: NVIC
+2021-01-18 10:29:13,940 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DMA
+2021-01-18 10:29:13,940 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DAC
+2021-01-18 10:29:13,940 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: GPIO
+2021-01-18 10:29:13,941 [INFO] CodeGenerator:603 - code generatio: config db path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.1.202004052303\\db\
+2021-01-18 10:29:13,944 [INFO] Argument:278 - Argument : hdmavalue: null
+2021-01-18 10:29:13,944 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:29:13,944 [INFO] Argument:278 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:29:13,944 [INFO] Argument:288 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:29:13,945 [INFO] Argument:278 - Argument : Initvalue: null
+2021-01-18 10:29:13,945 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:29:13,945 [INFO] Argument:278 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:29:13,945 [INFO] Argument:288 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:29:13,945 [INFO] Argument:278 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:29:13,945 [INFO] Argument:288 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:29:13,945 [INFO] Argument:278 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:29:13,945 [INFO] Argument:288 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:29:13,945 [INFO] Argument:278 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:29:13,945 [INFO] Argument:288 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:29:13,945 [INFO] Argument:278 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:29:13,946 [INFO] Argument:288 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:29:13,946 [INFO] Argument:278 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:29:13,946 [INFO] Argument:288 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:29:13,946 [INFO] Argument:278 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:29:13,946 [INFO] Argument:288 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:29:13,946 [INFO] Argument:278 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:29:13,946 [INFO] Argument:288 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:29:13,946 [INFO] Argument:278 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:29:13,946 [INFO] Argument:288 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:29:13,946 [INFO] Argument:278 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:288 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:278 - Argument : MemBurstvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:288 - Argument : MemBurstvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:278 - Argument : PeriphBurstvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:288 - Argument : PeriphBurstvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:278 - Argument : Lockvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:288 - Argument : Lockvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:278 - Argument : Statevalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:288 - Argument : Statevalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:278 - Argument : Parentvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:288 - Argument : Parentvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:278 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:288 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:278 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:288 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:278 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:288 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:278 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:29:13,947 [INFO] Argument:288 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:29:13,948 [INFO] Argument:278 - Argument : ErrorCodevalue: null
+2021-01-18 10:29:13,948 [INFO] Argument:288 - Argument : ErrorCodevalue: null
+2021-01-18 10:29:14,119 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp_save
+2021-01-18 10:29:14,183 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp
+2021-01-18 10:29:14,194 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp_save
+2021-01-18 10:29:14,250 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp
+2021-01-18 10:29:14,342 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:29:14,343 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DAC
+2021-01-18 10:29:14,344 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:29:14,346 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:29:14,346 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DMA
+2021-01-18 10:29:14,347 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:29:14,354 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp_save
+2021-01-18 10:29:14,419 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp
+2021-01-18 10:29:14,423 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp_save
+2021-01-18 10:29:14,482 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp
+2021-01-18 10:29:14,484 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:29:14,486 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for TIM
+2021-01-18 10:29:14,486 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:29:14,488 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2021-01-18 10:29:14,489 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:29:14,496 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c_save
+2021-01-18 10:29:14,574 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c
+2021-01-18 10:29:14,580 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h_save
+2021-01-18 10:29:14,650 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h
+2021-01-18 10:29:14,661 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c_save
+2021-01-18 10:29:14,753 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c
+2021-01-18 10:29:14,758 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp_save
+2021-01-18 10:29:14,812 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp
+2021-01-18 10:29:14,818 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h_save
+2021-01-18 10:29:14,883 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h
+2021-01-18 10:29:14,895 [WARN] IPConfigManager:2701 - IP not found : TIM
+2021-01-18 10:29:14,895 [WARN] IPConfigManager:2701 - IP not found : gpio
+2021-01-18 10:29:14,895 [WARN] CodeGenerator:2649 - IP not found : TIM
+2021-01-18 10:29:14,895 [WARN] CodeGenerator:2649 - IP not found : gpio
+2021-01-18 10:29:14,901 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h_save
+2021-01-18 10:29:14,966 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h
+2021-01-18 10:29:14,973 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c_save
+2021-01-18 10:29:15,093 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c
+2021-01-18 10:29:15,727 [INFO] ProjectBuilder:2002 - Time for Copy HAL[1] : 101mS.
+2021-01-18 10:29:15,730 [INFO] ProjectBuilder:2727 - Project Generator version: 3.7.1
+2021-01-18 10:29:16,044 [INFO] ConfigFileManager:1066 - The Die is : DIE419
+2021-01-18 10:29:17,118 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 1388mS.
+2021-01-18 10:29:17,119 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 1mS.
+2021-01-18 10:29:17,125 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 10:30:04,702 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 637545416 Bytes (1073741824)
+2021-01-18 10:30:04,760 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 646792464 Bytes (1073741824)
+2021-01-18 10:30:04,927 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 660614088 Bytes (1073741824)
+2021-01-18 10:30:05,081 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: TIM1_8
+2021-01-18 10:30:05,081 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: SYS
+2021-01-18 10:30:05,081 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: RCC
+2021-01-18 10:30:05,081 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: NVIC
+2021-01-18 10:30:05,081 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DMA
+2021-01-18 10:30:05,081 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DAC
+2021-01-18 10:30:05,081 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: GPIO
+2021-01-18 10:30:05,082 [INFO] CodeGenerator:603 - code generatio: config db path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.1.202004052303\\db\
+2021-01-18 10:30:05,084 [INFO] Argument:278 - Argument : hdmavalue: null
+2021-01-18 10:30:05,084 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:30:05,084 [INFO] Argument:278 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:30:05,084 [INFO] Argument:288 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:30:05,085 [INFO] Argument:278 - Argument : Initvalue: null
+2021-01-18 10:30:05,085 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:30:05,085 [INFO] Argument:278 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:30:05,085 [INFO] Argument:288 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:30:05,085 [INFO] Argument:278 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:30:05,085 [INFO] Argument:288 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:30:05,085 [INFO] Argument:278 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:30:05,085 [INFO] Argument:288 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:30:05,085 [INFO] Argument:278 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:30:05,085 [INFO] Argument:288 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:30:05,085 [INFO] Argument:278 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:30:05,085 [INFO] Argument:288 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:30:05,085 [INFO] Argument:278 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:30:05,085 [INFO] Argument:288 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:30:05,085 [INFO] Argument:278 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:30:05,085 [INFO] Argument:288 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:30:05,085 [INFO] Argument:278 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:30:05,086 [INFO] Argument:288 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:30:05,086 [INFO] Argument:278 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:30:05,086 [INFO] Argument:288 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:30:05,086 [INFO] Argument:278 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:288 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:278 - Argument : MemBurstvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:288 - Argument : MemBurstvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:278 - Argument : PeriphBurstvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:288 - Argument : PeriphBurstvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:278 - Argument : Lockvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:288 - Argument : Lockvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:278 - Argument : Statevalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:288 - Argument : Statevalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:278 - Argument : Parentvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:288 - Argument : Parentvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:278 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:288 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:278 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:30:05,086 [INFO] Argument:288 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:30:05,087 [INFO] Argument:278 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:30:05,087 [INFO] Argument:288 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:30:05,087 [INFO] Argument:278 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:30:05,087 [INFO] Argument:288 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:30:05,087 [INFO] Argument:278 - Argument : ErrorCodevalue: null
+2021-01-18 10:30:05,087 [INFO] Argument:288 - Argument : ErrorCodevalue: null
+2021-01-18 10:30:05,232 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp_save
+2021-01-18 10:30:05,287 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp
+2021-01-18 10:30:05,294 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp_save
+2021-01-18 10:30:05,349 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp
+2021-01-18 10:30:05,379 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:30:05,380 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DAC
+2021-01-18 10:30:05,380 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:30:05,381 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:30:05,382 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DMA
+2021-01-18 10:30:05,383 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:30:05,388 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp_save
+2021-01-18 10:30:05,451 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp
+2021-01-18 10:30:05,456 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp_save
+2021-01-18 10:30:05,506 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp
+2021-01-18 10:30:05,508 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:30:05,509 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for TIM
+2021-01-18 10:30:05,509 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:30:05,511 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2021-01-18 10:30:05,511 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:30:05,517 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c_save
+2021-01-18 10:30:05,591 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c
+2021-01-18 10:30:05,597 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h_save
+2021-01-18 10:30:05,652 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h
+2021-01-18 10:30:05,660 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c_save
+2021-01-18 10:30:05,818 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c
+2021-01-18 10:30:05,823 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp_save
+2021-01-18 10:30:05,881 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp
+2021-01-18 10:30:05,889 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h_save
+2021-01-18 10:30:05,953 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h
+2021-01-18 10:30:05,965 [WARN] IPConfigManager:2701 - IP not found : TIM
+2021-01-18 10:30:05,965 [WARN] IPConfigManager:2701 - IP not found : gpio
+2021-01-18 10:30:05,965 [WARN] CodeGenerator:2649 - IP not found : TIM
+2021-01-18 10:30:05,965 [WARN] CodeGenerator:2649 - IP not found : gpio
+2021-01-18 10:30:05,971 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h_save
+2021-01-18 10:30:06,032 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h
+2021-01-18 10:30:06,038 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c_save
+2021-01-18 10:30:06,140 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c
+2021-01-18 10:30:06,619 [INFO] ProjectBuilder:2002 - Time for Copy HAL[1] : 90mS.
+2021-01-18 10:30:06,621 [INFO] ProjectBuilder:2727 - Project Generator version: 3.7.1
+2021-01-18 10:30:06,821 [INFO] ConfigFileManager:1066 - The Die is : DIE419
+2021-01-18 10:30:08,533 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 1912mS.
+2021-01-18 10:30:08,533 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 10:30:08,541 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 10:31:55,604 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 493453456 Bytes (1073741824)
+2021-01-18 10:31:55,653 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 502304208 Bytes (1073741824)
+2021-01-18 10:31:55,911 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 483570064 Bytes (1073741824)
+2021-01-18 10:31:56,077 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: TIM1_8
+2021-01-18 10:31:56,077 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: SYS
+2021-01-18 10:31:56,077 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: RCC
+2021-01-18 10:31:56,077 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: NVIC
+2021-01-18 10:31:56,077 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DMA
+2021-01-18 10:31:56,077 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DAC
+2021-01-18 10:31:56,077 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: GPIO
+2021-01-18 10:31:56,079 [INFO] CodeGenerator:603 - code generatio: config db path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.1.202004052303\\db\
+2021-01-18 10:31:56,080 [INFO] Argument:278 - Argument : hdmavalue: null
+2021-01-18 10:31:56,080 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:31:56,080 [INFO] Argument:278 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:31:56,080 [INFO] Argument:288 - Argument : Instancevalue: DMA1_Stream5
+2021-01-18 10:31:56,080 [INFO] Argument:278 - Argument : Initvalue: null
+2021-01-18 10:31:56,080 [INFO] Argument:280 - 	 sub Args: 
+2021-01-18 10:31:56,080 [INFO] Argument:278 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : Channelvalue: DMA_CHANNEL_7
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : Directionvalue: DMA_MEMORY_TO_PERIPH
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : PeriphIncvalue: DMA_PINC_DISABLE
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : MemIncvalue: DMA_MINC_ENABLE
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : PeriphDataAlignmentvalue: DMA_PDATAALIGN_WORD
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : MemDataAlignmentvalue: DMA_MDATAALIGN_WORD
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : Modevalue: DMA_CIRCULAR
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : Priorityvalue: DMA_PRIORITY_LOW
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : FIFOModevalue: DMA_FIFOMODE_DISABLE
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : FIFOThresholdvalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : MemBurstvalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : MemBurstvalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : PeriphBurstvalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : PeriphBurstvalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : Lockvalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : Lockvalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : Statevalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : Statevalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : Parentvalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:288 - Argument : Parentvalue: null
+2021-01-18 10:31:56,082 [INFO] Argument:278 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:31:56,083 [INFO] Argument:288 - Argument : XferCpltCallbackvalue: null
+2021-01-18 10:31:56,083 [INFO] Argument:278 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:31:56,083 [INFO] Argument:288 - Argument : XferHalfCpltCallbackvalue: null
+2021-01-18 10:31:56,083 [INFO] Argument:278 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:31:56,083 [INFO] Argument:288 - Argument : XferM1CpltCallbackvalue: null
+2021-01-18 10:31:56,083 [INFO] Argument:278 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:31:56,083 [INFO] Argument:288 - Argument : XferErrorCallbackvalue: null
+2021-01-18 10:31:56,083 [INFO] Argument:278 - Argument : ErrorCodevalue: null
+2021-01-18 10:31:56,083 [INFO] Argument:288 - Argument : ErrorCodevalue: null
+2021-01-18 10:31:56,233 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp_save
+2021-01-18 10:31:56,284 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp
+2021-01-18 10:31:56,292 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp_save
+2021-01-18 10:31:56,346 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp
+2021-01-18 10:31:56,374 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:31:56,375 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DAC
+2021-01-18 10:31:56,375 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:31:56,377 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:31:56,377 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DMA
+2021-01-18 10:31:56,378 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:31:56,383 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp_save
+2021-01-18 10:31:56,440 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp
+2021-01-18 10:31:56,445 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp_save
+2021-01-18 10:31:56,506 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp
+2021-01-18 10:31:56,508 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:31:56,509 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for TIM
+2021-01-18 10:31:56,510 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:31:56,512 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2021-01-18 10:31:56,512 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:31:56,519 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c_save
+2021-01-18 10:31:56,626 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c
+2021-01-18 10:31:56,635 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h_save
+2021-01-18 10:31:56,696 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h
+2021-01-18 10:31:56,706 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c_save
+2021-01-18 10:31:56,796 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c
+2021-01-18 10:31:56,802 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp_save
+2021-01-18 10:31:56,854 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp
+2021-01-18 10:31:56,861 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h_save
+2021-01-18 10:31:56,929 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h
+2021-01-18 10:31:56,939 [WARN] IPConfigManager:2701 - IP not found : TIM
+2021-01-18 10:31:56,939 [WARN] IPConfigManager:2701 - IP not found : gpio
+2021-01-18 10:31:56,940 [WARN] CodeGenerator:2649 - IP not found : TIM
+2021-01-18 10:31:56,940 [WARN] CodeGenerator:2649 - IP not found : gpio
+2021-01-18 10:31:56,945 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h_save
+2021-01-18 10:31:57,012 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h
+2021-01-18 10:31:57,025 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c_save
+2021-01-18 10:31:57,120 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c
+2021-01-18 10:31:57,832 [INFO] ProjectBuilder:2002 - Time for Copy HAL[1] : 168mS.
+2021-01-18 10:31:57,834 [INFO] ProjectBuilder:2727 - Project Generator version: 3.7.1
+2021-01-18 10:31:58,037 [INFO] ConfigFileManager:1066 - The Die is : DIE419
+2021-01-18 10:31:59,273 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 1439mS.
+2021-01-18 10:31:59,277 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 4mS.
+2021-01-18 10:31:59,284 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.

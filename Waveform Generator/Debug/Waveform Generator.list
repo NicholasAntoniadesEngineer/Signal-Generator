@@ -1158,6 +1158,11 @@ void get_sineval(){
  8000e30:	b590      	push	{r4, r7, lr}
  8000e32:	b083      	sub	sp, #12
  8000e34:	af00      	add	r7, sp, #0
+
+	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2)
+	// ns = number of samples
+	// 0xFFF is 12 bit resolution
+
 	for(int i=0;i<100;i++){
  8000e36:	2300      	movs	r3, #0
  8000e38:	607b      	str	r3, [r7, #4]
@@ -1541,17 +1546,17 @@ static void MX_TIM2_Init(void)
  8001070:	4b1d      	ldr	r3, [pc, #116]	; (80010e8 <MX_TIM2_Init+0x94>)
  8001072:	f04f 4280 	mov.w	r2, #1073741824	; 0x40000000
  8001076:	601a      	str	r2, [r3, #0]
-  htim2.Init.Prescaler = 90-1;
+  htim2.Init.Prescaler = 9-1;
  8001078:	4b1b      	ldr	r3, [pc, #108]	; (80010e8 <MX_TIM2_Init+0x94>)
- 800107a:	2259      	movs	r2, #89	; 0x59
+ 800107a:	2208      	movs	r2, #8
  800107c:	605a      	str	r2, [r3, #4]
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
  800107e:	4b1a      	ldr	r3, [pc, #104]	; (80010e8 <MX_TIM2_Init+0x94>)
  8001080:	2200      	movs	r2, #0
  8001082:	609a      	str	r2, [r3, #8]
-  htim2.Init.Period = 100;
+  htim2.Init.Period = 1;
  8001084:	4b18      	ldr	r3, [pc, #96]	; (80010e8 <MX_TIM2_Init+0x94>)
- 8001086:	2264      	movs	r2, #100	; 0x64
+ 8001086:	2201      	movs	r2, #1
  8001088:	60da      	str	r2, [r3, #12]
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
  800108a:	4b17      	ldr	r3, [pc, #92]	; (80010e8 <MX_TIM2_Init+0x94>)
