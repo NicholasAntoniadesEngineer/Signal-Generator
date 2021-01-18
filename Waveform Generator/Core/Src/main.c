@@ -60,13 +60,12 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 
-double sine_scaled = 1; 	// Scale value.
+double sine_scaled = 0.9999; 	// Scale value.
 int Res = 4096;				// DAC resolution.
-uint32_t sine_val[100];  	// Buffer for all the sine bits.
+#define Ns 200  				// Number of samples, Adjusting Ns will affect the frequency of the output signal.
+uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
 #define PI 3.1415926
-int Fsine = 2000; 			// Frequency of ouput sine signal
-
-int Ns = 100;  				// Number of samples, Adjusting Ns will affect the frequency of the output signal.
+int Fsine = 6000; 			// Frequency of ouput sine signal
 int PSC;					// Tim2 Pre Scalar value
 uint32_t Fclock = 90000000;	// Tim2 Clock Frequency
 int Period = 1;				// Tim2 Period
