@@ -60,34 +60,23 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 
-double sine_scaled = 1; 	// Scale value.
-int Ns = 100;  				// Number of samples, Adjusting Ns will affect the frequency of the output signal.
-int DACres = 4096;			// DAC resolution.
-uint32_t sine_val[500];  	// Buffer for all the sine bits.
+double sine_scaled = 1; 	// Scale value
+int Ns = 100;  				// Number of samples
+int DACres = 4096;			// DAC resolution
+uint32_t sine_val[500];  	// Buffer for all the sine bits
 #define PI 3.1415926
 
+// Adjusting Ns will affect the frequency of the output signal
 
-void get_sineval(void){
+void get_sineval(){
+	// Sampling step = 2PI/ns
 	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
+
 	for(int i=0;i<Ns;i++){
-		sine_val[i] = ((sin(i*2*PI/Ns)+1)*(DACres/2)); // Sampling step = 2PI/ns
+		sine_val[i] = ((sin(i*2*PI/Ns)+1)*(DACres/2));
 		sine_val[i] = sine_scaled*sine_val[i];
 	}
 }
-
-
-void set_clock(void){
-	  // Adjust PSC and period in order to manipulate frequency.
-	  htim2.Instance = TIM2;
-	  htim2.Init.Prescaler = 1;
-	  htim2.Init.Period = 10;
-	  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
-	  {
-	    Error_Handler();
-	  }
-
-}
-
 /* USER CODE END 0 */
 
 /**
@@ -130,10 +119,9 @@ int main(void)
 
 
   /* Sine function */
-  set_clock();							// Setting frequency of timer
   HAL_TIM_Base_Start(&htim2);			// Start timer 2
-  get_sineval();						// Call get sineval function
-  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+  get_sineval();
+  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA
 
   /* USER CODE END 2 */
 

@@ -65,12 +65,15 @@ int Ns = 100;  				// Number of samples, Adjusting Ns will affect the frequency 
 int DACres = 4096;			// DAC resolution.
 uint32_t sine_val[500];  	// Buffer for all the sine bits.
 #define PI 3.1415926
+uint32_t Ss = (2*PI)/100;	// Sampling step = 2PI/ns
 
 
 void get_sineval(void){
+
 	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
+
 	for(int i=0;i<Ns;i++){
-		sine_val[i] = ((sin(i*2*PI/Ns)+1)*(DACres/2)); // Sampling step = 2PI/ns
+		sine_val[i] = ((sin(i*Ss)+1)*(DACres/2));
 		sine_val[i] = sine_scaled*sine_val[i];
 	}
 }
@@ -130,10 +133,10 @@ int main(void)
 
 
   /* Sine function */
-  set_clock();							// Setting frequency of timer
+  set_clock();
   HAL_TIM_Base_Start(&htim2);			// Start timer 2
-  get_sineval();						// Call get sineval function
-  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+  get_sineval();
+  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA
 
   /* USER CODE END 2 */
 
