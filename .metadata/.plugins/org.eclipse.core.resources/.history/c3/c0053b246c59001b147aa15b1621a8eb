@@ -68,9 +68,8 @@ uint32_t sine_val[100];
 
 void get_sineval(){
 
+	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2)
 	// ns = number of samples
-	// Sampling step = 2PI/ns
-	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
 	// 0xFFF is 12 bit resolution
 
 	for(int i=0;i<100;i++){
@@ -250,7 +249,7 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 1;
+  htim2.Init.Prescaler = 9-1;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim2.Init.Period = 1;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
