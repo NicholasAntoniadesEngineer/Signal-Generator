@@ -1,10 +1,10 @@
-09:04:36 **** Incremental Build of configuration Debug for project Waveform Generator ****
+10:20:02 **** Incremental Build of configuration Debug for project Waveform Generator ****
 make -j8 all 
 arm-none-eabi-size   Waveform\ Generator.elf 
    text	   data	    bss	    dec	    hex	filename
-   6364	     20	   1588	   7972	   1f24	Waveform Generator.elf
+  17856	     20	   2148	  20024	   4e38	Waveform Generator.elf
 Finished building: default.size.stdout
  
 
-09:04:40 Build Finished. 0 errors, 0 warnings. (took 3s.496ms)
+10:20:05 Build Finished. 0 errors, 0 warnings. (took 2s.646ms)
 

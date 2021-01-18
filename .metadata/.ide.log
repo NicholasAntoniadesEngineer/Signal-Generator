@@ -637,3 +637,398 @@
 2021-01-18 09:04:20,551 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 3175mS.
 2021-01-18 09:04:20,553 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 1mS.
 2021-01-18 09:04:20,582 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 09:05:16,869 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.apache.felix.scr_2.1.16.v20200110-1820.jar
+2021-01-18 09:05:16,874 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.antlr.runtime_4.7.2.v20200218-0804.jar
+2021-01-18 09:05:16,879 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.apache.ant_1.10.8.v20200515-1239
+2021-01-18 09:05:16,884 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.apache.commons.codec_1.13.0.v20200108-0001.jar
+2021-01-18 09:05:18,210 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.apache.httpcomponents.httpclient_4.5.10.v20200114-1512.jar
+2021-01-18 09:05:19,076 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.apache.httpcomponents.httpclient.win_4.5.10.v20200113-2105.jar
+2021-01-18 09:05:19,294 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.apache.httpcomponents.httpcore_4.4.12.v20200108-1212.jar
+2021-01-18 09:05:19,308 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.apache.lucene.analyzers-common_8.4.1.v20200122-1459.jar
+2021-01-18 09:05:19,783 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.apache.lucene.analyzers-smartcn_8.4.1.v20200122-1459.jar
+2021-01-18 09:05:20,483 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.apache.lucene.core_8.4.1.v20200122-1459.jar
+2021-01-18 09:05:20,581 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ant.core_3.5.700.v20191221-1203.jar
+2021-01-18 09:05:21,318 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt_9.11.1.202004012021.jar
+2021-01-18 09:05:21,925 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.build.crossgcc_1.1.200.202001092011.jar
+2021-01-18 09:05:22,129 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.build.gcc.core_1.0.200.201910171407.jar
+2021-01-18 09:05:22,516 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.build.gcc.ui_1.0.200.202001092011.jar
+2021-01-18 09:05:22,747 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.codan.checkers_3.3.400.202003091030.jar
+2021-01-18 09:05:23,208 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.codan.core_4.0.200.201910281707.jar
+2021-01-18 09:05:23,380 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.codan.ui_3.3.400.201910171407.jar
+2021-01-18 09:05:23,833 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.core_6.11.1.202006011430.jar
+2021-01-18 09:05:23,837 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.core.native_5.10.400.202001092011.jar
+2021-01-18 09:05:24,099 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.debug.core_8.4.100.202003021747.jar
+2021-01-18 09:05:24,545 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.debug.gdbjtag_7.0.201.202004012021.jar
+2021-01-18 09:05:25,033 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.debug.gdbjtag.core_9.5.0.202003081410.jar
+2021-01-18 09:05:25,132 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.debug.gdbjtag.ui_8.1.201.202005131504.jar
+2021-01-18 09:05:25,641 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.debug.ui_8.3.400.202003021159.jar
+2021-01-18 09:05:25,721 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.debug.ui.memory.floatingpoint_1.0.300.202002041243.jar
+2021-01-18 09:05:26,577 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.debug.ui.memory.memorybrowser_1.3.300.202001092011.jar
+2021-01-18 09:05:26,589 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.debug.ui.memory.traditional_1.5.200.202002041243.jar
+2021-01-18 09:05:27,305 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.doc.user_5.4.401.202004012023.jar
+2021-01-18 09:05:27,533 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.dsf_2.8.200.201910171407.jar
+2021-01-18 09:05:27,625 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.dsf.gdb_5.8.100.202003021149.jar
+2021-01-18 09:05:28,462 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.dsf.gdb.ui_2.6.500.202003021149.jar
+2021-01-18 09:05:30,125 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.dsf.ui_2.5.400.202003021149.jar
+2021-01-18 09:05:30,653 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.gdb_7.0.100.202001092011.jar
+2021-01-18 09:05:31,043 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.launch_9.3.200.202003021149.jar
+2021-01-18 09:05:31,253 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.launch.remote_2.5.100.202001092011.jar
+2021-01-18 09:05:31,816 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.make.core_7.4.200.202003021747.jar
+2021-01-18 09:05:32,265 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.make.ui_7.3.300.202003021149.jar
+2021-01-18 09:05:32,694 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.managedbuilder.core_8.8.1.202004251814.jar
+2021-01-18 09:05:32,759 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.managedbuilder.gnu.ui_8.3.200.202001021055.jar
+2021-01-18 09:05:33,403 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.managedbuilder.ui_9.1.500.202003021149.jar
+2021-01-18 09:05:33,591 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.native.serial_1.1.401.202005051837.jar
+2021-01-18 09:05:34,496 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.cdt.ui_6.7.1.202005220422.jar
+2021-01-18 09:05:34,707 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.compare_3.7.1000.v20200511-1203.jar
+2021-01-18 09:05:35,010 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.compare.core_3.6.900.v20200412-2017.jar
+2021-01-18 09:05:35,335 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.compare.win32_1.2.800.v20200127-1343.jar
+2021-01-18 09:05:35,708 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.commands_3.9.700.v20191217-1850.jar
+2021-01-18 09:05:35,858 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.contenttype_3.7.700.v20200517-1644.jar
+2021-01-18 09:05:35,960 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.databinding_1.9.0.v20200519-1409.jar
+2021-01-18 09:05:36,317 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.databinding.beans_1.6.100.v20191217-1850.jar
+2021-01-18 09:05:36,636 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.databinding.observable_1.9.0.v20200205-2119.jar
+2021-01-18 09:05:36,823 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.databinding.property_1.8.0.v20200124-0715.jar
+2021-01-18 09:05:36,945 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.expressions_3.6.800.v20200319-0911.jar
+2021-01-18 09:05:37,534 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.externaltools_1.1.700.v20200416-1310.jar
+2021-01-18 09:05:37,559 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.filebuffers_3.6.1000.v20200409-1035.jar
+2021-01-18 09:05:37,561 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.filesystem_1.7.700.v20200110-1734.jar
+2021-01-18 09:05:38,135 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.jobs_3.10.800.v20200421-0950.jar
+2021-01-18 09:05:38,155 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.net_1.3.900.v20200428-1255.jar
+2021-01-18 09:05:38,171 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.net.win32.x86_64_1.1.500.v20190925-1337.jar
+2021-01-18 09:05:38,729 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.resources_3.13.700.v20200209-1624.jar
+2021-01-18 09:05:38,731 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.runtime_3.18.0.v20200506-2143.jar
+2021-01-18 09:05:38,750 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.core.variables_3.4.800.v20200120-1101.jar
+2021-01-18 09:05:39,296 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.debug.core_3.15.100.v20200514-0816.jar
+2021-01-18 09:05:39,350 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.debug.ui_3.14.500.v20200520-0842.jar
+2021-01-18 09:05:39,648 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.core.commands_0.12.900.v20200110-1732.jar
+2021-01-18 09:05:40,230 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.core.contexts_1.8.400.v20191217-1710.jar
+2021-01-18 09:05:40,366 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.core.di_1.7.600.v20200428-0912.jar
+2021-01-18 09:05:40,952 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.core.di.annotations_1.6.600.v20191216-2352.jar
+2021-01-18 09:05:40,983 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.core.di.extensions_0.16.0.v20200507-0938.jar
+2021-01-18 09:05:41,299 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.core.di.extensions.supplier_0.15.600.v20200311-0642.jar
+2021-01-18 09:05:41,505 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.core.services_2.2.300.v20200422-1846.jar
+2021-01-18 09:05:41,561 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.emf.xpath_0.2.700.v20200318-1219.jar
+2021-01-18 09:05:42,017 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.bindings_0.12.900.v20200513-0930.jar
+2021-01-18 09:05:42,330 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.css.core_0.12.1200.v20200513-0930.jar
+2021-01-18 09:05:42,337 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.css.swt_0.13.1000.v20200525-0806.jar
+2021-01-18 09:05:42,589 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.css.swt.theme_0.12.700.v20200527-0719.jar
+2021-01-18 09:05:43,077 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.di_1.2.800.v20200128-0855.jar
+2021-01-18 09:05:43,185 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.dialogs_1.1.800.v20200522-0923.jar
+2021-01-18 09:05:43,329 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.model.workbench_2.1.700.v20200113-1422.jar
+2021-01-18 09:05:43,698 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.services_1.3.700.v20190930-1643.jar
+2021-01-18 09:05:43,771 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.widgets_1.2.700.v20191222-1048.jar
+2021-01-18 09:05:43,876 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.workbench_1.11.300.v20200514-1625.jar
+2021-01-18 09:05:44,293 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.workbench.addons.swt_1.3.1000.v20200517-1848.jar
+2021-01-18 09:05:44,327 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.workbench.renderers.swt_0.14.1200.v20200529-1321.jar
+2021-01-18 09:05:44,570 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.workbench.swt_0.14.1000.v20200514-1625.jar
+2021-01-18 09:05:44,610 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.e4.ui.workbench3_0.15.400.v20191216-0805.jar
+2021-01-18 09:05:45,096 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ecf_3.9.5.v20200217-1548.jar
+2021-01-18 09:05:45,125 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ecf.filetransfer_5.1.0.v20200217-0016.jar
+2021-01-18 09:05:45,151 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ecf.provider.filetransfer_3.2.500.v20191017-1905.jar
+2021-01-18 09:05:45,154 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ecf.identity_3.9.300.v20191020-1846.jar
+2021-01-18 09:05:45,648 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ecf.provider.filetransfer.httpclient45_1.0.300.v20200522-1203.jar
+2021-01-18 09:05:45,692 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ecf.provider.filetransfer.httpclient45.win32_1.0.100.v20200212-0036.jar
+2021-01-18 09:05:45,732 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ecf.provider.filetransfer.ssl_1.0.101.v20191012-1926.jar
+2021-01-18 09:05:45,888 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ecf.ssl_1.2.300.v20191012-1926.jar
+2021-01-18 09:05:46,286 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.emf.common_2.19.0.v20200324-0932.jar
+2021-01-18 09:05:46,354 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.epp.mpc.core_1.8.3.v20200522-1533.jar
+2021-01-18 09:05:46,368 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.emf.ecore_2.22.0.v20200519-1135.jar
+2021-01-18 09:05:46,565 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.epp.mpc.core.win32_1.8.3.v20200522-1533.jar
+2021-01-18 09:05:46,907 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.epp.mpc.help.ui_1.8.3.v20200522-1533.jar
+2021-01-18 09:05:47,091 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.epp.mpc.ui_1.8.3.v20200526-1554.jar
+2021-01-18 09:05:47,277 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.epp.mpc.ui.css_1.8.3.v20200522-1533.jar
+2021-01-18 09:05:47,631 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.app_1.4.500.v20200422-1833.jar
+2021-01-18 09:05:48,130 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.bidi_1.2.300.v20191213-1901.jar
+2021-01-18 09:05:48,183 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.common_3.12.0.v20200504-1602.jar
+2021-01-18 09:05:48,232 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.concurrent_1.1.500.v20200106-1437.jar
+2021-01-18 09:05:48,286 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.console_1.4.100.v20200525-1407.jar
+2021-01-18 09:05:48,801 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.event_1.5.400.v20200511-1702.jar
+2021-01-18 09:05:48,849 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.frameworkadmin_2.1.400.v20191002-0702.jar
+2021-01-18 09:05:48,854 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.frameworkadmin.equinox_1.1.400.v20200319-1546.jar
+2021-01-18 09:05:49,045 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.http.jetty_3.7.400.v20200123-1333.jar
+2021-01-18 09:05:49,385 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.http.registry_1.1.800.v20200422-1833.jar
+2021-01-18 09:05:49,443 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.http.servlet_1.6.500.v20200511-1535.jar
+2021-01-18 09:05:49,529 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.jsp.jasper_1.1.500.v20200422-1833.jar
+2021-01-18 09:05:49,593 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.jsp.jasper.registry_1.1.400.v20200422-1833.jar
+2021-01-18 09:05:50,014 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.launcher_1.5.700.v20200207-2156.jar
+2021-01-18 09:05:50,087 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.launcher.win32.win32.x86_64_1.1.1200.v20200508-1552
+2021-01-18 09:05:50,164 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.artifact.repository_1.3.500.v20200406-2025.jar
+2021-01-18 09:05:50,257 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.console_1.1.300.v20191014-1219.jar
+2021-01-18 09:05:50,643 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.core_2.6.300.v20200211-1504.jar
+2021-01-18 09:05:50,776 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.director_2.4.700.v20200511-1530.jar
+2021-01-18 09:05:50,856 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.director.app_1.1.600.v20200511-1530.jar
+2021-01-18 09:05:51,052 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.directorywatcher_1.2.500.v20191211-1631.jar
+2021-01-18 09:05:51,234 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.engine_2.6.700.v20200511-1530.jar
+2021-01-18 09:05:51,481 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.extensionlocation_1.3.400.v20191213-1911.jar
+2021-01-18 09:05:51,612 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.garbagecollector_1.1.400.v20200221-1022.jar
+2021-01-18 09:05:51,648 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.jarprocessor_1.1.600.v20200217-1130.jar
+2021-01-18 09:05:52,110 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.metadata_2.5.0.v20200511-1530.jar
+2021-01-18 09:05:52,119 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.metadata.repository_1.3.400.v20191211-1528.jar
+2021-01-18 09:05:52,265 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.operations_2.5.800.v20200410-1336.jar
+2021-01-18 09:05:52,521 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.publisher_1.5.400.v20200511-1530.jar
+2021-01-18 09:05:52,830 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.publisher.eclipse_1.3.600.v20200318-1507.jar
+2021-01-18 09:05:53,024 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.reconciler.dropins_1.3.400.v20200511-1530.jar
+2021-01-18 09:05:53,211 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.repository_2.4.700.v20200110-2121.jar
+2021-01-18 09:05:53,304 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.repository.tools_2.2.500.v20200110-2121.jar
+2021-01-18 09:05:53,644 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.touchpoint.eclipse_2.2.600.v20200114-1339.jar
+2021-01-18 09:05:53,732 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.touchpoint.natives_1.3.600.v20200511-1530.jar
+2021-01-18 09:05:53,942 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.transport.ecf_1.2.400.v20200123-2221.jar
+2021-01-18 09:05:54,198 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.ui_2.6.0.v20200602-1138.jar
+2021-01-18 09:05:54,306 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.ui.discovery_1.1.500.v20200521-1852.jar
+2021-01-18 09:05:54,559 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.ui.importexport_1.2.400.v20191016-0512.jar
+2021-01-18 09:05:54,597 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.ui.sdk_1.1.600.v20200412-0601.jar
+2021-01-18 09:05:55,133 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.ui.sdk.scheduler_1.4.700.v20200511-1530.jar
+2021-01-18 09:05:55,160 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.updatechecker_1.2.300.v20200222-1600.jar
+2021-01-18 09:05:55,190 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.p2.updatesite_1.1.400.v20200511-1530.jar
+2021-01-18 09:05:55,435 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.preferences_3.8.0.v20200422-1833.jar
+2021-01-18 09:05:55,755 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.registry_3.8.800.v20200406-0956.jar
+2021-01-18 09:05:55,789 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.security_1.3.500.v20200114-1637.jar
+2021-01-18 09:05:55,902 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.security.ui_1.2.600.v20191213-1901.jar
+2021-01-18 09:05:56,217 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.simpleconfigurator_1.3.500.v20200211-1505.jar
+2021-01-18 09:05:56,391 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.equinox.simpleconfigurator.manipulator_2.1.500.v20200211-1505.jar
+2021-01-18 09:05:56,606 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.help_3.8.800.v20200525-0755.jar
+2021-01-18 09:05:56,633 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.help.base_4.2.1000.v20200604-0540.jar
+2021-01-18 09:05:57,014 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.help.ui_4.1.900.v20200525-0615.jar
+2021-01-18 09:05:57,022 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.help.webapp_3.9.900.v20200525-1514.jar
+2021-01-18 09:05:57,489 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jetty.continuation_9.4.29.v20200521.jar
+2021-01-18 09:05:57,819 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jetty.http_9.4.29.v20200521.jar
+2021-01-18 09:05:57,860 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jetty.io_9.4.29.v20200521.jar
+2021-01-18 09:05:58,182 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jetty.security_9.4.29.v20200521.jar
+2021-01-18 09:05:58,312 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jetty.server_9.4.29.v20200521.jar
+2021-01-18 09:05:58,347 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jetty.servlet_9.4.29.v20200521.jar
+2021-01-18 09:05:58,499 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jetty.util_9.4.29.v20200521.jar
+2021-01-18 09:05:58,751 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jface_3.20.0.v20200505-1952.jar
+2021-01-18 09:05:58,827 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jface.databinding_1.11.100.v20200522-1835.jar
+2021-01-18 09:05:59,206 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jface.text_3.16.300.v20200526-0811.jar
+2021-01-18 09:05:59,519 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jsch.core_1.3.900.v20200422-1935.jar
+2021-01-18 09:05:59,783 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.jsch.ui_1.3.900.v20200422-1935.jar
+2021-01-18 09:06:00,164 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.launchbar.core_2.3.100.202001140305.jar
+2021-01-18 09:06:00,365 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.launchbar.ui_2.3.100.202001140305.jar
+2021-01-18 09:06:00,634 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ltk.core.refactoring_3.11.0.v20200515-0330.jar
+2021-01-18 09:06:00,691 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ltk.ui.refactoring_3.11.0.v20200515-0330.jar
+2021-01-18 09:06:00,786 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.osgi_3.15.300.v20200520-1959.jar
+2021-01-18 09:06:01,026 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.osgi.compatibility.state_1.1.800.v20200511-1223.jar
+2021-01-18 09:06:01,422 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.platform_4.16.0.v20200604-0540
+2021-01-18 09:06:02,009 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.rcp_4.16.0.v20200604-0540.jar
+2021-01-18 09:06:02,579 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.search_3.11.1000.v20200410-1852.jar
+2021-01-18 09:06:02,671 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.swt_3.114.100.v20200604-0951.jar
+2021-01-18 09:06:03,263 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.swt.win32.win32.x86_64_3.114.100.v20200604-0951.jar
+2021-01-18 09:06:03,384 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.team.core_3.8.1000.v20200428-1255.jar
+2021-01-18 09:06:03,936 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.team.genericeditor.diff.extension_1.0.600.v20200212-1524.jar
+2021-01-18 09:06:04,534 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.text_3.10.200.v20200428-0633.jar
+2021-01-18 09:06:05,629 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.text.quicksearch_1.0.300.v20200519-2023.jar
+2021-01-18 09:06:05,997 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.tm.terminal.control_4.6.1.202005200056.jar
+2021-01-18 09:06:06,248 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.tools.templates.core_1.1.100.202001140305.jar
+2021-01-18 09:06:06,798 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.tools.templates.freemarker_1.1.100.202001140305.jar
+2021-01-18 09:06:06,818 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.tools.templates.freemarker.java11_1.1.100.202001140305.jar
+2021-01-18 09:06:06,994 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.tools.templates.ui_1.1.100.202001140305.jar
+2021-01-18 09:06:07,359 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ui_3.117.0.v20200518-1705.jar
+2021-01-18 09:06:07,458 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ui.browser_3.6.800.v20200410-1405.jar
+2021-01-18 09:06:07,555 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\org.eclipse.ui.cheatsheets_3.5.800.v20200522-1354.jar
+2021-01-18 09:06:14,542 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.cdt.build.crossgcc_9.11.1.202004012021
+2021-01-18 09:06:14,637 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.cdt.debug.gdbjtag_9.11.1.202005131504
+2021-01-18 09:06:14,930 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.cdt.debug.ui.memory_9.11.1.202004012021
+2021-01-18 09:06:14,995 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.cdt_9.11.1.202006011430
+2021-01-18 09:06:15,086 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.cdt.gdb_9.11.1.202004012021
+2021-01-18 09:06:15,321 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.cdt.gnu.build_9.11.1.202004012021
+2021-01-18 09:06:15,372 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.cdt.gnu.debug_9.11.1.202004012021
+2021-01-18 09:06:15,513 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.cdt.gnu.dsf_9.11.1.202004012021
+2021-01-18 09:06:15,744 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.cdt.launch.remote_9.11.1.202004012021
+2021-01-18 09:06:15,751 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.cdt.native_9.11.1.202005051837
+2021-01-18 09:06:16,088 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.cdt.platform_9.11.1.202006011430
+2021-01-18 09:06:16,124 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.e4.rcp_4.16.0.v20200604-0951
+2021-01-18 09:06:16,549 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.ecf.core.feature_1.5.600.v20200317-1602
+2021-01-18 09:06:16,898 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.ecf.core.ssl.feature_1.1.400.v20200317-1602
+2021-01-18 09:06:16,989 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.ecf.filetransfer.feature_3.14.800.v20200317-1602
+2021-01-18 09:06:17,124 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.ecf.filetransfer.httpclient45.feature_1.0.400.v20200522-1203
+2021-01-18 09:06:17,132 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.ecf.filetransfer.ssl.feature_1.1.300.v20200317-1602
+2021-01-18 09:06:17,272 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.emf.common_2.19.0.v20200324-0932
+2021-01-18 09:06:17,352 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.emf.ecore_2.22.0.v20200519-1135
+2021-01-18 09:06:17,466 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.epp.mpc_1.8.3.v20200526-1554
+2021-01-18 09:06:17,489 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.equinox.p2.core.feature_1.6.600.v20200511-1530
+2021-01-18 09:06:17,648 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.equinox.p2.discovery.feature_1.2.600.v20200521-1852
+2021-01-18 09:06:17,757 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.equinox.p2.extras.feature_1.4.800.v20200511-1530
+2021-01-18 09:06:17,822 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.equinox.p2.rcp.feature_1.4.800.v20200602-1138
+2021-01-18 09:06:17,837 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.equinox.p2.user.ui_2.4.800.v20200602-1138
+2021-01-18 09:06:18,109 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.help_2.3.200.v20200604-0540
+2021-01-18 09:06:18,268 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.platform_4.16.0.v20200604-0951
+2021-01-18 09:06:18,286 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.rcp_4.16.0.v20200604-0951
+2021-01-18 09:06:18,525 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.tm.terminal.control.feature_4.6.1.202005200056
+2021-01-18 09:06:18,708 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Artifact repository out of sync. Overwriting C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\features\org.eclipse.userstorage_1.2.0.v20191120-1614
+2021-01-18 09:08:11,613 [INFO] NvicIntPanel:88 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,537x420,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2021-01-18 09:10:06,882 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 989363296 Bytes (1067450368)
+2021-01-18 09:10:08,659 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 1002468456 Bytes (1067450368)
+2021-01-18 09:10:08,889 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 1017148520 Bytes (1067450368)
+2021-01-18 09:10:09,154 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: SYS
+2021-01-18 09:10:09,154 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: NVIC
+2021-01-18 09:10:09,154 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DAC
+2021-01-18 09:10:09,154 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: GPIO
+2021-01-18 09:10:09,155 [INFO] CodeGenerator:603 - code generatio: config db path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.1.202004052303\\db\
+2021-01-18 09:10:09,382 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp_save
+2021-01-18 09:10:09,447 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp
+2021-01-18 09:10:09,460 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp_save
+2021-01-18 09:10:09,534 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp
+2021-01-18 09:10:09,555 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 09:10:09,555 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DAC
+2021-01-18 09:10:09,556 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 09:10:09,558 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2021-01-18 09:10:09,559 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 09:10:09,568 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c_save
+2021-01-18 09:10:09,691 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c
+2021-01-18 09:10:09,699 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h_save
+2021-01-18 09:10:09,766 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h
+2021-01-18 09:10:09,778 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c_save
+2021-01-18 09:10:09,933 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c
+2021-01-18 09:10:09,940 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp_save
+2021-01-18 09:10:09,992 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp
+2021-01-18 09:10:09,998 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h_save
+2021-01-18 09:10:10,059 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h
+2021-01-18 09:10:10,074 [WARN] IPConfigManager:2701 - IP not found : gpio
+2021-01-18 09:10:10,075 [WARN] CodeGenerator:2649 - IP not found : gpio
+2021-01-18 09:10:10,080 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h_save
+2021-01-18 09:10:10,143 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h
+2021-01-18 09:10:10,149 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c_save
+2021-01-18 09:10:10,259 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c
+2021-01-18 09:10:10,973 [INFO] ProjectBuilder:2002 - Time for Copy HAL[1] : 100mS.
+2021-01-18 09:10:10,977 [INFO] ProjectBuilder:2727 - Project Generator version: 3.7.1
+2021-01-18 09:10:11,312 [INFO] ConfigFileManager:1066 - The Die is : DIE419
+2021-01-18 09:10:12,426 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 1449mS.
+2021-01-18 09:10:12,428 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 2mS.
+2021-01-18 09:10:12,432 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 09:18:37,254 [INFO] NvicIntPanel:88 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,537x420,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2021-01-18 09:22:37,514 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 804877680 Bytes (1073741824)
+2021-01-18 09:22:39,020 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 818509168 Bytes (1073741824)
+2021-01-18 09:22:39,174 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 833715560 Bytes (1073741824)
+2021-01-18 09:22:39,346 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: SYS
+2021-01-18 09:22:39,346 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: RCC
+2021-01-18 09:22:39,346 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: NVIC
+2021-01-18 09:22:39,346 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DAC
+2021-01-18 09:22:39,346 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: GPIO
+2021-01-18 09:22:39,347 [INFO] CodeGenerator:603 - code generatio: config db path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.1.202004052303\\db\
+2021-01-18 09:22:39,531 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp_save
+2021-01-18 09:22:39,586 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp
+2021-01-18 09:22:39,596 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp_save
+2021-01-18 09:22:39,667 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp
+2021-01-18 09:22:39,686 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 09:22:39,688 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DAC
+2021-01-18 09:22:39,688 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 09:22:39,691 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2021-01-18 09:22:39,692 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 09:22:39,698 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c_save
+2021-01-18 09:22:39,794 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c
+2021-01-18 09:22:39,803 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h_save
+2021-01-18 09:22:39,888 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h
+2021-01-18 09:22:39,898 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c_save
+2021-01-18 09:22:40,023 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c
+2021-01-18 09:22:40,031 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp_save
+2021-01-18 09:22:40,102 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp
+2021-01-18 09:22:40,110 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h_save
+2021-01-18 09:22:40,191 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h
+2021-01-18 09:22:40,207 [WARN] IPConfigManager:2701 - IP not found : gpio
+2021-01-18 09:22:40,208 [WARN] CodeGenerator:2649 - IP not found : gpio
+2021-01-18 09:22:40,215 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h_save
+2021-01-18 09:22:40,303 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h
+2021-01-18 09:22:40,311 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c_save
+2021-01-18 09:22:40,436 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c
+2021-01-18 09:22:40,946 [INFO] ProjectBuilder:2002 - Time for Copy HAL[1] : 102mS.
+2021-01-18 09:22:40,949 [INFO] ProjectBuilder:2727 - Project Generator version: 3.7.1
+2021-01-18 09:22:41,180 [INFO] ConfigFileManager:1066 - The Die is : DIE419
+2021-01-18 09:22:43,072 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 2123mS.
+2021-01-18 09:22:43,073 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 1mS.
+2021-01-18 09:22:43,078 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 09:23:22,314 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 533534536 Bytes (1073741824)
+2021-01-18 09:23:23,555 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 547166024 Bytes (1073741824)
+2021-01-18 09:23:23,691 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 622663496 Bytes (1073741824)
+2021-01-18 09:23:23,843 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: SYS
+2021-01-18 09:23:23,843 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: RCC
+2021-01-18 09:23:23,843 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: NVIC
+2021-01-18 09:23:23,843 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DAC
+2021-01-18 09:23:23,843 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: GPIO
+2021-01-18 09:23:23,844 [INFO] CodeGenerator:603 - code generatio: config db path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.1.202004052303\\db\
+2021-01-18 09:23:23,986 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp_save
+2021-01-18 09:23:24,035 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp
+2021-01-18 09:23:24,043 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp_save
+2021-01-18 09:23:24,095 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp
+2021-01-18 09:23:24,110 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 09:23:24,110 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DAC
+2021-01-18 09:23:24,111 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 09:23:24,113 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2021-01-18 09:23:24,113 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 09:23:24,118 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c_save
+2021-01-18 09:23:24,195 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c
+2021-01-18 09:23:24,201 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h_save
+2021-01-18 09:23:24,263 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h
+2021-01-18 09:23:24,272 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c_save
+2021-01-18 09:23:24,373 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c
+2021-01-18 09:23:24,380 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp_save
+2021-01-18 09:23:24,438 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp
+2021-01-18 09:23:24,445 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h_save
+2021-01-18 09:23:24,518 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h
+2021-01-18 09:23:24,536 [WARN] IPConfigManager:2701 - IP not found : gpio
+2021-01-18 09:23:24,537 [WARN] CodeGenerator:2649 - IP not found : gpio
+2021-01-18 09:23:24,543 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h_save
+2021-01-18 09:23:24,610 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h
+2021-01-18 09:23:24,617 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c_save
+2021-01-18 09:23:24,710 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c
+2021-01-18 09:23:26,192 [INFO] ProjectBuilder:2002 - Time for Copy HAL[1] : 170mS.
+2021-01-18 09:23:26,197 [INFO] ProjectBuilder:2727 - Project Generator version: 3.7.1
+2021-01-18 09:23:26,769 [INFO] ConfigFileManager:1066 - The Die is : DIE419
+2021-01-18 09:23:28,455 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 2258mS.
+2021-01-18 09:23:28,456 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 1mS.
+2021-01-18 09:23:28,461 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
+2021-01-18 09:58:55,267 [INFO] NvicIntPanel:88 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,450x420,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2021-01-18 10:04:20,964 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 438441688 Bytes (1073741824)
+2021-01-18 10:04:22,358 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 452073176 Bytes (1073741824)
+2021-01-18 10:04:22,615 [INFO] UtilMem:74 - End SaveConfig() Used Memory: 525995744 Bytes (1073741824)
+2021-01-18 10:04:22,809 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: TIM1_8
+2021-01-18 10:04:22,809 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: SYS
+2021-01-18 10:04:22,809 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: RCC
+2021-01-18 10:04:22,809 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: NVIC
+2021-01-18 10:04:22,809 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DMA
+2021-01-18 10:04:22,809 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: DAC
+2021-01-18 10:04:22,809 [INFO] BlockDiagram:2671 - set Specific Code input for plugin: GPIO
+2021-01-18 10:04:22,810 [INFO] CodeGenerator:603 - code generatio: config db path: C:\ST\STM32CubeIDE_1.3.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_5.6.1.202004052303\\db\
+2021-01-18 10:04:22,983 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp_save
+2021-01-18 10:04:23,032 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\license.tmp
+2021-01-18 10:04:23,042 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp_save
+2021-01-18 10:04:23,096 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\gpio.tmp
+2021-01-18 10:04:23,146 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:04:23,147 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DAC
+2021-01-18 10:04:23,147 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:04:23,148 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:04:23,149 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for DMA
+2021-01-18 10:04:23,149 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:04:23,156 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp_save
+2021-01-18 10:04:23,217 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma.tmp
+2021-01-18 10:04:23,223 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp_save
+2021-01-18 10:04:23,274 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\dma_GV.tmp
+2021-01-18 10:04:23,276 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line
+2021-01-18 10:04:23,277 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for TIM
+2021-01-18 10:04:23,278 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:04:23,279 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Debug : prepare data for NVIC
+2021-01-18 10:04:23,280 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] Command line test
+2021-01-18 10:04:23,285 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c_save
+2021-01-18 10:04:23,372 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_it.c
+2021-01-18 10:04:23,381 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h_save
+2021-01-18 10:04:23,457 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_it.h
+2021-01-18 10:04:23,470 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c_save
+2021-01-18 10:04:23,597 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\stm32f4xx_hal_msp.c
+2021-01-18 10:04:23,604 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp_save
+2021-01-18 10:04:23,665 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\MXTmpFiles\system.tmp
+2021-01-18 10:04:23,673 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h_save
+2021-01-18 10:04:23,754 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\stm32f4xx_hal_conf.h
+2021-01-18 10:04:23,769 [WARN] IPConfigManager:2701 - IP not found : TIM
+2021-01-18 10:04:23,769 [WARN] IPConfigManager:2701 - IP not found : gpio
+2021-01-18 10:04:23,769 [WARN] CodeGenerator:2649 - IP not found : TIM
+2021-01-18 10:04:23,769 [WARN] CodeGenerator:2649 - IP not found : gpio
+2021-01-18 10:04:23,775 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h_save
+2021-01-18 10:04:23,845 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Inc\main.h
+2021-01-18 10:04:23,856 [INFO] CodeEngine:188 - oldGeneratedFile, C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c_save
+2021-01-18 10:04:23,999 [INFO] CodeEngine:206 - Generated code: C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\Waveform Generator\Core\Src\main.c
+2021-01-18 10:04:24,530 [INFO] ProjectBuilder:2002 - Time for Copy HAL[1] : 103mS.
+2021-01-18 10:04:24,533 [INFO] ProjectBuilder:2727 - Project Generator version: 3.7.1
+2021-01-18 10:04:24,861 [INFO] ConfigFileManager:1066 - The Die is : DIE419
+2021-01-18 10:04:28,058 [INFO] ProjectBuilder:2894 - Time for Generating toolchain IDE Files: 3525mS.
+2021-01-18 10:04:28,060 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 1mS.
+2021-01-18 10:04:28,075 [INFO] ProjectBuilder:1878 - Time for Copy CMSIS : 0mS.
