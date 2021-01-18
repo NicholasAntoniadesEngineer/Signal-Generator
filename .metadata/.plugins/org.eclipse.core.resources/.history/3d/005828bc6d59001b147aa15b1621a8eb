@@ -64,7 +64,7 @@ static void MX_TIM2_Init(void);
 /* USER CODE BEGIN 0 */
 
 uint32_t sine_val[4096];
-double sine_scaled = 1;
+double sine_scaled = 0.5;
 #define PI 3.1415926
 
 void get_sineval(){

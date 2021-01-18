@@ -63,8 +63,7 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-uint32_t sine_val[4096];
-double sine_scaled = 1;
+uint32_t sine_val[100];
 #define PI 3.1415926
 
 void get_sineval(){
@@ -74,9 +73,8 @@ void get_sineval(){
 	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
 	// 0xFFF is 12 bit resolution
 
-	for(int i=0;i<4096;i++){
-		sine_val[i] = ((sin(i*2*PI/4096)+1)*(4096/2));
-		sine_val[i] = sine_scaled*sine_val[i]; // Attempting to scale
+	for(int i=0;i<100;i++){
+		sine_val[i] = ((sin(i*2*PI/100)+1)*(4096/2));
 	}
 }
 /* USER CODE END 0 */
@@ -123,7 +121,7 @@ int main(void)
   /* Sine function */
   HAL_TIM_Base_Start(&htim2);			// Start timer 2
   get_sineval();
-  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, 4096, DAC_ALIGN_12B_R); //Start DMA
+  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, 100, DAC_ALIGN_12B_R); //Start DMA
 
   /* USER CODE END 2 */
 

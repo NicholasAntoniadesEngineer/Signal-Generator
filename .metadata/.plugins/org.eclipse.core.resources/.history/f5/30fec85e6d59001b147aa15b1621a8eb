@@ -64,7 +64,6 @@ static void MX_TIM2_Init(void);
 /* USER CODE BEGIN 0 */
 
 uint32_t sine_val[4096];
-double sine_scaled = 1;
 #define PI 3.1415926
 
 void get_sineval(){
@@ -76,7 +75,7 @@ void get_sineval(){
 
 	for(int i=0;i<4096;i++){
 		sine_val[i] = ((sin(i*2*PI/4096)+1)*(4096/2));
-		sine_val[i] = sine_scaled*sine_val[i]; // Attempting to scale
+		sine_val[i] = 0.5*sine_val[i]; // Attempting to scale
 	}
 }
 /* USER CODE END 0 */
