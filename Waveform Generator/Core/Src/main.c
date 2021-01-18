@@ -61,26 +61,38 @@ void SystemClock_Config(void);
 
 
 double sine_scaled = 1; 	// Scale value.
-int Ns = 100;  				// Number of samples, Adjusting Ns will affect the frequency of the output signal.
-int DACres = 4096;			// DAC resolution.
-uint32_t sine_val[500];  	// Buffer for all the sine bits.
+int Res = 4096;				// DAC resolution.
+uint32_t sine_val[100];  	// Buffer for all the sine bits.
 #define PI 3.1415926
+int Fsine = 2000; 			// Frequency of ouput sine signal
+
+int Ns = 100;  				// Number of samples, Adjusting Ns will affect the frequency of the output signal.
+int PSC;					// Tim2 Pre Scalar value
+uint32_t Fclock = 90000000;	// Tim2 Clock Frequency
+int Period = 1;				// Tim2 Period
+
 
 
 void get_sineval(void){
+
+	// Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
 	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
 	for(int i=0;i<Ns;i++){
-		sine_val[i] = ((sin(i*2*PI/Ns)+1)*(DACres/2)); // Sampling step = 2PI/ns
+		sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
 		sine_val[i] = sine_scaled*sine_val[i];
 	}
 }
 
 
 void set_clock(void){
+	  // Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
 	  // Adjust PSC and period in order to manipulate frequency.
+
+	  PSC= (Fclock/Ns)/(Fsine*(Period + 1) ) - 1;
+
 	  htim2.Instance = TIM2;
-	  htim2.Init.Prescaler = 1;
-	  htim2.Init.Period = 10;
+	  htim2.Init.Period = Period; //+1
+	  htim2.Init.Prescaler = PSC; //+1 // If this value is < 4 things start to behave funny.
 	  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
 	  {
 	    Error_Handler();
