@@ -1,0 +1,24 @@
+!SESSION 2021-01-18 08:59:33.507 -----------------------------------------------
+eclipse.buildId=Version 1.3.1
+java.version=1.8.0_242
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_ZA
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2021-01-18 09:01:19.983
+!MESSAGE Log4j initialized with config file C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2021-01-18 09:01:22.129
+!MESSAGE Started RMI Server, listening on port 41338
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2021-01-18 09:01:22.412
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-18 09:03:06.895
+!MESSAGE Indexed 'Waveform Generator' (0 sources, 0 headers) in 0.006 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2021-01-18 09:03:15.024
+!MESSAGE Indexed 'Waveform Generator' (20 sources, 26 headers) in 3.97 sec: 2,301 declarations; 13,459 references; 4 unresolved inclusions; 47 syntax errors; 2,355 unresolved names (13%)
+
+!ENTRY com.st.stm32cube.ide.mcu.debug.launch 2 0 2021-01-18 09:04:03.543
+!MESSAGE Won't launch debug session since we failed to locate the binary.
