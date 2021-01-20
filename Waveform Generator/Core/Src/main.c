@@ -60,12 +60,13 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 
-double sine_scaled = 0.9999; 	// Scale value.
+double sine_scaled = 0.90; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
+int sine_dc_offset = 248; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits
 int Res = 4096;				// DAC resolution.
-#define Ns 200  				// Number of samples, Adjusting Ns will affect the frequency of the output signal.
+#define Ns 200  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
 uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
 #define PI 3.1415926
-int Fsine = 6000; 			// Frequency of ouput sine signal
+int Fsine = 1000; 			// Frequency of ouput sine signal
 int PSC;					// Tim2 Pre Scalar value
 uint32_t Fclock = 90000000;	// Tim2 Clock Frequency
 int Period = 1;				// Tim2 Period
@@ -76,10 +77,12 @@ void get_sineval(void){
 
 	// Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
 	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
+
 	for(int i=0;i<Ns;i++){
 		sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
-		sine_val[i] = sine_scaled*sine_val[i];
+		sine_val[i] = sine_dc_offset + sine_scaled*sine_val[i];
 	}
+	sine_val[Ns] = 0;
 }
 
 
@@ -114,7 +117,9 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+
+
+	HAL_Init();
 
   /* USER CODE BEGIN Init */
 
