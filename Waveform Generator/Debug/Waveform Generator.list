@@ -9,27 +9,27 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
   2 .rodata       000001f0  080044b8  080044b8  000144b8  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  080046a8  080046a8  00020028  2**0
+  3 .ARM.extab    00000000  080046a8  080046a8  0002002c  2**0
                   CONTENTS
   4 .ARM          00000008  080046a8  080046a8  000146a8  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  080046b0  080046b0  00020028  2**0
+  5 .preinit_array 00000000  080046b0  080046b0  0002002c  2**0
                   CONTENTS, ALLOC, LOAD, DATA
   6 .init_array   00000004  080046b0  080046b0  000146b0  2**2
                   CONTENTS, ALLOC, LOAD, DATA
   7 .fini_array   00000004  080046b4  080046b4  000146b4  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  8 .data         00000028  20000000  080046b8  00020000  2**3
+  8 .data         0000002c  20000000  080046b8  00020000  2**3
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          000003f8  20000028  080046e0  00020028  2**2
+  9 .bss          000003f8  2000002c  080046e4  0002002c  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000420  080046e0  00020420  2**0
+ 10 ._user_heap_stack 00000604  20000424  080046e4  00020424  2**0
                   ALLOC
- 11 .ARM.attributes 00000030  00000000  00000000  00020028  2**0
+ 11 .ARM.attributes 00000030  00000000  00000000  0002002c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000bf6a  00000000  00000000  00020058  2**0
+ 12 .debug_info   0000bf6a  00000000  00000000  0002005c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 0000202a  00000000  00000000  0002bfc2  2**0
+ 13 .debug_abbrev 0000202a  00000000  00000000  0002bfc6  2**0
                   CONTENTS, READONLY, DEBUGGING
  14 .debug_aranges 00000bc8  00000000  00000000  0002dff0  2**3
                   CONTENTS, READONLY, DEBUGGING
@@ -60,7 +60,7 @@ Disassembly of section .text:
  80001c2:	2301      	movs	r3, #1
  80001c4:	7023      	strb	r3, [r4, #0]
  80001c6:	bd10      	pop	{r4, pc}
- 80001c8:	20000028 	.word	0x20000028
+ 80001c8:	2000002c 	.word	0x2000002c
  80001cc:	00000000 	.word	0x00000000
  80001d0:	0800449c 	.word	0x0800449c
 
@@ -73,7 +73,7 @@ Disassembly of section .text:
  80001de:	f3af 8000 	nop.w
  80001e2:	bd08      	pop	{r3, pc}
  80001e4:	00000000 	.word	0x00000000
- 80001e8:	2000002c 	.word	0x2000002c
+ 80001e8:	20000030 	.word	0x20000030
  80001ec:	0800449c 	.word	0x0800449c
 
 080001f0 <__aeabi_drsub>:
@@ -1206,7 +1206,7 @@ void MX_DAC_Init(void)
  8000e72:	46bd      	mov	sp, r7
  8000e74:	bd80      	pop	{r7, pc}
  8000e76:	bf00      	nop
- 8000e78:	200000a4 	.word	0x200000a4
+ 8000e78:	200000a8 	.word	0x200000a8
  8000e7c:	40007400 	.word	0x40007400
 
 08000e80 <HAL_DAC_MspInit>:
@@ -1355,7 +1355,7 @@ void HAL_DAC_MspInit(DAC_HandleTypeDef* dacHandle)
  8000f5c:	40007400 	.word	0x40007400
  8000f60:	40023800 	.word	0x40023800
  8000f64:	40020000 	.word	0x40020000
- 8000f68:	20000044 	.word	0x20000044
+ 8000f68:	20000048 	.word	0x20000048
  8000f6c:	40026088 	.word	0x40026088
 
 08000f70 <MX_DMA_Init>:
@@ -1573,10 +1573,10 @@ void get_sineval(void){
  80010fc:	f3af 8000 	nop.w
  8001100:	40690000 	.word	0x40690000
  8001104:	3ff00000 	.word	0x3ff00000
- 8001108:	2000000c 	.word	0x2000000c
- 800110c:	200000bc 	.word	0x200000bc
- 8001110:	20000008 	.word	0x20000008
- 8001114:	20000000 	.word	0x20000000
+ 8001108:	20000000 	.word	0x20000000
+ 800110c:	200000c0 	.word	0x200000c0
+ 8001110:	20000010 	.word	0x20000010
+ 8001114:	20000008 	.word	0x20000008
  8001118:	4d12d84a 	.word	0x4d12d84a
  800111c:	400921fb 	.word	0x400921fb
 
@@ -1638,12 +1638,12 @@ void set_clock(void){
  8001176:	bf00      	nop
  8001178:	bd80      	pop	{r7, pc}
  800117a:	bf00      	nop
- 800117c:	20000014 	.word	0x20000014
+ 800117c:	20000018 	.word	0x20000018
  8001180:	51eb851f 	.word	0x51eb851f
- 8001184:	20000018 	.word	0x20000018
- 8001188:	20000010 	.word	0x20000010
- 800118c:	200000b8 	.word	0x200000b8
- 8001190:	200003dc 	.word	0x200003dc
+ 8001184:	2000001c 	.word	0x2000001c
+ 8001188:	20000014 	.word	0x20000014
+ 800118c:	200000bc 	.word	0x200000bc
+ 8001190:	200003e0 	.word	0x200003e0
 
 08001194 <main>:
 /**
@@ -1710,9 +1710,9 @@ int main(void)
   while (1)
  80011d0:	e7fe      	b.n	80011d0 <main+0x3c>
  80011d2:	bf00      	nop
- 80011d4:	200003dc 	.word	0x200003dc
- 80011d8:	200000bc 	.word	0x200000bc
- 80011dc:	200000a4 	.word	0x200000a4
+ 80011d4:	200003e0 	.word	0x200003e0
+ 80011d8:	200000c0 	.word	0x200000c0
+ 80011dc:	200000a8 	.word	0x200000a8
 
 080011e0 <SystemClock_Config>:
 /**
@@ -2114,7 +2114,7 @@ void DMA1_Stream5_IRQHandler(void)
  8001386:	bf00      	nop
  8001388:	bd80      	pop	{r7, pc}
  800138a:	bf00      	nop
- 800138c:	20000044 	.word	0x20000044
+ 800138c:	20000048 	.word	0x20000048
 
 08001390 <SystemInit>:
   *         configuration.
@@ -2248,7 +2248,7 @@ void MX_TIM2_Init(void)
  800144a:	46bd      	mov	sp, r7
  800144c:	bd80      	pop	{r7, pc}
  800144e:	bf00      	nop
- 8001450:	200003dc 	.word	0x200003dc
+ 8001450:	200003e0 	.word	0x200003e0
 
 08001454 <HAL_TIM_Base_MspInit>:
 
@@ -2376,11 +2376,11 @@ LoopFillZerobss:
   ldr  r0, =_sdata
  80014d4:	20000000 	.word	0x20000000
   ldr  r3, =_edata
- 80014d8:	20000028 	.word	0x20000028
+ 80014d8:	2000002c 	.word	0x2000002c
   ldr  r2, =_sbss
- 80014dc:	20000028 	.word	0x20000028
+ 80014dc:	2000002c 	.word	0x2000002c
   ldr  r3, = _ebss
- 80014e0:	20000420 	.word	0x20000420
+ 80014e0:	20000424 	.word	0x20000424
 
 080014e4 <ADC_IRQHandler>:
  * @retval None       
@@ -2514,9 +2514,9 @@ __weak HAL_StatusTypeDef HAL_InitTick(uint32_t TickPriority)
  800157a:	3708      	adds	r7, #8
  800157c:	46bd      	mov	sp, r7
  800157e:	bd80      	pop	{r7, pc}
- 8001580:	2000001c 	.word	0x2000001c
- 8001584:	20000024 	.word	0x20000024
- 8001588:	20000020 	.word	0x20000020
+ 8001580:	20000020 	.word	0x20000020
+ 8001584:	20000028 	.word	0x20000028
+ 8001588:	20000024 	.word	0x20000024
 
 0800158c <HAL_IncTick>:
  * @note This function is declared as __weak to be overwritten in case of other 
@@ -2542,8 +2542,8 @@ __weak void HAL_IncTick(void)
  80015a4:	f85d 7b04 	ldr.w	r7, [sp], #4
  80015a8:	4770      	bx	lr
  80015aa:	bf00      	nop
- 80015ac:	20000024 	.word	0x20000024
- 80015b0:	2000041c 	.word	0x2000041c
+ 80015ac:	20000028 	.word	0x20000028
+ 80015b0:	20000420 	.word	0x20000420
 
 080015b4 <HAL_GetTick>:
   * @note This function is declared as __weak to be overwritten in case of other 
@@ -2563,7 +2563,7 @@ __weak uint32_t HAL_GetTick(void)
  80015c0:	f85d 7b04 	ldr.w	r7, [sp], #4
  80015c4:	4770      	bx	lr
  80015c6:	bf00      	nop
- 80015c8:	2000041c 	.word	0x2000041c
+ 80015c8:	20000420 	.word	0x20000420
 
 080015cc <__NVIC_SetPriorityGrouping>:
            In case of a conflict between priority grouping and available
@@ -4620,7 +4620,7 @@ void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma)
  8001fda:	6878      	ldr	r0, [r7, #4]
  8001fdc:	4798      	blx	r3
  8001fde:	e022      	b.n	8002026 <HAL_DMA_IRQHandler+0x29e>
- 8001fe0:	2000001c 	.word	0x2000001c
+ 8001fe0:	20000020 	.word	0x20000020
  8001fe4:	1b4e81b5 	.word	0x1b4e81b5
         }
       }
@@ -6926,8 +6926,8 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  8002ce4:	40023c00 	.word	0x40023c00
  8002ce8:	40023800 	.word	0x40023800
  8002cec:	080044b8 	.word	0x080044b8
- 8002cf0:	2000001c 	.word	0x2000001c
- 8002cf4:	20000020 	.word	0x20000020
+ 8002cf0:	20000020 	.word	0x20000020
+ 8002cf4:	20000024 	.word	0x20000024
 
 08002cf8 <HAL_RCC_GetSysClockFreq>:
   *

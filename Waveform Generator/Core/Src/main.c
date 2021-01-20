@@ -60,11 +60,12 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 
-double sine_scaled = 0.90; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
-int sine_dc_offset = 248; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits
+
 int Res = 4096;				// DAC resolution.
 #define Ns 200  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
 uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
+double sine_scaled = 0.90; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
+int sine_dc_offset = 248; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
 #define PI 3.1415926
 int Fsine = 1000; 			// Frequency of ouput sine signal
 int PSC;					// Tim2 Pre Scalar value
