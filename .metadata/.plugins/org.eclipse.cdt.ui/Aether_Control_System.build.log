@@ -1,0 +1,10 @@
+08:54:39 **** Incremental Build of configuration Debug for project Aether_Control_System ****
+make -j8 all 
+arm-none-eabi-size   Aether_Control_System.elf 
+   text	   data	    bss	    dec	    hex	filename
+  30500	     52	   2852	  33404	   827c	Aether_Control_System.elf
+Finished building: default.size.stdout
+ 
+
+08:54:41 Build Finished. 0 errors, 0 warnings. (took 1s.482ms)
+

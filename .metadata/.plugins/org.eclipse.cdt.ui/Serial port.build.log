@@ -1,0 +1,10 @@
+11:33:48 **** Incremental Build of configuration Debug for project Serial Port ****
+make -j8 all 
+arm-none-eabi-size   Serial\ Port.elf 
+   text	   data	    bss	    dec	    hex	filename
+   8468	     20	   1636	  10124	   278c	Serial Port.elf
+Finished building: default.size.stdout
+ 
+
+11:33:49 Build Finished. 0 errors, 0 warnings. (took 1s.118ms)
+
