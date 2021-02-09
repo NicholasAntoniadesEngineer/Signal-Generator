@@ -58,8 +58,8 @@ all: main-build
 main-build: USB_test.elf secondary-outputs
 
 # Tool invocations
-USB_test.elf: $(OBJS) $(USER_OBJS) C:\Users\Nanodyn\ -\ Spare\OneDrive\ -\ Nanodyn\Desktop\Github\Waveform-generator\USB_test\STM32F407VGTX_FLASH.ld
-	arm-none-eabi-gcc -o "USB_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\USB_test\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="USB_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+USB_test.elf: $(OBJS) $(USER_OBJS) C:\Users\Nanodyn\ -\ Spare\OneDrive\ -\ Nanodyn\Desktop\New\ GIT\Waveform-generator\USB_test\STM32F407VGTX_FLASH.ld
+	arm-none-eabi-gcc -o "USB_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\New GIT\Waveform-generator\USB_test\STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="USB_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
