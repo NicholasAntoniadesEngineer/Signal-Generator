@@ -169,18 +169,17 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		sprintf(txBuf, "%u\r\n", count);
+		count++;
+
+		if (count>100){
+			count = 1;
+		}
+
+		CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
+		HAL_Delay(100);
     /* USER CODE END WHILE */
-	  //	  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
-	  //	  HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
-	  		sprintf(txBuf, "%u\r\n", count);
-	  		count++;
 
-	  		if (count>100){
-	  			count = 1;
-	  		}
-
-	  		CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
-	  		HAL_Delay(100);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

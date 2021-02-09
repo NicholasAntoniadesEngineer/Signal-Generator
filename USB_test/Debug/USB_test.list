@@ -37,11 +37,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  16 .debug_macro  0002574d  00000000  00000000  00041298  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   00013c56  00000000  00000000  000669e5  2**0
+ 17 .debug_line   00013c54  00000000  00000000  000669e5  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    000d0161  00000000  00000000  0007a63b  2**0
+ 18 .debug_str    000d0161  00000000  00000000  0007a639  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  0014a79c  2**0
+ 19 .comment      0000007b  00000000  00000000  0014a79a  2**0
                   CONTENTS, READONLY
  20 .debug_frame  000055b8  00000000  00000000  0014a818  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -857,32 +857,32 @@ int main(void)
   uint8_t count = 1;
  8000816:	2301      	movs	r3, #1
  8000818:	73fb      	strb	r3, [r7, #15]
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-	  //	  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
-	  //	  HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
-	  		sprintf(txBuf, "%u\r\n", count);
+		sprintf(txBuf, "%u\r\n", count);
  800081a:	7bfa      	ldrb	r2, [r7, #15]
  800081c:	1d3b      	adds	r3, r7, #4
  800081e:	490d      	ldr	r1, [pc, #52]	; (8000854 <main+0x64>)
  8000820:	4618      	mov	r0, r3
  8000822:	f007 fb01 	bl	8007e28 <siprintf>
-	  		count++;
+		count++;
  8000826:	7bfb      	ldrb	r3, [r7, #15]
  8000828:	3301      	adds	r3, #1
  800082a:	73fb      	strb	r3, [r7, #15]
 
-	  		if (count>100){
+		if (count>100){
  800082c:	7bfb      	ldrb	r3, [r7, #15]
  800082e:	2b64      	cmp	r3, #100	; 0x64
  8000830:	d901      	bls.n	8000836 <main+0x46>
-	  			count = 1;
+			count = 1;
  8000832:	2301      	movs	r3, #1
  8000834:	73fb      	strb	r3, [r7, #15]
-	  		}
+		}
 
-	  		CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
+		CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
  8000836:	1d3b      	adds	r3, r7, #4
  8000838:	4618      	mov	r0, r3
  800083a:	f7ff fcc9 	bl	80001d0 <strlen>
@@ -892,10 +892,10 @@ int main(void)
  8000844:	4611      	mov	r1, r2
  8000846:	4618      	mov	r0, r3
  8000848:	f006 fda4 	bl	8007394 <CDC_Transmit_FS>
-	  		HAL_Delay(100);
+		HAL_Delay(100);
  800084c:	2064      	movs	r0, #100	; 0x64
  800084e:	f000 fb2d 	bl	8000eac <HAL_Delay>
-	  		sprintf(txBuf, "%u\r\n", count);
+		sprintf(txBuf, "%u\r\n", count);
  8000852:	e7e2      	b.n	800081a <main+0x2a>
  8000854:	080084dc 	.word	0x080084dc
 
