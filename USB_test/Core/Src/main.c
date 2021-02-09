@@ -69,7 +69,7 @@ int sine_dc_offset = 248; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24B
 #define PI 3.1415926		// Definition of PI
 int Fsine = 1000; 			// Frequency of ouput sine signal0
 int PSC;					// Tim2 Pre Scalar value
-uint32_t Fclock = 90000000;	// Tim2 Clock Frequency
+uint32_t Fclock = 90000000;	// Tim2 Clock Frequency this must be validated and it depends on the clock set up
 int Period = 1;				// Tim2 Period
 
 
@@ -163,6 +163,7 @@ int main(void)
 
   char txBuf[8];
   uint8_t count = 1;
+  //CDC_Control_FS(cmd, pbuf, length); Sends com port paramaters to the device being communicated with.
   /* USER CODE END 2 */
 
   /* Infinite loop */

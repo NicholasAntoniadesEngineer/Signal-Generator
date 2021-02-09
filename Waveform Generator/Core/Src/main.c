@@ -17,17 +17,19 @@
   ******************************************************************************
   */
 /* USER CODE END Header */
-
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "dac.h"
 #include "dma.h"
 #include "tim.h"
+#include "usart.h"
+#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "math.h"
+#include "usbd_cdc_if.h" // this is needed to transmit a string of characters
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,18 +62,17 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 
-
+/* Setting up signal generation */
 int Res = 4096;				// DAC resolution.
-#define Ns 200  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
+#define Ns 100  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
 uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
-double sine_scaled = 0.90; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
+double sine_scaled = 0.9; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
 int sine_dc_offset = 248; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
-#define PI 3.1415926
-int Fsine = 1000; 			// Frequency of ouput sine signal
+#define PI 3.1415926		// Definition of PI
+int Fsine = 1000; 			// Frequency of ouput sine signal0
 int PSC;					// Tim2 Pre Scalar value
 uint32_t Fclock = 90000000;	// Tim2 Clock Frequency
 int Period = 1;				// Tim2 Period
-
 
 
 void get_sineval(void){
@@ -83,7 +84,6 @@ void get_sineval(void){
 		sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
 		sine_val[i] = sine_dc_offset + sine_scaled*sine_val[i];
 	}
-	sine_val[Ns] = 0;
 }
 
 
@@ -103,6 +103,33 @@ void set_clock(void){
 
 }
 
+
+/* Setting up UART communications*/
+#define uartSize 1
+uint8_t rx_buff[uartSize];
+uint8_t tx_buff[] = {0b00000010};
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	HAL_UART_DMAStop(&huart1); // Stop UART
+
+	// Do something
+
+	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+}
+
+void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
+	HAL_UART_DMAStop(&huart1); // Stop UART
+	int i = 100;
+	while(i>0){
+		i = i -1;
+	}
+
+	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+}
+
+/* Setting up USB communications*/
+char txBuf[8];
+uint8_t count = 1;
 /* USER CODE END 0 */
 
 /**
@@ -118,9 +145,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-
-
-	HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -138,6 +163,8 @@ int main(void)
   MX_DMA_Init();
   MX_DAC_Init();
   MX_TIM2_Init();
+  MX_USART1_UART_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
   /* Saw tooth function */
@@ -158,13 +185,18 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
-	  /* Saw tooth function. */
-		//	  HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, value_dac);
-		//	  value_dac++;
-		//	  if(value_dac>4095){
-		//	  	value_dac=0;
-	  	//}
+//
+	  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
+	  HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
+//		sprintf(txBuf, "%u\r\n", count);
+//		count++;
+//
+//		if (count>100){
+//			count = 1;
+//		}
+//
+//		CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
+//		HAL_Delay(100);
 
     /* USER CODE END WHILE */
 
@@ -182,41 +214,35 @@ void SystemClock_Config(void)
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /** Configure the main internal regulator output voltage 
+  /** Configure the main internal regulator output voltage
   */
   __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  /** Initializes the CPU, AHB and APB busses clocks 
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 180;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLM = 13;
+  RCC_OscInitStruct.PLL.PLLN = 72;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 3;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
   }
-  /** Activate the Over-Drive mode 
-  */
-  if (HAL_PWREx_EnableOverDrive() != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
@@ -247,7 +273,7 @@ void Error_Handler(void)
   * @retval None
   */
 void assert_failed(uint8_t *file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
