@@ -1,4 +1,4 @@
-update=09 Feb 2021 13:42:39
+update=09 Feb 2021 15:50:25
 version=1
 last_client=eeschema
 [general]
@@ -39,5 +39,5 @@ SubpartIdSeparator=0
 SubpartFirstId=65
 NetFmtName=
 SpiceAjustPassiveValues=0
-LabSize=50
+LabSize=51
 ERC_TestSimilarLabels=1
