@@ -1,0 +1,26 @@
+Circuit: * C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Spice Circuits\Transistor reverse polarity protection.asc
+
+Limiting rise time of source v3 to 0.2
+Limiting fall time of source v3 to 0.2
+Limiting rise time of source v1 to 0.2
+Limiting fall time of source v1 to 0.2
+WARNING: Less than two connections to node NC_01.  This node is used by V2.
+Direct Newton iteration for .op point succeeded.
+
+Date: Wed Feb 10 11:49:17 2021
+Total elapsed time: 0.080 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 2247
+traniter = 2242
+tranpoints = 1122
+accept = 1112
+rejected = 10
+matrix size = 7
+fillins = 0
+solver = Normal
+Matrix Compiler1: 232 bytes object code size  0.1/0.0/[0.0]
+Matrix Compiler2: 389 bytes object code size  0.1/0.1/[0.0]
+
