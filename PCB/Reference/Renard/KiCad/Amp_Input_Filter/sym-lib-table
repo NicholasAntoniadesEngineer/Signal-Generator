@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name Amp_Input_Filter)(type Legacy)(uri ${KIPRJMOD}/Amp_Input_Filter.lib)(options "")(descr ""))
+  (lib (name Amp_Relay)(type Legacy)(uri ${KIPRJMOD}/Amp_Relay.lib)(options "")(descr ""))
+)

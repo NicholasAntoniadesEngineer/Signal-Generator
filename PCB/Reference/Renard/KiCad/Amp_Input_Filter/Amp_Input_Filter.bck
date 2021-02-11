@@ -1,0 +1,12 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP 65600001009
+F https://docs.rs-online.com/ec25/0900766b8128fb44.pdf
+$ENDCMP
+#
+$CMP ISP2405
+D Isolated DC/DC PSU 24Vdc to +-5Vdc
+F https://docs.rs-online.com/f719/0900766b81519271.pdf
+$ENDCMP
+#
+#End Doc Library

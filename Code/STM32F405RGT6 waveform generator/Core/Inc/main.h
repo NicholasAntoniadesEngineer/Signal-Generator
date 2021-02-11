@@ -64,6 +64,8 @@ void Error_Handler(void);
 #define MAX485_PWR_GPIO_Port GPIOC
 #define MAX485_DE_Pin GPIO_PIN_1
 #define MAX485_DE_GPIO_Port GPIOC
+#define TEMP_SENSE_Pin GPIO_PIN_2
+#define TEMP_SENSE_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
