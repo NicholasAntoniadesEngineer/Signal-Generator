@@ -66,6 +66,18 @@ void Error_Handler(void);
 #define MAX485_DE_GPIO_Port GPIOC
 #define TEMP_SENSE_Pin GPIO_PIN_2
 #define TEMP_SENSE_GPIO_Port GPIOC
+#define LED3_Pin GPIO_PIN_13
+#define LED3_GPIO_Port GPIOB
+#define LED2_Pin GPIO_PIN_14
+#define LED2_GPIO_Port GPIOB
+#define LED1_Pin GPIO_PIN_15
+#define LED1_GPIO_Port GPIOB
+#define Btn1_Input_Pin GPIO_PIN_6
+#define Btn1_Input_GPIO_Port GPIOC
+#define Btn2_Input_Pin GPIO_PIN_7
+#define Btn2_Input_GPIO_Port GPIOC
+#define Btn3_Input_Pin GPIO_PIN_8
+#define Btn3_Input_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
