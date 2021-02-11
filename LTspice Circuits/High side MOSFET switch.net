@@ -1,0 +1,12 @@
+* C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\LTspice Circuits\High side MOSFET switch.asc
+R1 N003 0 100
+V1 N001 0 5
+V2 N002 0 PULSE(0 3.3 0 0 0 2 4 10)
+M1 N001 N002 N003 N003 NMOS
+R3 N001 N002 1000
+.model NMOS NMOS
+.model PMOS PMOS
+.lib C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Documents\LTspiceXVII\lib\cmp\standard.mos
+.tran 0 10 0
+.backanno
+.end
