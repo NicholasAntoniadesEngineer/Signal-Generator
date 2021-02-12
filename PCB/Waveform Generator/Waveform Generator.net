@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source "C:\\Users\\Nanodyn - Spare\\OneDrive - Nanodyn\\Desktop\\GIT repository\\Waveform-generator\\PCB\\Waveform Generator\\Waveform Generator.sch")
-    (date "12 Feb 2021 16:00:16")
+    (date "12 Feb 2021 15:59:02")
     (tool "Eeschema (5.1.5)-3")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
