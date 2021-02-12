@@ -1,23 +1,23 @@
-Circuit: * C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\LTspice Circuits\High side MOSFET switch.asc
+Circuit: * C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\LTspice Circuits\High side transistor switch.asc
 
 Limiting rise time of source v2 to 0.2
 Limiting fall time of source v2 to 0.2
 Direct Newton iteration for .op point succeeded.
 
-Date: Thu Feb 11 11:06:42 2021
-Total elapsed time: 0.096 seconds.
+Date: Fri Feb 12 08:24:46 2021
+Total elapsed time: 0.089 seconds.
 
 tnom = 27
 temp = 27
 method = modified trap
-totiter = 2558
-traniter = 2551
-tranpoints = 1173
-accept = 1142
-rejected = 31
+totiter = 2490
+traniter = 2483
+tranpoints = 1151
+accept = 1126
+rejected = 25
 matrix size = 7
 fillins = 0
 solver = Normal
-Matrix Compiler1: 214 bytes object code size  0.1/0.1/[0.1]
-Matrix Compiler2: 487 bytes object code size  0.1/0.1/[0.1]
+Matrix Compiler1: 214 bytes object code size  0.1/0.0/[0.0]
+Matrix Compiler2: off  [0.0]/0.1/0.1
 
