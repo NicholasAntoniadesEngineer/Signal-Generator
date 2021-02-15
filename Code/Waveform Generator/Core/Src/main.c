@@ -25,7 +25,7 @@
 #include "i2c.h"
 #include "tim.h"
 #include "usart.h"
-#include "usb_device.h"
+#include "usb_otg.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -166,11 +166,11 @@ int main(void)
   MX_DAC_Init();
   MX_TIM2_Init();
   MX_USART1_UART_Init();
-  MX_USB_DEVICE_Init();
   MX_ADC1_Init();
   MX_I2C1_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
+  MX_USB_OTG_FS_USB_Init();
   /* USER CODE BEGIN 2 */
 
   /* Saw tooth function */
