@@ -2058,28 +2058,6 @@ Text GLabel 7000 5750 2    51   Input ~ 0
 USB_CONN_D-
 Text Notes 7850 6550 2    59   ~ 12
 Level Shifting to Signal Output\n
-$Comp
-L Device:C_Small C30
-U 1 1 6059245C
-P 8200 9050
-F 0 "C30" V 8150 8850 50  0000 L CNN
-F 1 "15u" V 8250 8850 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 8200 9050 50  0001 C CNN
-F 3 "~" H 8200 9050 50  0001 C CNN
-	1    8200 9050
-	0    -1   1    0   
-$EndComp
-$Comp
-L Device:R_Small R21
-U 1 1 6059244F
-P 8000 9050
-F 0 "R21" V 8100 9050 50  0000 C CNN
-F 1 "1k" V 7895 9050 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 8000 9050 50  0001 C CNN
-F 3 "~" H 8000 9050 50  0001 C CNN
-	1    8000 9050
-	0    1    1    0   
-$EndComp
 Wire Notes Line
 	6400 4750 6400 6300
 $Comp
@@ -2422,172 +2400,6 @@ Wire Wire Line
 Wire Wire Line
 	5450 1600 5450 1950
 $Comp
-L Extra~Components:LTC2051HVIMS8 U5
-U 1 1 606C2F00
-P 8100 8600
-F 0 "U5" H 8100 9036 59  0000 C CNN
-F 1 "LTC2051HVIMS8" H 8100 8931 59  0000 C CNN
-F 2 "Package_SO:MSOP-8-1EP_3x3mm_P0.65mm_EP1.73x1.85mm" H 8100 9050 59  0001 C CNN
-F 3 "" H 8100 9050 59  0001 C CNN
-	1    8100 8600
-	1    0    0    -1  
-$EndComp
-Text GLabel 7150 8550 0    51   Input ~ 0
-DAC_OUT2
-$Comp
-L Device:C_Small C29
-U 1 1 606C48A4
-P 7500 8550
-F 0 "C29" V 7450 8600 50  0000 L CNN
-F 1 "15u" V 7600 8550 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 7500 8550 50  0001 C CNN
-F 3 "~" H 7500 8550 50  0001 C CNN
-	1    7500 8550
-	0    -1   1    0   
-$EndComp
-$Comp
-L Device:R_Small R19
-U 1 1 606C48AA
-P 7250 8550
-F 0 "R19" V 7054 8550 50  0000 C CNN
-F 1 "1k" V 7145 8550 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 7250 8550 50  0001 C CNN
-F 3 "~" H 7250 8550 50  0001 C CNN
-	1    7250 8550
-	0    1    1    0   
-$EndComp
-$Comp
-L power:GND #PWR0158
-U 1 1 606E2263
-P 7700 8650
-F 0 "#PWR0158" H 7700 8400 50  0001 C CNN
-F 1 "GND" V 7750 8500 50  0000 C CNN
-F 2 "" H 7700 8650 50  0001 C CNN
-F 3 "" H 7700 8650 50  0001 C CNN
-	1    7700 8650
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R20
-U 1 1 606F1525
-P 7600 8450
-F 0 "R20" H 7500 8550 50  0000 C CNN
-F 1 "1k" H 7500 8500 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 7600 8450 50  0001 C CNN
-F 3 "~" H 7600 8450 50  0001 C CNN
-	1    7600 8450
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:-5V #PWR0159
-U 1 1 60735F30
-P 7700 8750
-F 0 "#PWR0159" H 7700 8850 50  0001 C CNN
-F 1 "-5V" V 7650 8950 50  0000 C CNN
-F 2 "" H 7700 8750 50  0001 C CNN
-F 3 "" H 7700 8750 50  0001 C CNN
-	1    7700 8750
-	0    -1   -1   0   
-$EndComp
-$Comp
-L power:+5V #PWR0161
-U 1 1 6074B259
-P 8500 8450
-F 0 "#PWR0161" H 8500 8300 50  0001 C CNN
-F 1 "+5V" H 8515 8623 50  0000 C CNN
-F 2 "" H 8500 8450 50  0001 C CNN
-F 3 "" H 8500 8450 50  0001 C CNN
-	1    8500 8450
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	7600 8350 7600 8300
-Wire Wire Line
-	8800 8650 8500 8650
-$Comp
-L power:GND #PWR0162
-U 1 1 6079B699
-P 8500 8750
-F 0 "#PWR0162" H 8500 8500 50  0001 C CNN
-F 1 "GND" V 8550 8600 50  0000 C CNN
-F 2 "" H 8500 8750 50  0001 C CNN
-F 3 "" H 8500 8750 50  0001 C CNN
-	1    8500 8750
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Device:R_Small R22
-U 1 1 6079BD5C
-P 8900 8650
-F 0 "R22" V 9000 8650 50  0000 C CNN
-F 1 "1k" V 8900 8650 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 8900 8650 50  0001 C CNN
-F 3 "~" H 8900 8650 50  0001 C CNN
-	1    8900 8650
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	9000 8650 9000 8550
-Wire Wire Line
-	9000 8550 8500 8550
-Wire Wire Line
-	9000 8550 9100 8550
-$Comp
-L power:GND #PWR0169
-U 1 1 607C0B99
-P 9100 8650
-F 0 "#PWR0169" H 9100 8400 50  0001 C CNN
-F 1 "GND" H 9105 8477 50  0000 C CNN
-F 2 "" H 9100 8650 50  0001 C CNN
-F 3 "" H 9100 8650 50  0001 C CNN
-	1    9100 8650
-	1    0    0    -1  
-$EndComp
-$Comp
-L Extra~Components:5001 J11
-U 1 1 607C0B9F
-P 9000 8400
-F 0 "J11" V 9150 8350 59  0000 L CNN
-F 1 "5001" V 9078 8303 59  0000 L CNN
-F 2 "Extra Components:5001 Test Point" H 9050 8350 59  0001 C CNN
-F 3 "" H 9050 8350 59  0001 C CNN
-	1    9000 8400
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Connector:Screw_Terminal_01x02 J12
-U 1 1 607C0BA6
-P 9300 8550
-F 0 "J12" H 9380 8542 50  0000 L CNN
-F 1 "Signal 2" H 9380 8451 50  0000 L CNN
-F 2 "TerminalBlock_MetzConnect:TerminalBlock_MetzConnect_Type086_RT03402HBLC_1x02_P3.81mm_Horizontal" H 9300 8550 50  0001 C CNN
-F 3 "~" H 9300 8550 50  0001 C CNN
-	1    9300 8550
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7600 8550 7700 8550
-Connection ~ 7600 8550
-Wire Wire Line
-	7400 8550 7350 8550
-Wire Wire Line
-	7900 9050 6700 9050
-Wire Wire Line
-	6700 9050 6700 8300
-Wire Wire Line
-	6700 8300 7600 8300
-Wire Wire Line
-	7700 8300 7600 8300
-Wire Wire Line
-	7700 8300 7700 8450
-Connection ~ 7600 8300
-Wire Wire Line
-	8300 9050 8800 9050
-Wire Wire Line
-	8800 9050 8800 8650
-Connection ~ 8800 8650
-Connection ~ 9000 8550
-$Comp
 L Connector:Screw_Terminal_01x02 J5
 U 1 1 6085EEA1
 P 9350 7250
@@ -2688,10 +2500,6 @@ F 3 "~" H 8250 7350 50  0001 C CNN
 	1    8250 7350
 	0    -1   1    0   
 $EndComp
-Wire Notes Line
-	6400 6400 9800 6400
-Wire Notes Line
-	9800 9250 6400 9250
 Wire Notes Line
 	6400 9250 6400 6400
 $Comp
@@ -2916,10 +2724,10 @@ Wire Notes Line
 Wire Notes Line
 	750  2400 750  800 
 $Comp
-L Amplifier_Operational:OPA1602 U?
+L Amplifier_Operational:OPA1602 U4
 U 1 1 604A648B
 P 7650 7350
-F 0 "U?" H 7650 7717 50  0000 C CNN
+F 0 "U4" H 7650 7717 50  0000 C CNN
 F 1 "OPA1602" H 7650 7626 50  0000 C CNN
 F 2 "" H 7650 7350 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 7650 7350 50  0001 C CNN
@@ -2927,10 +2735,10 @@ F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 7650 7350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Amplifier_Operational:OPA1602 U?
+L Amplifier_Operational:OPA1602 U4
 U 2 1 604A81A8
 P 8650 7250
-F 0 "U?" H 8650 7617 50  0000 C CNN
+F 0 "U4" H 8650 7617 50  0000 C CNN
 F 1 "OPA1602" H 8650 7526 50  0000 C CNN
 F 2 "" H 8650 7250 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 8650 7250 50  0001 C CNN
@@ -2938,10 +2746,10 @@ F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 8650 7250 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Amplifier_Operational:OPA1602 U?
+L Amplifier_Operational:OPA1602 U4
 U 3 1 604AB9C1
 P 9950 7300
-F 0 "U?" H 9908 7346 50  0000 L CNN
+F 0 "U4" H 9908 7346 50  0000 L CNN
 F 1 "OPA1602" H 9908 7255 50  0000 L CNN
 F 2 "" H 9950 7300 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 9950 7300 50  0001 C CNN
@@ -3016,4 +2824,212 @@ $EndComp
 Connection ~ 8950 7250
 Wire Wire Line
 	9150 7250 8950 7250
+$Comp
+L Connector:Screw_Terminal_01x02 J?
+U 1 1 607192B2
+P 9350 8350
+F 0 "J?" H 9430 8342 50  0000 L CNN
+F 1 "Signal 2" H 9430 8251 50  0000 L CNN
+F 2 "TerminalBlock_MetzConnect:TerminalBlock_MetzConnect_Type086_RT03402HBLC_1x02_P3.81mm_Horizontal" H 9350 8350 50  0001 C CNN
+F 3 "~" H 9350 8350 50  0001 C CNN
+	1    9350 8350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 607192B8
+P 9150 8450
+F 0 "#PWR?" H 9150 8200 50  0001 C CNN
+F 1 "GND" H 9155 8277 50  0000 C CNN
+F 2 "" H 9150 8450 50  0001 C CNN
+F 3 "" H 9150 8450 50  0001 C CNN
+	1    9150 8450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 607192BE
+P 8750 8600
+F 0 "R?" V 8850 8600 50  0000 C CNN
+F 1 "1k" V 8750 8600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 8750 8600 50  0001 C CNN
+F 3 "~" H 8750 8600 50  0001 C CNN
+	1    8750 8600
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 607192C4
+P 8350 8250
+F 0 "#PWR?" H 8350 8000 50  0001 C CNN
+F 1 "GND" V 8400 8100 50  0000 C CNN
+F 2 "" H 8350 8250 50  0001 C CNN
+F 3 "" H 8350 8250 50  0001 C CNN
+	1    8350 8250
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8650 8600 8350 8600
+$Comp
+L power:+5V #PWR?
+U 1 1 607192CB
+P 9850 8100
+F 0 "#PWR?" H 9850 7950 50  0001 C CNN
+F 1 "+5V" H 9865 8273 50  0000 C CNN
+F 2 "" H 9850 8100 50  0001 C CNN
+F 3 "" H 9850 8100 50  0001 C CNN
+	1    9850 8100
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 607192D1
+P 7550 8750
+F 0 "R?" H 7450 8850 50  0000 C CNN
+F 1 "1k" H 7450 8800 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 7550 8750 50  0001 C CNN
+F 3 "~" H 7550 8750 50  0001 C CNN
+	1    7550 8750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 607192D7
+P 7350 8350
+F 0 "#PWR?" H 7350 8100 50  0001 C CNN
+F 1 "GND" V 7400 8200 50  0000 C CNN
+F 2 "" H 7350 8350 50  0001 C CNN
+F 3 "" H 7350 8350 50  0001 C CNN
+	1    7350 8350
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 607192DD
+P 8050 8450
+F 0 "R?" V 8150 8450 50  0000 C CNN
+F 1 "1k" V 7945 8450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 8050 8450 50  0001 C CNN
+F 3 "~" H 8050 8450 50  0001 C CNN
+	1    8050 8450
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 607192E3
+P 8250 8450
+F 0 "C?" V 8200 8250 50  0000 L CNN
+F 1 "15u" V 8300 8250 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 8250 8450 50  0001 C CNN
+F 3 "~" H 8250 8450 50  0001 C CNN
+	1    8250 8450
+	0    -1   1    0   
+$EndComp
+$Comp
+L Amplifier_Operational:OPA1602 U?
+U 1 1 607192E9
+P 7650 8450
+F 0 "U?" H 7650 8817 50  0000 C CNN
+F 1 "OPA1602" H 7650 8726 50  0000 C CNN
+F 2 "" H 7650 8450 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 7650 8450 50  0001 C CNN
+	1    7650 8450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Amplifier_Operational:OPA1602 U?
+U 2 1 607192EF
+P 8650 8350
+F 0 "U?" H 8650 8717 50  0000 C CNN
+F 1 "OPA1602" H 8650 8626 50  0000 C CNN
+F 2 "" H 8650 8350 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 8650 8350 50  0001 C CNN
+	2    8650 8350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Amplifier_Operational:OPA1602 U?
+U 3 1 607192F5
+P 9950 8400
+F 0 "U?" H 9908 8446 50  0000 L CNN
+F 1 "OPA1602" H 9908 8355 50  0000 L CNN
+F 2 "" H 9950 8400 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 9950 8400 50  0001 C CNN
+	3    9950 8400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 607192FB
+P 7250 8550
+F 0 "C?" V 7200 8600 50  0000 L CNN
+F 1 "15u" V 7350 8550 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 7250 8550 50  0001 C CNN
+F 3 "~" H 7250 8550 50  0001 C CNN
+	1    7250 8550
+	0    -1   1    0   
+$EndComp
+$Comp
+L Device:R_Small R?
+U 1 1 60719301
+P 7000 8550
+F 0 "R?" V 6804 8550 50  0000 C CNN
+F 1 "1k" V 6895 8550 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 7000 8550 50  0001 C CNN
+F 3 "~" H 7000 8550 50  0001 C CNN
+	1    7000 8550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7150 8550 7100 8550
+Wire Wire Line
+	7350 8750 7350 8550
+Wire Wire Line
+	7350 8750 7450 8750
+Connection ~ 7350 8550
+Wire Wire Line
+	7650 8750 7950 8750
+Wire Wire Line
+	7950 8750 7950 8450
+$Comp
+L power:-5V #PWR?
+U 1 1 6071930D
+P 9850 8700
+F 0 "#PWR?" H 9850 8800 50  0001 C CNN
+F 1 "-5V" V 9800 8900 50  0000 C CNN
+F 2 "" H 9850 8700 50  0001 C CNN
+F 3 "" H 9850 8700 50  0001 C CNN
+	1    9850 8700
+	0    -1   -1   0   
+$EndComp
+Connection ~ 7950 8450
+Wire Wire Line
+	8350 8600 8350 8450
+Connection ~ 8350 8450
+Wire Wire Line
+	8850 8600 8950 8600
+Wire Wire Line
+	8950 8600 8950 8350
+$Comp
+L Extra~Components:5001 J?
+U 1 1 60719318
+P 8950 8200
+F 0 "J?" V 9150 8150 59  0000 L CNN
+F 1 "5001" V 9050 8100 59  0000 L CNN
+F 2 "Extra Components:5001 Test Point" H 9000 8150 59  0001 C CNN
+F 3 "" H 9000 8150 59  0001 C CNN
+	1    8950 8200
+	0    -1   -1   0   
+$EndComp
+Connection ~ 8950 8350
+Wire Wire Line
+	9150 8350 8950 8350
+Text GLabel 6900 8550 0    51   Input ~ 0
+DAC_OUT2
+Wire Notes Line
+	10400 6400 10400 9250
+Wire Notes Line
+	6400 6400 10400 6400
+Wire Notes Line
+	6400 9250 10400 9250
 $EndSCHEMATC
