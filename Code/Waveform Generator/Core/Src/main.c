@@ -171,6 +171,8 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   MX_USB_OTG_FS_USB_Init();
+  MX_TIM1_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* Saw tooth function */

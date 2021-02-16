@@ -3226,4 +3226,175 @@ Wire Notes Line
 	11450 6700 11450 9900
 Wire Notes Line
 	11450 9900 16000 9900
+$Comp
+L MCU_ST_STM32F4:STM32F429ZITx U?
+U 1 1 60B20EB9
+P -4600 9700
+F 0 "U?" H -3850 6150 50  0000 C CNN
+F 1 "STM32F429ZITx" H -3800 6000 50  0000 C CNN
+F 2 "Package_QFP:LQFP-144_20x20mm_P0.5mm" H -5600 6300 50  0001 R CNN
+F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00071990.pdf" H -4600 9700 50  0001 C CNN
+	1    -4600 9700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	-5200 6100 -5100 6100
+Connection ~ -5100 6100
+Wire Wire Line
+	-5100 6100 -5000 6100
+Connection ~ -5000 6100
+Wire Wire Line
+	-5000 6100 -4900 6100
+Connection ~ -4900 6100
+Wire Wire Line
+	-4900 6100 -4800 6100
+Connection ~ -4800 6100
+Wire Wire Line
+	-4800 6100 -4700 6100
+Connection ~ -4700 6100
+Wire Wire Line
+	-4700 6100 -4600 6100
+Connection ~ -4600 6100
+Wire Wire Line
+	-4600 6100 -4500 6100
+Connection ~ -4500 6100
+Wire Wire Line
+	-4500 6100 -4400 6100
+Connection ~ -4400 6100
+Wire Wire Line
+	-4400 6100 -4300 6100
+Connection ~ -4300 6100
+Wire Wire Line
+	-4300 6100 -4200 6100
+Connection ~ -4200 6100
+Wire Wire Line
+	-4200 6100 -4100 6100
+Connection ~ -4100 6100
+Wire Wire Line
+	-4100 6100 -4000 6100
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 60B31123
+P -3900 6100
+F 0 "#PWR?" H -3900 5950 50  0001 C CNN
+F 1 "+3.3VA" H -3885 6273 50  0000 C CNN
+F 2 "" H -3900 6100 50  0001 C CNN
+F 3 "" H -3900 6100 50  0001 C CNN
+	1    -3900 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 60B319CC
+P -5200 6100
+F 0 "#PWR?" H -5200 5950 50  0001 C CNN
+F 1 "+3.3V" H -5185 6273 50  0000 C CNN
+F 2 "" H -5200 6100 50  0001 C CNN
+F 3 "" H -5200 6100 50  0001 C CNN
+	1    -5200 6100
+	1    0    0    -1  
+$EndComp
+Connection ~ -5200 6100
+Text GLabel -5800 6700 0    50   Input ~ 0
+BOOT0
+Text GLabel -5800 6400 0    50   Input ~ 0
+NRST
+$Comp
+L Device:C_Small C?
+U 1 1 60B5079F
+P -6700 7100
+F 0 "C?" H -6608 7146 50  0000 L CNN
+F 1 "2.2u" H -6608 7055 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H -6700 7100 50  0001 C CNN
+F 3 "~" H -6700 7100 50  0001 C CNN
+	1    -6700 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C?
+U 1 1 60B507A5
+P -6350 7100
+F 0 "C?" H -6258 7146 50  0000 L CNN
+F 1 "2.2u" H -6258 7055 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H -6350 7100 50  0001 C CNN
+F 3 "~" H -6350 7100 50  0001 C CNN
+	1    -6350 7100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 60B507AB
+P -6700 7200
+F 0 "#PWR?" H -6700 6950 50  0001 C CNN
+F 1 "GND" H -6695 7027 50  0000 C CNN
+F 2 "" H -6700 7200 50  0001 C CNN
+F 3 "" H -6700 7200 50  0001 C CNN
+	1    -6700 7200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 60B507B1
+P -6350 7200
+F 0 "#PWR?" H -6350 6950 50  0001 C CNN
+F 1 "GND" H -6345 7027 50  0000 C CNN
+F 2 "" H -6350 7200 50  0001 C CNN
+F 3 "" H -6350 7200 50  0001 C CNN
+	1    -6350 7200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	-6350 7000 -5800 7000
+Wire Wire Line
+	-5800 6900 -6700 6900
+Wire Wire Line
+	-6700 6900 -6700 7000
+Wire Wire Line
+	-5000 13300 -4900 13300
+Connection ~ -4900 13300
+Wire Wire Line
+	-4900 13300 -4800 13300
+Connection ~ -4800 13300
+Wire Wire Line
+	-4800 13300 -4700 13300
+Connection ~ -4700 13300
+Wire Wire Line
+	-4700 13300 -4600 13300
+Connection ~ -4600 13300
+Wire Wire Line
+	-4600 13300 -4500 13300
+Connection ~ -4500 13300
+Wire Wire Line
+	-4500 13300 -4400 13300
+Connection ~ -4400 13300
+Wire Wire Line
+	-4400 13300 -4300 13300
+Connection ~ -4300 13300
+Wire Wire Line
+	-4300 13300 -4200 13300
+Connection ~ -4200 13300
+Wire Wire Line
+	-4200 13300 -4100 13300
+$Comp
+L power:GND #PWR?
+U 1 1 60BB23E2
+P -4600 13300
+F 0 "#PWR?" H -4600 13050 50  0001 C CNN
+F 1 "GND" H -4550 13150 50  0000 C CNN
+F 2 "" H -4600 13300 50  0001 C CNN
+F 3 "" H -4600 13300 50  0001 C CNN
+	1    -4600 13300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 60BD708E
+P -5800 7100
+F 0 "#PWR?" H -5800 6950 50  0001 C CNN
+F 1 "+3.3VA" V -5900 7200 50  0000 C CNN
+F 2 "" H -5800 7100 50  0001 C CNN
+F 3 "" H -5800 7100 50  0001 C CNN
+	1    -5800 7100
+	0    -1   -1   0   
+$EndComp
 $EndSCHEMATC
