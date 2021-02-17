@@ -1,4 +1,4 @@
-16944350395254079
+16945963969773889
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -46088,6 +46088,13 @@ One digit LED 7 segment SA39-11 SC39-11 SA39-12 SC39-12
 10
 10
 Extra Components
+5mm Pitch, 2 Way Terminal Block
+
+
+0
+4
+2
+Extra Components
 5001 Test Point
 
 
@@ -46095,7 +46102,7 @@ Extra Components
 1
 1
 Extra Components
-ITP0312D05
+ITP0324D05
 
 
 0
