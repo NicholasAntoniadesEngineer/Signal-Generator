@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source "C:\\Users\\Nanodyn - Spare\\OneDrive - Nanodyn\\Desktop\\GIT repository\\Waveform-generator\\PCB\\Waveform Generator\\Waveform Generator.sch")
-    (date "17 Feb 2021 13:36:35")
+    (date "17 Feb 2021 13:56:57")
     (tool "Eeschema (5.1.5)-3")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -513,7 +513,7 @@
       (tstamp 615EC6DA))
     (comp (ref J1)
       (value "Power input")
-      (footprint TerminalBlock_MetzConnect:TerminalBlock_MetzConnect_Type086_RT03402HBLC_1x02_P3.81mm_Horizontal)
+      (footprint "Extra Components:5mm Pitch, 2 Way Terminal Block")
       (datasheet ~)
       (libsource (lib Connector) (part Screw_Terminal_01x02) (description "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"))
       (sheetpath (names /) (tstamps /))

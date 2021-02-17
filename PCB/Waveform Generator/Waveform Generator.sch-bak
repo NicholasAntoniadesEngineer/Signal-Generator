@@ -1759,7 +1759,7 @@ U 1 1 61627931
 P 1150 1700
 F 0 "J1" H 1200 1400 50  0000 C CNN
 F 1 "Power input" H 1250 1500 50  0000 C CNN
-F 2 "TerminalBlock_MetzConnect:TerminalBlock_MetzConnect_Type086_RT03402HBLC_1x02_P3.81mm_Horizontal" H 1150 1700 50  0001 C CNN
+F 2 "Extra Components:5mm Pitch, 2 Way Terminal Block" H 1150 1700 50  0001 C CNN
 F 3 "~" H 1150 1700 50  0001 C CNN
 	1    1150 1700
 	-1   0    0    1   
@@ -3581,4 +3581,5 @@ Connection ~ 12400 2750
 Connection ~ 12700 2550
 Wire Wire Line
 	12700 2350 12700 2550
+NoConn ~ 3400 7700
 $EndSCHEMATC
