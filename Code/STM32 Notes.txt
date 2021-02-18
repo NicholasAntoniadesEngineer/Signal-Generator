@@ -1,0 +1,617 @@
+
+_______________________________________________________________________________________________________________________
+
+File    : STM32Cube_Notes.txt
+Brief   : Notes on the STM32F4 microcontrollers and the implementation of the various HAL and CMSIS libraries 
+		  using the STM32Cube ide and a NUCLEO F439ZI development baord. 
+Author 	: Nicholas Antoniades
+_______________________________________________________________________________________________________________________
+
+
+
+_______________________________________________________________________________________________________________________
+														GPIOs
+_______________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------------
+												Create GPIO interrupt
+-----------------------------------------------------------------------------------------------------------------------
+1. Select GPIO EXTI pins
+2. Go to system NVIC and enable EXTI line interrupts
+3. Set pull down resistors
+4. Set the user label to the pin name, if necessary.
+5. Create callback function for EXTI trigger to handle the interrupt.
+
+------------- Interrupt handler ----------------
+void HAL_GPIO_EXTI_Callback( uint16_t GPIO_Pin){
+	__NOP();
+}
+
+
+_______________________________________________________________________________________________________________________
+														Timers
+_______________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------------
+											  Setting up Timer Interrupts
+-----------------------------------------------------------------------------------------------------------------------
+1. Choose a timer
+2. Choose clock source to be internal clock
+3. Set ARR value  
+4. Set Prescalar  (PSC=fclock/fpwm - 1) (tover = (arr + 1)(psc +1)/fclock)?
+
+-------------------------Example-------------------------
+prescalar = 1000
+counter Period(ARR value) = 100
+No internal clock division
+
+--------------------Initiailizations---------------------
+HAL_TIM_Base_Start_IT(&htim3);
+------------Creating Timer interrupt handler------------
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+
+	// Code to run inside of handler
+	
+	// Start interrupt again
+	HAL_TIM_Base_Start_IT(&htim3);
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------
+													Setting up PWM
+-----------------------------------------------------------------------------------------------------------------------
+1. Choose a timer
+2. Enable necessary channels to PWM generation (PWM Generation CH1)
+3. Set ARR value  
+4. Set Prescalar  (PSC=fclock/fpwm - 1) (tover = (arr + 1)(psc +1)/fclock)?
+
+6. Use HAL_TIM_PWM_Start(&htimX,TIM_CHANNEL_Y); to start timer X channel Y PWM.
+
+\\\\\Example//////
+prescalar = 1000
+counter Period(ARR value) = 100
+No internal clock division
+Pulse(16 bits value) = 50 //Set for the pusle value for each channel to be half of the ARR for a 50% duty cycle.
+	
+
+--------------------Update PWM frequency--------------------
+
+void PWM_Frequency_update(void){
+	htim1.Instance = TIM1;
+	htim1.Init.Prescaler = New_PSC;
+	if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+	{
+	  Error_Handler();
+	}
+	HAL_TIM_PWM_Start(&htim1,TIM_CHANNEL_1);
+}
+
+_______________________________________________________________________________________________________________________
+														RTC
+_______________________________________________________________________________________________________________________
+-------------
+	AN4759
+-------------
+A real-time clock (RTC) is a computer clock that keeps track of the current time. Although
+the RTCs are often used in personal computers, servers and embedded systems, they are
+also present in almost any electronic device that requires an accurate time keeping. 
+
+
+-----------------------------------------------------------------------------------------------------------------------
+												Setting up the RTC
+-----------------------------------------------------------------------------------------------------------------------
+1. Activate RCC Clock Source
+2. Activate Calender if necessary
+3. Set date/time format and date/time settings
+
+--------------------Calculating time since last sample--------------------
+// Getting time and date from RTC
+HAL_RTC_GetTime(&hrtc, &*currentTime, RTC_FORMAT_BIN);
+HAL_RTC_GetDate(&hrtc, &currentDate, RTC_FORMAT_BIN);
+
+// Calculating time since last sample
+changeTime->Minutes = currentTime->Minutes - oldTime->Minutes;
+changeTime->Seconds = currentTime->Seconds - oldTime->Seconds;
+if ((currentTime->SubSeconds) < (oldTime->SubSeconds)) {
+	changeTime->SubSeconds = (oldTime->SubSeconds)- (currentTime->SubSeconds);
+}
+deltaTime = changeTime->Seconds + ((float) changeTime->SubSeconds) / 100;
+
+
+
+
+_______________________________________________________________________________________________________________________
+														 ADC
+_______________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------------
+									 Setting up ADC for single channel interrupt
+-----------------------------------------------------------------------------------------------------------------------
+1. Select ADC input channels
+2. Adjust ADC paramater settings
+	- Set resolution
+	- Set ADC prescalar
+	- Enable continuous conversion.
+3. Enable NVIC interrupt
+--------------------Initiailizations---------------------
+uint32_t value_adc;
+HAL_ADC_Start_IT(&hadc1);
+-------------------------while(1)------------------------
+while(1){
+ 	HAL_ADC_Start_IT(&hadc1);
+ 	HAL_Delay(100);
+}
+------------Creating ADC it interrupt handler------------
+void HAL_ADC_ConvCpltCAllback(ADC_HandleTypeDef* hadc){
+	value_adc = HAL_ADCGetValue(hadc);
+}
+
+
+-----------------------------------------------------------------------------------------------------------------------
+									          ADC multicahnnel with DMA
+-----------------------------------------------------------------------------------------------------------------------
+1. Select ADC input channels
+2. Adjust ADC paramater settings
+	- Set resolution
+	- Set ADC prescalar, higher than what it is set at
+	- Scan conversion mode enable
+	- Continuous conversion mode enable
+	- DMA continuous requests enabled, *option only available after enabling DMA channels.
+3. Adjust conversion mode settings
+    - Change number of conversions to the number of channels being read
+4. Enable DMA settings
+	- *Add ADC channel to DMA interrupts
+	- Set to circular mode
+		-> Normal will full the buffer only once
+		-> Circular will continuously fill the buffer overwriting old values
+	- Set data width to word for ADC resolution of 12-bit
+5. Enable NVIC interrupt enabled for DMA
+--------------------Initiailizations---------------------
+#define numChannels 3		     // Set this value to be the number of channels
+uint32_t value_adc[numChannels]; // Buffer size, 32 bit for 12 bit ADC resolution
+HAL_ADC_Start_DMA(&hadc1, value_adc,numChannels);
+-----------------------Functions-------------------------
+------------Creating ADC dma interrupt handler-----------
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
+	__NOP();
+}
+---or---
+void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc){
+	__NOP();
+}
+
+_______________________________________________________________________________________________________________________
+
+														 DAC
+_______________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------------
+													Setting up DAC
+-----------------------------------------------------------------------------------------------------------------------
+
+Application notes:
+        1. AN3126, Audio and waveform generation using the DAC in STM32 products. 
+
+1. Select DAC pin
+2. Set to out1 configuration
+uint32_t value_dac=0;
+HAL_DAC_Start(&hdac,DAC_CHANNEL_1);
+HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, value_dac);
+
+---------------Creating saw tooth function---------------
+HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, value_dac);
+value_dac++;
+if(value_dac>4095){
+	value_dac=0;
+}
+
+---------------Creating a sine wave function---------------
+Both PSC and ARR of the timer selected determine the output frequency of the signal.
+
+1. Select DAC pin
+2. Set to out1 configuration
+3. Set DAC settings
+	- Set Trigger to Timer 2
+	- Enable DMA for DAC
+	  -> Enable Circular mode
+	  -> Set data width to word
+	-Ensure NVIC interrupt is enabled for DMA
+4. Set timer settings
+	- Clock source: Internal clock
+	- Timer 2 is connected to APB1, which should be at 90 MHz, 
+	  set PSC to 90-1 setting the timer clock to 1MHz
+	- Setting ARR to 100 sets the clock to a lower 10 kHz
+	- Set Trigger Event Selection to: Update Event
+	- Enable NVIC
+	
+	
+uint32_t sine_val[100];
+#define PI 3.1415926
+
+void get_sineval(){
+
+	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2)
+	// ns = number of samples
+	// 0xFFF is 12 bit resolution
+
+	for(int i=0;i<100;i++){
+		sine_val[i] = ((sin(i*2*PI/100)+1)*(4096/2));
+	}
+}
+
+  /* Sine function */
+  HAL_TIM_Base_Start(&htim2);			// Start timer 2
+  get_sineval();
+  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, 100, DAC_ALIGN_12B_R); //Start DMA
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+  
+  .
+  .
+  .
+
+_______________________________________________________________________________________________________________________
+
+														 UART
+_______________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------------
+												Setting up UART with IT
+-----------------------------------------------------------------------------------------------------------------------
+1. Select USART
+2. Adjust USART paramater settings
+	- Set Baud rate
+	- Set optional parity 
+-------------------Function to receive-------------------
+#define uartSize 10
+#defnie timeOut 1000
+uint8_t data[uartSize];
+HAL_UART_Receive(&huart1, data, uartSize, timeOut); 
+--------------------Function to send---------------------
+uint8_t data1[]={0,1,2,3,4,5,6,7,8,9};
+HAL_UART_Transmit(&huart1, data1, uartSize, timeOut);
+
+-----------------------------------------------------------------------------------------------------------------------
+											   Setting up UART with DMA
+-----------------------------------------------------------------------------------------------------------------------
+1. Select USART
+	- Select asynchronous
+2. Adjust USART paramater settings
+	- Set Baud rate
+	- Set optional parity 
+3. Enable DMA settings
+	- Add DMA for RX and TX
+	- Set DMA priority if necessary
+	- Set TX to normal mode
+	- Set RX to normal mode
+	- Set Data widths to byte
+4. Enable NVIC interrupt enabled for DMA
+--------------------Initiailizations---------------------
+#define uartSize 10
+uint8_t rx_buff[uartSize];
+uint8_t tx_buff[] = {0,1,2,3,4,5,6,7,8,9};
+HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
+HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
+-----------------------Functions-------------------------
+--------------UART message received callback-------------
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+	HAL_UART_DMAStop(&huart1); // Stop UART
+	
+	// Do something
+	
+	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+}
+-------------UART transmit complete callback-------------
+void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
+	HAL_UART_DMAStop(&huart1); // Stop UART
+	
+	// Do something
+	
+	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+}
+
+
+_______________________________________________________________________________________________________________________
+														 I2C
+_______________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------------
+													Setting up I2C
+-----------------------------------------------------------------------------------------------------------------------
+1. Select I2C
+	- Select I2C
+2. Adjust I2C paramater settings
+	- Set I2C frequency
+----------------------Initiailizations------------------------
+// Variables to be initialized for I2C
+uint8_t Device_Addr= 0x44 << 1 ;  // 8-bit device address shifted 1 for r/w bit
+uint8_t Device_write_reg = 0x09;  // Device register address
+uint8_t Device_read_reg = 0x02;   // Device register address
+uint8_t buff_tx[12];				// Transmit buffer
+uint8_t buff_rx[12];				// Receive buffer
+
+
+-----------------------Read Functions-------------------------
+void I2C_read(uint8_t Device_Addr, uint16_t Device_reg, uint8_t I2C_tx_buff[], uint8_t I2C_rx_buff[]){
+	  // Counter to avoid infinite while loop
+	  int counter = 0;
+	  int counterLimit = 100;
+	  Device_Addr = Device_Addr <<1; // Shifting for read/write bit
+	  // I2C_tx_buff[0] = Device_reg;
+	  // I2C_tx_buff[0] = byteCommand[0];
+	  // I2C_tx_buff[1] = byteCommand[1];
+
+	  if (HAL_I2C_Master_Transmit(&hi2c3, Device_Addr, I2C_tx_buff, 1, 100) != HAL_OK){
+		  __NOP();
+	  }else{
+		  while(1){
+			  // Receive information
+			  if (HAL_I2C_Master_Receive(&hi2c3, Device_Addr, I2C_rx_buff,4, 100) != HAL_OK){
+					 if(counter >= counterLimit){
+						 counter ++;
+					 }else{
+						 counter = 0;
+						 break;
+					 }
+			  }else{
+//				  sprintf((char*)I2C_rx_buff,"%u %u %u %u %u \r\n", 
+//									((unsigned int)I2C_rx_buff[0]),
+//									((unsigned int)I2C_rx_buff[1]),
+//									((unsigned int)I2C_rx_buff[2]),
+//									((unsigned int)I2C_rx_buff[3]),
+//									((unsigned int)I2C_rx_buff[4]));
+//				  HAL_UART_Transmit(&huart2,I2C_rx_buff,strlen((char*)I2C_rx_buff), 100);
+				  break;
+			  }
+		  }
+	  }
+}
+-----------------------Write Functions-------------------------
+void I2C_write(uint8_t Device_Addr, uint16_t Device_reg, uint8_t I2C_tx_buff[], uint8_t I2C_rx_buff[]){
+	// Counter to avoid infinite while loop
+	int counter = 0;
+	int counterLimit = 100;
+	while(1){
+
+	  I2C_tx_buff[0] = Device_reg;
+
+	  if (HAL_I2C_Master_Transmit(&hi2c3, Device_Addr, I2C_tx_buff, 1, 100) != HAL_OK){
+			 if(counter >= counterLimit){
+				 counter ++;
+			 }else{
+				 counter = 0;
+				 break;
+			 }
+	  }else{
+		  counter = 0;
+		  while(1){
+			  if ( HAL_I2C_Mem_Write(&hi2c3, Device_Addr, Device_reg,1,I2C_tx_buff,5, 100) != HAL_OK){
+					 if(counter >= counterLimit){
+						 counter ++;
+					 }else{
+						 counter = 0;
+						 break;
+					 }
+			  }else{
+//				  sprintf((char*)I2C_rx_buff,"Write complete \r\n");
+//				  HAL_UART_Transmit(&huart2,I2C_rx_buff,strlen((char*)I2C_rx_buff), 100);
+				  __NOP();
+				  break;
+			  }
+		  }
+		  break;
+	   }
+	}
+}
+
+-------------------------while(1)------------------------
+
+I2C_write(Device_Addr, Device_read_reg, buff_tx, buff_rx);    // Initialize device
+while(1){
+ 	I2C_read(Device_Addr, Device_read_reg, buff_tx, buff_rx); // Print success to terminal
+}
+_______________________________________________________________________________________________________________________
+														 SPI
+_______________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------------
+													Setting up SPI
+-----------------------------------------------------------------------------------------------------------------------
+
+
+
+	
+_______________________________________________________________________________________________________________________
+														RTOS
+_______________________________________________________________________________________________________________________	
+A real-time operating system is an operating system optimized for use in embedded/realtime applications. 
+Their primary objective is to ensure a timely and deterministic response to events. 
+Using a real-time operating system allows applications to be written as a set ofindependent threads that 
+inter-communicate using message queues and semaphores.	
+	
+References: User Manual UM1722
+
+
+-----------------------------------------------------------------------------------------------------------------------
+													  FreeRTOS
+-----------------------------------------------------------------------------------------------------------------------
+FreeRTOS is a class of RTOS that is designed to be small enough to run on a
+microcontroller or microprocessor, although its use is not limited to microcontroller and
+microprocessor applications.	
+
+FreeRTOS provides the core real-time scheduling functionality, inter-task
+communication, timing and synchronization of a full RTOS
+
+Queues, binary semaphores, counting semaphores, recursive semaphores and
+mutexes for communication and synchronization between tasks, or between tasks and
+interrupts.
+	
+---------------------------------------------------------
+				Setting up FreeRTOS
+---------------------------------------------------------	
+1. Set interface to CMSIS_V2
+2. Go to tasks and ques in the configuration menu.
+		-> Add a task
+		-> Task name(Task)
+		-> Entry Function(StartTask)
+		
+3. FreeRTOS needs Systick for it's schedular, change HAL timebase.
+		-> System core > Sys
+		-> Change Timebase source to TIM6
+
+4. Save and generated code. Open main.callback
+		-> Have a look at where your threads have been created.
+
+
+_______________________________________________________________________________________________________________________
+										   USB Virtual COM Port
+_______________________________________________________________________________________________________________________
+If the USB pins aren't connected correctly this obvioulsy won't work. Works on the F4 Discovery but not on the nucleo F439ZI
+
+1. USB_OTG_FS Mode and configuration
+	-> Connectivity -> USB_OTG_FS, Mode: Device_Only
+	-> Middleware -> USB_DEVICE,  Class For FS IP: Communication Device Class (Virtual Port Com)
+2. Remember to check clock settings after making these changes.
+
+
+#include "usb_device.h"
+#include "usbd_cdc_if.h" // this is needed to transmit a string of characters
+
+char txBuf[8];
+uint8_t count = 1;
+
+while(1){
+	sprintf(txBuf, "%u\r\n", count);
+	count++;
+	
+	if (count>100){
+		count = 1;
+	}
+	
+	CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
+	HAL_Delay(100);
+}
+
+	
+_______________________________________________________________________________________________________________________
+										   Talking to on board bottloader
+_______________________________________________________________________________________________________________________
+-------------
+	AN2026
+-------------
+Refer to AN2026 to activate the specific device bootloader, how to enable it, its settings 
+and to which pins the bootloader communicates on.
+
+-------------
+	AN3155
+-------------
+For USART bootloader protocol commands and process refer to AN3155.
+
+Once the system memory boot mode is entered and the STM32 has been configured.
+The bootloader code begins to scan the USARTx_RX line pin. 
+Waiting to receive the 0x7F data frame: a start bit, 0x7F data bits, even parity bit and a stop bit.
+(Figure 1. Bootloader for STM32 with USART)
+
+All communication from the programming tool to the device is verified by:
+1. Checksum: received blocks of data bytes are XOR-ed. 
+   A byte containing the computed XOR of all previous bytes is added to the end of each communication (checksum byte). 
+   By XOR-ing all received bytes, data plus checksum, the result at the end of the packet must be 0x00.
+2. For each command the host sends a byte and its complement (XOR = 0x00).
+3. UART: parity check active (even parity).
+4. Each packet is either accepted (ACK answer) or discarded (NACK answer):
+	- ACK = 0x79
+	- NACK = 0x1F
+	
+
+--------------------------
+	 What I want to do
+--------------------------
+Load microcontroller code from a host MCU via a serial comms interface into the embedded
+flash memory of an stm mcu.
+
+UM0516 windows api for this from a pc
+
+
+_______________________________________________________________________________________________________________________
+													   Checksum 
+_______________________________________________________________________________________________________________________	
+A checksum is a value used to verify the integrity of a file or a data transfer.
+Advanced include cyclic redundancy check (CRC) algorithms and cryptographic hash functions.
+
+
+-----------------------Basic Checksum function-------------------------
+uint8_t CheckSum(uint8_t CommandArray[]){
+	uint8_t CheckSum = 0;
+
+	for(int i = 0; i<8; i ++){
+		CheckSum += CommandArray[i];
+	}
+	return CheckSum;
+}
+
+_______________________________________________________________________________________________________________________
+									      			 Calculations
+_______________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------------
+											 Interrupt time to overflow
+-----------------------------------------------------------------------------------------------------------------------
+toverflow = (PSC + 1)(ARR + 1)/fclock  // Time to over flow for timer interrupt
+
+-----------------------------------------------------------------------------------------------------------------------
+										  Update frequencyfor inspiration
+-----------------------------------------------------------------------------------------------------------------------
+TotalStepsPerCycle 	   = TotalStepsPerCycle*microStep*gearRatio;
+StepsHalfCycle 	       = TotalStepsPerCycle/2;
+RequiredStepsHalfCycle = StepsHalfCycle*Vdes/Vmax;
+TotalCycleTime		   = 60/BPM;
+InspTime 			   = (TotalCycleTime*IEratio/(1+IEratio));
+ExpTime 		       = (TotalCycleTime/(1+IEratio));
+InspFreq 		       = RequiredStepsHalfCycle/InspTime;
+ExpFreq 			   = RequiredStepsHalfCycle/ExpTime;
+ExpPSC 				   = ((float)clockFreq/counterPeriod)/ExpFreq;
+InspPSC				   = ((float)clockFreq/counterPeriod)/InspFreq;
+
+-----------------------------------------------------------------------------------------------------------------------
+											Calculate volume from flow
+-----------------------------------------------------------------------------------------------------------------------
+// Integrating pressure to solve for volume
+deltaT = (PSC + 1)(ARR + 1)/(fclock/2)  							  // fclock/2 because counter period
+VolumeSensirion = VolumeSensirion + (deltaT)*FlowSensirion*(1000/60); // Changing flow in l/pm to volume
+
+-----------------------------------------------------------------------------------------------------------------------
+										 Split a 32 bit number into 4 bytes
+-----------------------------------------------------------------------------------------------------------------------
+// Breaking a 32 bit value into 8 byte values.
+uint32_t ValueByte0 = ((commandValue >> 24) & 0xFF) ;
+uint32_t ValueByte1 = ((commandValue >> 16) & 0xFF) ;
+uint32_t ValueByte2 = ((commandValue >> 8 ) & 0XFF);
+uint32_t ValueByte3 = (commandValue & 0XFF);
+	
+// Building 4 bytes int a 32 bit value
+uint32_t longInt = ValueByte3;
+longInt = longInt | (ValueByte2 << 8);
+longInt = longInt | (ValueByte1 << 16);
+longInt = longInt | (ValueByte0 << 24);
+_______________________________________________________________________________________________________________________
+												     Extra notes
+_______________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------------
+													Random Notes
+-----------------------------------------------------------------------------------------------------------------------
+- Speed of comms, speed of interrupt. Causes buffer to overflow.
+- Micro clock speed
+- Number of data points being displayed.
+- Parity, stop bits.
+- Changing dma from cyclic to normal.
+	
+-----------------------------------------------------------------------------------------------------------------------
+												 DMA implementation
+-----------------------------------------------------------------------------------------------------------------------
+If using multiple DMA streams, each stream needs to be started and stoped intermittently 
+using timer interrupts to allow each stream to get a turn to run as it is based on a quing system.
+	
+
+-----------------------------------------------------------------------------------------------------------------------
+												 Software
+-----------------------------------------------------------------------------------------------------------------------
+1. STM32Cubeide
+2. Atollic
+3. STM32 ST link utility

@@ -25,7 +25,7 @@
 #include "i2c.h"
 #include "tim.h"
 #include "usart.h"
-#include "usb_otg.h"
+#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -170,9 +170,9 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM3_Init();
   MX_TIM4_Init();
-  MX_USB_OTG_FS_USB_Init();
   MX_TIM1_Init();
   MX_USART2_UART_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
   /* Saw tooth function */
@@ -187,6 +187,8 @@ int main(void)
   get_sineval();						// Call get sineval function
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
 
+  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -194,8 +196,8 @@ int main(void)
   while (1)
   {
 //
-	  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
-	  HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
+//	  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
+//	  HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
 //		sprintf(txBuf, "%u\r\n", count);
 //		count++;
 //
