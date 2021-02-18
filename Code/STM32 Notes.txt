@@ -224,6 +224,18 @@ Both PSC and ARR of the timer selected determine the output frequency of the sig
 uint32_t sine_val[100];
 #define PI 3.1415926
 
+int Res = 4096;				// DAC resolution.
+#define Ns 100  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
+uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
+double sine_scaled = 0.9; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
+int sine_dc_offset = 248; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. removes bottom error.
+#define PI 3.1415926		// Definition of PI
+int Fsine = 1000; 			// Frequency of ouput sine signal0
+int PSC;					// Tim2 Pre Scalar value
+uint32_t Fclock = 90000000;	// Tim2 Clock Frequency
+int Period = 1;				// Tim2 Period
+
+
 void get_sineval(){
 
 	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2)
@@ -233,6 +245,22 @@ void get_sineval(){
 	for(int i=0;i<100;i++){
 		sine_val[i] = ((sin(i*2*PI/100)+1)*(4096/2));
 	}
+}
+
+
+void set_clock_TIM2(void){
+	  // Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
+	  // Adjust PSC and period in order to manipulate frequency.
+
+	  PSC= (Fclock/Ns)/(Fsine*(Period + 1) ) - 1;
+
+	  htim2.Instance = TIM2;
+	  htim2.Init.Period = Period; //+1
+	  htim2.Init.Prescaler = PSC; //+1 // If this value is < 4 things start to behave funny.
+	  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+	  {
+	    Error_Handler();
+	  }
 }
 
   /* Sine function */

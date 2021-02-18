@@ -89,7 +89,7 @@ void get_sineval(void){
 }
 
 
-void set_clock(void){
+void set_clock_TIM2(void){
 	  // Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
 	  // Adjust PSC and period in order to manipulate frequency.
 
@@ -102,9 +102,22 @@ void set_clock(void){
 	  {
 	    Error_Handler();
 	  }
-
 }
 
+void set_clock_TIM4(void){
+	  // Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
+	  // Adjust PSC and period in order to manipulate frequency.
+
+	  PSC= (Fclock/Ns)/(Fsine*(Period + 1) ) - 1;
+
+	  htim4.Instance = TIM4;
+	  htim4.Init.Period = Period; //+1
+	  htim4.Init.Prescaler = PSC; //+1 // If this value is < 4 things start to behave funny.
+	  if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
+	  {
+	    Error_Handler();
+	  }
+}
 
 /* Setting up UART communications*/
 #define uartSize 1
@@ -173,6 +186,7 @@ int main(void)
   MX_TIM1_Init();
   MX_USART2_UART_Init();
   MX_USB_DEVICE_Init();
+  MX_TIM9_Init();
   /* USER CODE BEGIN 2 */
 
   /* Saw tooth function */
@@ -182,8 +196,10 @@ int main(void)
 
 
   /* Sine function */
-  set_clock();							// Setting frequency of timer
+  set_clock_TIM2();							// Setting frequency of timer
+  set_clock_TIM4();
   HAL_TIM_Base_Start(&htim2);			// Start timer 2
+  HAL_TIM_Base_Start(&htim4);			// Start timer 2
   get_sineval();						// Call get sineval function
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
 
