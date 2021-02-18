@@ -19,15 +19,19 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
 #include "dac.h"
 #include "dma.h"
+#include "i2c.h"
 #include "tim.h"
+#include "usart.h"
+#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "math.h"
-//#include "usbd_cdc_if.h" // this is needed to transmit a string of characters
+#include "usbd_cdc_if.h" // this is needed to transmit a string of characters
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -67,13 +71,14 @@ uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
 double sine_scaled = 0.9; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
 int sine_dc_offset = 248; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
 #define PI 3.1415926		// Definition of PI
-int Fsine = 10000; 			// Frequency of ouput sine signal0
+int Freq_Signal_1 = 1000; 	// Frequency of signal 1
+int Freq_Signal_2 = 20000; 	// Frequency of signal 2
 int PSC;					// Tim2 Pre Scalar value
-uint32_t Fclock = 90000000;	// Tim2 Clock Frequency
+uint32_t Fclock = 72000000;	// APB1 Timer Clocks
 int Period = 1;				// Tim2 Period
 
 
-void get_sineval(void){
+void get_sine_val(void){
 
 	// Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
 	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
@@ -91,7 +96,7 @@ void set_clock_TIM2(void){
 	  // Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
 	  // Adjust PSC and period in order to manipulate frequency.
 
-	  PSC= (Fclock/Ns)/(Fsine*(Period + 1) ) - 1;
+	  PSC= (Fclock/Ns)/(Freq_Signal_1*(Period + 1) ) - 1;
 
 	  htim2.Instance = TIM2;
 	  htim2.Init.Period = Period; //+1
@@ -106,7 +111,7 @@ void set_clock_TIM4(void){
 	  // Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
 	  // Adjust PSC and period in order to manipulate frequency.
 
-	  PSC= (Fclock/Ns)/(Fsine*2*(Period + 1) ) - 1;
+	  PSC= (Fclock/Ns)/(Freq_Signal_2*(Period + 1) ) - 1;
 
 	  htim4.Instance = TIM4;
 	  htim4.Init.Period = Period; //+1
@@ -140,9 +145,7 @@ void set_clock_TIM4(void){
 //	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 //}
 //
-///* Setting up USB communications*/
-//char txBuf[8];
-//uint8_t count = 1;
+
 /* USER CODE END 0 */
 
 /**
@@ -177,6 +180,12 @@ int main(void)
   MX_DAC_Init();
   MX_TIM2_Init();
   MX_TIM4_Init();
+  MX_USB_DEVICE_Init();
+  MX_ADC1_Init();
+  MX_ADC2_Init();
+  MX_I2C1_Init();
+  MX_USART1_UART_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
   /* Saw tooth function */
@@ -190,10 +199,13 @@ int main(void)
   set_clock_TIM4();						// Setting frequency of timer 4
   HAL_TIM_Base_Start(&htim2);			// Start timer 2
   HAL_TIM_Base_Start(&htim4);			// Start timer 4
-  get_sineval();						// Call get sineval function
+  get_sine_val();						// Call get sineval function
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
 
+  /* Setting up USB communications*/
+  char txBuf[8];
+  uint8_t count = 1;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -203,15 +215,15 @@ int main(void)
 //
 //	  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
 //	  HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
-//		sprintf(txBuf, "%u\r\n", count);
-//		count++;
-//
-//		if (count>100){
-//			count = 1;
-//		}
-//
-//		CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
-//		HAL_Delay(100);
+		sprintf(txBuf, "%u\r\n", count);
+		count++;
+
+		if (count>100){
+			count = 1;
+		}
+
+		CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
+		HAL_Delay(100);
 
     /* USER CODE END WHILE */
 
@@ -232,7 +244,7 @@ void SystemClock_Config(void)
   /** Configure the main internal regulator output voltage
   */
   __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
@@ -241,16 +253,10 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL.PLLM = 4;
-  RCC_OscInitStruct.PLL.PLLN = 180;
+  RCC_OscInitStruct.PLL.PLLN = 72;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 7;
+  RCC_OscInitStruct.PLL.PLLQ = 3;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Activate the Over-Drive mode
-  */
-  if (HAL_PWREx_EnableOverDrive() != HAL_OK)
   {
     Error_Handler();
   }
@@ -260,10 +266,10 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }

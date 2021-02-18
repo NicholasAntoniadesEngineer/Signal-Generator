@@ -8,6 +8,10 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
+-include USB_DEVICE/Target/subdir.mk
+-include USB_DEVICE/App/subdir.mk
+-include Middlewares/ST/STM32_USB_Device_Library/Core/Src/subdir.mk
+-include Middlewares/ST/STM32_USB_Device_Library/Class/CDC/Src/subdir.mk
 -include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
@@ -28,34 +32,34 @@ endif
 
 -include ../makefile.defs
 
-BUILD_ARTIFACT_NAME := STM32F439ZIT6U waveform Generator
+BUILD_ARTIFACT_NAME := Waveform Generator
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX := 
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-STM32F439ZIT6U\ waveform\ Generator.elf \
+Waveform\ Generator.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-STM32F439ZIT6U\ waveform\ Generator.list \
+Waveform\ Generator.list \
 
 OBJCOPY_BIN += \
-STM32F439ZIT6U\ waveform\ Generator.bin \
+Waveform\ Generator.bin \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: STM32F439ZIT6U\ waveform\ Generator.elf secondary-outputs
+main-build: Waveform\ Generator.elf secondary-outputs
 
 # Tool invocations
-STM32F439ZIT6U\ waveform\ Generator.elf: $(OBJS) $(USER_OBJS) C:\Users\Nanodyn\ -\ Spare\OneDrive\ -\ Nanodyn\Desktop\GIT\ repository\Waveform-generator\Code\Waveform\ Generator\STM32F439ZITX_FLASH.ld
-	arm-none-eabi-gcc -o "STM32F439ZIT6U waveform Generator.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\Code\Waveform Generator\STM32F439ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F439ZIT6U waveform Generator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Waveform\ Generator.elf: $(OBJS) $(USER_OBJS) C:\Users\Nanodyn\ -\ Spare\OneDrive\ -\ Nanodyn\Desktop\Waveform\ Generator\STM32F439ZITX_FLASH.ld
+	arm-none-eabi-gcc -o "Waveform Generator.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Waveform Generator\STM32F439ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Waveform Generator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -64,13 +68,13 @@ default.size.stdout: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-STM32F439ZIT6U\ waveform\ Generator.list: $(EXECUTABLES)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "STM32F439ZIT6U waveform Generator.list"
+Waveform\ Generator.list: $(EXECUTABLES)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Waveform Generator.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-STM32F439ZIT6U\ waveform\ Generator.bin: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "STM32F439ZIT6U waveform Generator.bin"
+Waveform\ Generator.bin: $(EXECUTABLES)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "Waveform Generator.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
