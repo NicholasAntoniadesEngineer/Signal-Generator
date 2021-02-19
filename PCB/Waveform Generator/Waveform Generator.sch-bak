@@ -2844,8 +2844,6 @@ Text GLabel 3400 9600 2    50   Input ~ 0
 BTN3_Input
 Text GLabel 3400 9000 2    50   Input ~ 0
 MAX485_PWR
-Text GLabel 3400 9100 2    50   Input ~ 0
-MAX485_DE
 Text GLabel 3400 9200 2    51   Input ~ 0
 TEMP_SENSE
 $Comp
@@ -3130,7 +3128,6 @@ NoConn ~ 1600 9000
 NoConn ~ 1600 9100
 NoConn ~ 1600 9200
 NoConn ~ 1600 9300
-NoConn ~ 1600 9400
 NoConn ~ 1600 9500
 NoConn ~ 1600 9600
 NoConn ~ 1600 9700
@@ -3523,8 +3520,6 @@ F 3 "~" H 12300 2750 50  0001 C CNN
 	1    12300 2750
 	0    1    1    0   
 $EndComp
-Text GLabel 12200 2750 0    51   Input ~ 0
-MAX485_DE
 $Comp
 L power:GND #PWR0151
 U 1 1 60ECC493
@@ -3583,4 +3578,9 @@ F 3 "~" H 5050 7100 50  0001 C CNN
 	1    5050 6900
 	1    0    0    -1  
 $EndComp
+Text GLabel 1600 9400 0    51   Input ~ 0
+USART2_RTS
+Text GLabel 12200 2750 0    51   Input ~ 0
+USART2_RTS
+NoConn ~ 3400 9100
 $EndSCHEMATC
