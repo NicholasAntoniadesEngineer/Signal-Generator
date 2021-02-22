@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\PCB\Waveform Generator\Waveform Generator.sch</source>
-    <date>22 Feb 2021 14:23:25</date>
+    <date>22 Feb 2021 15:12:14</date>
     <tool>Eeschema (5.1.5)-3</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -157,14 +157,14 @@
     </comp>
     <comp ref="F1">
       <value>300mA</value>
-      <footprint>Fuse:Fuse_1206_3216Metric</footprint>
+      <footprint>Fuse:Fuse_0603_1608Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="Polyfuse_Small" description="Resettable fuse, polymeric positive temperature coefficient, small symbol"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamp>6030F6C2</tstamp>
     </comp>
     <comp ref="FB1">
-      <value>600 @ 600MHz</value>
+      <value>100 @ 100MHz</value>
       <footprint>Inductor_SMD:L_1206_3216Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="Ferrite_Bead_Small" description="Ferrite bead, small symbol"/>
@@ -443,7 +443,7 @@
       <tstamp>60D8BEEF</tstamp>
     </comp>
     <comp ref="FB2">
-      <value>600 @ 600MHz</value>
+      <value>100 @ 100MHz</value>
       <footprint>Inductor_SMD:L_1206_3216Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="Ferrite_Bead_Small" description="Ferrite bead, small symbol"/>
