@@ -1793,17 +1793,6 @@ F 3 "" H 6950 5100 50  0001 C CNN
 	1    6950 5100
 	0    -1   -1   0   
 $EndComp
-$Comp
-L Extra~Components:5001 RS485_B
-U 1 1 602D06EE
-P 14950 1900
-F 0 "RS485_B" H 15028 1908 59  0000 L CNN
-F 1 "5001" H 15028 1803 59  0000 L CNN
-F 2 "Extra Components:5001 Test Point" H 15000 1850 59  0001 C CNN
-F 3 "" H 15000 1850 59  0001 C CNN
-	1    14950 1900
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	14800 2450 15000 2450
 Wire Wire Line
@@ -1811,32 +1800,10 @@ Wire Wire Line
 Wire Wire Line
 	14800 2550 15000 2550
 $Comp
-L Extra~Components:5001 T1
-U 1 1 6030FC76
-P 5300 1900
-F 0 "T1" H 5400 2150 59  0000 C CNN
-F 1 "5V" H 5400 2050 59  0000 C CNN
-F 2 "Extra Components:5001 Test Point" H 5350 1850 59  0001 C CNN
-F 3 "" H 5350 1850 59  0001 C CNN
-	1    5300 1900
-	-1   0    0    1   
-$EndComp
-$Comp
-L Extra~Components:5001 T2
-U 1 1 60330D7E
-P 7200 1400
-F 0 "T2" H 7142 1064 59  0000 C CNN
-F 1 "3V3" H 7142 1169 59  0000 C CNN
-F 2 "Extra Components:5001 Test Point" H 7250 1350 59  0001 C CNN
-F 3 "" H 7250 1350 59  0001 C CNN
-	1    7200 1400
-	0    -1   -1   0   
-$EndComp
-$Comp
-L Extra~Components:5001 T3
+L Extra~Components:5001 TEMP_SENSE
 U 1 1 6035F161
 P 6700 4900
-F 0 "T3" H 6900 4800 59  0000 C CNN
+F 0 "TEMP_SENSE" H 6900 4800 59  0000 C CNN
 F 1 "5001" H 6900 4900 59  0000 C CNN
 F 2 "Extra Components:5001 Test Point" H 6750 4850 59  0001 C CNN
 F 3 "" H 6750 4850 59  0001 C CNN
@@ -1851,17 +1818,6 @@ Wire Notes Line
 	6250 5200 7950 5200
 Wire Notes Line
 	6250 4200 7950 4200
-$Comp
-L Extra~Components:5001 T0
-U 1 1 603B19CE
-P 13000 5850
-F 0 "T0" H 13200 5750 59  0000 C CNN
-F 1 "GND" H 13200 5850 59  0000 C CNN
-F 2 "Extra Components:5001 Test Point" H 13050 5800 59  0001 C CNN
-F 3 "" H 13050 5800 59  0001 C CNN
-	1    13000 5850
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	12750 5550 12750 5850
 Wire Wire Line
@@ -2205,17 +2161,6 @@ F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 7500 10100 50  0001 C CNN
 $EndComp
 $Comp
 L Amplifier_Operational:OPA1602 U4
-U 2 1 604A81A8
-P 8500 10000
-F 0 "U4" H 8300 10400 50  0000 C CNN
-F 1 "OPA1602" H 8300 10300 50  0000 C CNN
-F 2 "Package_SO:SOP-8_3.9x4.9mm_P1.27mm" H 8500 10000 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 8500 10000 50  0001 C CNN
-	2    8500 10000
-	1    0    0    -1  
-$EndComp
-$Comp
-L Amplifier_Operational:OPA1602 U4
 U 3 1 604AB9C1
 P 8200 10650
 F 0 "U4" H 8158 10696 50  0000 L CNN
@@ -2279,17 +2224,6 @@ Wire Wire Line
 	8700 10250 8800 10250
 Wire Wire Line
 	8800 10250 8800 10000
-$Comp
-L Extra~Components:5001 T7
-U 1 1 6085EE9A
-P 8800 9850
-F 0 "T7" V 9000 9800 59  0000 L CNN
-F 1 "DAC_OUT_1" V 8900 9600 59  0000 L CNN
-F 2 "Extra Components:5001 Test Point" H 8850 9800 59  0001 C CNN
-F 3 "" H 8850 9800 59  0001 C CNN
-	1    8800 9850
-	0    -1   -1   0   
-$EndComp
 Connection ~ 8800 10000
 $Comp
 L Connector:Screw_Terminal_01x02 J12
@@ -2405,17 +2339,6 @@ F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 7500 9000 50  0001 C CNN
 $EndComp
 $Comp
 L Amplifier_Operational:OPA1602 U5
-U 2 1 607192EF
-P 8500 8900
-F 0 "U5" H 8350 9250 50  0000 C CNN
-F 1 "OPA1602" H 8350 9150 50  0000 C CNN
-F 2 "Package_SO:SOP-8_3.9x4.9mm_P1.27mm" H 8500 8900 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 8500 8900 50  0001 C CNN
-	2    8500 8900
-	1    0    0    -1  
-$EndComp
-$Comp
-L Amplifier_Operational:OPA1602 U5
 U 3 1 607192F5
 P 8100 8400
 F 0 "U5" H 8058 8446 50  0000 L CNN
@@ -2477,17 +2400,6 @@ Wire Wire Line
 	8700 9150 8800 9150
 Wire Wire Line
 	8800 9150 8800 8900
-$Comp
-L Extra~Components:5001 T6
-U 1 1 60719318
-P 8800 8750
-F 0 "T6" V 9000 8700 59  0000 L CNN
-F 1 "DAC_OUT_2" V 8900 8500 59  0000 L CNN
-F 2 "Extra Components:5001 Test Point" H 8850 8700 59  0001 C CNN
-F 3 "" H 8850 8700 59  0001 C CNN
-	1    8800 8750
-	0    -1   -1   0   
-$EndComp
 Connection ~ 8800 8900
 Text GLabel 6750 9100 0    51   Input ~ 0
 DAC_OUT2
@@ -3557,17 +3469,6 @@ Wire Wire Line
 NoConn ~ 3400 7700
 NoConn ~ 15750 50  
 $Comp
-L Extra~Components:5001 T5
-U 1 1 602D3514
-P 14950 3050
-F 0 "T5" H 15028 3058 59  0000 L CNN
-F 1 "RS485_A" H 15028 2953 59  0000 L CNN
-F 2 "Extra Components:5001 Test Point" H 15000 3000 59  0001 C CNN
-F 3 "" H 15000 3000 59  0001 C CNN
-	1    14950 3050
-	1    0    0    -1  
-$EndComp
-$Comp
 L Switch:SW_Push BTN0
 U 1 1 6028E938
 P 5050 6900
@@ -3583,4 +3484,103 @@ USART2_RTS
 Text GLabel 12200 2750 0    51   Input ~ 0
 USART2_RTS
 NoConn ~ 3400 9100
+$Comp
+L Extra~Components:5001 GND1
+U 1 1 603B19CE
+P 13000 5850
+F 0 "GND1" H 13200 5750 59  0000 C CNN
+F 1 "5001" H 13200 5850 59  0000 C CNN
+F 2 "Extra Components:5001 Test Point" H 13050 5800 59  0001 C CNN
+F 3 "" H 13050 5800 59  0001 C CNN
+	1    13000 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Amplifier_Operational:OPA1602 U5
+U 2 1 607192EF
+P 8500 8900
+F 0 "U5" H 8500 9267 50  0000 C CNN
+F 1 "OPA1602" H 8500 9176 50  0000 C CNN
+F 2 "Package_SO:SOP-8_3.9x4.9mm_P1.27mm" H 8500 8900 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 8500 8900 50  0001 C CNN
+	2    8500 8900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Amplifier_Operational:OPA1602 U4
+U 2 1 604A81A8
+P 8500 10000
+F 0 "U4" H 8500 10367 50  0000 C CNN
+F 1 "OPA1602" H 8500 10276 50  0000 C CNN
+F 2 "Package_SO:SOP-8_3.9x4.9mm_P1.27mm" H 8500 10000 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/opa1604.pdf" H 8500 10000 50  0001 C CNN
+	2    8500 10000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Extra~Components:5001 DAC_OUT_1
+U 1 1 6085EE9A
+P 8800 9850
+F 0 "DAC_OUT_1" V 9000 9600 59  0000 L CNN
+F 1 "5001" V 8900 9750 59  0000 L CNN
+F 2 "Extra Components:5001 Test Point" H 8850 9800 59  0001 C CNN
+F 3 "" H 8850 9800 59  0001 C CNN
+	1    8800 9850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Extra~Components:5001 DAC_OUT_2
+U 1 1 60719318
+P 8800 8750
+F 0 "DAC_OUT_2" V 9000 8400 59  0000 L CNN
+F 1 "5001" V 8900 8650 59  0000 L CNN
+F 2 "Extra Components:5001 Test Point" H 8850 8700 59  0001 C CNN
+F 3 "" H 8850 8700 59  0001 C CNN
+	1    8800 8750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Extra~Components:5001 RS485_A1
+U 1 1 602D3514
+P 14950 3050
+F 0 "RS485_A1" H 15028 3058 59  0000 L CNN
+F 1 "5001" H 15028 2953 59  0000 L CNN
+F 2 "Extra Components:5001 Test Point" H 15000 3000 59  0001 C CNN
+F 3 "" H 15000 3000 59  0001 C CNN
+	1    14950 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Extra~Components:5001 3V3
+U 1 1 60330D7E
+P 7200 1400
+F 0 "3V3" H 7142 1064 59  0000 C CNN
+F 1 "5001" H 7142 1169 59  0000 C CNN
+F 2 "Extra Components:5001 Test Point" H 7250 1350 59  0001 C CNN
+F 3 "" H 7250 1350 59  0001 C CNN
+	1    7200 1400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Extra~Components:5001 5V1
+U 1 1 6030FC76
+P 5300 1900
+F 0 "5V1" H 5400 2150 59  0000 C CNN
+F 1 "5001" H 5400 2050 59  0000 C CNN
+F 2 "Extra Components:5001 Test Point" H 5350 1850 59  0001 C CNN
+F 3 "" H 5350 1850 59  0001 C CNN
+	1    5300 1900
+	-1   0    0    1   
+$EndComp
+$Comp
+L Extra~Components:5001 RS485_B1
+U 1 1 602D06EE
+P 14950 1900
+F 0 "RS485_B1" H 15028 1908 59  0000 L CNN
+F 1 "5001" H 15028 1803 59  0000 L CNN
+F 2 "Extra Components:5001 Test Point" H 15000 1850 59  0001 C CNN
+F 3 "" H 15000 1850 59  0001 C CNN
+	1    14950 1900
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
