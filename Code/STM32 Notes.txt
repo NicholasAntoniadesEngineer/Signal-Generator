@@ -318,25 +318,31 @@ HAL_UART_Transmit(&huart1, data1, uartSize, timeOut);
 #define uartSize 10
 uint8_t rx_buff[uartSize];
 uint8_t tx_buff[] = {0,1,2,3,4,5,6,7,8,9};
-HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
-HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
------------------------Functions-------------------------
+
 --------------UART message received callback-------------
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	HAL_UART_DMAStop(&huart1); // Stop UART
-	
+	__NOP();
 	// Do something
-	
 	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 }
 -------------UART transmit complete callback-------------
 void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
-	HAL_UART_DMAStop(&huart1); // Stop UART
-	
+	__NOP();
 	// Do something
-	
+
 	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 }
+
+
+/* Infinite loop */
+/* USER CODE BEGIN WHILE */
+while (1)
+{
+	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
+	HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
+}
+
+
 
 
 _______________________________________________________________________________________________________________________
@@ -492,7 +498,9 @@ interrupts.
 _______________________________________________________________________________________________________________________
 										   USB Virtual COM Port
 _______________________________________________________________________________________________________________________
+#############################################################################################################################
 If the USB pins aren't connected correctly this obvioulsy won't work. Works on the F4 Discovery but not on the nucleo F439ZI
+#############################################################################################################################
 
 1. USB_OTG_FS Mode and configuration
 	-> Connectivity -> USB_OTG_FS, Mode: Device_Only

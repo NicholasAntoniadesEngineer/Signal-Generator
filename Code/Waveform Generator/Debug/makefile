@@ -58,8 +58,8 @@ all: main-build
 main-build: Waveform\ Generator.elf secondary-outputs
 
 # Tool invocations
-Waveform\ Generator.elf: $(OBJS) $(USER_OBJS) C:\Users\Nanodyn\ -\ Spare\OneDrive\ -\ Nanodyn\Desktop\Waveform\ Generator\STM32F439ZITX_FLASH.ld
-	arm-none-eabi-gcc -o "Waveform Generator.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Waveform Generator\STM32F439ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Waveform Generator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Waveform\ Generator.elf: $(OBJS) $(USER_OBJS) C:\Users\Nanodyn\ -\ Spare\OneDrive\ -\ Nanodyn\Desktop\GIT\ repository\Waveform-generator\Code\Waveform\ Generator\STM32F439ZITX_FLASH.ld
+	arm-none-eabi-gcc -o "Waveform Generator.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\Code\Waveform Generator\STM32F439ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Waveform Generator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
