@@ -19,8 +19,10 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
 #include "dac.h"
 #include "dma.h"
+#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
 #include "usb_device.h"
@@ -64,18 +66,19 @@ void SystemClock_Config(void);
 
 /* Setting up signal generation */
 int Res = 4096;				// DAC resolution.
-#define Ns 100  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
+#define Ns 200  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
 uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
 double sine_scaled = 0.9; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
 int sine_dc_offset = 248; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
 #define PI 3.1415926		// Definition of PI
-int Fsine = 1000; 			// Frequency of ouput sine signal0
+int Freq_Signal_1 = 1000; 	// Frequency of signal 1
+int Freq_Signal_2 = 20000; 	// Frequency of signal 2
 int PSC;					// Tim2 Pre Scalar value
-uint32_t Fclock = 90000000;	// Tim2 Clock Frequency
+uint32_t Fclock = 72000000;	// APB1 Timer Clocks
 int Period = 1;				// Tim2 Period
 
 
-void get_sineval(void){
+void get_sine_val(void){
 
 	// Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
 	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
@@ -84,14 +87,16 @@ void get_sineval(void){
 		sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
 		sine_val[i] = sine_dc_offset + sine_scaled*sine_val[i];
 	}
+	sine_val[Ns] = 0;
 }
 
 
-void set_clock(void){
+
+void set_clock_TIM2(void){
 	  // Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
 	  // Adjust PSC and period in order to manipulate frequency.
 
-	  PSC= (Fclock/Ns)/(Fsine*(Period + 1) ) - 1;
+	  PSC= (Fclock/Ns)/(Freq_Signal_1*(Period + 1) ) - 1;
 
 	  htim2.Instance = TIM2;
 	  htim2.Init.Period = Period; //+1
@@ -100,7 +105,21 @@ void set_clock(void){
 	  {
 	    Error_Handler();
 	  }
+}
 
+void set_clock_TIM4(void){
+	  // Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
+	  // Adjust PSC and period in order to manipulate frequency.
+
+	  PSC= (Fclock/Ns)/(Freq_Signal_2*(Period + 1) ) - 1;
+
+	  htim4.Instance = TIM4;
+	  htim4.Init.Period = Period; //+1
+	  htim4.Init.Prescaler = PSC; //+1 // If this value is < 4 things start to behave funny.
+	  if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
+	  {
+	    Error_Handler();
+	  }
 }
 
 
@@ -110,7 +129,6 @@ uint8_t rx_buff[uartSize];
 uint8_t tx_buff[] = {0b00000010};
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-	HAL_UART_DMAStop(&huart1); // Stop UART
 
 	// Do something
 
@@ -118,7 +136,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 }
 
 void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
-	HAL_UART_DMAStop(&huart1); // Stop UART
 	int i = 100;
 	while(i>0){
 		i = i -1;
@@ -163,22 +180,27 @@ int main(void)
   MX_DMA_Init();
   MX_DAC_Init();
   MX_TIM2_Init();
-  MX_USART1_UART_Init();
+  MX_TIM4_Init();
   MX_USB_DEVICE_Init();
+  MX_ADC1_Init();
+  MX_ADC2_Init();
+  MX_I2C1_Init();
+  MX_USART1_UART_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  /* Saw tooth function */
-	//  uint32_t value_dac=0;
-	//  HAL_DAC_Start(&hdac,DAC_CHANNEL_1);
-	//  HAL_DAC_SetValue(&hdac, DAC_CHANNEL_1, DAC_ALIGN_12B_R, value_dac);
-
-
   /* Sine function */
-  set_clock();							// Setting frequency of timer
+  set_clock_TIM2();						// Setting frequency of timer 2
+  set_clock_TIM4();						// Setting frequency of timer 4
   HAL_TIM_Base_Start(&htim2);			// Start timer 2
-  get_sineval();						// Call get sineval function
+  HAL_TIM_Base_Start(&htim4);			// Start timer 4
+  get_sine_val();						// Call get sineval function
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
 
+  /* Setting up USB communications*/
+  char txBuf[8];
+  uint8_t count = 1;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -217,7 +239,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 13;
+  RCC_OscInitStruct.PLL.PLLM = 4;
   RCC_OscInitStruct.PLL.PLLN = 72;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 3;

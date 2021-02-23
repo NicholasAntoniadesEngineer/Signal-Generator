@@ -1,5 +1,5 @@
 
-STM32F429VGT6 Waveformm Generator.elf:     file format elf32-littlearm
+STM32F429VGT6 Waveform Generator.elf:     file format elf32-littlearm
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
@@ -39,11 +39,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  17 .debug_line   0000c3bd  00000000  00000000  000575ce  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    000dd541  00000000  00000000  0006398b  2**0
+ 18 .debug_str    000dd54d  00000000  00000000  0006398b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  00140ecc  2**0
+ 19 .comment      0000007b  00000000  00000000  00140ed8  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000046a0  00000000  00000000  00140f48  2**2
+ 20 .debug_frame  000046a0  00000000  00000000  00140f54  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
