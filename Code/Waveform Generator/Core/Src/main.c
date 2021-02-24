@@ -63,7 +63,6 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-
 /* Setting up signal generation */
 int Res = 4096;				// DAC resolution.
 #define Ns 200  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
@@ -124,9 +123,9 @@ void set_clock_TIM4(void){
 
 
 /* Setting up UART communications*/
-#define uartSize 1
+#define uartSize 8
 uint8_t rx_buff[uartSize];
-uint8_t tx_buff[] = {0b00000010};
+uint8_t tx_buff[] = {0,1,2,3,4,5,6,7};
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
