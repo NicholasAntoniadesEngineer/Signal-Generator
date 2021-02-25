@@ -208,6 +208,7 @@ int main(void)
   {
 //
 	  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
+	  HAL_Delay(100);
 	  HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
 
 
