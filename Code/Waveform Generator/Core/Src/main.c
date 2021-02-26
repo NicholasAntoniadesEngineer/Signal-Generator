@@ -198,18 +198,26 @@ int main(void)
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
 
   /* Setting up USB communications*/
-  char txBuf[8];
-  uint8_t count = 1;
+//  char txBuf[8];
+//  uint8_t count = 1;
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//
-	  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
-	  HAL_Delay(100);
-	  HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
+	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
+	HAL_Delay(100);
+	HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
+
+	sprintf(txBuf, "%u\r\n", count);
+	count++;
+
+	if (count>100){
+		count = 1;
+	}
+
+	CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
 
 
     /* USER CODE END WHILE */
