@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScratchFile FileVersion="3.0">
+  <FileVersion>3.0</FileVersion>
+  <Workspace>
+    <WorkspaceType>Single-project</WorkspaceType>
+    <WorkspacePath>C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\STM32f439ZI USB test\</WorkspacePath>
+    <underRoot>true</underRoot>
+    <TrustZone>0</TrustZone>
+    <HAL_Driver>C:\Users\Nanodyn - Spare\STM32Cube\Repository\STM32Cube_FW_F4_V1.25.2</HAL_Driver>
+    <CMSIS>Drivers/CMSIS</CMSIS>
+    <Toolchain>STM32CubeIDE</Toolchain>
+    <IocFile>STM32f439ZI USB test.ioc</IocFile>
+    <Project>
+      <ProjectName>STM32f439ZI USB test</ProjectName>
+      <ProjectNature>C</ProjectNature>
+      <Secure />
+      <filestoremove>
+        <file>
+          <name>Core\Src\dac.c</name>
+        </file>
+        <file>
+          <name>Core\Src\dma.c</name>
+        </file>
+        <file>
+          <name>Core\Src\tim.c</name>
+        </file>
+        <file>
+          <name>Core\Src\usart.c</name>
+        </file>
+        <file>
+          <name>Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac.c</name>
+        </file>
+        <file>
+          <name>Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_dac_ex.c</name>
+        </file>
+        <file>
+          <name>Drivers\STM32F4xx_HAL_Driver\Src\stm32f4xx_hal_uart.c</name>
+        </file>
+        <file>
+          <name>Core\Src\usb_otg.c</name>
+        </file>
+      </filestoremove>
+      <sourceEntriesToRemove>
+        <sourceEntry />
+      </sourceEntriesToRemove>
+      <configs>
+        <config>
+          <name>STM32f439ZI USB test</name>
+          <mainSourceRepo>Core</mainSourceRepo>
+          <sourceStructure>Advanced</sourceStructure>
+          <device>STM32F439ZITx</device>
+          <cpucore>Arm Cortex-M4</cpucore>
+          <fpu>SP</fpu>
+          <memories>
+            <memory access="xrw" name="RAM" size="192" start="0x20000000" />
+            <memory access="xrw" name="CCMRAM" size="64" start="0x10000000" />
+            <memory access="rx" name="FLASH" size="2048" start="0x8000000" />
+          </memories>
+          <startup>C:\Users\Nanodyn - Spare\STM32Cube\Repository\STM32Cube_FW_F4_V1.25.2\Drivers\CMSIS\Device\ST\STM32F4xx\Source\Templates\gcc\startup_stm32f439xx.s</startup>
+          <LinkSettings>
+            <LinkAdditionalLibs />
+          </LinkSettings>
+          <heapSize>0x200</heapSize>
+          <stackSize>0x400</stackSize>
+          <board>custom</board>
+          <debugprobe>swd</debugprobe>
+          <optimization />
+          <Aincludes>
+            <include />
+          </Aincludes>
+          <Adefines />
+          <Cdefines>
+            <define>USE_HAL_DRIVER</define>
+            <define>STM32F439xx</define>
+          </Cdefines>
+          <Ldefines />
+          <Cincludes>
+            <include>Core\Inc</include>
+            <include>USB_DEVICE\App</include>
+            <include>USB_DEVICE\Target</include>
+            <include>Drivers\STM32F4xx_HAL_Driver\Inc</include>
+            <include>Drivers\STM32F4xx_HAL_Driver\Inc\Legacy</include>
+            <include>Middlewares\ST\STM32_USB_Device_Library\Core\Inc</include>
+            <include>Middlewares\ST\STM32_USB_Device_Library\Class\CDC\Inc</include>
+            <include>Drivers\CMSIS\Device\ST\STM32F4xx\Include</include>
+            <include>Drivers\CMSIS\Include</include>
+          </Cincludes>
+          <definestoremove>
+            <Adefines />
+            <Cdefines>
+              <define>USE_FULL_LL_DRIVER</define>
+              <define>MBEDTLS_CONFIG_FILE="mbedtls_config.h"</define>
+              <define>USE_FULL_ASSERT=1U</define>
+            </Cdefines>
+            <Ldefines />
+          </definestoremove>
+          <inctoremove>
+            <Aincludes>
+              <include />
+            </Aincludes>
+            <Cincludes />
+          </inctoremove>
+        </config>
+      </configs>
+      <copyAsReference>false</copyAsReference>
+      <sourceEntries>
+        <sourceEntry>
+          <name>Core</name>
+        </sourceEntry>
+        <sourceEntry>
+          <name>Drivers</name>
+        </sourceEntry>
+        <sourceEntry>
+          <name>Middlewares</name>
+        </sourceEntry>
+        <sourceEntry>
+          <name>USB_DEVICE</name>
+        </sourceEntry>
+      </sourceEntries>
+      <Groups />
+    </Project>
+  </Workspace>
+</ScratchFile>
+

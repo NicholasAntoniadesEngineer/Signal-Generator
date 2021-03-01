@@ -194,8 +194,8 @@ int main(void)
   HAL_TIM_Base_Start(&htim2);			// Start timer 2
   HAL_TIM_Base_Start(&htim4);			// Start timer 4
   get_sine_val();						// Call get sineval function
-  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+//  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+//  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
 
   /* Setting up USB communications*/
 //  char txBuf[8];
