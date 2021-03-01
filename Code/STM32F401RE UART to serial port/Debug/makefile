@@ -54,8 +54,8 @@ all: main-build
 main-build: STM32F401RE\ UART\ to\ serial\ port.elf secondary-outputs
 
 # Tool invocations
-STM32F401RE\ UART\ to\ serial\ port.elf: $(OBJS) $(USER_OBJS) C:\Users\Nanodyn\ -\ Spare\OneDrive\ -\ Nanodyn\Desktop\Github\Waveform-generator\STM32F401RE\ UART\ to\ serial\ port\STM32F401RETX_FLASH.ld
-	arm-none-eabi-gcc -o "STM32F401RE UART to serial port.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\STM32F401RE UART to serial port\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F401RE UART to serial port.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32F401RE\ UART\ to\ serial\ port.elf: $(OBJS) $(USER_OBJS) C:\Users\Nanodyn\ -\ Spare\OneDrive\ -\ Nanodyn\Desktop\GIT\ repository\Waveform-generator\Code\STM32F401RE\ UART\ to\ serial\ port\STM32F401RETX_FLASH.ld
+	arm-none-eabi-gcc -o "STM32F401RE UART to serial port.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\Code\STM32F401RE UART to serial port\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F401RE UART to serial port.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

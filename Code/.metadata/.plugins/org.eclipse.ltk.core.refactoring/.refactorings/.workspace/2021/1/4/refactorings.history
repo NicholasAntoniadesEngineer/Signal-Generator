@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;ModbusF429&apos;" deleteContents="true" description="Delete resource &apos;ModbusF429&apos;" element1="/ModbusF429" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1611296705126"/>&#x0A;<refactoring comment="Delete resource &apos;ModbusF429&apos;" deleteContents="false" description="Delete resource &apos;ModbusF429&apos;" element1="/ModbusF429" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1611317897021"/>
-</session>

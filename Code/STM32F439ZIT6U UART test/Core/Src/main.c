@@ -19,13 +19,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "dma.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -63,13 +62,13 @@ uint8_t tx_buff[] = {0,1,2,3,4,5,6,7,8,9};
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	__NOP();
 	// Do something
-	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+	//HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 }
 void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
 	__NOP();
 	// Do something
 
-	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+	//HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 }
 
 
@@ -103,18 +102,21 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  uint8_t buf[12];
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
-		HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
+//		HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
+//		HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
+
+		strcpy((char*)buf, "Hello!\r\n");
+		HAL_UART_Transmit(&huart1, buf, strlen((char*)buf), HAL_MAX_DELAY);
+		HAL_Delay(100);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
