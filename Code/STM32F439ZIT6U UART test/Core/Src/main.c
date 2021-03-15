@@ -103,6 +103,7 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   uint8_t buf[12];
   /* USER CODE END 2 */
@@ -116,6 +117,7 @@ int main(void)
 
 		strcpy((char*)buf, "Hello!\r\n");
 		HAL_UART_Transmit(&huart1, buf, strlen((char*)buf), HAL_MAX_DELAY);
+		HAL_UART_Transmit(&huart2, buf, strlen((char*)buf), HAL_MAX_DELAY);
 		HAL_Delay(100);
     /* USER CODE END WHILE */
 

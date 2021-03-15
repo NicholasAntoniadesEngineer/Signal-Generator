@@ -123,9 +123,9 @@ void set_clock_TIM4(void){
 
 
 /* Setting up UART communications*/
-#define uartSize 8
+#define uartSize 9
 uint8_t rx_buff[uartSize];
-uint8_t tx_buff[] = {0,1,2,3,4,5,6,7};
+uint8_t tx_buff[uartSize];
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
@@ -135,16 +135,16 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 }
 
 void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
-	int i = 100;
-	while(i>0){
-		i = i -1;
-	}
+//	int i = 100;
+//	while(i>0){
+//		i = i -1;
+//	}
 
 	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 }
 
 /* Setting up USB communications*/
-char txBuf[8];
+char txBuf[12];
 uint8_t count = 1;
 /* USER CODE END 0 */
 
@@ -194,8 +194,8 @@ int main(void)
   HAL_TIM_Base_Start(&htim2);			// Start timer 2
   HAL_TIM_Base_Start(&htim4);			// Start timer 4
   get_sine_val();						// Call get sineval function
-//  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-//  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
 
   /* Setting up USB communications*/
 //  char txBuf[8];
@@ -206,18 +206,19 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
+	//HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
 	HAL_Delay(100);
+	strcpy((char*)tx_buff, "Hello!\r\n");
 	HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
 
-	sprintf(txBuf, "%u\r\n", count);
-	count++;
-
-	if (count>100){
-		count = 1;
-	}
-
-	CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
+//	sprintf(txBuf, "%u\r\n", count);
+//	count++;
+//
+//	if (count>100){
+//		count = 1;
+//	}
+//
+//	CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
 
 
     /* USER CODE END WHILE */
