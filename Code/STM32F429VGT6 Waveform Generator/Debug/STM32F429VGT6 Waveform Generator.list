@@ -2145,6 +2145,8 @@ int main(void)
  80014a4:	4814      	ldr	r0, [pc, #80]	; (80014f8 <main+0xd0>)
  80014a6:	f002 fa4b 	bl	8003940 <HAL_UART_Transmit_DMA>
 
+
+	/* LED TEST */
 	HAL_GPIO_TogglePin(GPIOD, LED1_Pin);
  80014aa:	f44f 6100 	mov.w	r1, #2048	; 0x800
  80014ae:	4813      	ldr	r0, [pc, #76]	; (80014fc <main+0xd4>)

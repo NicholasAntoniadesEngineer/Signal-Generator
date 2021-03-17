@@ -3545,4 +3545,6 @@ Wire Notes Line
 	4150 6100 4150 7250
 Text Notes 8750 7200 0    59   ~ 0
 This usb section  uses the pin \nthat is required for the UART boot loader!\nSomething must be done about this.
+Text Notes 13950 4900 0    59   ~ 0
+The footprint for this SWD connector,\nneeds to be rotated to the correct orientation,\nit is currently inverted
 $EndSCHEMATC
