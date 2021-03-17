@@ -6,7 +6,7 @@ encoding utf-8
 Sheet 1 1
 Title "Waveform Generator"
 Date "2021-02-09"
-Rev "1.0"
+Rev "1.1"
 Comp "Nanodyn Systems"
 Comment1 "Nicholas Antoniades"
 Comment2 ""

@@ -198,8 +198,8 @@ int main(void)
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
 
   /* Setting up USB communications*/
-//  char txBuf[8];
-//  uint8_t count = 1;
+  //  char txBuf[8];
+  //  uint8_t count = 1;
   /* USER CODE END 2 */
 
   /* Infinite loop */
