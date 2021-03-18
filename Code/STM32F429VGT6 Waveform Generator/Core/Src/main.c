@@ -21,6 +21,7 @@
 #include "main.h"
 #include "adc.h"
 #include "dac.h"
+#include "dma.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -65,13 +66,13 @@ void SystemClock_Config(void);
 int Res = 4096;				// DAC resolution.
 #define Ns 200  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
 uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
-double sine_scaled = 0.9; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
-int sine_dc_offset = 248; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
+double sine_scaled = 0.5; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
+int sine_dc_offset = 600; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
 #define PI 3.1415926		// Definition of PI
 int Freq_Signal_1 = 1000; 	// Frequency of signal 1
-int Freq_Signal_2 = 20000; 	// Frequency of signal 2
+int Freq_Signal_2 = 2000; 	// Frequency of signal 2
 int PSC;					// Tim2 Pre Scalar value
-uint32_t Fclock = 72000000;	// APB1 Timer Clocks
+uint32_t Fclock = 90000000;	// APB1 Timer Clocks
 int Period = 1;				// Tim2 Period
 
 
@@ -174,9 +175,9 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_ADC1_Init();
   MX_USART1_UART_Init();
-  MX_USART2_UART_Init();
   MX_DAC_Init();
   MX_TIM2_Init();
   MX_TIM4_Init();
@@ -209,11 +210,11 @@ int main(void)
 
 
 	/* LED TEST */
-	HAL_GPIO_TogglePin(GPIOD, LED1_Pin);
-	HAL_GPIO_TogglePin(GPIOD, LED2_Pin);
-	HAL_GPIO_TogglePin(GPIOD, LED3_Pin);
-	HAL_GPIO_TogglePin(GPIOD, LED4_Pin);
-	HAL_GPIO_TogglePin(GPIOD, LED5_Pin);
+	//HAL_GPIO_TogglePin(GPIOD, LED1_Pin);
+	//HAL_GPIO_TogglePin(GPIOD, LED2_Pin);
+//	HAL_GPIO_TogglePin(GPIOD, LED3_Pin);
+//	HAL_GPIO_TogglePin(GPIOD, LED4_Pin);
+//	HAL_GPIO_TogglePin(GPIOD, LED5_Pin);
 
 
 //	sprintf(txBuf, "%u\r\n", count);
@@ -249,15 +250,22 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 22;
-  RCC_OscInitStruct.PLL.PLLN = 295;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLN = 180;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 7;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /** Activate the Over-Drive mode
+  */
+  if (HAL_PWREx_EnableOverDrive() != HAL_OK)
   {
     Error_Handler();
   }
