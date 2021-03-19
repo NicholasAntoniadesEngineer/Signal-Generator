@@ -64,13 +64,13 @@ void SystemClock_Config(void);
 
 /* Setting up signal generation */
 int Res = 4096;				// DAC resolution.
-#define Ns 40  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
+#define Ns 200  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
 uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
-double sine_scaled = 0.5; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
+double sine_scaled = 0.4; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
 int sine_dc_offset = 600; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
 #define PI 3.1415926		// Definition of PI
-int Freq_Signal_1 = 20000; 	// Frequency of signal 1
-int Freq_Signal_2 = 10000; 	// Frequency of signal 2
+int Freq_Signal_1 = 5000; 	// Frequency of signal 1
+int Freq_Signal_2 = 1000; 	// Frequency of signal 2
 int PSC;					// Tim2 Pre Scalar value
 uint32_t Fclock = 90000000;	// APB1 Timer Clocks
 int Period = 1;				// Tim2 Period
@@ -95,7 +95,6 @@ void set_clock_TIM2(void){
 	  // Adjust PSC and period in order to manipulate frequency.
 
 	  PSC= (Fclock/Ns)/(Freq_Signal_1*(Period + 1) ) - 1;
-
 	  htim2.Instance = TIM2;
 	  htim2.Init.Period = Period; //+1
 	  htim2.Init.Prescaler = PSC; //+1 // If this value is < 50 things start to behave funny.
@@ -110,7 +109,6 @@ void set_clock_TIM4(void){
 	  // Adjust PSC and period in order to manipulate frequency.
 
 	  PSC= (Fclock/Ns)/(Freq_Signal_2*(Period + 1) ) - 1;
-
 	  htim4.Instance = TIM4;
 	  htim4.Init.Period = Period; //+1
 	  htim4.Init.Prescaler = PSC; //+1 // If this value is < 50 things start to behave funny.
@@ -142,9 +140,6 @@ void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
 	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 }
 
-/* Setting up USB communications*/
-char txBuf[12];
-uint8_t count = 1;
 /* USER CODE END 0 */
 
 /**
@@ -204,7 +199,7 @@ int main(void)
   while (1)
   {
 	//HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
-	HAL_Delay(300);
+	//HAL_Delay(300);
 	//strcpy((char*)tx_buff, "Hello!\r\n");
 	//HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
 
@@ -212,20 +207,9 @@ int main(void)
 	/* LED TEST */
 	//HAL_GPIO_TogglePin(GPIOD, LED1_Pin);
 	//HAL_GPIO_TogglePin(GPIOD, LED2_Pin);
-//	HAL_GPIO_TogglePin(GPIOD, LED3_Pin);
-//	HAL_GPIO_TogglePin(GPIOD, LED4_Pin);
-//	HAL_GPIO_TogglePin(GPIOD, LED5_Pin);
-
-
-//	sprintf(txBuf, "%u\r\n", count);
-//	count++;
-//
-//	if (count>100){
-//		count = 1;
-//	}
-//
-//	CDC_Transmit_FS((uint8_t *) txBuf, strlen(txBuf));
-
+	//HAL_GPIO_TogglePin(GPIOD, LED3_Pin);
+	//HAL_GPIO_TogglePin(GPIOD, LED4_Pin);
+	//HAL_GPIO_TogglePin(GPIOD, LED5_Pin);
 
     /* USER CODE END WHILE */
 
