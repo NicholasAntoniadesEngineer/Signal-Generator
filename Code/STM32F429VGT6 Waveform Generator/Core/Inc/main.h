@@ -60,22 +60,6 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define MAX485_PWR_Pin GPIO_PIN_0
 #define MAX485_PWR_GPIO_Port GPIOC
-#define LED1_Pin GPIO_PIN_11
-#define LED1_GPIO_Port GPIOD
-#define LED2_Pin GPIO_PIN_12
-#define LED2_GPIO_Port GPIOD
-#define LED3_Pin GPIO_PIN_13
-#define LED3_GPIO_Port GPIOD
-#define LED4_Pin GPIO_PIN_14
-#define LED4_GPIO_Port GPIOD
-#define LED5_Pin GPIO_PIN_15
-#define LED5_GPIO_Port GPIOD
-#define BTN3_Pin GPIO_PIN_6
-#define BTN3_GPIO_Port GPIOC
-#define BTN2_Pin GPIO_PIN_7
-#define BTN2_GPIO_Port GPIOC
-#define BTN1_Pin GPIO_PIN_8
-#define BTN1_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
