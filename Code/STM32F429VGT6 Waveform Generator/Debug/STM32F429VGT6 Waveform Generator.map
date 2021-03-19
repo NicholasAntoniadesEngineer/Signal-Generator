@@ -51,7 +51,7 @@ Common symbol       size              file
 htim4               0x40              Core/Src/tim.o
 rx_buff             0x9               Core/Src/main.o
 PSC                 0x4               Core/Src/main.o
-sine_val            0x140             Core/Src/main.o
+sine_val            0xa0              Core/Src/main.o
 txBuf               0xc               Core/Src/main.o
 uwTick              0x4               Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
 pFlash              0x20              Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.o
@@ -4712,7 +4712,7 @@ LOAD c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
  .igot.plt      0x0000000020000030        0x0 c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.7-2018-q2-update.win32_1.5.0.202011040924/tools/bin/../lib/gcc/arm-none-eabi/7.3.1/thumb/v7e-m/fpv4-sp/hard/crtbegin.o
                 0x0000000020000030                . = ALIGN (0x4)
 
-.bss            0x0000000020000030      0x364 load address 0x0000000008005c48
+.bss            0x0000000020000030      0x2c4 load address 0x0000000008005c48
                 0x0000000020000030                _sbss = .
                 0x0000000020000030                __bss_start__ = _sbss
  *(.bss)
@@ -4725,35 +4725,35 @@ LOAD c:/st/stm32cubeide_1.3.0/stm32cubeide/plugins/com.st.stm32cube.ide.mcu.exte
                 0x0000000020000094                hdma_dac1
                 0x00000000200000f4                hdac
                 0x0000000020000108                hdma_dac2
- COMMON         0x0000000020000168      0x165 Core/Src/main.o
+ COMMON         0x0000000020000168       0xc5 Core/Src/main.o
                 0x0000000020000168                rx_buff
                 0x0000000020000174                PSC
                 0x0000000020000178                sine_val
-                0x00000000200002b8                txBuf
-                0x00000000200002c4                tx_buff
- *fill*         0x00000000200002cd        0x3 
- COMMON         0x00000000200002d0       0x80 Core/Src/tim.o
-                0x00000000200002d0                htim4
-                0x0000000020000310                htim2
- COMMON         0x0000000020000350       0x40 Core/Src/usart.o
-                0x0000000020000350                huart1
- COMMON         0x0000000020000390        0x4 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
-                0x0000000020000390                uwTick
-                0x0000000020000394                . = ALIGN (0x4)
-                0x0000000020000394                _ebss = .
-                0x0000000020000394                __bss_end__ = _ebss
+                0x0000000020000218                txBuf
+                0x0000000020000224                tx_buff
+ *fill*         0x000000002000022d        0x3 
+ COMMON         0x0000000020000230       0x80 Core/Src/tim.o
+                0x0000000020000230                htim4
+                0x0000000020000270                htim2
+ COMMON         0x00000000200002b0       0x40 Core/Src/usart.o
+                0x00000000200002b0                huart1
+ COMMON         0x00000000200002f0        0x4 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.o
+                0x00000000200002f0                uwTick
+                0x00000000200002f4                . = ALIGN (0x4)
+                0x00000000200002f4                _ebss = .
+                0x00000000200002f4                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x0000000020000394      0x604 load address 0x0000000008005c48
-                0x0000000020000398                . = ALIGN (0x8)
- *fill*         0x0000000020000394        0x4 
+                0x00000000200002f4      0x604 load address 0x0000000008005c48
+                0x00000000200002f8                . = ALIGN (0x8)
+ *fill*         0x00000000200002f4        0x4 
                 [!provide]                        PROVIDE (end = .)
-                0x0000000020000398                PROVIDE (_end = .)
-                0x0000000020000598                . = (. + _Min_Heap_Size)
- *fill*         0x0000000020000398      0x200 
-                0x0000000020000998                . = (. + _Min_Stack_Size)
- *fill*         0x0000000020000598      0x400 
-                0x0000000020000998                . = ALIGN (0x8)
+                0x00000000200002f8                PROVIDE (_end = .)
+                0x00000000200004f8                . = (. + _Min_Heap_Size)
+ *fill*         0x00000000200002f8      0x200 
+                0x00000000200008f8                . = (. + _Min_Stack_Size)
+ *fill*         0x00000000200004f8      0x400 
+                0x00000000200008f8                . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)

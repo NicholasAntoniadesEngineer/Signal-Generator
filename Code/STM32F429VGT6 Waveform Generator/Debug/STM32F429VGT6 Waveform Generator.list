@@ -21,9 +21,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   8 .data         00000030  20000000  08005c18  00020000  2**3
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          00000364  20000030  08005c48  00020030  2**2
+  9 .bss          000002c4  20000030  08005c48  00020030  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  20000394  08005c48  00020394  2**0
+ 10 ._user_heap_stack 00000604  200002f4  08005c48  000202f4  2**0
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  00020030  2**0
                   CONTENTS, READONLY
@@ -1914,13 +1914,13 @@ void get_sine_val(void){
  8001320:	3301      	adds	r3, #1
  8001322:	607b      	str	r3, [r7, #4]
  8001324:	687b      	ldr	r3, [r7, #4]
- 8001326:	2b4f      	cmp	r3, #79	; 0x4f
+ 8001326:	2b27      	cmp	r3, #39	; 0x27
  8001328:	dd90      	ble.n	800124c <get_sine_val+0xc>
 	}
 	sine_val[Ns] = 0;
  800132a:	4b08      	ldr	r3, [pc, #32]	; (800134c <get_sine_val+0x10c>)
  800132c:	2200      	movs	r2, #0
- 800132e:	f8c3 2140 	str.w	r2, [r3, #320]	; 0x140
+ 800132e:	f8c3 20a0 	str.w	r2, [r3, #160]	; 0xa0
 }
  8001332:	bf00      	nop
  8001334:	370c      	adds	r7, #12
@@ -1928,7 +1928,7 @@ void get_sine_val(void){
  8001338:	bdf0      	pop	{r4, r5, r6, r7, pc}
  800133a:	bf00      	nop
  800133c:	f3af 8000 	nop.w
- 8001340:	40540000 	.word	0x40540000
+ 8001340:	40440000 	.word	0x40440000
  8001344:	3ff00000 	.word	0x3ff00000
  8001348:	20000000 	.word	0x20000000
  800134c:	20000178 	.word	0x20000178
@@ -1952,7 +1952,7 @@ void set_clock_TIM2(void){
  8001366:	681b      	ldr	r3, [r3, #0]
  8001368:	4a15      	ldr	r2, [pc, #84]	; (80013c0 <set_clock_TIM2+0x60>)
  800136a:	fba2 2303 	umull	r2, r3, r2, r3
- 800136e:	099b      	lsrs	r3, r3, #6
+ 800136e:	095b      	lsrs	r3, r3, #5
  8001370:	4a14      	ldr	r2, [pc, #80]	; (80013c4 <set_clock_TIM2+0x64>)
  8001372:	6812      	ldr	r2, [r2, #0]
  8001374:	3201      	adds	r2, #1
@@ -1975,7 +1975,7 @@ void set_clock_TIM2(void){
  8001396:	461a      	mov	r2, r3
  8001398:	4b0d      	ldr	r3, [pc, #52]	; (80013d0 <set_clock_TIM2+0x70>)
  800139a:	60da      	str	r2, [r3, #12]
-	  htim2.Init.Prescaler = PSC; //+1 // If this value is < 4 things start to behave funny.
+	  htim2.Init.Prescaler = PSC; //+1 // If this value is < 50 things start to behave funny.
  800139c:	4b0b      	ldr	r3, [pc, #44]	; (80013cc <set_clock_TIM2+0x6c>)
  800139e:	681b      	ldr	r3, [r3, #0]
  80013a0:	461a      	mov	r2, r3
@@ -2000,7 +2000,7 @@ void set_clock_TIM2(void){
  80013c4:	20000020 	.word	0x20000020
  80013c8:	20000014 	.word	0x20000014
  80013cc:	20000174 	.word	0x20000174
- 80013d0:	20000310 	.word	0x20000310
+ 80013d0:	20000270 	.word	0x20000270
 
 080013d4 <set_clock_TIM4>:
 
@@ -2015,7 +2015,7 @@ void set_clock_TIM4(void){
  80013da:	681b      	ldr	r3, [r3, #0]
  80013dc:	4a14      	ldr	r2, [pc, #80]	; (8001430 <set_clock_TIM4+0x5c>)
  80013de:	fba2 2303 	umull	r2, r3, r2, r3
- 80013e2:	099b      	lsrs	r3, r3, #6
+ 80013e2:	095b      	lsrs	r3, r3, #5
  80013e4:	4a13      	ldr	r2, [pc, #76]	; (8001434 <set_clock_TIM4+0x60>)
  80013e6:	6812      	ldr	r2, [r2, #0]
  80013e8:	3201      	adds	r2, #1
@@ -2038,7 +2038,7 @@ void set_clock_TIM4(void){
  8001408:	461a      	mov	r2, r3
  800140a:	4b0d      	ldr	r3, [pc, #52]	; (8001440 <set_clock_TIM4+0x6c>)
  800140c:	60da      	str	r2, [r3, #12]
-	  htim4.Init.Prescaler = PSC; //+1 // If this value is < 4 things start to behave funny.
+	  htim4.Init.Prescaler = PSC; //+1 // If this value is < 50 things start to behave funny.
  800140e:	4b0b      	ldr	r3, [pc, #44]	; (800143c <set_clock_TIM4+0x68>)
  8001410:	681b      	ldr	r3, [r3, #0]
  8001412:	461a      	mov	r2, r3
@@ -2062,7 +2062,7 @@ void set_clock_TIM4(void){
  8001434:	20000020 	.word	0x20000020
  8001438:	20000018 	.word	0x20000018
  800143c:	20000174 	.word	0x20000174
- 8001440:	200002d0 	.word	0x200002d0
+ 8001440:	20000230 	.word	0x20000230
  8001444:	40000800 	.word	0x40000800
 
 08001448 <main>:
@@ -2126,7 +2126,7 @@ int main(void)
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
  800148a:	2300      	movs	r3, #0
  800148c:	9300      	str	r3, [sp, #0]
- 800148e:	2350      	movs	r3, #80	; 0x50
+ 800148e:	2328      	movs	r3, #40	; 0x28
  8001490:	4a0a      	ldr	r2, [pc, #40]	; (80014bc <main+0x74>)
  8001492:	2100      	movs	r1, #0
  8001494:	480a      	ldr	r0, [pc, #40]	; (80014c0 <main+0x78>)
@@ -2134,7 +2134,7 @@ int main(void)
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
  800149a:	2300      	movs	r3, #0
  800149c:	9300      	str	r3, [sp, #0]
- 800149e:	2350      	movs	r3, #80	; 0x50
+ 800149e:	2328      	movs	r3, #40	; 0x28
  80014a0:	4a06      	ldr	r2, [pc, #24]	; (80014bc <main+0x74>)
  80014a2:	2110      	movs	r1, #16
  80014a4:	4806      	ldr	r0, [pc, #24]	; (80014c0 <main+0x78>)
@@ -2148,8 +2148,8 @@ int main(void)
  80014aa:	f44f 7096 	mov.w	r0, #300	; 0x12c
  80014ae:	f000 fb05 	bl	8001abc <HAL_Delay>
  80014b2:	e7fa      	b.n	80014aa <main+0x62>
- 80014b4:	20000310 	.word	0x20000310
- 80014b8:	200002d0 	.word	0x200002d0
+ 80014b4:	20000270 	.word	0x20000270
+ 80014b8:	20000230 	.word	0x20000230
  80014bc:	20000178 	.word	0x20000178
  80014c0:	200000f4 	.word	0x200000f4
 
@@ -2598,7 +2598,7 @@ void TIM2_IRQHandler(void)
  800168a:	bf00      	nop
  800168c:	bd80      	pop	{r7, pc}
  800168e:	bf00      	nop
- 8001690:	20000310 	.word	0x20000310
+ 8001690:	20000270 	.word	0x20000270
 
 08001694 <TIM4_IRQHandler>:
 
@@ -2622,7 +2622,7 @@ void TIM4_IRQHandler(void)
  800169e:	bf00      	nop
  80016a0:	bd80      	pop	{r7, pc}
  80016a2:	bf00      	nop
- 80016a4:	200002d0 	.word	0x200002d0
+ 80016a4:	20000230 	.word	0x20000230
 
 080016a8 <TIM6_DAC_IRQHandler>:
 
@@ -2780,7 +2780,7 @@ void MX_TIM2_Init(void)
  8001776:	46bd      	mov	sp, r7
  8001778:	bd80      	pop	{r7, pc}
  800177a:	bf00      	nop
- 800177c:	20000310 	.word	0x20000310
+ 800177c:	20000270 	.word	0x20000270
 
 08001780 <MX_TIM4_Init>:
 /* TIM4 init function */
@@ -2875,7 +2875,7 @@ void MX_TIM4_Init(void)
  800180a:	3718      	adds	r7, #24
  800180c:	46bd      	mov	sp, r7
  800180e:	bd80      	pop	{r7, pc}
- 8001810:	200002d0 	.word	0x200002d0
+ 8001810:	20000230 	.word	0x20000230
  8001814:	40000800 	.word	0x40000800
 
 08001818 <HAL_TIM_Base_MspInit>:
@@ -3020,7 +3020,7 @@ void MX_USART1_UART_Init(void)
  80018e6:	bf00      	nop
  80018e8:	bd80      	pop	{r7, pc}
  80018ea:	bf00      	nop
- 80018ec:	20000350 	.word	0x20000350
+ 80018ec:	200002b0 	.word	0x200002b0
  80018f0:	40011000 	.word	0x40011000
 
 080018f4 <HAL_UART_MspInit>:
@@ -3201,7 +3201,7 @@ LoopFillZerobss:
   ldr  r2, =_sbss
  80019cc:	20000030 	.word	0x20000030
   ldr  r3, = _ebss
- 80019d0:	20000394 	.word	0x20000394
+ 80019d0:	200002f4 	.word	0x200002f4
 
 080019d4 <ADC_IRQHandler>:
  * @retval None       
@@ -3364,7 +3364,7 @@ __weak void HAL_IncTick(void)
  8001a98:	4770      	bx	lr
  8001a9a:	bf00      	nop
  8001a9c:	2000002c 	.word	0x2000002c
- 8001aa0:	20000390 	.word	0x20000390
+ 8001aa0:	200002f0 	.word	0x200002f0
 
 08001aa4 <HAL_GetTick>:
   * @note This function is declared as __weak to be overwritten in case of other 
@@ -3384,7 +3384,7 @@ __weak uint32_t HAL_GetTick(void)
  8001ab0:	f85d 7b04 	ldr.w	r7, [sp], #4
  8001ab4:	4770      	bx	lr
  8001ab6:	bf00      	nop
- 8001ab8:	20000390 	.word	0x20000390
+ 8001ab8:	200002f0 	.word	0x200002f0
 
 08001abc <HAL_Delay>:
   *       implementations in user file.
