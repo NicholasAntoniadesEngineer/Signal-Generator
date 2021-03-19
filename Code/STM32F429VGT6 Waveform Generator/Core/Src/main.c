@@ -64,13 +64,13 @@ void SystemClock_Config(void);
 
 /* Setting up signal generation */
 int Res = 4096;				// DAC resolution.
-#define Ns 200  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
+#define Ns 100  			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
 uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
 double sine_scaled = 0.5; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
 int sine_dc_offset = 600; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
 #define PI 3.1415926		// Definition of PI
-int Freq_Signal_1 = 1000; 	// Frequency of signal 1
-int Freq_Signal_2 = 2000; 	// Frequency of signal 2
+int Freq_Signal_1 = 10000; 	// Frequency of signal 1
+int Freq_Signal_2 = 10000; 	// Frequency of signal 2
 int PSC;					// Tim2 Pre Scalar value
 uint32_t Fclock = 90000000;	// APB1 Timer Clocks
 int Period = 1;				// Tim2 Period
@@ -210,7 +210,7 @@ int main(void)
 
 
 	/* LED TEST */
-	//HAL_GPIO_TogglePin(GPIOD, LED1_Pin);
+	HAL_GPIO_TogglePin(GPIOD, LED1_Pin);
 	//HAL_GPIO_TogglePin(GPIOD, LED2_Pin);
 //	HAL_GPIO_TogglePin(GPIOD, LED3_Pin);
 //	HAL_GPIO_TogglePin(GPIOD, LED4_Pin);
