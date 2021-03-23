@@ -128,9 +128,10 @@ void set_clock_TIM4(void){
 
 
 /* Setting up UART communications*/
-#define uartSize 8
-uint8_t rx_buff[uartSize];
-uint8_t tx_buff[uartSize];
+#define uartSize_rx 8
+#define uartSize_tx 40
+uint8_t rx_buff[uartSize_rx];
+uint8_t tx_buff[uartSize_tx];
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
@@ -141,9 +142,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 	// If statements to validate message integrity
 	if((rx_buff[0] == '<') && (rx_buff[7] == '>')){
-		strcpy((char*)tx_buff, "Call!\r\n");
-		HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-		HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+		//strcpy((char*)tx_buff, "Good message!\r\n");
+		//HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+		//HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 
 		/*
 		|<|(60/3C) : Start of message byte.
@@ -180,6 +181,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				// Updating channel 1 output frequency
 				Freq_Signal_1 = channel_1_Frequency;
 				set_clock_TIM2();
+				strcpy((char*)tx_buff, "Channel 1 Frequency updated!\r\n");
+				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 
 				break;
 
@@ -195,6 +199,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				// Updating channel 1 output frequency
 				Freq_Signal_2 = channel_2_Frequency;
 				set_clock_TIM4();
+				strcpy((char*)tx_buff, "Channel 2 Frequency updated!\r\n");
+				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 
 				break;
 
@@ -211,6 +218,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				Channel_1_sine_scale = (double)channel_1_Amplitude/100; // Dividing by 100 to create a fraction
 				Get_channel_1_sine();
 				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+				strcpy((char*)tx_buff, "Channel 1 Amplitude updated!\r\n");
+				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 
 				break;
 
@@ -227,6 +237,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				Channel_2_sine_scale = (double)channel_2_Amplitude/100; // Dividing by 100 to create a fraction
 				Get_channel_2_sine();
 				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+				strcpy((char*)tx_buff, "Channel 2 Amplitude updated!\r\n");
+				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 
 				break;
 
@@ -272,7 +285,7 @@ void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
 //		i = i -1;
 //	}
 	HAL_UART_DMAPause(&huart1);
-	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 }
 
 /* USER CODE END 0 */
@@ -332,7 +345,7 @@ int main(void)
   HAL_GPIO_WritePin(GPIOD, LED2_Pin, 1);
 
   /* Setting up UART communications */
-  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 
   /* Setting up USB communications*/
   //  char txBuf[8];
