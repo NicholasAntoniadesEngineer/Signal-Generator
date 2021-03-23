@@ -64,13 +64,13 @@ void SystemClock_Config(void);
 
 /* Setting up signal generation */
 int Res = 4096;				// DAC resolution.
-#define Ns 240 			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
+#define Ns 70 			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
 uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
 double sine_scaled = 0.7; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
 int sine_dc_offset = 480; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
 #define PI 3.1415926		// Definition of PI
-int Freq_Signal_1 = 200; 	// Frequency of signal 1
-int Freq_Signal_2 = 2000; 	// Frequency of signal 2
+int Freq_Signal_1 = 5000; 	// Frequency of signal 1
+int Freq_Signal_2 = 10000; 	// Frequency of signal 2
 int PSC;					// Tim2 Pre Scalar value
 uint32_t Fclock = 90000000;	// APB1 Timer Clocks
 int Period = 1;				// Tim2 Period
@@ -126,14 +126,90 @@ uint8_t tx_buff[uartSize];
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
+	uint32_t channel_1_Frequency;
+	uint32_t channel_2_Frequency;
 
-	strcpy((char*)tx_buff, "Call!\r\n");
-	HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+	// If statements to validate message integrity
+	if((rx_buff[0] == '<') && (rx_buff[7] == '>')){
+		strcpy((char*)tx_buff, "Call!\r\n");
+		HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+		HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 
-	// Switch statements to validate message integrity
 
-	// Switch statements to read the received message and to respond
+//		|<|(60/3C) : Start of message byte.
+//		|ADDR|() : Device Address byte.
+//		|CMD|() : Command byte.
+//		|DATA1| : Data byte 1.
+//		|DATA2| : Data byte 2.
+//		|DATA3| : Data byte 3.
+//		|DATA4| : Data byte 4.
+//		|>|(62/3E) : End of message byte.
+
+		// Switch statements to respond accordingly
+		switch(rx_buff[2]){
+
+			// On/off command.
+			// case 1:
+
+			// Change the frequency of DAC channel 1.
+			case '2':
+				// Building 4 bytes int a 32 bit value
+				channel_1_Frequency = rx_buff[6];
+				channel_1_Frequency = channel_1_Frequency | (rx_buff[5] << 8);
+				channel_1_Frequency = channel_1_Frequency | (rx_buff[4] << 16);
+				channel_1_Frequency = channel_1_Frequency | (rx_buff[3] << 24);
+
+				// Updating channel 1 output frequency
+				Freq_Signal_1 = channel_1_Frequency;
+				set_clock_TIM2();
+
+				break;
+
+			// Change the frequency of DAC channel 2.
+			case '3':
+				// Building 4 bytes int a 32 bit value
+				channel_2_Frequency = rx_buff[6];
+				channel_2_Frequency = channel_2_Frequency | (rx_buff[5] << 8);
+				channel_2_Frequency = channel_2_Frequency | (rx_buff[4] << 16);
+				channel_2_Frequency = channel_2_Frequency | (rx_buff[3] << 24);
+
+				// Updating channel 1 output frequency
+				Freq_Signal_2 = channel_2_Frequency;
+				set_clock_TIM4();
+
+				break;
+//
+//			// Change the amplitude of DAC channel 1.
+//			case 4:
+//
+//			// Change the amplitude of DAC channel 2.
+//			case 5:
+//
+//			// Request Voltage and Current measurement of channel 1 output.
+//			case 6:
+//
+//			// Request Voltage and Current measurement of channel 2 output.
+//			case 7:
+//
+//			// Request Temperature sensor 1 and 2 output.
+//			case 8:
+//
+//			// Acknowledge message received.
+//			case 9:
+//
+//			// Bad message received.
+//			case 10:
+//
+//			// Request current system state.
+//			case 11:
+//
+		}
+
+
+	}
+
+
+
 
 
 }
