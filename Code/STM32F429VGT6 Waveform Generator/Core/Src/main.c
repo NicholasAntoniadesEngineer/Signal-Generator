@@ -64,7 +64,7 @@ void SystemClock_Config(void);
 
 /* Setting up signal generation */
 int Res = 4096;				      // DAC resolution.
-#define Ns 70 			          // Number of samples, Adjusting Ns will affect the frequency of the output signal.
+#define Ns 80 			          // Number of samples, Adjusting Ns will affect the frequency of the output signal.
 // Buffer for all the sine bits.
 uint32_t Channel_1_sine_val[Ns];
 uint32_t Channel_2_sine_val[Ns];
@@ -74,7 +74,7 @@ double Channel_2_sine_scale = 0.7;
 int sine_dc_offset = 480; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
 #define PI 3.1415926		// Definition of PI
 int Freq_Signal_1 = 5000; 	// Frequency of signal 1
-int Freq_Signal_2 = 10000; 	// Frequency of signal 2
+int Freq_Signal_2 = 5000; 	// Frequency of signal 2
 int PSC;					// Tim2 Pre Scalar value
 uint32_t Fclock = 90000000;	// APB1 Timer Clocks
 int Period = 1;				// Tim2 Period
@@ -137,8 +137,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 	uint32_t channel_1_Frequency;
 	uint32_t channel_2_Frequency;
-//	uint32_t channel_1_Amplitude;
-//	uint32_t channel_2_Amplitude;
+	uint32_t channel_1_Amplitude;
+	uint32_t channel_2_Amplitude;
 
 	// If statements to validate message integrity
 	if((rx_buff[0] == '<') && (rx_buff[7] == '>')){
@@ -193,35 +193,35 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 
 			// Change the amplitude of DAC channel 1.
-//			case 4:
-//				// Building 4 bytes int a 32 bit value
-//				channel_1_Amplitude = rx_buff[6];
-//				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[5] << 8);
-//				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[4] << 16);
-//				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[3] << 24);
-//
-//				// Updating channel 1 amplitude
-//				sine_scaled = channel_1_Amplitude;
-//				get_sine_val();						// Call get sineval function
-//				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-//
-//				break;
-//
-//
-//			// Change the amplitude of DAC channel 2.
-//			case 5:
-//				// Building 4 bytes int a 32 bit value
-//				channel_2_Frequency = rx_buff[6];
-//				channel_2_Frequency = channel_2_Frequency | (rx_buff[5] << 8);
-//				channel_2_Frequency = channel_2_Frequency | (rx_buff[4] << 16);
-//				channel_2_Frequency = channel_2_Frequency | (rx_buff[3] << 24);
-//
-//				// Updating channel 2 amplitude
-//				sine_scaled = channel_2_Amplitude;
-//				get_sine_val();						// Call get sineval function
-//				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-//
-//				break;
+			case '4':
+				// Building 4 bytes int a 32 bit value
+				channel_1_Amplitude = rx_buff[6];
+				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[5] << 8);
+				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[4] << 16);
+				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[3] << 24);
+
+				// Updating channel 1 amplitude
+				Channel_1_sine_scale = (double)channel_1_Amplitude/100; // Dividing by 100 to create a fraction
+				Get_channel_1_sine();
+				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+
+				break;
+
+
+			// Change the amplitude of DAC channel 2.
+			case '5':
+				// Building 4 bytes int a 32 bit value
+				channel_2_Amplitude = rx_buff[6];
+				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[5] << 8);
+				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[4] << 16);
+				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[3] << 24);
+
+				// Updating channel 2 amplitude
+				Channel_2_sine_scale = (double)channel_2_Amplitude/100; // Dividing by 100 to create a fraction
+				Get_channel_2_sine();
+				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+
+				break;
 
 
 			// Request Voltage and Current measurement of channel 1 output.
@@ -256,10 +256,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 
 	}
-
-
-
-
 
 }
 
@@ -317,10 +313,11 @@ int main(void)
   HAL_TIM_Base_Start(&htim4);			// Start timer 4
 
   Get_channel_1_sine();
-  Get_channel_2_sine();
-
-  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+
+  Get_channel_2_sine();
+  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+
 
 
   /* Setting signal output indicators to on  */
