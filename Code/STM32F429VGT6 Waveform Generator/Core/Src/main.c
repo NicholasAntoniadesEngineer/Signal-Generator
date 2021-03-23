@@ -63,10 +63,14 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 /* Setting up signal generation */
-int Res = 4096;				// DAC resolution.
-#define Ns 70 			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
-uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
-double sine_scaled = 0.7; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
+int Res = 4096;				      // DAC resolution.
+#define Ns 70 			          // Number of samples, Adjusting Ns will affect the frequency of the output signal.
+// Buffer for all the sine bits.
+uint32_t Channel_1_sine_val[Ns];
+uint32_t Channel_2_sine_val[Ns];
+// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
+double Channel_1_sine_scale = 0.7;
+double Channel_2_sine_scale = 0.7;
 int sine_dc_offset = 480; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
 #define PI 3.1415926		// Definition of PI
 int Freq_Signal_1 = 5000; 	// Frequency of signal 1
@@ -75,20 +79,25 @@ int PSC;					// Tim2 Pre Scalar value
 uint32_t Fclock = 90000000;	// APB1 Timer Clocks
 int Period = 1;				// Tim2 Period
 
-
-void get_sine_val(void){
-
+void Get_channel_1_sine(void){
 	// Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
 	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
-
 	for(int i=0;i<Ns;i++){
-		sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
-		sine_val[i] = sine_dc_offset + sine_scaled*sine_val[i];
+		Channel_1_sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
+		Channel_1_sine_val[i] = sine_dc_offset + Channel_1_sine_scale*Channel_1_sine_val[i];
 	}
-	sine_val[Ns] = 0;
+	//Channel_1_sine_val[Ns] = 0;
 }
 
-
+void Get_channel_2_sine(void){
+	// Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
+	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
+	for(int i=0;i<Ns;i++){
+		Channel_2_sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
+		Channel_2_sine_val[i] = sine_dc_offset + Channel_2_sine_scale*Channel_2_sine_val[i];
+	}
+	//Channel_2_sine_val[Ns] = 0;
+}
 
 void set_clock_TIM2(void){
 	  // Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
@@ -128,6 +137,8 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 	uint32_t channel_1_Frequency;
 	uint32_t channel_2_Frequency;
+//	uint32_t channel_1_Amplitude;
+//	uint32_t channel_2_Amplitude;
 
 	// If statements to validate message integrity
 	if((rx_buff[0] == '<') && (rx_buff[7] == '>')){
@@ -165,6 +176,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 				break;
 
+
 			// Change the frequency of DAC channel 2.
 			case '3':
 				// Building 4 bytes int a 32 bit value
@@ -178,31 +190,68 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				set_clock_TIM4();
 
 				break;
-//
-//			// Change the amplitude of DAC channel 1.
+
+
+			// Change the amplitude of DAC channel 1.
 //			case 4:
+//				// Building 4 bytes int a 32 bit value
+//				channel_1_Amplitude = rx_buff[6];
+//				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[5] << 8);
+//				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[4] << 16);
+//				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[3] << 24);
+//
+//				// Updating channel 1 amplitude
+//				sine_scaled = channel_1_Amplitude;
+//				get_sine_val();						// Call get sineval function
+//				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+//
+//				break;
+//
 //
 //			// Change the amplitude of DAC channel 2.
 //			case 5:
+//				// Building 4 bytes int a 32 bit value
+//				channel_2_Frequency = rx_buff[6];
+//				channel_2_Frequency = channel_2_Frequency | (rx_buff[5] << 8);
+//				channel_2_Frequency = channel_2_Frequency | (rx_buff[4] << 16);
+//				channel_2_Frequency = channel_2_Frequency | (rx_buff[3] << 24);
 //
-//			// Request Voltage and Current measurement of channel 1 output.
-//			case 6:
+//				// Updating channel 2 amplitude
+//				sine_scaled = channel_2_Amplitude;
+//				get_sine_val();						// Call get sineval function
+//				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
 //
-//			// Request Voltage and Current measurement of channel 2 output.
-//			case 7:
-//
-//			// Request Temperature sensor 1 and 2 output.
-//			case 8:
-//
-//			// Acknowledge message received.
-//			case 9:
-//
-//			// Bad message received.
-//			case 10:
-//
-//			// Request current system state.
-//			case 11:
-//
+//				break;
+
+
+			// Request Voltage and Current measurement of channel 1 output.
+			case 6:
+				break;
+
+
+			// Request Voltage and Current measurement of channel 2 output.
+			case 7:
+				break;
+
+
+			// Request Temperature sensor 1 and 2 output.
+			case 8:
+				break;
+
+
+			// Acknowledge message received.
+			case 9:
+				break;
+
+
+			// Bad message received.
+			case 10:
+				break;
+
+
+			// Request current system state.
+			case 11:
+				break;
 		}
 
 
@@ -266,9 +315,13 @@ int main(void)
   set_clock_TIM4();						// Setting frequency of timer 4
   HAL_TIM_Base_Start(&htim2);			// Start timer 2
   HAL_TIM_Base_Start(&htim4);			// Start timer 4
-  get_sine_val();						// Call get sineval function
-  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+
+  Get_channel_1_sine();
+  Get_channel_2_sine();
+
+  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+
 
   /* Setting signal output indicators to on  */
   HAL_GPIO_WritePin(GPIOD, LED1_Pin, 1);
