@@ -310,7 +310,7 @@ HAL_UART_Transmit(&huart1, data1, uartSize, timeOut);
 3. Enable DMA settings
 	- Add DMA for RX and TX
 	- Set DMA priority if necessary
-	- Set TX to normal mode
+	- Set TX to circular mode
 	- Set RX to normal mode
 	- Set Data widths to byte
 4. Enable NVIC interrupt enabled for DMA
@@ -330,6 +330,7 @@ void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
 	__NOP();
 	// Do something
 
+	HAL_UART_DMAPause(&huart1);
 	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 }
 
@@ -339,7 +340,10 @@ void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
 while (1)
 {
 	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
-	HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
+	
+	
+	HAL_UART_DMAResume(&huart1);
+	HAL_UART_Transmit_DMA(&huart1, tx_buff, strlen((char*)tx_buff));
 }
 
 

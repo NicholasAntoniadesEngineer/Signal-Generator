@@ -66,10 +66,10 @@ void SystemClock_Config(void);
 int Res = 4096;				// DAC resolution.
 #define Ns 240 			// Number of samples, Adjusting Ns will affect the frequency of the output signal.
 uint32_t sine_val[Ns];  	// Buffer for all the sine bits.
-double sine_scaled = 0.8; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
-int sine_dc_offset = 240; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
+double sine_scaled = 0.7; 	// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
+int sine_dc_offset = 480; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
 #define PI 3.1415926		// Definition of PI
-int Freq_Signal_1 = 100; 	// Frequency of signal 1
+int Freq_Signal_1 = 200; 	// Frequency of signal 1
 int Freq_Signal_2 = 2000; 	// Frequency of signal 2
 int PSC;					// Tim2 Pre Scalar value
 uint32_t Fclock = 90000000;	// APB1 Timer Clocks
@@ -120,15 +120,22 @@ void set_clock_TIM4(void){
 
 
 /* Setting up UART communications*/
-#define uartSize 9
+#define uartSize 8
 uint8_t rx_buff[uartSize];
 uint8_t tx_buff[uartSize];
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
-	// Do something
 
+	strcpy((char*)tx_buff, "Call!\r\n");
+	HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
 	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+
+	// Switch statements to validate message integrity
+
+	// Switch statements to read the received message and to respond
+
+
 }
 
 void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
@@ -136,7 +143,7 @@ void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
 //	while(i>0){
 //		i = i -1;
 //	}
-
+	HAL_UART_DMAPause(&huart1);
 	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 }
 
@@ -187,7 +194,12 @@ int main(void)
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
 
+  /* Setting signal output indicators to on  */
+  HAL_GPIO_WritePin(GPIOD, LED1_Pin, 1);
+  HAL_GPIO_WritePin(GPIOD, LED2_Pin, 1);
 
+  /* Setting up UART communications */
+  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 
   /* Setting up USB communications*/
   //  char txBuf[8];
@@ -199,14 +211,17 @@ int main(void)
   while (1)
   {
 	//HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
-	//HAL_Delay(300);
-	//strcpy((char*)tx_buff, "Hello!\r\n");
-	//HAL_UART_Transmit_DMA(&huart1, tx_buff, uartSize);
+	HAL_Delay(1000);
+
+
+
+	// UART DMA message
+	// HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
+	// HAL_UART_DMAResume(&huart1);
+	// HAL_UART_Transmit_DMA(&huart1, tx_buff, strlen((char*)tx_buff));
 
 
 	/* LED TEST */
-	//HAL_GPIO_TogglePin(GPIOD, LED1_Pin);
-	//HAL_GPIO_TogglePin(GPIOD, LED2_Pin);
 	//HAL_GPIO_TogglePin(GPIOD, LED3_Pin);
 	//HAL_GPIO_TogglePin(GPIOD, LED4_Pin);
 	//HAL_GPIO_TogglePin(GPIOD, LED5_Pin);
