@@ -1996,7 +1996,6 @@ void Get_channel_1_sine(void){
  80013be:	2b4f      	cmp	r3, #79	; 0x4f
  80013c0:	dd90      	ble.n	80012e4 <Get_channel_1_sine+0xc>
 	}
-	//Channel_1_sine_val[Ns] = 0;
 }
  80013c2:	bf00      	nop
  80013c4:	370c      	adds	r7, #12
@@ -2116,7 +2115,6 @@ void Get_channel_2_sine(void){
  80014d6:	2b4f      	cmp	r3, #79	; 0x4f
  80014d8:	dd90      	ble.n	80013fc <Get_channel_2_sine+0xc>
 	}
-	//Channel_2_sine_val[Ns] = 0;
 }
  80014da:	bf00      	nop
  80014dc:	370c      	adds	r7, #12

@@ -64,6 +64,7 @@ void SystemClock_Config(void);
 
 /* Setting up signal generation */
 int Res = 4096;				      // DAC resolution.
+// NS 80 seems to work up to 25kHz
 #define Ns 80 			          // Number of samples, Adjusting Ns will affect the frequency of the output signal.
 // Buffer for all the sine bits.
 uint32_t Channel_1_sine_val[Ns];
@@ -86,7 +87,6 @@ void Get_channel_1_sine(void){
 		Channel_1_sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
 		Channel_1_sine_val[i] = sine_dc_offset + Channel_1_sine_scale*Channel_1_sine_val[i];
 	}
-	//Channel_1_sine_val[Ns] = 0;
 }
 
 void Get_channel_2_sine(void){
@@ -96,7 +96,6 @@ void Get_channel_2_sine(void){
 		Channel_2_sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
 		Channel_2_sine_val[i] = sine_dc_offset + Channel_2_sine_scale*Channel_2_sine_val[i];
 	}
-	//Channel_2_sine_val[Ns] = 0;
 }
 
 void set_clock_TIM2(void){
@@ -146,15 +145,23 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 		HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
 		HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
 
+		/*
+		|<|(60/3C) : Start of message byte.
+		|ADDR|() : Device Address byte.
+		|CMD|() : Command byte.
+		|DATA1| : Data byte 1.
+		|DATA2| : Data byte 2.
+		|DATA3| : Data byte 3.
+		|DATA4| : Data byte 4.
+		|>|(62/3E) : End of message byte.
 
-//		|<|(60/3C) : Start of message byte.
-//		|ADDR|() : Device Address byte.
-//		|CMD|() : Command byte.
-//		|DATA1| : Data byte 1.
-//		|DATA2| : Data byte 2.
-//		|DATA3| : Data byte 3.
-//		|DATA4| : Data byte 4.
-//		|>|(62/3E) : End of message byte.
+		e.g. 3C 30 32 00 00 61 A8 3E, Setting channel 1 frequency to 25kHz
+		e.g. 3C 30 33 00 00 61 A8 3E, Setting channel 2 frequency to 25kHz
+		e.g. 3C 30 32 00 00 27 10 3E, Setting channel 1 frequency to 10kHz
+		e.g. 3C 30 33 00 00 27 10 3E, Setting channel 2 frequency to 10kHz
+		e.g. 3C 30 34 00 00 00 3C 3E, Setting channel 1 amplitude to 0.6
+		e.g. 3C 30 35 00 00 00 3C 3E, Setting channel 2 amplitude to 0.6
+		 */
 
 		// Switch statements to respond accordingly
 		switch(rx_buff[2]){
