@@ -72,7 +72,7 @@ void TMCL_UART_Message(uint8_t moduleAddress,uint8_t commandNumber,uint8_t comma
 void HoneyWellPressure(uint8_t PressureBuffer[4], uint8_t StatusHoneywell,uint8_t PressureHoneywell, uint8_t TempHoneywell);
 void SensirionFlow(uint8_t FlowBuffer[3], float FlowSensirionOld[20],float FlowSensirion);
 void SensirionFlowSensor(uint8_t FlowBuffer[3], float FlowSensirion[20], float deltaFlow, float FlowSensirionTotal);
-void UARTSendDMA(uint8_t eightBitResult[4], float pressure,	uint8_t HMI_tx_buff[], float FlowSensirion[20],float TidalVolume[2], uint8_t HMI_rx_buff[]);
+void UARTSendDMA(uint8_t eightBitResult[4], float pressure,	uint8_t HMI_tx_buff[], uint8_t HMI_rx_buff[]);
 void IntegrationForVolume(float deltaFlow, float deltaTime,	float FlowSensirion[20], float TidalVolume[2]) ;
 /* USER CODE END Private defines */
 

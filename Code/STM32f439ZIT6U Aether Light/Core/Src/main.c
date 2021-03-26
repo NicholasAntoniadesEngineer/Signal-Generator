@@ -51,96 +51,12 @@ void SystemClock_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-// Hardware defined variables
-#define  gearRatio 1.6	 	      	   // Gear ratio
-#define  microStep 16 		 	       // Stepper motor driver micro stepping factor
-uint16_t TotalStepsPerCycle = 200;     // Set this to total steps for full rotation of the stepper motor for 1:1 stepping
-uint8_t  defaultDirection = 0;	       // Used to indicate direction default of stepper driver
-
-// Variables to be initialized for ventilation
-#define  clockFreq 180000000	           // Set this to the clock frequency
-#define  counterPeriod 100		       // Set the PWM counter period0
-uint32_t StepsHalfCycle;		       // Set this to total steps for half rotation
-uint32_t RequiredStepsHalfCycle;       // Steps required for desired tidal volume
-uint32_t InspFreq;				       // Inspiration frequency
-uint32_t ExpFreq;				       // Expiration frequency
-uint32_t InspTime;				       // Inspiration time
-uint32_t ExpTime;				       // Expiration time
-uint32_t TotalCycleTime;	           // TotalCycleTime = InspTime + ExpTime
-uint32_t ExpPSC;			           // Expiration PSC value
-uint32_t InspPSC;			    	   // Inspiration PSC value
-
-// Variables to be controlled for ventilation
-// *** These are hard coded for now.
-uint32_t VentMethod;			       // Set this to control ventilation type
-uint8_t  BPM = 20;		    	       // Change this to control BPM
-double 	 IEratio = 2;		           // IEratio =InspTime*ExpTime
-uint8_t  Vmax = 100;			       // Max deliverable volume
-uint8_t  Vdes = 100;			       // Desired volume to deliver
-uint32_t stepCounter = 0;		       // Step counter
-uint8_t  cycleStage = 1;               // Set initial cycle stage to Expiration
-uint8_t  updateIndicator = 0;          // Used to indicate when a state update is required
-int      state = 0;				       // Initialize to state 0
-
-
-// Set Symbolic names: TMCL motor driver
-int motorAddress = 1;   // Motor number default 1
-int motorNumber = 0;	// Motor number default 0
-int Bank0 = 0;			// Memory bank 0
-int Bank1 = 1;			// Memory bank 1
-int Bank2 = 2;			// Memory bank 2
-// Set Symbolic names: Memory variables
-int TMCLstate = 0;			// TMCL state
-int vInsp = 1; 			// Inspiration velocity
-int vExsp = 2;			// Expiration velocity
-int amax = 3;			// Max acceleration
-int cmax = 4;        	// Max current 0..256
-int dmax = 5;			// Max deceleration
-int posInspiration = 6;	// Inhaltion position
-int posExpiration = 7;	// Exhalation position
-// Set Symbolic names: Command variables
-int GAP = 6;
-int SGP = 9;			// Set Global Parameter
-int GGP = 10;
-int STGP = 11;			// Store Global Paramater
 
 // Variables to be initialized for UART: HMI
 #define HMIBufferSize 12			  		 // UART buffer size
 uint8_t HMI_tx_buff[HMIBufferSize] = {0};	 // UART Transmit buffer
 uint8_t HMI_rx_buff[HMIBufferSize] = {0};	 // UART Receive buffer
 
-// Variables to be initialized for UART: TMCL driver
-#define TMCLtxBufferSize 9			   		 // UART tx buffer size
-#define TMCLrxBufferSize 9
-uint8_t TMCL_tx_buff[TMCLtxBufferSize] = {0};  // UART Transmit buffer
-uint8_t TMCL_rx_buff[TMCLrxBufferSize] = {0};  // UART Receive buffer
-
-// Variables to be initialized for I2C
-#define I2CBufferSize 6			   			 // I2C buffer size
-uint8_t I2C_tx_buff[I2CBufferSize] = {0};	 // I2C Transmit buffer
-uint8_t I2C_rx_buff[I2CBufferSize] = {0};	 // I2C Receive buffer
-
-// Variables to be initialized for I2C: Sensirion flow sensor
-float    FlowSensirion[20] = {0};			// Flow values
-float	 TidalVolume[2] = {0};			// Calculated volume
-uint32_t StatusSensirion = 0;			// Status bit for the sensor
-uint8_t  FlowBuffer[3] = {0};			// Buffer to recieve sensor values
-float FlowSensirionTotal = 0;
-float FlowSensirionAverage = 0;
-float deltaFlow = 0;
-float deltaVolume;
-float deltaFlowTime;
-
-// Variables to be initialized for I2C: Honeywell pressure sensor
-uint8_t  PressureHoneywell = 0;			// Pressure value
-uint8_t  TempHoneywell = 0;				// Temperature value
-uint8_t  StatusHoneywell = 0;			// Status bit for the sensor
-uint8_t	 PressureBuffer[4] = {0};		// Buffer to recieve the sensor values
-
-// Variables to be initialized for I2C: Azotech sensors
-//uint8_t Device_Addr= 0x44 << 1 ;       // 8-bit device address shifted 1 for r/w bit
-//uint8_t Device_write_reg = 0x09;
-//uint8_t Device_read_reg = 0x02;
 
 // Variables to initialized for ADC
 #define  numADCchannels 1 		       // Set this value to be the number of channels
@@ -154,15 +70,6 @@ uint8_t toggleValue;
 // Convert to 8-bit
 uint8_t eightBitResult[4];
 
-// Variables required for RTC
-RTC_DateTypeDef currentDate;
-RTC_TimeTypeDef timeStampCurrent;
-float timeCurrent = 0;
-RTC_TimeTypeDef timeStampOld;
-float timeOld = 0;
-RTC_TimeTypeDef changeTime;
-float deltaTime = 0;
-float Seconds = 0;
 //serial comms
 uint8_t buf[12];
 /* USER CODE END 0 */
@@ -213,17 +120,17 @@ int main(void)
   while (1)
   {
 
-	HAL_GPIO_TogglePin(GPIOB, Valve1_Pin);
-	HAL_GPIO_TogglePin(GPIOB, Valve2_Pin);
-	HAL_Delay(100);
-	HAL_GPIO_TogglePin(GPIOB, Valve1_Pin);
-	HAL_GPIO_TogglePin(GPIOB, Valve2_Pin);
-	HAL_Delay(100);
+//	HAL_GPIO_TogglePin(GPIOB, Valve1_Pin);
+//	HAL_GPIO_TogglePin(GPIOB, Valve2_Pin);
+//	HAL_Delay(10);
+//	HAL_GPIO_TogglePin(GPIOB, Valve1_Pin);
+//	HAL_GPIO_TogglePin(GPIOB, Valve2_Pin);
+	HAL_Delay(50);
 
 	// Toggling DMA streams for messaging and reading ADC values
 	if(toggleValue == 1){
 		HAL_ADC_Stop_DMA(&hadc1); 		// Close ADC DMA stream
-		UARTSendDMA(eightBitResult, pressure, HMI_tx_buff, FlowSensirion, TidalVolume, HMI_rx_buff);
+		UARTSendDMA(eightBitResult, pressure, HMI_tx_buff, HMI_rx_buff);
 		toggleValue = 0;
 	}else{
 		HAL_UART_DMAStop(&huart1); // Close UART DMA stream
@@ -303,23 +210,11 @@ void HAL_GPIO_EXTI_Callback( uint16_t GPIO_Pin){
 	}
 }
 
-void UARTSendDMA(uint8_t eightBitResult[4], float pressure,	uint8_t HMI_tx_buff[HMIBufferSize], float FlowSensirion[20],float TidalVolume[2], uint8_t HMI_rx_buff[HMIBufferSize]) {
+void UARTSendDMA(uint8_t eightBitResult[4], float pressure,	uint8_t HMI_tx_buff[HMIBufferSize], uint8_t HMI_rx_buff[HMIBufferSize]) {
 	// Pressure value for comms
 	CTBVTFEBV(eightBitResult, (uint16_t) pressure);
 	HMI_tx_buff[0] = eightBitResult[0];
 	HMI_tx_buff[1] = eightBitResult[1];
-	// Flow value for comms
-	if (FlowSensirion[0] < 0) {
-		HMI_tx_buff[2] = (-1) * FlowSensirion[0];
-		HMI_tx_buff[3] = 1;
-	} else {
-		HMI_tx_buff[2] = FlowSensirion[0];
-		HMI_tx_buff[3] = 0;
-	}
-	// Volume for comms
-	CTBVTFEBV(eightBitResult, (uint16_t) TidalVolume[0]);
-	HMI_tx_buff[4] = eightBitResult[0];
-	HMI_tx_buff[5] = eightBitResult[1];
 	HMI_tx_buff[11] = 255; // Good message check
 	HAL_UART_Transmit_DMA(&huart1, HMI_tx_buff, HMIBufferSize); // Send
 	HAL_UART_Receive_DMA(&huart1, HMI_rx_buff, HMIBufferSize); // Receive
