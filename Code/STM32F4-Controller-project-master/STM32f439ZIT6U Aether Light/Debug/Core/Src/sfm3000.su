@@ -1,9 +1,0 @@
-sfm3000.c:25:9:sfm3000initFlow	16	static
-sfm3000.c:34:9:sfm3000initTemp	16	static
-sfm3000.c:44:7:sfm3000getValue	40	static
-sfm3000.c:60:9:sfm3000reset	16	static
-sfm3000.c:68:10:sfm3000readSerialDevId	16	static
-sfm3000.c:89:9:sfm3000crc8	24	static
-sfm3000.c:98:9:sfm3000crcCheck	24	static
-sfm3000.c:109:9:I2CwriteBytes	24	static
-sfm3000.c:112:9:I2CreadBytes	24	static

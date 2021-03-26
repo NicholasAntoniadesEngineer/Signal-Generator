@@ -10,7 +10,9 @@
  * |DATA3|	: Data byte 3.
  * |DATA4|	: Data byte 4.
  * |>|		: End of message byte.
- *
+ */
+ 
+ /*
  *-----------------------------------
  * List of commands from CRIO to STM:
  * ----------------------------------
@@ -25,8 +27,9 @@
  * 9. Acknowledge message received.
  * 10. Bad message received.
  * 11. Request current system state.
- *
- *
+ */
+ 
+ /*
  *-----------------------------------
  * List of commands from STM to CRIO:
  * ----------------------------------
@@ -42,3 +45,57 @@
  * 10. Low power mode.
  *
  */
+ 
+ 
+/*
+*-------------------------------------
+* Building 4 bytes int a 32 bit value:
+*-------------------------------------
+* 32BitValue = 8Bitpart1;
+* 32BitValue = 32BitValue | (8Bitpart2 << 8);
+* 32BitValue = 32BitValue | (8Bitpart3 << 16);
+* 32BitValue = 32BitValue | (8Bitpart4 << 24);
+ */
+ 
+ 
+/*
+*--------------------------------------
+* Breaking a 32 bit value into 4 bytes:
+*--------------------------------------
+*
+*counter = 0;
+*
+*while (32BitValue > 0) {
+* digit = 32BitValue % 10; // e.g. 13 % 10 = 3
+* switch(counter){
+*	 case 0:
+*		 8Bitpart1 = digit; // e.g. = 3
+*		 break;
+*	 case 1:
+*		 8Bitpart1 = 8Bitpart1 + digit*10 ; // e.g. = 3 = 1*10
+*		 break;
+*	 case 2:
+*		 8Bitpart2 = digit;
+*		 break;
+*	 case 3:
+*		 8Bitpart2 = 8Bitpart2 + digit*10;
+*		 break;
+*	 case 4:
+*		 8Bitpart3 = digit;
+*		 break;
+*	 case 5:
+*		 8Bitpart3 = 8Bitpart3 + digit*10 ;
+*		 break;
+*	 case 6:
+*		 8Bitpart4 = digit;
+*		 break;
+*	 case 7:
+*		 8Bitpart4 = 8Bitpart3 + digit*10;
+*		 break;
+*	default:
+*		 break;
+* }
+* counter ++;
+* 32BitValue /= 10;
+*}
+*/

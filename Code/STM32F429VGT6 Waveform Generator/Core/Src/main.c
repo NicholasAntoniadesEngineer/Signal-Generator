@@ -181,7 +181,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				// Updating channel 1 output frequency
 				Freq_Signal_1 = channel_1_Frequency;
 				set_clock_TIM2();
-				strcpy((char*)tx_buff, "Channel 1 Frequency updated!\r\n");
+				strcpy((char*)tx_buff, "Channel 1 Frequency updated: %d!\r\n", Freq_Signal_1);
 				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
 				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 
@@ -199,7 +199,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				// Updating channel 1 output frequency
 				Freq_Signal_2 = channel_2_Frequency;
 				set_clock_TIM4();
-				strcpy((char*)tx_buff, "Channel 2 Frequency updated!\r\n");
+				strcpy((char*)tx_buff, "Channel 2 Frequency updated: %d!\r\n", Freq_Signal_2);
 				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
 				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 
@@ -218,7 +218,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				Channel_1_sine_scale = (double)channel_1_Amplitude/100; // Dividing by 100 to create a fraction
 				Get_channel_1_sine();
 				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-				strcpy((char*)tx_buff, "Channel 1 Amplitude updated!\r\n");
+				strcpy((char*)tx_buff, "Channel 1 Amplitude updated: %d!\r\n", Channel_1_sine_scale);
 				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
 				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 
@@ -237,7 +237,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				Channel_2_sine_scale = (double)channel_2_Amplitude/100; // Dividing by 100 to create a fraction
 				Get_channel_2_sine();
 				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-				strcpy((char*)tx_buff, "Channel 2 Amplitude updated!\r\n");
+				strcpy((char*)tx_buff, "Channel 2 Amplitude updated: %d!\r\n", Channel_2_sine_scale);
 				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
 				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 
