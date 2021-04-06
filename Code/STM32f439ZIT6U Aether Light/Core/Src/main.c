@@ -60,7 +60,7 @@ uint8_t HMI_rx_buff[HMIBufferSize] = {0};	 // UART Receive buffer
 
 
 // Variables to initialized for ADC
-#define  numADCchannels 2 		       // Set this value to be the number of channels
+#define  numADCchannels 1 		       // Set this value to be the number of channels
 uint32_t value_adc[numADCchannels];    // Buffer size, 32 bit for 12 bit ADC resolution
 float pressure;						   // Variable to hold the ADC value for pressure
 
@@ -71,12 +71,11 @@ uint8_t toggleValue;
 // Convert to 8-bit
 uint8_t eightBitResult[4];
 
-// Serial comms
+//serial comms
 uint8_t buf[12];
 
 // Control
 uint8_t run = 0;
-
 
 /* USER CODE END 0 */
 
@@ -121,7 +120,7 @@ int main(void)
 
 
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 8000;
+  htim3.Init.Prescaler = 11000;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
   {
     Error_Handler();
@@ -140,6 +139,8 @@ int main(void)
 
   while (1)
   {
+
+	  HAL_Delay(50);
 
 	// Toggling DMA streams for messaging and reading ADC values
 	if(toggleValue == 1){
@@ -217,7 +218,6 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 
 	// Code to run inside of handler
@@ -248,8 +248,9 @@ void UARTSendDMA(uint8_t eightBitResult[4], float pressure,	uint8_t HMI_tx_buff[
 	HMI_tx_buff[0] = eightBitResult[0];
 	HMI_tx_buff[1] = eightBitResult[1];
 	HMI_tx_buff[11] = 255; // Good message check
-	HAL_UART_Transmit_DMA(&huart1, HMI_tx_buff, HMIBufferSize); // Send
-	HAL_UART_Receive_DMA(&huart1, HMI_rx_buff, HMIBufferSize); // Receive
+	HAL_UART_Transmit(&huart1, HMI_tx_buff, HMIBufferSize, 0XFF);
+	//HAL_UART_Transmit_DMA(&huart1, HMI_tx_buff, HMIBufferSize); // Send
+	//HAL_UART_Receive_DMA(&huart1, HMI_rx_buff, HMIBufferSize); // Receive
 }
 void CTBVTFEBV(uint8_t *eightBitresult,uint32_t value){  //Convert a 32 bit value to 4 bytes
 	uint8_t eightBitpart1 = 0;
@@ -296,6 +297,23 @@ void CTBVTFEBV(uint8_t *eightBitresult,uint32_t value){  //Convert a 32 bit valu
 	eightBitresult[1] = eightBitpart2;
 	eightBitresult[2] = eightBitpart3;
 	eightBitresult[3] = eightBitpart4;
+}
+uint8_t CheckSum(uint8_t CommandArray[]){
+	uint8_t CheckSum = 0;
+
+	for(int i = 0; i<8; i ++){
+		CheckSum += CommandArray[i];
+	}
+	return CheckSum;
+}
+void HoneyWellPressure(uint8_t PressureBuffer[4], uint8_t StatusHoneywell,uint8_t PressureHoneywell, uint8_t TempHoneywell) {
+	// Reading in from Honeywell pressure sensor
+
+	// *** fix this ***//
+	I2C_read(0x28 << 1, 0x28 << 1, PressureBuffer, PressureBuffer);		  // Read in status
+	StatusHoneywell = (PressureBuffer[0] & 0xc0);
+	PressureHoneywell = (((PressureBuffer[0] << 8) | PressureBuffer[1])); // Read in Pressure
+	TempHoneywell = (((PressureBuffer[3] << 8) | PressureBuffer[4])); 	  // Read in Temperature
 }
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
 	// Function that is called at the end of each ADC conversion.
