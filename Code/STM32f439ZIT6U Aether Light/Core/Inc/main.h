@@ -56,6 +56,12 @@ void PWM_frequency_set(uint32_t Fpwm, uint32_t PSC);
 #define Valve1_GPIO_Port GPIOB
 #define Valve2_Pin GPIO_PIN_14
 #define Valve2_GPIO_Port GPIOB
+#define ON_Pin GPIO_PIN_4
+#define ON_GPIO_Port GPIOB
+#define ON_EXTI_IRQn EXTI4_IRQn
+#define OFF_Pin GPIO_PIN_5
+#define OFF_GPIO_Port GPIOB
+#define OFF_EXTI_IRQn EXTI9_5_IRQn
 /* USER CODE BEGIN Private defines */
 
 void initializations(void);

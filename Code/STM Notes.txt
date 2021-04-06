@@ -37,6 +37,7 @@ ________________________________________________________________________________
 2. Choose clock source to be internal clock
 3. Set ARR value  
 4. Set Prescalar  (PSC=fclock/fpwm - 1) (tover = (arr + 1)(psc +1)/fclock)?
+5. Enable interrupt in the NVIC
 
 -------------------------Example-------------------------
 prescalar = 1000
@@ -596,7 +597,7 @@ ________________________________________________________________________________
 toverflow = (PSC + 1)(ARR + 1)/fclock  // Time to over flow for timer interrupt
 
 -----------------------------------------------------------------------------------------------------------------------
-										  Update frequencyfor inspiration
+										  Update frequency for inspiration
 -----------------------------------------------------------------------------------------------------------------------
 TotalStepsPerCycle 	   = TotalStepsPerCycle*microStep*gearRatio;
 StepsHalfCycle 	       = TotalStepsPerCycle/2;

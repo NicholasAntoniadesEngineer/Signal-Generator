@@ -14,6 +14,7 @@
 #include "adc.h"
 #include "dma.h"
 #include "rtc.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -59,7 +60,7 @@ uint8_t HMI_rx_buff[HMIBufferSize] = {0};	 // UART Receive buffer
 
 
 // Variables to initialized for ADC
-#define  numADCchannels 1 		       // Set this value to be the number of channels
+#define  numADCchannels 2 		       // Set this value to be the number of channels
 uint32_t value_adc[numADCchannels];    // Buffer size, 32 bit for 12 bit ADC resolution
 float pressure;						   // Variable to hold the ADC value for pressure
 
@@ -70,8 +71,13 @@ uint8_t toggleValue;
 // Convert to 8-bit
 uint8_t eightBitResult[4];
 
-//serial comms
+// Serial comms
 uint8_t buf[12];
+
+// Control
+uint8_t run = 0;
+
+
 /* USER CODE END 0 */
 
 /**
@@ -106,10 +112,25 @@ int main(void)
   MX_ADC1_Init();
   MX_USART1_UART_Init();
   MX_RTC_Init();
+  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
+  while(run == 0){
+	  __NOP();
+  }
 
 
+  htim3.Instance = TIM3;
+  htim3.Init.Prescaler = 8000;
+  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  HAL_TIM_Base_Start_IT(&htim3);
+
+  // Setting initial valve conditions
+  HAL_GPIO_WritePin(GPIOB, Valve1_Pin, 0);
+  HAL_GPIO_WritePin(GPIOB, Valve2_Pin, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -119,13 +140,6 @@ int main(void)
 
   while (1)
   {
-
-//	HAL_GPIO_TogglePin(GPIOB, Valve1_Pin);
-//	HAL_GPIO_TogglePin(GPIOB, Valve2_Pin);
-//	HAL_Delay(10);
-//	HAL_GPIO_TogglePin(GPIOB, Valve1_Pin);
-//	HAL_GPIO_TogglePin(GPIOB, Valve2_Pin);
-	HAL_Delay(50);
 
 	// Toggling DMA streams for messaging and reading ADC values
 	if(toggleValue == 1){
@@ -204,9 +218,27 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
+
+	// Code to run inside of handler
+	HAL_GPIO_TogglePin(GPIOB, Valve1_Pin);
+	HAL_GPIO_TogglePin(GPIOB, Valve2_Pin);
+	// Start interrupt again
+	HAL_TIM_Base_Start_IT(&htim3);
+}
+
 void HAL_GPIO_EXTI_Callback( uint16_t GPIO_Pin){
 	switch(GPIO_Pin){
 
+		case ON_Pin:
+			 run = 1;
+		break;
+
+
+		case OFF_Pin:
+
+			__NOP();
+		break;
 	}
 }
 
@@ -264,23 +296,6 @@ void CTBVTFEBV(uint8_t *eightBitresult,uint32_t value){  //Convert a 32 bit valu
 	eightBitresult[1] = eightBitpart2;
 	eightBitresult[2] = eightBitpart3;
 	eightBitresult[3] = eightBitpart4;
-}
-uint8_t CheckSum(uint8_t CommandArray[]){
-	uint8_t CheckSum = 0;
-
-	for(int i = 0; i<8; i ++){
-		CheckSum += CommandArray[i];
-	}
-	return CheckSum;
-}
-void HoneyWellPressure(uint8_t PressureBuffer[4], uint8_t StatusHoneywell,uint8_t PressureHoneywell, uint8_t TempHoneywell) {
-	// Reading in from Honeywell pressure sensor
-
-	// *** fix this ***//
-	I2C_read(0x28 << 1, 0x28 << 1, PressureBuffer, PressureBuffer);		  // Read in status
-	StatusHoneywell = (PressureBuffer[0] & 0xc0);
-	PressureHoneywell = (((PressureBuffer[0] << 8) | PressureBuffer[1])); // Read in Pressure
-	TempHoneywell = (((PressureBuffer[3] << 8) | PressureBuffer[4])); 	  // Read in Temperature
 }
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
 	// Function that is called at the end of each ADC conversion.
