@@ -120,7 +120,7 @@ int main(void)
 
 
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 11000;
+  htim3.Init.Prescaler = 13000;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
   {
     Error_Handler();
@@ -249,6 +249,7 @@ void UARTSendDMA(uint8_t eightBitResult[4], float pressure,	uint8_t HMI_tx_buff[
 	HMI_tx_buff[1] = eightBitResult[1];
 	HMI_tx_buff[11] = 255; // Good message check
 	HAL_UART_Transmit(&huart1, HMI_tx_buff, HMIBufferSize, 0XFF);
+
 	//HAL_UART_Transmit_DMA(&huart1, HMI_tx_buff, HMIBufferSize); // Send
 	//HAL_UART_Receive_DMA(&huart1, HMI_rx_buff, HMIBufferSize); // Receive
 }

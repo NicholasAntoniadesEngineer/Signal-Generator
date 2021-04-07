@@ -1,0 +1,9 @@
+main.c:93:5:main	16	static,ignoring_inline_asm
+main.c:171:6:SystemClock_Config	88	static
+main.c:218:6:HAL_UART_RxCpltCallback	48	static
+main.c:386:6:HAL_UART_TxCpltCallback	16	static
+main.c:400:6:Get_channel_1_sine	32	static
+main.c:410:6:Get_channel_2_sine	32	static
+main.c:419:6:set_clock_TIM2	8	static
+main.c:432:6:set_clock_TIM4	8	static
+main.c:450:6:Error_Handler	4	static

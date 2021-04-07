@@ -64,8 +64,14 @@ void Error_Handler(void);
 #define LED1_GPIO_Port GPIOD
 #define LED2_Pin GPIO_PIN_12
 #define LED2_GPIO_Port GPIOD
+#define Direction_Pin GPIO_PIN_4
+#define Direction_GPIO_Port GPIOD
 /* USER CODE BEGIN Private defines */
 
+void set_clock_TIM2(void);
+void set_clock_TIM4(void);
+void Get_channel_1_sine(void);
+void Get_channel_2_sine(void);
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

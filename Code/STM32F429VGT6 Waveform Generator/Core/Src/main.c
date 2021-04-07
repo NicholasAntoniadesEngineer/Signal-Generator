@@ -63,230 +63,26 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 /* Setting up signal generation */
-int Res = 4096;				      // DAC resolution.
-// NS 80 seems to work up to 25kHz
-#define Ns 80 			          // Number of samples, Adjusting Ns will affect the frequency of the output signal.
-// Buffer for all the sine bits.
-uint32_t Channel_1_sine_val[Ns];
-uint32_t Channel_2_sine_val[Ns];
-// Scale value. Max value = sine_scaled*3.3. Will result in a deformed signal. Giving a max amplitude of 3.24V
-double Channel_1_sine_scale = 0.7;
-double Channel_2_sine_scale = 0.7;
-int sine_dc_offset = 480; 	// DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
-#define PI 3.1415926		// Definition of PI
-int Freq_Signal_1 = 5000; 	// Frequency of signal 1
-int Freq_Signal_2 = 5000; 	// Frequency of signal 2
-int PSC;					// Tim2 Pre Scalar value
-uint32_t Fclock = 90000000;	// APB1 Timer Clocks
-int Period = 1;				// Tim2 Period
-
-void Get_channel_1_sine(void){
-	// Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
-	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
-	for(int i=0;i<Ns;i++){
-		Channel_1_sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
-		Channel_1_sine_val[i] = sine_dc_offset + Channel_1_sine_scale*Channel_1_sine_val[i];
-	}
-}
-
-void Get_channel_2_sine(void){
-	// Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
-	// Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
-	for(int i=0;i<Ns;i++){
-		Channel_2_sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
-		Channel_2_sine_val[i] = sine_dc_offset + Channel_2_sine_scale*Channel_2_sine_val[i];
-	}
-}
-
-void set_clock_TIM2(void){
-	  // Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
-	  // Adjust PSC and period in order to manipulate frequency.
-
-	  PSC= (Fclock/Ns)/(Freq_Signal_1*(Period + 1) ) - 1;
-	  htim2.Instance = TIM2;
-	  htim2.Init.Period = Period; //+1
-	  htim2.Init.Prescaler = PSC; //+1 // If this value is < 50 things start to behave funny.
-	  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
-	  {
-	    Error_Handler();
-	  }
-}
-
-void set_clock_TIM4(void){
-	  // Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
-	  // Adjust PSC and period in order to manipulate frequency.
-
-	  PSC= (Fclock/Ns)/(Freq_Signal_2*(Period + 1) ) - 1;
-	  htim4.Instance = TIM4;
-	  htim4.Init.Period = Period; //+1
-	  htim4.Init.Prescaler = PSC; //+1 // If this value is < 50 things start to behave funny.
-	  if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
-	  {
-	    Error_Handler();
-	  }
-}
-
+int Res = 4096;				       // DAC resolution.
+#define Ns 80 			           // Number of samples, Adjusting Ns will affect the frequency of the output signal.
+								   // NS 80 seems to work up to 25kHz
+uint32_t Channel_1_sine_val[Ns];   // Look up table for all the first sine wave.
+uint32_t Channel_2_sine_val[Ns];   // Look up table for all the second sine wave.
+double Channel_1_sine_scale = 0.65; // Sine scale values. Max value = sine_scaled*3.3. Will result in a deformed signal.
+double Channel_2_sine_scale = 0.65; // Giving a max amplitude of 3.24V
+int sine_dc_offset = 480; 		   // DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
+#define PI 3.1415926			   // Definition of PI
+int Freq_Signal_1 = 5000; 		   // Frequency of signal 1
+int Freq_Signal_2 = 5000; 		   // Frequency of signal 2
+int PSC;						   // Tim2 Pre Scalar value
+uint32_t Fclock = 90000000;		   // APB1 Timer Clocks
+int Period = 1;					   // Tim2 Period
 
 /* Setting up UART communications*/
 #define uartSize_rx 8
-#define uartSize_tx 40
+#define uartSize_tx 8
 uint8_t rx_buff[uartSize_rx];
 uint8_t tx_buff[uartSize_tx];
-
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
-
-	uint32_t channel_1_Frequency;
-	uint32_t channel_2_Frequency;
-	uint32_t channel_1_Amplitude;
-	uint32_t channel_2_Amplitude;
-
-	// If statements to validate message integrity
-	if((rx_buff[0] == '<') && (rx_buff[7] == '>')){
-		//strcpy((char*)tx_buff, "Good message!\r\n");
-		//HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-		//HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
-
-		/*
-		|<|(60/3C) : Start of message byte.
-		|ADDR|() : Device Address byte.
-		|CMD|() : Command byte.
-		|DATA1| : Data byte 1.
-		|DATA2| : Data byte 2.
-		|DATA3| : Data byte 3.
-		|DATA4| : Data byte 4.
-		|>|(62/3E) : End of message byte.
-
-		e.g. 3C 30 32 00 00 61 A8 3E, Setting channel 1 frequency to 25kHz
-		e.g. 3C 30 33 00 00 61 A8 3E, Setting channel 2 frequency to 25kHz
-		e.g. 3C 30 32 00 00 27 10 3E, Setting channel 1 frequency to 10kHz
-		e.g. 3C 30 33 00 00 27 10 3E, Setting channel 2 frequency to 10kHz
-		e.g. 3C 30 34 00 00 00 3C 3E, Setting channel 1 amplitude to 0.6
-		e.g. 3C 30 35 00 00 00 3C 3E, Setting channel 2 amplitude to 0.6
-		 */
-
-		// Switch statements to respond accordingly
-		switch(rx_buff[2]){
-
-			// On/off command.
-			// case 1:
-
-			// Change the frequency of DAC channel 1.
-			case '2':
-				// Building 4 bytes int a 32 bit value
-				channel_1_Frequency = rx_buff[6];
-				channel_1_Frequency = channel_1_Frequency | (rx_buff[5] << 8);
-				channel_1_Frequency = channel_1_Frequency | (rx_buff[4] << 16);
-				channel_1_Frequency = channel_1_Frequency | (rx_buff[3] << 24);
-
-				// Updating channel 1 output frequency
-				Freq_Signal_1 = channel_1_Frequency;
-				set_clock_TIM2();
-				strcpy((char*)tx_buff, "Channel 1 Frequency updated: %d!\r\n", Freq_Signal_1);
-				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
-
-				break;
-
-
-			// Change the frequency of DAC channel 2.
-			case '3':
-				// Building 4 bytes int a 32 bit value
-				channel_2_Frequency = rx_buff[6];
-				channel_2_Frequency = channel_2_Frequency | (rx_buff[5] << 8);
-				channel_2_Frequency = channel_2_Frequency | (rx_buff[4] << 16);
-				channel_2_Frequency = channel_2_Frequency | (rx_buff[3] << 24);
-
-				// Updating channel 1 output frequency
-				Freq_Signal_2 = channel_2_Frequency;
-				set_clock_TIM4();
-				strcpy((char*)tx_buff, "Channel 2 Frequency updated: %d!\r\n", Freq_Signal_2);
-				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
-
-				break;
-
-
-			// Change the amplitude of DAC channel 1.
-			case '4':
-				// Building 4 bytes int a 32 bit value
-				channel_1_Amplitude = rx_buff[6];
-				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[5] << 8);
-				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[4] << 16);
-				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[3] << 24);
-
-				// Updating channel 1 amplitude
-				Channel_1_sine_scale = (double)channel_1_Amplitude/100; // Dividing by 100 to create a fraction
-				Get_channel_1_sine();
-				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-				strcpy((char*)tx_buff, "Channel 1 Amplitude updated: %d!\r\n", Channel_1_sine_scale);
-				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
-
-				break;
-
-
-			// Change the amplitude of DAC channel 2.
-			case '5':
-				// Building 4 bytes int a 32 bit value
-				channel_2_Amplitude = rx_buff[6];
-				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[5] << 8);
-				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[4] << 16);
-				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[3] << 24);
-
-				// Updating channel 2 amplitude
-				Channel_2_sine_scale = (double)channel_2_Amplitude/100; // Dividing by 100 to create a fraction
-				Get_channel_2_sine();
-				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-				strcpy((char*)tx_buff, "Channel 2 Amplitude updated: %d!\r\n", Channel_2_sine_scale);
-				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
-
-				break;
-
-
-			// Request Voltage and Current measurement of channel 1 output.
-			case 6:
-				break;
-
-
-			// Request Voltage and Current measurement of channel 2 output.
-			case 7:
-				break;
-
-
-			// Request Temperature sensor 1 and 2 output.
-			case 8:
-				break;
-
-
-			// Acknowledge message received.
-			case 9:
-				break;
-
-
-			// Bad message received.
-			case 10:
-				break;
-
-
-			// Request current system state.
-			case 11:
-				break;
-		}
-
-
-	}
-
-}
-
-void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
-//	int i = 100;
-//	while(i>0){
-//		i = i -1;
-//	}
-	HAL_UART_DMAPause(&huart1);
-	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
-}
 
 /* USER CODE END 0 */
 
@@ -331,21 +127,25 @@ int main(void)
   set_clock_TIM4();						// Setting frequency of timer 4
   HAL_TIM_Base_Start(&htim2);			// Start timer 2
   HAL_TIM_Base_Start(&htim4);			// Start timer 4
-
-  Get_channel_1_sine();
+  Get_channel_1_sine();					// Generated sine wave look up table
+  Get_channel_2_sine();					// Generated sine wave look up table
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-
-  Get_channel_2_sine();
+  // ANy code between here will cause phase lag.
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-
-
 
   /* Setting signal output indicators to on  */
   HAL_GPIO_WritePin(GPIOD, LED1_Pin, 1);
   HAL_GPIO_WritePin(GPIOD, LED2_Pin, 1);
 
   /* Setting up UART communications */
-  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
+  strcpy((char*)tx_buff, "S\r\n");
+  HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); 	// Receive UART
+
+  /* Setting up RS485 communications */
+  HAL_GPIO_WritePin(MAX485_PWR_GPIO_Port, MAX485_PWR_Pin, 1); // Turn on the MAX485 chip
+  HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 0); // Set communication direction
+  /* PD4/USART2_RTS control the RE & DE pins which set the direction of communication flow*/
 
   /* Setting up USB communications*/
   //  char txBuf[8];
@@ -356,23 +156,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	//HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); //set correct UART handler
-	HAL_Delay(1000);
-
-
-
-	// UART DMA message
-	// HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize); // Receive UART
-	// HAL_UART_DMAResume(&huart1);
-	// HAL_UART_Transmit_DMA(&huart1, tx_buff, strlen((char*)tx_buff));
-
-
-	/* LED TEST */
-	//HAL_GPIO_TogglePin(GPIOD, LED3_Pin);
-	//HAL_GPIO_TogglePin(GPIOD, LED4_Pin);
-	//HAL_GPIO_TogglePin(GPIOD, LED5_Pin);
-
-    /* USER CODE END WHILE */
+	  	  __NOP();
+	  /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
   }
@@ -430,7 +215,232 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
+	uint32_t channel_1_Frequency;
+	uint32_t channel_2_Frequency;
+	uint32_t channel_1_Amplitude;
+	uint32_t channel_2_Amplitude;
+
+	// If statements to validate message integrity
+	if((rx_buff[0] == '<') && (rx_buff[7] == '>')){
+		//strcpy((char*)tx_buff, "Good message!\r\n");
+		//HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+		//HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
+
+		/*
+		|<|(60/3C) : Start of message byte.
+		|ADDR|() : Device Address byte.
+		|CMD|() : Command byte.
+		|DATA1| : Data byte 1.
+		|DATA2| : Data byte 2.
+		|DATA3| : Data byte 3.
+		|DATA4| : Data byte 4.
+		|>|(62/3E) : End of message byte.
+
+		e.g. 3C 30 32 00 00 61 A8 3E, Setting channel 1 frequency to 25kHz
+		e.g. 3C 30 33 00 00 61 A8 3E, Setting channel 2 frequency to 25kHz
+		e.g. 3C 30 32 00 00 27 10 3E, Setting channel 1 frequency to 10kHz
+		e.g. 3C 30 33 00 00 27 10 3E, Setting channel 2 frequency to 10kHz
+		e.g. 3C 30 34 00 00 00 3C 3E, Setting channel 1 amplitude to 0.6
+		e.g. 3C 30 35 00 00 00 3C 3E, Setting channel 2 amplitude to 0.6
+		 */
+
+		// Switch statements to respond accordingly
+		switch(rx_buff[2]){
+
+			// On/off command.
+			// case 1:
+
+
+			// Change the frequency of DAC channel 1.
+			case '2':
+				// Building 4 bytes int a 32 bit value
+				channel_1_Frequency = rx_buff[6];
+				channel_1_Frequency = channel_1_Frequency | (rx_buff[5] << 8);
+				channel_1_Frequency = channel_1_Frequency | (rx_buff[4] << 16);
+				channel_1_Frequency = channel_1_Frequency | (rx_buff[3] << 24);
+
+				// Updating channel 1 output frequency
+				Freq_Signal_1 = channel_1_Frequency;
+				set_clock_TIM2();
+				strcpy((char*)tx_buff, "U\r\n" );
+				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
+				break;
+
+
+
+
+			// Change the frequency of DAC channel 2.
+			case '3':
+				// Building 4 bytes int a 32 bit value
+				channel_2_Frequency = rx_buff[6];
+				channel_2_Frequency = channel_2_Frequency | (rx_buff[5] << 8);
+				channel_2_Frequency = channel_2_Frequency | (rx_buff[4] << 16);
+				channel_2_Frequency = channel_2_Frequency | (rx_buff[3] << 24);
+
+				// Updating channel 1 output frequency
+				Freq_Signal_2 = channel_2_Frequency;
+				set_clock_TIM4();
+
+				// Building response
+				tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
+				tx_buff[1] = rx_buff[1];	// |ADDR|() : Device Address byte.
+				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
+				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
+				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
+				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
+				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
+				tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
+
+				// Sending response
+				//strcpy((char*)tx_buff, "Channel 2 Frequency updated  %d\n ");
+				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
+
+				break;
+
+
+
+
+
+			// Change the amplitude of DAC channel 1.
+			case '4':
+				// Building 4 bytes int a 32 bit value
+				channel_1_Amplitude = rx_buff[6];
+				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[5] << 8);
+				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[4] << 16);
+				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[3] << 24);
+
+				// Updating channel 1 amplitude
+				Channel_1_sine_scale = (double)channel_1_Amplitude/100; // Dividing by 100 to create a fraction
+				Get_channel_1_sine();
+				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+				strcpy((char*)tx_buff, "U\r\n"  );
+				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
+
+				break;
+
+
+
+
+
+			// Change the amplitude of DAC channel 2.
+			case '5':
+				// Building 4 bytes int a 32 bit value
+				channel_2_Amplitude = rx_buff[6];
+				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[5] << 8);
+				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[4] << 16);
+				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[3] << 24);
+
+				// Updating channel 2 amplitude
+				Channel_2_sine_scale = (double)channel_2_Amplitude/100; // Dividing by 100 to create a fraction
+				Get_channel_2_sine();
+				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
+				strcpy((char*)tx_buff, "U\r\n");
+				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
+
+				break;
+
+
+
+
+			// Request Voltage and Current measurement of channel 1 output.
+			case 6:
+				break;
+
+
+			// Request Voltage and Current measurement of channel 2 output.
+			case 7:
+				break;
+
+
+			// Request Temperature sensor 1 and 2 output.
+			case 8:
+				break;
+
+
+			// Acknowledge message received.
+			case 9:
+				break;
+
+
+			// Bad message received.
+			case 10:
+				break;
+
+
+			// Request current system state.
+			case 11:
+				break;
+		}
+
+
+	}
+
+}
+
+void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
+//	int i = 100;
+//	while(i>0){
+//		i = i -1;
+//	}
+	HAL_UART_DMAPause(&huart1);
+	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
+}
+
+/*
+* Fsine = FtimerRTGO/Ns,   Fsine = F(timer trigger ouput)/(number of samples)
+* Vsine(x)=(sine(x*(2PI/ns)+1)*((0xFFF+1)/2), this is an adjusted formula to create a positive sine.
+*/
+
+void Get_channel_1_sine(void){
+	// This function generates the look up table for the sinewave signal to be generated
+
+
+	for(int i=0;i<Ns;i++){
+		Channel_1_sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
+		Channel_1_sine_val[i] = sine_dc_offset + Channel_1_sine_scale*Channel_1_sine_val[i];
+	}
+}
+
+void Get_channel_2_sine(void){
+	// This function generates the look up table for the sinewave signal to be generated
+
+	for(int i=0;i<Ns;i++){
+		Channel_2_sine_val[i] = ((sin(i*2*PI/Ns)+1)*((Res)/2)); // Sampling step = 2PI/ns
+		Channel_2_sine_val[i] = sine_dc_offset + Channel_2_sine_scale*Channel_2_sine_val[i];
+	}
+}
+
+void set_clock_TIM2(void){
+	  // This function sets up the clock to be used for the signal generation
+
+	  PSC= (Fclock/Ns)/(Freq_Signal_1*(Period + 1) ) - 1;
+	  htim2.Instance = TIM2;
+	  htim2.Init.Period = Period; //+1
+	  htim2.Init.Prescaler = PSC; //+1 // If this value is < 50 things start to behave funny.
+	  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+	  {
+	    Error_Handler();
+	  }
+}
+
+void set_clock_TIM4(void){
+      // This function sets up the clock to be used for the signal generation
+
+	  PSC= (Fclock/Ns)/(Freq_Signal_2*(Period + 1) ) - 1;
+	  htim4.Instance = TIM4;
+	  htim4.Init.Period = Period; //+1
+	  htim4.Init.Prescaler = PSC; //+1 // If this value is < 50 things start to behave funny.
+	  if (HAL_TIM_Base_Init(&htim4) != HAL_OK)
+	  {
+	    Error_Handler();
+	  }
+}
 /* USER CODE END 4 */
 
 /**

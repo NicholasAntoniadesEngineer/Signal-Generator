@@ -27,9 +27,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00011653  00000000  00000000  0002003c  2**0
+ 12 .debug_info   00011656  00000000  00000000  0002003c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 000029cb  00000000  00000000  0003168f  2**0
+ 13 .debug_abbrev 000029cb  00000000  00000000  00031692  2**0
                   CONTENTS, READONLY, DEBUGGING
  14 .debug_aranges 00000fc8  00000000  00000000  00034060  2**3
                   CONTENTS, READONLY, DEBUGGING
@@ -1092,9 +1092,9 @@ void MX_ADC1_Init(void)
  8000d7e:	4b11      	ldr	r3, [pc, #68]	; (8000dc4 <MX_ADC1_Init+0x98>)
  8000d80:	2201      	movs	r2, #1
  8000d82:	f883 2030 	strb.w	r2, [r3, #48]	; 0x30
-  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  hadc1.Init.EOCSelection = ADC_EOC_SEQ_CONV;
  8000d86:	4b0f      	ldr	r3, [pc, #60]	; (8000dc4 <MX_ADC1_Init+0x98>)
- 8000d88:	2201      	movs	r2, #1
+ 8000d88:	2200      	movs	r2, #0
  8000d8a:	615a      	str	r2, [r3, #20]
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
  8000d8c:	480d      	ldr	r0, [pc, #52]	; (8000dc4 <MX_ADC1_Init+0x98>)
@@ -1578,9 +1578,9 @@ int main(void)
  8001070:	4b21      	ldr	r3, [pc, #132]	; (80010f8 <main+0xb8>)
  8001072:	4a22      	ldr	r2, [pc, #136]	; (80010fc <main+0xbc>)
  8001074:	601a      	str	r2, [r3, #0]
-  htim3.Init.Prescaler = 11000;
+  htim3.Init.Prescaler = 13000;
  8001076:	4b20      	ldr	r3, [pc, #128]	; (80010f8 <main+0xb8>)
- 8001078:	f642 22f8 	movw	r2, #11000	; 0x2af8
+ 8001078:	f243 22c8 	movw	r2, #13000	; 0x32c8
  800107c:	605a      	str	r2, [r3, #4]
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
  800107e:	481e      	ldr	r0, [pc, #120]	; (80010f8 <main+0xb8>)
@@ -1948,6 +1948,7 @@ void UARTSendDMA(uint8_t eightBitResult[4], float pressure,	uint8_t HMI_tx_buff[
  80012e0:	6879      	ldr	r1, [r7, #4]
  80012e2:	4803      	ldr	r0, [pc, #12]	; (80012f0 <UARTSendDMA+0x54>)
  80012e4:	f003 fc41 	bl	8004b6a <HAL_UART_Transmit>
+
 	//HAL_UART_Transmit_DMA(&huart1, HMI_tx_buff, HMIBufferSize); // Send
 	//HAL_UART_Receive_DMA(&huart1, HMI_rx_buff, HMIBufferSize); // Receive
 }
