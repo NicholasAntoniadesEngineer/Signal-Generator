@@ -63,20 +63,21 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN 0 */
 
 /* Setting up signal generation */
-int Res = 4096;				       // DAC resolution.
-#define Ns 80 			           // Number of samples, Adjusting Ns will affect the frequency of the output signal.
-								   // NS 80 seems to work up to 25kHz
-uint32_t Channel_1_sine_val[Ns];   // Look up table for all the first sine wave.
-uint32_t Channel_2_sine_val[Ns];   // Look up table for all the second sine wave.
+int Res = 4096;				        // DAC resolution.
+#define Ns 80 			            // Number of samples, Adjusting Ns will affect the frequency of the output signal.
+								    // NS 80 seems to work up to 25kHz
+uint32_t Channel_1_sine_val[Ns];    // Look up table for all the first sine wave.
+uint32_t Channel_2_sine_val[Ns];    // Look up table for all the second sine wave.
 double Channel_1_sine_scale = 0.65; // Sine scale values. Max value = sine_scaled*3.3. Will result in a deformed signal.
 double Channel_2_sine_scale = 0.65; // Giving a max amplitude of 3.24V
-int sine_dc_offset = 480; 		   // DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
-#define PI 3.1415926			   // Definition of PI
-int Freq_Signal_1 = 5000; 		   // Frequency of signal 1
-int Freq_Signal_2 = 5000; 		   // Frequency of signal 2
-int PSC;						   // Tim2 Pre Scalar value
-uint32_t Fclock = 90000000;		   // APB1 Timer Clocks
-int Period = 1;					   // Tim2 Period
+int sine_dc_offset = 480; 		    // DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
+#define PI 3.1415926			    // Definition of PI
+int Freq_Signal_1 = 5000; 		    // Frequency of signal 1
+int Freq_Signal_2 = 5000; 		    // Frequency of signal 2
+int PSC;						    // Variable to hold the Prescaler value
+int Period = 1;					    // Variable to hold the Period
+uint32_t Fclock = 90000000;		    // APB1 Timer Clock Frequency
+
 
 /* Setting up UART communications*/
 #define uartSize_rx 8
@@ -123,36 +124,8 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  /* Sine function */
-  set_clock_TIM2();						// Setting frequency of timer 2
-  set_clock_TIM4();						// Setting frequency of timer 4
-  HAL_TIM_Base_Start(&htim2);			// Start timer 2
-  HAL_TIM_Base_Start(&htim4);			// Start timer 4
-  Get_channel_1_sine();					// Generated sine wave look up table
-  Get_channel_2_sine();					// Generated sine wave look up table
-  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-  /* Any code between here will cause phase lag between the output signals. */
-  HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-
-  /* Setting signal output indicators to on  */
-  HAL_GPIO_WritePin(GPIOD, LED1_Pin, 1);	// Turn LED1 on
-  HAL_GPIO_WritePin(GPIOD, LED2_Pin, 1);	// Turn LED2 on
-
-  /* Setting up RS485 communications */
-  HAL_GPIO_WritePin(MAX485_PWR_GPIO_Port, MAX485_PWR_Pin, 1); // Turn on the MAX485 chip
-
-  /* Building start up message */
-  tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
-  tx_buff[1] = 0;				// |ADDR|() : Device Address byte.
-  tx_buff[2] = 1;				// |CMD|() : Command byte.
-  tx_buff[3] = 0;				// |DATA1| : Data byte 1.
-  tx_buff[4] = 0;				// |DATA2| : Data byte 2.
-  tx_buff[5] = 0;				// |DATA3| : Data byte 3
-  tx_buff[6] = 0;				// |DATA4| : Data byte 4.
-  tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
-
-  HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); 					// Set MAX485 to transmitting
-  HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);	// Send message in RS485
+  /* Perform initializations */
+  Startup(Channel_1_sine_val, Channel_2_sine_val, tx_buff);
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -221,6 +194,38 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void Startup(uint32_t Channel_1_sine_val[Ns], uint32_t Channel_2_sine_val[Ns],	uint8_t tx_buff[uartSize_tx]) {
+
+	/* Creating the Sine waveform at the DACs outputs 1 and 2*/
+	set_clock_TIM2(); // Setting frequency of timer 2
+	set_clock_TIM4(); // Setting frequency of timer 4
+	HAL_TIM_Base_Start(&htim2); // Start timer 2
+	HAL_TIM_Base_Start(&htim4); // Start timer 4
+	Get_channel_1_sine(); // Generate the sine wave look up table
+	Get_channel_2_sine(); // Generate the  sine wave look up table
+	HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start the DAC DMA implementation for output 1.
+	/* Any code between here will cause phase lag between the output signals. */
+	HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start the DAC DMA implementation for output 2.
+	/* Setting signal output indicators to on  */
+	HAL_GPIO_WritePin(GPIOD, LED1_Pin, 1); // Turn LED1 on
+	HAL_GPIO_WritePin(GPIOD, LED2_Pin, 1); // Turn LED2 on
+	/* Setting up RS485 communications */
+	HAL_GPIO_WritePin(MAX485_PWR_GPIO_Port, MAX485_PWR_Pin, 1); // Turn on the MAX485 chip
+	/* Building start up message */
+	tx_buff[0] = 0x3C; // |<|(60/3C) : Start of message byte.
+	tx_buff[1] = 0; // |ADDR|() : Device Address byte.
+	tx_buff[2] = 1; // |CMD|() : Command byte.
+	tx_buff[3] = 0; // |DATA1| : Data byte 1.
+	tx_buff[4] = 0; // |DATA2| : Data byte 2.
+	tx_buff[5] = 0; // |DATA3| : Data byte 3
+	tx_buff[6] = 0; // |DATA4| : Data byte 4.
+	tx_buff[7] = 0x3E; // |>|(62/3E) : End of message byte.
+	/* Send start up message */
+	HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set MAX485 to transmitting
+	HAL_UART_Transmit(&huart2, tx_buff, strlen((char*) tx_buff), HAL_MAX_DELAY); // Send message in RS485
+}
+
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 	uint32_t channel_1_Frequency;

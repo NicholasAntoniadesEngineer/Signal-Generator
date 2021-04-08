@@ -67,7 +67,7 @@ void Error_Handler(void);
 #define Direction_Pin GPIO_PIN_4
 #define Direction_GPIO_Port GPIOD
 /* USER CODE BEGIN Private defines */
-
+void Startup(uint32_t Channel_1_sine_val[], uint32_t Channel_2_sine_val[],	uint8_t tx_buff[]);
 void set_clock_TIM2(void);
 void set_clock_TIM4(void);
 void Get_channel_1_sine(void);

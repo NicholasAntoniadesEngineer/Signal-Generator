@@ -32,34 +32,34 @@ endif
 
 -include ../makefile.defs
 
-BUILD_ARTIFACT_NAME := STM32f439ZI USB test
+BUILD_ARTIFACT_NAME := STM32F439ZIT6U USB test
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX := 
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME).$(BUILD_ARTIFACT_EXTENSION)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-STM32f439ZI\ USB\ test.elf \
+STM32F439ZIT6U\ USB\ test.elf \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-STM32f439ZI\ USB\ test.list \
+STM32F439ZIT6U\ USB\ test.list \
 
 OBJCOPY_BIN += \
-STM32f439ZI\ USB\ test.bin \
+STM32F439ZIT6U\ USB\ test.bin \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: STM32f439ZI\ USB\ test.elf secondary-outputs
+main-build: STM32F439ZIT6U\ USB\ test.elf secondary-outputs
 
 # Tool invocations
-STM32f439ZI\ USB\ test.elf: $(OBJS) $(USER_OBJS) C:\Users\Nanodyn\ -\ Spare\OneDrive\ -\ Nanodyn\Desktop\Github\Waveform-generator\STM32f439ZI\ USB\ test\STM32F439ZITX_FLASH.ld
-	arm-none-eabi-gcc -o "STM32f439ZI USB test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\Github\Waveform-generator\STM32f439ZI USB test\STM32F439ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32f439ZI USB test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32F439ZIT6U\ USB\ test.elf: $(OBJS) $(USER_OBJS) C:\Users\Nanodyn\ -\ Spare\OneDrive\ -\ Nanodyn\Desktop\GIT\ repository\Waveform-generator\Code\STM32F439ZIT6U\ USB\ test\STM32F439ZITX_FLASH.ld
+	arm-none-eabi-gcc -o "STM32F439ZIT6U USB test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\Code\STM32F439ZIT6U USB test\STM32F439ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F439ZIT6U USB test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -68,13 +68,13 @@ default.size.stdout: $(EXECUTABLES)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-STM32f439ZI\ USB\ test.list: $(EXECUTABLES)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "STM32f439ZI USB test.list"
+STM32F439ZIT6U\ USB\ test.list: $(EXECUTABLES)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "STM32F439ZIT6U USB test.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-STM32f439ZI\ USB\ test.bin: $(EXECUTABLES)
-	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "STM32f439ZI USB test.bin"
+STM32F439ZIT6U\ USB\ test.bin: $(EXECUTABLES)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "STM32F439ZIT6U USB test.bin"
 	@echo 'Finished building: $@'
 	@echo ' '
 
