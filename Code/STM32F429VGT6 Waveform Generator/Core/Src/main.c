@@ -140,49 +140,31 @@ int main(void)
 
   /* Setting up UART communications */
   // Sending start up message
-	tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
-	tx_buff[1] = 0;				// |ADDR|() : Device Address byte.
-	tx_buff[2] = 1;				// |CMD|() : Command byte.
-	tx_buff[3] = 0;				// |DATA1| : Data byte 1.
-	tx_buff[4] = 0;				// |DATA2| : Data byte 2.
-	tx_buff[5] = 0;				// |DATA3| : Data byte 3
-	tx_buff[6] = 0;				// |DATA4| : Data byte 4.
-	tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
-  HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-  HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); 	// Receive UART
+  tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
+  tx_buff[1] = 0;				// |ADDR|() : Device Address byte.
+  tx_buff[2] = 1;				// |CMD|() : Command byte.
+  tx_buff[3] = 0;				// |DATA1| : Data byte 1.
+  tx_buff[4] = 0;				// |DATA2| : Data byte 2.
+  tx_buff[5] = 0;				// |DATA3| : Data byte 3
+  tx_buff[6] = 0;				// |DATA4| : Data byte 4.
+  tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
+  HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set communication to transmitting
+  HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
 
   /* Setting up RS485 communications */
   HAL_GPIO_WritePin(MAX485_PWR_GPIO_Port, MAX485_PWR_Pin, 1); // Turn on the MAX485 chip
-  HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set communication to listening
-  /* PD4/USART2_RTS control the RE & DE pins which set the direction of communication flow*/
+  HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin,   0); // Set communication to listening
 
-  /* Setting up USB communications*/
-  //  char txBuf[8];
-  //  uint8_t count = 1;
-  /* USER CODE END 2 */
+
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-//	  	  __NOP();
 
-
-//	  	tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
-//	  	tx_buff[1] = 0;				// |ADDR|() : Device Address byte.
-//	  	tx_buff[2] = 1;				// |CMD|() : Command byte.
-//	  	tx_buff[3] = 0;				// |DATA1| : Data byte 1.
-//	  	tx_buff[4] = 0;				// |DATA2| : Data byte 2.
-//	  	tx_buff[5] = 0;				// |DATA3| : Data byte 3
-//	  	tx_buff[6] = 0;				// |DATA4| : Data byte 4.
-//	  	tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
-
-//	    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set communication to transmitting
-//	    HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-//	    HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-
+	  /* Wait for instructions*/
       HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 0); // Set communication to listening
-	  HAL_UART_Receive_IT(&huart2, rx_buff, uartSize_rx);
+	  HAL_UART_Receive_IT(&huart2, rx_buff, uartSize_rx);		// Listen for messages
 
 
     /* USER CODE END WHILE */
