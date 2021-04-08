@@ -131,15 +131,17 @@ int main(void)
   Get_channel_1_sine();					// Generated sine wave look up table
   Get_channel_2_sine();					// Generated sine wave look up table
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-  // ANy code between here will cause phase lag.
+  /* Any code between here will cause phase lag between the output signals. */
   HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
 
   /* Setting signal output indicators to on  */
-  HAL_GPIO_WritePin(GPIOD, LED1_Pin, 1);
-  HAL_GPIO_WritePin(GPIOD, LED2_Pin, 1);
+  HAL_GPIO_WritePin(GPIOD, LED1_Pin, 1);	// Turn LED1 on
+  HAL_GPIO_WritePin(GPIOD, LED2_Pin, 1);	// Turn LED2 on
 
-  /* Setting up UART communications */
-  // Sending start up message
+  /* Setting up RS485 communications */
+  HAL_GPIO_WritePin(MAX485_PWR_GPIO_Port, MAX485_PWR_Pin, 1); // Turn on the MAX485 chip
+
+  /* Building start up message */
   tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
   tx_buff[1] = 0;				// |ADDR|() : Device Address byte.
   tx_buff[2] = 1;				// |CMD|() : Command byte.
@@ -148,14 +150,9 @@ int main(void)
   tx_buff[5] = 0;				// |DATA3| : Data byte 3
   tx_buff[6] = 0;				// |DATA4| : Data byte 4.
   tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
-  HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set communication to transmitting
-  HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
 
-  /* Setting up RS485 communications */
-  HAL_GPIO_WritePin(MAX485_PWR_GPIO_Port, MAX485_PWR_Pin, 1); // Turn on the MAX485 chip
-  HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin,   0); // Set communication to listening
-
-
+  HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); 					// Set MAX485 to transmitting
+  HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);	// Send message in RS485
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -163,9 +160,8 @@ int main(void)
   {
 
 	  /* Wait for instructions*/
-      HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 0); // Set communication to listening
+      HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 0); // Set MAX485 to listening
 	  HAL_UART_Receive_IT(&huart2, rx_buff, uartSize_rx);		// Listen for messages
-
 
     /* USER CODE END WHILE */
 
@@ -234,9 +230,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 	// If statements to validate message integrity
 	if((rx_buff[0] == '<') && (rx_buff[7] == '>')){
-		//strcpy((char*)tx_buff, "Good message!\r\n");
-		//HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-		//HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
 
 		/*
 		|<|(60/3C) : Start of message byte.
@@ -259,11 +252,12 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 		// Switch statements to respond accordingly
 		switch(rx_buff[2]){
 
-			// On/off command.
+			/* On/off command. */
 			// case 1:
+			//
+			//   break;
 
-
-			// Change the frequency of DAC channel 1.
+			/* Change the frequency of DAC channel 1. */
 			case '2':
 				// Building 4 bytes int a 32 bit value
 				channel_1_Frequency = rx_buff[6];
@@ -273,26 +267,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 				// Updating channel 1 output frequency
 				Freq_Signal_1 = channel_1_Frequency;
-				set_clock_TIM2();
-				strcpy((char*)tx_buff, "U\r\n" );
-				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
-				break;
-
-
-
-
-			// Change the frequency of DAC channel 2.
-			case '3':
-				// Building 4 bytes int a 32 bit value
-				channel_2_Frequency = rx_buff[6];
-				channel_2_Frequency = channel_2_Frequency | (rx_buff[5] << 8);
-				channel_2_Frequency = channel_2_Frequency | (rx_buff[4] << 16);
-				channel_2_Frequency = channel_2_Frequency | (rx_buff[3] << 24);
-
-				// Updating channel 1 output frequency
-				Freq_Signal_2 = channel_2_Frequency;
-				set_clock_TIM4();
+				set_clock_TIM2();	// Set the new sine frequency by updating the associate clock frequency
 
 				// Building response
 				tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
@@ -305,16 +280,40 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
 
 				// Sending response
-			    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set communication to transmitting
-				HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
+			    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); 					// Set MAX485 to transmitting
+				HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY); // Send message in RS485
 
 				break;
 
+			/* Change the frequency of DAC channel 2. */
+			case '3':
+				// Building 4 bytes int a 32 bit value
+				channel_2_Frequency = rx_buff[6];
+				channel_2_Frequency = channel_2_Frequency | (rx_buff[5] << 8);
+				channel_2_Frequency = channel_2_Frequency | (rx_buff[4] << 16);
+				channel_2_Frequency = channel_2_Frequency | (rx_buff[3] << 24);
 
+				// Updating channel 1 output frequency
+				Freq_Signal_2 = channel_2_Frequency;
+				set_clock_TIM4();	// Set the new sine frequency by updating the associate clock frequency
 
+				// Building response
+				tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
+				tx_buff[1] = rx_buff[1];	// |ADDR|() : Device Address byte.
+				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
+				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
+				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
+				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
+				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
+				tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
 
+				// Sending response
+			    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); 					// Set MAX485 to transmitting
+				HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY); // Send message in RS485
 
-			// Change the amplitude of DAC channel 1.
+				break;
+
+			/* Change the amplitude of DAC channel 1 */
 			case '4':
 				// Building 4 bytes int a 32 bit value
 				channel_1_Amplitude = rx_buff[6];
@@ -324,19 +323,27 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 				// Updating channel 1 amplitude
 				Channel_1_sine_scale = (double)channel_1_Amplitude/100; // Dividing by 100 to create a fraction
-				Get_channel_1_sine();
-				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-				strcpy((char*)tx_buff, "U\r\n"  );
-				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
+				Get_channel_1_sine(); // Generate new table of sine values
+
+				// Building response
+				tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
+				tx_buff[1] = rx_buff[1];	// |ADDR|() : Device Address byte.
+				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
+				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
+				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
+				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
+				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
+				tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
+
+				// Sending response
+			    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); 					// Set MAX485 to transmitting
+				HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY); // Send message in RS485
+
 
 				break;
 
 
-
-
-
-			// Change the amplitude of DAC channel 2.
+			/* Change the amplitude of DAC channel 2. */
 			case '5':
 				// Building 4 bytes int a 32 bit value
 				channel_2_Amplitude = rx_buff[6];
@@ -346,43 +353,51 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 				// Updating channel 2 amplitude
 				Channel_2_sine_scale = (double)channel_2_Amplitude/100; // Dividing by 100 to create a fraction
-				Get_channel_2_sine();
-				HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start DMA, passing list of sine values.
-				strcpy((char*)tx_buff, "U\r\n");
-				HAL_UART_Transmit(&huart1, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY);
-				HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
+				Get_channel_2_sine();	// Generate new table of sine values
+
+				// Building response
+				tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
+				tx_buff[1] = rx_buff[1];	// |ADDR|() : Device Address byte.
+				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
+				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
+				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
+				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
+				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
+				tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
+
+				// Sending response
+			    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); 					// Set MAX485 to transmitting
+				HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY); // Send message in RS485
 
 				break;
 
 
-
-
-			// Request Voltage and Current measurement of channel 1 output.
+			/* Request Voltage and Current measurement of channel 1 output. */
 			case 6:
 				break;
 
 
-			// Request Voltage and Current measurement of channel 2 output.
+			/* Request Voltage and Current measurement of channel 2 output. */
 			case 7:
 				break;
 
 
-			// Request Temperature sensor 1 and 2 output.
+			/* Request Temperature sensor 1 and 2 output. */
 			case 8:
 				break;
 
 
-			// Acknowledge message received.
+			/* Acknowledge message received. */
 			case 9:
 				break;
 
 
-			// Bad message received.
+			/* Bad message received. */
 			case 10:
 				break;
 
 
-			// Request current system state.
+			/* Request current system state. */
 			case 11:
 				break;
 		}
@@ -393,12 +408,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 }
 
 void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
-//	int i = 100;
-//	while(i>0){
-//		i = i -1;
-//	}
-	HAL_UART_DMAPause(&huart1);
-	HAL_UART_Receive_DMA(&huart1, rx_buff, uartSize_rx); // Receive UART
+	__NOP();
 }
 
 /*
