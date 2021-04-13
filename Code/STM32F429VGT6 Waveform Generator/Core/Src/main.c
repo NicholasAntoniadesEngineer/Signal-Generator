@@ -80,8 +80,8 @@ uint32_t Fclock = 90000000;		    // APB1 Timer Clock Frequency
 
 
 /* Setting up UART communications*/
-#define uartSize_rx 8
-#define uartSize_tx 8
+#define uartSize_rx 10
+#define uartSize_tx 10
 uint8_t rx_buff[uartSize_rx];
 uint8_t tx_buff[uartSize_tx];
 
@@ -206,11 +206,14 @@ void Startup(uint32_t Channel_1_sine_val[Ns], uint32_t Channel_2_sine_val[Ns],	u
 	HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_1, Channel_1_sine_val, Ns, DAC_ALIGN_12B_R); //Start the DAC DMA implementation for output 1.
 	/* Any code between here will cause phase lag between the output signals. */
 	HAL_DAC_Start_DMA(&hdac, DAC1_CHANNEL_2, Channel_2_sine_val, Ns, DAC_ALIGN_12B_R); //Start the DAC DMA implementation for output 2.
+
 	/* Setting signal output indicators to on  */
 	HAL_GPIO_WritePin(GPIOD, LED1_Pin, 1); // Turn LED1 on
 	HAL_GPIO_WritePin(GPIOD, LED2_Pin, 1); // Turn LED2 on
+
 	/* Setting up RS485 communications */
 	HAL_GPIO_WritePin(MAX485_PWR_GPIO_Port, MAX485_PWR_Pin, 1); // Turn on the MAX485 chip
+
 	/* Building start up message */
 	tx_buff[0] = 0x3C; // |<|(60/3C) : Start of message byte.
 	tx_buff[1] = 0; // |ADDR|() : Device Address byte.
@@ -220,6 +223,7 @@ void Startup(uint32_t Channel_1_sine_val[Ns], uint32_t Channel_2_sine_val[Ns],	u
 	tx_buff[5] = 0; // |DATA3| : Data byte 3
 	tx_buff[6] = 0; // |DATA4| : Data byte 4.
 	tx_buff[7] = 0x3E; // |>|(62/3E) : End of message byte.
+
 	/* Send start up message */
 	HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set MAX485 to transmitting
 	HAL_UART_Transmit(&huart2, tx_buff, strlen((char*) tx_buff), HAL_MAX_DELAY); // Send message in RS485
@@ -237,21 +241,21 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 	if((rx_buff[0] == '<') && (rx_buff[7] == '>')){
 
 		/*
-		|<|(60/3C) : Start of message byte.
+		|<|	     : Start of message byte.
 		|ADDR|() : Device Address byte.
-		|CMD|() : Command byte.
-		|DATA1| : Data byte 1.
-		|DATA2| : Data byte 2.
-		|DATA3| : Data byte 3.
-		|DATA4| : Data byte 4.
-		|>|(62/3E) : End of message byte.
+		|CMD|()  : Command byte.
+		|DATA1|  : Data byte 1.
+		|DATA2|  : Data byte 2.
+		|DATA3|  : Data byte 3.
+		|DATA4|  : Data byte 4.
+		|>|		 : End of message byte.
 
-		e.g. 3C 30 32 00 00 61 A8 3E, Setting channel 1 frequency to 25kHz
-		e.g. 3C 30 33 00 00 61 A8 3E, Setting channel 2 frequency to 25kHz
-		e.g. 3C 30 32 00 00 27 10 3E, Setting channel 1 frequency to 10kHz
-		e.g. 3C 30 33 00 00 27 10 3E, Setting channel 2 frequency to 10kHz
-		e.g. 3C 30 34 00 00 00 3C 3E, Setting channel 1 amplitude to 0.6
-		e.g. 3C 30 35 00 00 00 3C 3E, Setting channel 2 amplitude to 0.6
+		e.g. 3C 00 01 00 00 61 A8 3E, Setting channel 1 frequency to 25kHz
+		e.g. 3C 00 02 00 00 61 A8 3E, Setting channel 2 frequency to 25kHz
+		e.g. 3C 00 03 00 00 27 10 3E, Setting channel 1 frequency to 10kHz
+		e.g. 3C 00 04 00 00 27 10 3E, Setting channel 2 frequency to 10kHz
+		e.g. 3C 00 05 00 00 00 3C 3E, Setting channel 1 amplitude to 0.6
+		e.g. 3C 00 06 00 00 00 3C 3E, Setting channel 2 amplitude to 0.6
 		 */
 
 		// Switch statements to respond accordingly
@@ -263,7 +267,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 			//   break;
 
 			/* Change the frequency of DAC channel 1. */
-			case '2':
+			case 1:
 				// Building 4 bytes int a 32 bit value
 				channel_1_Frequency = rx_buff[6];
 				channel_1_Frequency = channel_1_Frequency | (rx_buff[5] << 8);
@@ -291,7 +295,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				break;
 
 			/* Change the frequency of DAC channel 2. */
-			case '3':
+			case 2:
 				// Building 4 bytes int a 32 bit value
 				channel_2_Frequency = rx_buff[6];
 				channel_2_Frequency = channel_2_Frequency | (rx_buff[5] << 8);
@@ -319,7 +323,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				break;
 
 			/* Change the amplitude of DAC channel 1 */
-			case '4':
+			case 3:
 				// Building 4 bytes int a 32 bit value
 				channel_1_Amplitude = rx_buff[6];
 				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[5] << 8);
@@ -349,7 +353,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
 
 			/* Change the amplitude of DAC channel 2. */
-			case '5':
+			case 4:
 				// Building 4 bytes int a 32 bit value
 				channel_2_Amplitude = rx_buff[6];
 				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[5] << 8);
