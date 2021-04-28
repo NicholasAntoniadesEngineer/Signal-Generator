@@ -72,6 +72,7 @@ void set_clock_TIM2(void);
 void set_clock_TIM4(void);
 void Get_channel_1_sine(void);
 void Get_channel_2_sine(void);
+void Message_handler(uint8_t rx_buff[]);
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

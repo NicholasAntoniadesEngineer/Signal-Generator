@@ -80,10 +80,14 @@ uint32_t Fclock = 90000000;		    // APB1 Timer Clock Frequency
 
 
 /* Setting up UART communications*/
-#define uartSize_rx 10
-#define uartSize_tx 10
+#define uartSize_rx 8
+#define uartSize_tx 8
 uint8_t rx_buff[uartSize_rx];
 uint8_t tx_buff[uartSize_tx];
+
+
+// for debugging
+int counter = 0;
 
 /* USER CODE END 0 */
 
@@ -123,9 +127,9 @@ int main(void)
   MX_TIM4_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
   /* Perform initializations */
   Startup(Channel_1_sine_val, Channel_2_sine_val, tx_buff);
+  /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -134,7 +138,13 @@ int main(void)
 
 	  /* Wait for instructions*/
       HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 0); // Set MAX485 to listening
-	  HAL_UART_Receive_IT(&huart2, rx_buff, uartSize_rx);		// Listen for messages
+	  //HAL_UART_Receive_IT(&huart2, rx_buff, uartSize_rx);		// Listen for messages
+	  HAL_UART_Receive(&huart2, rx_buff, uartSize_rx, 100);
+
+	  Message_handler(rx_buff);
+
+	  //HAL_UART_Receive(&huart2, rx_buff, uartSize_rx, HAL_MAX_DELAY);
+
 
     /* USER CODE END WHILE */
 
@@ -215,30 +225,43 @@ void Startup(uint32_t Channel_1_sine_val[Ns], uint32_t Channel_2_sine_val[Ns],	u
 	HAL_GPIO_WritePin(MAX485_PWR_GPIO_Port, MAX485_PWR_Pin, 1); // Turn on the MAX485 chip
 
 	/* Building start up message */
-	tx_buff[0] = 0x3C; // |<|(60/3C) : Start of message byte.
-	tx_buff[1] = 0; // |ADDR|() : Device Address byte.
-	tx_buff[2] = 1; // |CMD|() : Command byte.
-	tx_buff[3] = 0; // |DATA1| : Data byte 1.
-	tx_buff[4] = 0; // |DATA2| : Data byte 2.
-	tx_buff[5] = 0; // |DATA3| : Data byte 3
-	tx_buff[6] = 0; // |DATA4| : Data byte 4.
-	tx_buff[7] = 0x3E; // |>|(62/3E) : End of message byte.
+//	tx_buff[0] = 0x3C; // |<|(60/3C) : Start of message byte.
+//	tx_buff[1] = 1; // |ADDR|() : Device Address byte.
+//	tx_buff[2] = 1; // |CMD|() : Command byte.
+//	tx_buff[3] = 1; // |DATA1| : Data byte 1.
+//	tx_buff[4] = 1; // |DATA2| : Data byte 2.
+//	tx_buff[5] = 1; // |DATA3| : Data byte 3
+//	tx_buff[6] = 1; // |DATA4| : Data byte 4.
+//	tx_buff[7] = 0x3E; // |>|(62/3E) : End of message byte.
 
 	/* Send start up message */
-	HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set MAX485 to transmitting
-	HAL_UART_Transmit(&huart2, tx_buff, strlen((char*) tx_buff), HAL_MAX_DELAY); // Send message in RS485
+	//HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set MAX485 to transmitting
+	//HAL_UART_Transmit(&huart2, tx_buff, strlen((char*) tx_buff), HAL_MAX_DELAY); // Send message in RS485
 }
 
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
+	Message_handler(rx_buff);
+
+}
+
+void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
+	// Clear rx buffer
+	for(int i = 0; i<uartSize_rx; i++){
+		rx_buff[i] = 0;
+	}
+}
+
+void Message_handler(uint8_t rx_buff[]){
 	uint32_t channel_1_Frequency;
 	uint32_t channel_2_Frequency;
 	uint32_t channel_1_Amplitude;
 	uint32_t channel_2_Amplitude;
 
+
 	// If statements to validate message integrity
-	if((rx_buff[0] == '<') && (rx_buff[7] == '>')){
+	if((rx_buff[0] == 0x3c) && (rx_buff[7] == 0x3e)){
 
 		/*
 		|<|	     : Start of message byte.
@@ -377,47 +400,24 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 				// Sending response
 			    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); 					// Set MAX485 to transmitting
 				HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY); // Send message in RS485
-
+				counter++;
 				break;
-
 
 			/* Request Voltage and Current measurement of channel 1 output. */
-			case 6:
-				break;
-
-
 			/* Request Voltage and Current measurement of channel 2 output. */
-			case 7:
-				break;
-
-
 			/* Request Temperature sensor 1 and 2 output. */
-			case 8:
-				break;
-
-
 			/* Acknowledge message received. */
-			case 9:
-				break;
-
-
 			/* Bad message received. */
-			case 10:
-				break;
-
-
 			/* Request current system state. */
-			case 11:
-				break;
-		}
 
+		}
 
 	}
 
-}
-
-void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
-	__NOP();
+	// Clear rx buffer
+	for(int i = 0; i<uartSize_rx; i++){
+		rx_buff[i] = 0;
+	}
 }
 
 /*

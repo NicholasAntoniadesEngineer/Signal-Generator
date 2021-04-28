@@ -777,122 +777,27 @@ Wire Wire Line
 	15150 8800 15150 8850
 Wire Wire Line
 	15150 8850 15250 8850
-Wire Notes Line
-	15800 5000 13950 5000
-Wire Notes Line
-	15800 6350 15800 5000
-Wire Notes Line
-	13950 6350 15800 6350
-Wire Notes Line
-	13950 5000 13950 6350
 Text Notes 14150 5100 2    59   ~ 12
 SWD
-Text GLabel 15450 5650 2    47   Input ~ 0
+Text GLabel 14750 5650 2    47   Input ~ 0
 SW0
-Wire Wire Line
-	15000 5450 15450 5450
-Wire Wire Line
-	15150 5550 15450 5550
-Wire Wire Line
-	15300 5650 15450 5650
-Connection ~ 15050 5850
-Wire Wire Line
-	15050 5850 15450 5850
-Text GLabel 15450 5850 2    47   Input ~ 0
+Text GLabel 14750 5850 2    47   Input ~ 0
 NRST
-Text GLabel 15450 5550 2    47   Input ~ 0
+Text GLabel 14750 5550 2    47   Input ~ 0
 SWCLK
-Text GLabel 15450 5450 2    47   Input ~ 0
+Text GLabel 14750 5450 2    47   Input ~ 0
 SWDIO
-$Comp
-L power:GND #PWR0142
-U 1 1 6047588F
-P 15050 6100
-F 0 "#PWR0142" H 15050 5850 50  0001 C CNN
-F 1 "GND" H 15055 5927 50  0000 C CNN
-F 2 "" H 15050 6100 50  0001 C CNN
-F 3 "" H 15050 6100 50  0001 C CNN
-	1    15050 6100
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	15050 5850 15050 5900
-Wire Wire Line
-	15000 5850 15050 5850
-Wire Wire Line
-	15100 5650 14750 5650
-Wire Wire Line
-	14950 5550 14750 5550
-Wire Wire Line
-	14800 5450 14750 5450
-Wire Wire Line
-	14800 5850 14750 5850
-$Comp
-L Device:C_Small C31
-U 1 1 60464560
-P 15050 6000
-F 0 "C31" H 15142 6046 50  0000 L CNN
-F 1 "100n" H 15142 5955 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 15050 6000 50  0001 C CNN
-F 3 "~" H 15050 6000 50  0001 C CNN
-	1    15050 6000
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R32
-U 1 1 6046413B
-P 14900 5850
-F 0 "R32" V 14800 6000 50  0000 C CNN
-F 1 "22" V 14900 5850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 14900 5850 50  0001 C CNN
-F 3 "~" H 14900 5850 50  0001 C CNN
-	1    14900 5850
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R31
-U 1 1 60463CBB
-P 15200 5650
-F 0 "R31" V 15150 5800 50  0000 C CNN
-F 1 "22" V 15200 5650 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 15200 5650 50  0001 C CNN
-F 3 "~" H 15200 5650 50  0001 C CNN
-	1    15200 5650
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R30
-U 1 1 60463453
-P 15050 5550
-F 0 "R30" V 15000 5700 50  0000 C CNN
-F 1 "22" V 15050 5550 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 15050 5550 50  0001 C CNN
-F 3 "~" H 15050 5550 50  0001 C CNN
-	1    15050 5550
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R29
-U 1 1 60462454
-P 14900 5450
-F 0 "R29" V 14850 5600 50  0000 C CNN
-F 1 "22" V 14900 5450 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 14900 5450 50  0001 C CNN
-F 3 "~" H 14900 5450 50  0001 C CNN
-	1    14900 5450
-	0    1    1    0   
-$EndComp
 NoConn ~ 14750 5750
 NoConn ~ 14250 5750
 $Comp
 L power:GND #PWR0143
 U 1 1 60459941
-P 14050 5950
-F 0 "#PWR0143" H 14050 5700 50  0001 C CNN
-F 1 "GND" H 14055 5777 50  0000 C CNN
-F 2 "" H 14050 5950 50  0001 C CNN
-F 3 "" H 14050 5950 50  0001 C CNN
-	1    14050 5950
+P 14150 5950
+F 0 "#PWR0143" H 14150 5700 50  0001 C CNN
+F 1 "GND" H 14155 5777 50  0000 C CNN
+F 2 "" H 14150 5950 50  0001 C CNN
+F 3 "" H 14150 5950 50  0001 C CNN
+	1    14150 5950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -908,17 +813,6 @@ F 1 "+3.3V" H 14165 5573 50  0000 C CNN
 F 2 "" H 14150 5400 50  0001 C CNN
 F 3 "" H 14150 5400 50  0001 C CNN
 	1    14150 5400
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector_Generic:Conn_02x05_Odd_Even J6
-U 1 1 6044C1BE
-P 14450 5650
-F 0 "J6" H 14500 6067 50  0000 C CNN
-F 1 "SWD" H 14500 5976 50  0000 C CNN
-F 2 "Connector_PinSocket_1.27mm:PinSocket_2x05_P1.27mm_Vertical" H 14450 5650 50  0001 C CNN
-F 3 "~" H 14450 5650 50  0001 C CNN
-	1    14450 5650
 	1    0    0    -1  
 $EndComp
 Wire Notes Line
@@ -2926,47 +2820,6 @@ NoConn ~ 1600 9700
 NoConn ~ 1600 9800
 NoConn ~ 1600 9900
 NoConn ~ 1600 10000
-Wire Wire Line
-	14050 5550 14050 5650
-$Comp
-L Device:R_Small R14
-U 1 1 619C96A3
-P 14150 5550
-F 0 "R14" V 14100 5400 50  0000 C CNN
-F 1 "10k" V 14150 5550 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 14150 5550 50  0001 C CNN
-F 3 "~" H 14150 5550 50  0001 C CNN
-	1    14150 5550
-	0    1    1    0   
-$EndComp
-$Comp
-L Device:R_Small R19
-U 1 1 619C9AB5
-P 14150 5650
-F 0 "R19" V 14200 5650 50  0000 C CNN
-F 1 "10k" V 14150 5650 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 14150 5650 50  0001 C CNN
-F 3 "~" H 14150 5650 50  0001 C CNN
-	1    14150 5650
-	0    1    1    0   
-$EndComp
-Connection ~ 14050 5650
-Wire Wire Line
-	14050 5650 14050 5850
-$Comp
-L Device:R_Small R20
-U 1 1 619C9C21
-P 14150 5850
-F 0 "R20" V 14250 5850 50  0000 C CNN
-F 1 "10k" V 14150 5850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 14150 5850 50  0001 C CNN
-F 3 "~" H 14150 5850 50  0001 C CNN
-	1    14150 5850
-	0    1    1    0   
-$EndComp
-Connection ~ 14050 5850
-Wire Wire Line
-	14050 5850 14050 5950
 Text GLabel 3400 7500 2    50   Input ~ 0
 BOOT1
 Wire Wire Line
@@ -3417,10 +3270,10 @@ F 3 "" H 3100 1750 59  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R_Small R?
+L Device:R_Small R9
 U 1 1 605655CC
 P 4550 6500
-F 0 "R?" H 4650 6550 50  0000 C CNN
+F 0 "R9" H 4650 6550 50  0000 C CNN
 F 1 "1k" H 4650 6450 50  0000 C CNN
 F 2 "Resistor_SMD:R_0402_1005Metric" H 4550 6500 50  0001 C CNN
 F 3 "~" H 4550 6500 50  0001 C CNN
@@ -3430,10 +3283,10 @@ $EndComp
 Wire Wire Line
 	4550 6600 4550 6700
 $Comp
-L power:+3.3V #PWR?
+L power:+3.3V #PWR0104
 U 1 1 605BAE01
 P 4550 6350
-F 0 "#PWR?" H 4550 6200 50  0001 C CNN
+F 0 "#PWR0104" H 4550 6200 50  0001 C CNN
 F 1 "+3.3V" H 4565 6523 50  0000 C CNN
 F 2 "" H 4550 6350 50  0001 C CNN
 F 3 "" H 4550 6350 50  0001 C CNN
@@ -3448,8 +3301,6 @@ Wire Notes Line
 	4150 6100 4150 7250
 Text Notes 8750 7200 0    59   ~ 0
 This usb section  uses the pin \nthat is required for the UART boot loader!\nSomething must be done about this.
-Text Notes 13950 4900 0    59   ~ 0
-The footprint for this SWD connector,\nneeds to be rotated to the correct orientation,\nit is currently inverted
 Wire Wire Line
 	13800 2450 13800 2550
 Wire Wire Line
@@ -3464,4 +3315,37 @@ Wire Notes Line
 	9900 8000 9900 11050
 Wire Notes Line
 	9900 11050 6250 11050
+$Comp
+L Connector_Generic:Conn_02x05_Odd_Even J6
+U 1 1 6044C1BE
+P 14450 5650
+F 0 "J6" H 14500 6067 50  0000 C CNN
+F 1 "SWD" H 14500 5976 50  0000 C CNN
+F 2 "Connector_PinSocket_1.27mm:PinSocket_2x05_P1.27mm_Vertical" H 14450 5650 50  0001 C CNN
+F 3 "~" H 14450 5650 50  0001 C CNN
+	1    14450 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	14150 5950 14150 5850
+Wire Wire Line
+	14150 5550 14250 5550
+Wire Wire Line
+	14150 5650 14250 5650
+Connection ~ 14150 5650
+Wire Wire Line
+	14150 5650 14150 5550
+Wire Wire Line
+	14150 5850 14250 5850
+Connection ~ 14150 5850
+Wire Wire Line
+	14150 5850 14150 5650
+Wire Notes Line
+	13950 5000 15050 5000
+Wire Notes Line
+	15050 5000 15050 6200
+Wire Notes Line
+	15050 6200 13950 6200
+Wire Notes Line
+	13950 6200 13950 5000
 $EndSCHEMATC
