@@ -138,9 +138,7 @@ int main(void)
 
 	  /* Wait for instructions*/
       HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 0); // Set MAX485 to listening
-	  //HAL_UART_Receive_IT(&huart2, rx_buff, uartSize_rx);		// Listen for messages
 	  HAL_UART_Receive(&huart2, rx_buff, uartSize_rx, 100);
-
 	  Message_handler(rx_buff);
 
 	  //HAL_UART_Receive(&huart2, rx_buff, uartSize_rx, HAL_MAX_DELAY);
@@ -225,32 +223,30 @@ void Startup(uint32_t Channel_1_sine_val[Ns], uint32_t Channel_2_sine_val[Ns],	u
 	HAL_GPIO_WritePin(MAX485_PWR_GPIO_Port, MAX485_PWR_Pin, 1); // Turn on the MAX485 chip
 
 	/* Building start up message */
-//	tx_buff[0] = 0x3C; // |<|(60/3C) : Start of message byte.
-//	tx_buff[1] = 1; // |ADDR|() : Device Address byte.
-//	tx_buff[2] = 1; // |CMD|() : Command byte.
-//	tx_buff[3] = 1; // |DATA1| : Data byte 1.
-//	tx_buff[4] = 1; // |DATA2| : Data byte 2.
-//	tx_buff[5] = 1; // |DATA3| : Data byte 3
-//	tx_buff[6] = 1; // |DATA4| : Data byte 4.
-//	tx_buff[7] = 0x3E; // |>|(62/3E) : End of message byte.
+	tx_buff[0] = 0x3C; // |<|(60/3C) : Start of message byte.
+	tx_buff[1] = 1; // |ADDR|() : Device Address byte.
+	tx_buff[2] = 1; // |CMD|() : Command byte.
+	tx_buff[3] = 1; // |DATA1| : Data byte 1.
+	tx_buff[4] = 1; // |DATA2| : Data byte 2.
+	tx_buff[5] = 1; // |DATA3| : Data byte 3
+	tx_buff[6] = 1; // |DATA4| : Data byte 4.
+	tx_buff[7] = 0x3E; // |>|(62/3E) : End of message byte.
 
 	/* Send start up message */
-	//HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set MAX485 to transmitting
-	//HAL_UART_Transmit(&huart2, tx_buff, strlen((char*) tx_buff), HAL_MAX_DELAY); // Send message in RS485
+	HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set MAX485 to transmitting
+	HAL_UART_Transmit(&huart2, tx_buff, strlen((char*) tx_buff), HAL_MAX_DELAY); // Send message in RS485
 }
 
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
 
-	Message_handler(rx_buff);
+	//Message_handler(rx_buff);
 
 }
 
 void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
 	// Clear rx buffer
-	for(int i = 0; i<uartSize_rx; i++){
-		rx_buff[i] = 0;
-	}
+
 }
 
 void Message_handler(uint8_t rx_buff[]){
@@ -260,9 +256,13 @@ void Message_handler(uint8_t rx_buff[]){
 	uint32_t channel_2_Amplitude;
 
 
+	// Toggling transmission light
+	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 1); // Recieve
+	HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 0); // Busy
+	HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, 0); // Transmit
+
 	// If statements to validate message integrity
 	if((rx_buff[0] == 0x3c) && (rx_buff[7] == 0x3e)){
-
 		/*
 		|<|	     : Start of message byte.
 		|ADDR|() : Device Address byte.
@@ -284,6 +284,7 @@ void Message_handler(uint8_t rx_buff[]){
 		// Switch statements to respond accordingly
 		switch(rx_buff[2]){
 
+
 			/* On/off command. */
 			// case 1:
 			//
@@ -291,6 +292,9 @@ void Message_handler(uint8_t rx_buff[]){
 
 			/* Change the frequency of DAC channel 1. */
 			case 1:
+				// Toggling transmission light
+				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
+
 				// Building 4 bytes int a 32 bit value
 				channel_1_Frequency = rx_buff[6];
 				channel_1_Frequency = channel_1_Frequency | (rx_buff[5] << 8);
@@ -319,6 +323,9 @@ void Message_handler(uint8_t rx_buff[]){
 
 			/* Change the frequency of DAC channel 2. */
 			case 2:
+				// Toggling transmission light
+				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
+
 				// Building 4 bytes int a 32 bit value
 				channel_2_Frequency = rx_buff[6];
 				channel_2_Frequency = channel_2_Frequency | (rx_buff[5] << 8);
@@ -347,6 +354,9 @@ void Message_handler(uint8_t rx_buff[]){
 
 			/* Change the amplitude of DAC channel 1 */
 			case 3:
+				// Toggling transmission light
+				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
+
 				// Building 4 bytes int a 32 bit value
 				channel_1_Amplitude = rx_buff[6];
 				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[5] << 8);
@@ -377,6 +387,9 @@ void Message_handler(uint8_t rx_buff[]){
 
 			/* Change the amplitude of DAC channel 2. */
 			case 4:
+				// Toggling transmission light
+				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
+
 				// Building 4 bytes int a 32 bit value
 				channel_2_Amplitude = rx_buff[6];
 				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[5] << 8);
@@ -412,12 +425,19 @@ void Message_handler(uint8_t rx_buff[]){
 
 		}
 
+		// Toggling transmission light
+		HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, 1); // Transmit
+
 	}
 
 	// Clear rx buffer
 	for(int i = 0; i<uartSize_rx; i++){
 		rx_buff[i] = 0;
 	}
+
+	// Toggling transmission light
+	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 0); // Receive
+	HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 0); // Busy
 }
 
 /*
