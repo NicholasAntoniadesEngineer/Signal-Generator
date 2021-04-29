@@ -88,7 +88,8 @@ uint8_t rx_buff[uartSize_rx];
 uint8_t tx_buff[uartSize_tx];
 
 // ASCII interpretation
-char value_Array[6];
+char amplitude_value[2];
+char frquency_value[6];
 int value_int;
 
 // for debugging
@@ -295,20 +296,22 @@ void Message_handler(uint8_t rx_buff[]){
 				// Toggling transmission light
 				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
 
-
 				// Building 4 bytes int a 6 digi value
-				value_Array[0] = rx_buff[3];
-				value_Array[1] = rx_buff[4];
-				value_Array[2] = rx_buff[5];
-				value_Array[3] = rx_buff[6];
-				value_Array[4] = rx_buff[7];
-				value_Array[5] = rx_buff[8];
-				value_int = atoi(value_Array);
+				frquency_value[0] = rx_buff[3];
+				frquency_value[1] = rx_buff[4];
+				frquency_value[2] = rx_buff[5];
+				frquency_value[3] = rx_buff[6];
+				frquency_value[4] = rx_buff[7];
+				frquency_value[5] = rx_buff[8];
+				value_int = atoi(frquency_value);
 
-				if(value_int == 0){
+				// Boundary checks
+				if(value_int < 1){
 					value_int = 1;
 				}
-
+				if(value_int > 20000){
+					value_int = 20000;
+				}
 				// Updating channel 1 output frequency
 				Freq_Signal_1 = value_int;
 				set_clock_TIM2();	// Set the new sine frequency by updating the associate clock frequency
@@ -339,18 +342,21 @@ void Message_handler(uint8_t rx_buff[]){
 				// Toggling transmission light
 				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
 
-
 				// Building 4 bytes int a 6 digi value
-				value_Array[0] = rx_buff[3];
-				value_Array[1] = rx_buff[4];
-				value_Array[2] = rx_buff[5];
-				value_Array[3] = rx_buff[6];
-				value_Array[4] = rx_buff[7];
-				value_Array[5] = rx_buff[8];
-				value_int = atoi(value_Array);
+				frquency_value[0] = rx_buff[3];
+				frquency_value[1] = rx_buff[4];
+				frquency_value[2] = rx_buff[5];
+				frquency_value[3] = rx_buff[6];
+				frquency_value[4] = rx_buff[7];
+				frquency_value[5] = rx_buff[8];
+				value_int = atoi(frquency_value);
 
-				if(value_int == 0){
+				// Boundary checks
+				if(value_int < 1){
 					value_int = 1;
+				}
+				if(value_int > 20000){
+					value_int = 20000;
 				}
 
 				// Updating channel 1 output frequency
@@ -383,19 +389,19 @@ void Message_handler(uint8_t rx_buff[]){
 				// Toggling transmission light
 				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
 
+				// Building 4 bytes int a 6 digit value
+				amplitude_value[0] = rx_buff[7];
+				amplitude_value[1] = rx_buff[8];
+				value_int = atoi(amplitude_value);
 
-				// Building 4 bytes int a 6 digi value
-				value_Array[0] = rx_buff[3];
-				value_Array[1] = rx_buff[4];
-				value_Array[2] = rx_buff[5];
-				value_Array[3] = rx_buff[6];
-				value_Array[4] = rx_buff[7];
-				value_Array[5] = rx_buff[8];
-				value_int = atoi(value_Array);
-
-				if(value_int == 0){
+				// Boundary checks
+				if(value_int < 1){
 					value_int = 1;
 				}
+				if(value_int > 80){
+					value_int = 80;
+				}
+
 
 				// Updating channel 1 amplitude
 				Channel_1_sine_scale = (double)value_int/100; // Dividing by 100 to create a fraction
@@ -429,18 +435,17 @@ void Message_handler(uint8_t rx_buff[]){
 				// Toggling transmission light
 				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
 
+				// Building 4 bytes int a 6 digit value
+				amplitude_value[0] = rx_buff[7];
+				amplitude_value[1] = rx_buff[8];
+				value_int = atoi(amplitude_value);
 
-				// Building 4 bytes int a 6 digi value
-				value_Array[0] = rx_buff[3];
-				value_Array[1] = rx_buff[4];
-				value_Array[2] = rx_buff[5];
-				value_Array[3] = rx_buff[6];
-				value_Array[4] = rx_buff[7];
-				value_Array[5] = rx_buff[8];
-				value_int = atoi(value_Array);
-
-				if(value_int == 0){
+				// Boundary checks
+				if(value_int < 1){
 					value_int = 1;
+				}
+				if(value_int > 80){
+					value_int = 80;
 				}
 
 				// Updating channel 2 amplitude
@@ -536,7 +541,6 @@ void set_clock_TIM4(void){
       // This function sets up the clock to be used for the signal generation
 
 	  HAL_TIM_Base_Stop(&htim4);
-
 
 	  PSC= (Fclock/Ns)/(Freq_Signal_2*(Period + 1) ) - 1;
 	  htim4.Instance = TIM4;
