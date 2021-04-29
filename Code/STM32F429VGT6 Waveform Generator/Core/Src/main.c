@@ -30,6 +30,8 @@
 /* USER CODE BEGIN Includes */
 #include "math.h"
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 //#include "usbd_cdc_if.h" // this is needed to transmit a string of characters
 /* USER CODE END Includes */
 
@@ -80,11 +82,14 @@ uint32_t Fclock = 90000000;		    // APB1 Timer Clock Frequency
 
 
 /* Setting up UART communications*/
-#define uartSize_rx 8
-#define uartSize_tx 8
+#define uartSize_rx 10
+#define uartSize_tx 10
 uint8_t rx_buff[uartSize_rx];
 uint8_t tx_buff[uartSize_tx];
 
+// ASCII interpretation
+char value_Array[6];
+int value_int;
 
 // for debugging
 int counter = 0;
@@ -223,14 +228,17 @@ void Startup(uint32_t Channel_1_sine_val[Ns], uint32_t Channel_2_sine_val[Ns],	u
 	HAL_GPIO_WritePin(MAX485_PWR_GPIO_Port, MAX485_PWR_Pin, 1); // Turn on the MAX485 chip
 
 	/* Building start up message */
-	tx_buff[0] = 0x3C; // |<|(60/3C) : Start of message byte.
-	tx_buff[1] = 1; // |ADDR|() : Device Address byte.
-	tx_buff[2] = 1; // |CMD|() : Command byte.
-	tx_buff[3] = 1; // |DATA1| : Data byte 1.
-	tx_buff[4] = 1; // |DATA2| : Data byte 2.
-	tx_buff[5] = 1; // |DATA3| : Data byte 3
-	tx_buff[6] = 1; // |DATA4| : Data byte 4.
-	tx_buff[7] = 0x3E; // |>|(62/3E) : End of message byte.
+	tx_buff[0] = 0x3C; // |<|     : Start of message byte.
+	tx_buff[1] = 36;   // |ADDR|  : Device Address byte.
+	tx_buff[2] = 36;   // |CMD|   : Command byte.
+	tx_buff[3] = 36;   // |DATA1| : Data byte 1.
+	tx_buff[4] = 36;   // |DATA2| : Data byte 2.
+	tx_buff[5] = 36;   // |DATA3| : Data byte 3
+	tx_buff[6] = 36;   // |DATA4| : Data byte 4.
+	tx_buff[7] = 36;   // |DATA5| : Data byte 5.
+	tx_buff[8] = 36;   // |DATA6| : Data byte 6.
+	tx_buff[9] = '>';  // |>|     : End of message byte.
+
 
 	/* Send start up message */
 	HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); // Set MAX485 to transmitting
@@ -250,19 +258,15 @@ void HAL_UART_TxCpltCallback (UART_HandleTypeDef *huart){
 }
 
 void Message_handler(uint8_t rx_buff[]){
-	uint32_t channel_1_Frequency;
-	uint32_t channel_2_Frequency;
-	uint32_t channel_1_Amplitude;
-	uint32_t channel_2_Amplitude;
-
-
-	// Toggling transmission light
-	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 1); // Recieve
-	HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 0); // Busy
-	HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, 0); // Transmit
 
 	// If statements to validate message integrity
-	if((rx_buff[0] == 0x3c) && (rx_buff[7] == 0x3e)){
+	if((rx_buff[0] == '<') && (rx_buff[9] == '>')){
+
+		// Toggling transmission light
+		HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 1); // Receive
+		HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 0); // Busy
+		HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, 0); // Transmit
+
 		/*
 		|<|	     : Start of message byte.
 		|ADDR|() : Device Address byte.
@@ -271,144 +275,193 @@ void Message_handler(uint8_t rx_buff[]){
 		|DATA2|  : Data byte 2.
 		|DATA3|  : Data byte 3.
 		|DATA4|  : Data byte 4.
+		|DATA5|  : Data byte 5.
+		|DATA6|  : Data byte 6.
 		|>|		 : End of message byte.
 
-		e.g. 3C 00 01 00 00 61 A8 3E, Setting channel 1 frequency to 25kHz
-		e.g. 3C 00 02 00 00 61 A8 3E, Setting channel 2 frequency to 25kHz
-		e.g. 3C 00 03 00 00 27 10 3E, Setting channel 1 frequency to 10kHz
-		e.g. 3C 00 04 00 00 27 10 3E, Setting channel 2 frequency to 10kHz
-		e.g. 3C 00 05 00 00 00 3C 3E, Setting channel 1 amplitude to 0.6
-		e.g. 3C 00 06 00 00 00 3C 3E, Setting channel 2 amplitude to 0.6
+		e.g.
+		e.g.
+		e.g.
+		e.g.
+		e.g.
+		e.g.
 		 */
 
 		// Switch statements to respond accordingly
 		switch(rx_buff[2]){
 
-
-			/* On/off command. */
-			// case 1:
-			//
-			//   break;
-
 			/* Change the frequency of DAC channel 1. */
-			case 1:
+			case '1':
 				// Toggling transmission light
 				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
 
-				// Building 4 bytes int a 32 bit value
-				channel_1_Frequency = rx_buff[6];
-				channel_1_Frequency = channel_1_Frequency | (rx_buff[5] << 8);
-				channel_1_Frequency = channel_1_Frequency | (rx_buff[4] << 16);
-				channel_1_Frequency = channel_1_Frequency | (rx_buff[3] << 24);
+
+				// Building 4 bytes int a 6 digi value
+				value_Array[0] = rx_buff[3];
+				value_Array[1] = rx_buff[4];
+				value_Array[2] = rx_buff[5];
+				value_Array[3] = rx_buff[6];
+				value_Array[4] = rx_buff[7];
+				value_Array[5] = rx_buff[8];
+				value_int = atoi(value_Array);
+
+				if(value_int == 0){
+					value_int = 1;
+				}
 
 				// Updating channel 1 output frequency
-				Freq_Signal_1 = channel_1_Frequency;
+				Freq_Signal_1 = value_int;
 				set_clock_TIM2();	// Set the new sine frequency by updating the associate clock frequency
 
 				// Building response
-				tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
-				tx_buff[1] = rx_buff[1];	// |ADDR|() : Device Address byte.
+				tx_buff[0] = '<'; 			// |<|     : Start of message byte.
+				tx_buff[1] = rx_buff[1];	// |ADDR|  : Device Address byte.
 				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
 				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
 				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
 				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
 				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
-				tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
+				tx_buff[7] = rx_buff[7];	// |DATA1| : Data byte 5.
+				tx_buff[8] = rx_buff[8];	// |DATA2| : Data byte 6.
+				tx_buff[9] = '>'; 			// |>|     : End of message byte.
+
+				// Toggling transmission light
+				HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, 1); // Transmit
 
 				// Sending response
 			    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); 					// Set MAX485 to transmitting
 				HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY); // Send message in RS485
-
+				counter++;
 				break;
 
 			/* Change the frequency of DAC channel 2. */
-			case 2:
+			case '2':
 				// Toggling transmission light
 				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
 
-				// Building 4 bytes int a 32 bit value
-				channel_2_Frequency = rx_buff[6];
-				channel_2_Frequency = channel_2_Frequency | (rx_buff[5] << 8);
-				channel_2_Frequency = channel_2_Frequency | (rx_buff[4] << 16);
-				channel_2_Frequency = channel_2_Frequency | (rx_buff[3] << 24);
+
+				// Building 4 bytes int a 6 digi value
+				value_Array[0] = rx_buff[3];
+				value_Array[1] = rx_buff[4];
+				value_Array[2] = rx_buff[5];
+				value_Array[3] = rx_buff[6];
+				value_Array[4] = rx_buff[7];
+				value_Array[5] = rx_buff[8];
+				value_int = atoi(value_Array);
+
+				if(value_int == 0){
+					value_int = 1;
+				}
 
 				// Updating channel 1 output frequency
-				Freq_Signal_2 = channel_2_Frequency;
+				Freq_Signal_2 = value_int;
 				set_clock_TIM4();	// Set the new sine frequency by updating the associate clock frequency
 
 				// Building response
-				tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
-				tx_buff[1] = rx_buff[1];	// |ADDR|() : Device Address byte.
+				tx_buff[0] = '<'; 			// |<|     : Start of message byte.
+				tx_buff[1] = rx_buff[1];	// |ADDR|  : Device Address byte.
 				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
 				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
 				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
 				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
 				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
-				tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
+				tx_buff[7] = rx_buff[7];	// |DATA1| : Data byte 5.
+				tx_buff[8] = rx_buff[8];	// |DATA2| : Data byte 6.
+				tx_buff[9] = '>'; 			// |>|     : End of message byte.
+
+				// Toggling transmission light
+				HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, 1); // Transmit
 
 				// Sending response
 			    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); 					// Set MAX485 to transmitting
 				HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY); // Send message in RS485
-
+				counter++;
 				break;
 
 			/* Change the amplitude of DAC channel 1 */
-			case 3:
+			case '3':
 				// Toggling transmission light
 				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
 
-				// Building 4 bytes int a 32 bit value
-				channel_1_Amplitude = rx_buff[6];
-				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[5] << 8);
-				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[4] << 16);
-				channel_1_Amplitude = channel_1_Amplitude | (rx_buff[3] << 24);
+
+				// Building 4 bytes int a 6 digi value
+				value_Array[0] = rx_buff[3];
+				value_Array[1] = rx_buff[4];
+				value_Array[2] = rx_buff[5];
+				value_Array[3] = rx_buff[6];
+				value_Array[4] = rx_buff[7];
+				value_Array[5] = rx_buff[8];
+				value_int = atoi(value_Array);
+
+				if(value_int == 0){
+					value_int = 1;
+				}
 
 				// Updating channel 1 amplitude
-				Channel_1_sine_scale = (double)channel_1_Amplitude/100; // Dividing by 100 to create a fraction
+				Channel_1_sine_scale = (double)value_int/100; // Dividing by 100 to create a fraction
 				Get_channel_1_sine(); // Generate new table of sine values
 
 				// Building response
-				tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
-				tx_buff[1] = rx_buff[1];	// |ADDR|() : Device Address byte.
+				tx_buff[0] = '<'; 			// |<|     : Start of message byte.
+				tx_buff[1] = rx_buff[1];	// |ADDR|  : Device Address byte.
 				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
 				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
 				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
 				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
 				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
-				tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
+				tx_buff[7] = rx_buff[7];	// |DATA1| : Data byte 5.
+				tx_buff[8] = rx_buff[8];	// |DATA2| : Data byte 6.
+				tx_buff[9] = '>'; 			// |>|     : End of message byte.
+
+				// Toggling transmission light
+				HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, 1); // Transmit
 
 				// Sending response
 			    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); 					// Set MAX485 to transmitting
 				HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY); // Send message in RS485
 
-
+				counter++;
 				break;
 
 
 			/* Change the amplitude of DAC channel 2. */
-			case 4:
+			case '4':
 				// Toggling transmission light
 				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
 
-				// Building 4 bytes int a 32 bit value
-				channel_2_Amplitude = rx_buff[6];
-				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[5] << 8);
-				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[4] << 16);
-				channel_2_Amplitude = channel_2_Amplitude | (rx_buff[3] << 24);
+
+				// Building 4 bytes int a 6 digi value
+				value_Array[0] = rx_buff[3];
+				value_Array[1] = rx_buff[4];
+				value_Array[2] = rx_buff[5];
+				value_Array[3] = rx_buff[6];
+				value_Array[4] = rx_buff[7];
+				value_Array[5] = rx_buff[8];
+				value_int = atoi(value_Array);
+
+				if(value_int == 0){
+					value_int = 1;
+				}
 
 				// Updating channel 2 amplitude
-				Channel_2_sine_scale = (double)channel_2_Amplitude/100; // Dividing by 100 to create a fraction
+				Channel_2_sine_scale = (double)value_int/100; // Dividing by 100 to create a fraction
 				Get_channel_2_sine();	// Generate new table of sine values
 
+
 				// Building response
-				tx_buff[0] = 0x3C; 			// |<|(60/3C) : Start of message byte.
-				tx_buff[1] = rx_buff[1];	// |ADDR|() : Device Address byte.
+				tx_buff[0] = '<'; 			// |<|     : Start of message byte.
+				tx_buff[1] = rx_buff[1];	// |ADDR|  : Device Address byte.
 				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
 				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
 				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
 				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
 				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
-				tx_buff[7] = 0x3E; 			// |>|(62/3E) : End of message byte.
+				tx_buff[7] = rx_buff[7];	// |DATA1| : Data byte 5.
+				tx_buff[8] = rx_buff[8];	// |DATA2| : Data byte 6.
+				tx_buff[9] = '>'; 			// |>|     : End of message byte.
+
+				// Toggling transmission light
+				HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, 1); // Transmit
 
 				// Sending response
 			    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 1); 					// Set MAX485 to transmitting
@@ -425,8 +478,6 @@ void Message_handler(uint8_t rx_buff[]){
 
 		}
 
-		// Toggling transmission light
-		HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, 1); // Transmit
 
 	}
 
@@ -438,6 +489,7 @@ void Message_handler(uint8_t rx_buff[]){
 	// Toggling transmission light
 	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 0); // Receive
 	HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 0); // Busy
+	HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, 0); // Transmit
 }
 
 /*
@@ -467,6 +519,8 @@ void Get_channel_2_sine(void){
 void set_clock_TIM2(void){
 	  // This function sets up the clock to be used for the signal generation
 
+	  HAL_TIM_Base_Stop(&htim2);
+
 	  PSC= (Fclock/Ns)/(Freq_Signal_1*(Period + 1) ) - 1;
 	  htim2.Instance = TIM2;
 	  htim2.Init.Period = Period; //+1
@@ -475,10 +529,14 @@ void set_clock_TIM2(void){
 	  {
 	    Error_Handler();
 	  }
+	  HAL_TIM_Base_Start(&htim2);
 }
 
 void set_clock_TIM4(void){
       // This function sets up the clock to be used for the signal generation
+
+	  HAL_TIM_Base_Stop(&htim4);
+
 
 	  PSC= (Fclock/Ns)/(Freq_Signal_2*(Period + 1) ) - 1;
 	  htim4.Instance = TIM4;
@@ -488,6 +546,8 @@ void set_clock_TIM4(void){
 	  {
 	    Error_Handler();
 	  }
+
+	  HAL_TIM_Base_Start(&htim4);
 }
 /* USER CODE END 4 */
 
