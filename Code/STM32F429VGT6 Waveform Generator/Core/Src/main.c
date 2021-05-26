@@ -74,8 +74,8 @@ double Channel_1_sine_scale = 0.65; // Sine scale values. Max value = sine_scale
 double Channel_2_sine_scale = 0.65; // Giving a max amplitude of 3.24V
 int sine_dc_offset = 480; 		    // DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
 #define PI 3.1415926			    // Definition of PI
-int Freq_Signal_1 = 5000; 		    // Frequency of signal 1
-int Freq_Signal_2 = 5000; 		    // Frequency of signal 2
+int Freq_Signal_1 = 1000; 		    // Frequency of signal 1
+int Freq_Signal_2 = 1000; 		    // Frequency of signal 2
 int PSC;						    // Variable to hold the Prescaler value
 int Period = 1;					    // Variable to hold the Period
 uint32_t Fclock = 90000000;		    // APB1 Timer Clock Frequency
@@ -86,6 +86,9 @@ uint32_t Fclock = 90000000;		    // APB1 Timer Clock Frequency
 #define uartSize_tx 10
 uint8_t rx_buff[uartSize_rx];
 uint8_t tx_buff[uartSize_tx];
+int temp_frequency;
+int temp_sine_scale;
+char temp_buff[uartSize_rx];
 
 // ASCII interpretation
 char amplitude_value[2];
@@ -110,7 +113,8 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+
+	HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -146,6 +150,8 @@ int main(void)
       HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, 0); // Set MAX485 to listening
 	  HAL_UART_Receive(&huart2, rx_buff, uartSize_rx, 100);
 	  Message_handler(rx_buff);
+
+	 // HAL_UART_Transmit(&huart2, rx_buff, strlen((char*)rx_buff), 100); // Send message in RS485
 
 	  //HAL_UART_Receive(&huart2, rx_buff, uartSize_rx, HAL_MAX_DELAY);
 
@@ -296,7 +302,7 @@ void Message_handler(uint8_t rx_buff[]){
 				// Toggling transmission light
 				HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, 1); // Busy
 
-				// Building 4 bytes int a 6 digi value
+				// Building 4 bytes int a 6 digit value
 				frquency_value[0] = rx_buff[3];
 				frquency_value[1] = rx_buff[4];
 				frquency_value[2] = rx_buff[5];
@@ -306,8 +312,8 @@ void Message_handler(uint8_t rx_buff[]){
 				value_int = atoi(frquency_value);
 
 				// Boundary checks
-				if(value_int < 1){
-					value_int = 1;
+				if(value_int < 500){
+					value_int = 500;
 				}
 				if(value_int > 20000){
 					value_int = 20000;
@@ -316,16 +322,21 @@ void Message_handler(uint8_t rx_buff[]){
 				Freq_Signal_1 = value_int;
 				set_clock_TIM2();	// Set the new sine frequency by updating the associate clock frequency
 
+
+				// Calculating frequency from buffer value
+				temp_frequency  = ((Fclock/Ns)/((TIM2 ->PSC) - 1 )*(Period + 1));
+				itoa(temp_frequency, temp_buff,10);
+
 				// Building response
 				tx_buff[0] = '<'; 			// |<|     : Start of message byte.
 				tx_buff[1] = rx_buff[1];	// |ADDR|  : Device Address byte.
 				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
-				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
-				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
-				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
-				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
-				tx_buff[7] = rx_buff[7];	// |DATA1| : Data byte 5.
-				tx_buff[8] = rx_buff[8];	// |DATA2| : Data byte 6.
+				tx_buff[3] = temp_buff[3];	// |DATA1| : Data byte 1.
+				tx_buff[4] = temp_buff[4];	// |DATA2| : Data byte 2.
+				tx_buff[5] = temp_buff[5];	// |DATA3| : Data byte 3
+				tx_buff[6] = temp_buff[6];	// |DATA4| : Data byte 4.
+				tx_buff[7] = temp_buff[7];	// |DATA1| : Data byte 5.
+				tx_buff[8] = temp_buff[8];	// |DATA2| : Data byte 6.
 				tx_buff[9] = '>'; 			// |>|     : End of message byte.
 
 				// Toggling transmission light
@@ -352,8 +363,8 @@ void Message_handler(uint8_t rx_buff[]){
 				value_int = atoi(frquency_value);
 
 				// Boundary checks
-				if(value_int < 1){
-					value_int = 1;
+				if(value_int < 500){
+					value_int = 500;
 				}
 				if(value_int > 20000){
 					value_int = 20000;
@@ -363,16 +374,20 @@ void Message_handler(uint8_t rx_buff[]){
 				Freq_Signal_2 = value_int;
 				set_clock_TIM4();	// Set the new sine frequency by updating the associate clock frequency
 
+				// Calculating frequency from buffer value
+				temp_frequency  = ((Fclock/Ns)/((TIM4 ->PSC) - 1 )*(Period + 1));
+				itoa(temp_frequency, temp_buff,10);
+
 				// Building response
 				tx_buff[0] = '<'; 			// |<|     : Start of message byte.
 				tx_buff[1] = rx_buff[1];	// |ADDR|  : Device Address byte.
 				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
-				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
-				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
-				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
-				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
-				tx_buff[7] = rx_buff[7];	// |DATA1| : Data byte 5.
-				tx_buff[8] = rx_buff[8];	// |DATA2| : Data byte 6.
+				tx_buff[3] = temp_buff[3];	// |DATA1| : Data byte 1.
+				tx_buff[4] = temp_buff[4];	// |DATA2| : Data byte 2.
+				tx_buff[5] = temp_buff[5];	// |DATA3| : Data byte 3
+				tx_buff[6] = temp_buff[6];	// |DATA4| : Data byte 4.
+				tx_buff[7] = temp_buff[7];	// |DATA1| : Data byte 5.
+				tx_buff[8] = temp_buff[8];	// |DATA2| : Data byte 6.
 				tx_buff[9] = '>'; 			// |>|     : End of message byte.
 
 				// Toggling transmission light
@@ -398,8 +413,8 @@ void Message_handler(uint8_t rx_buff[]){
 				if(value_int < 1){
 					value_int = 1;
 				}
-				if(value_int > 80){
-					value_int = 80;
+				if(value_int > 68){
+					value_int = 68;
 				}
 
 
@@ -444,8 +459,8 @@ void Message_handler(uint8_t rx_buff[]){
 				if(value_int < 1){
 					value_int = 1;
 				}
-				if(value_int > 80){
-					value_int = 80;
+				if(value_int > 68){
+					value_int = 68;
 				}
 
 				// Updating channel 2 amplitude
