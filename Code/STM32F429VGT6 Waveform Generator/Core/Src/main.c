@@ -72,11 +72,11 @@ uint32_t Channel_1_sine_val[Ns];    // Look up table for all the first sine wave
 uint32_t Channel_2_sine_val[Ns];    // Look up table for all the second sine wave.
 double Channel_1_sine_scale = 0.65; // Sine scale values. Max value = sine_scaled*3.3. Will result in a deformed signal.
 double Channel_2_sine_scale = 0.65; // Giving a max amplitude of 3.24V
-int sine_dc_offset = 480; 		    // DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Chec
+int sine_dc_offset = 480; 		    // DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Check
 #define PI 3.1415926			    // Definition of PI
 int Freq_Signal_1 = 1000; 		    // Frequency of signal 1
 int Freq_Signal_2 = 1000; 		    // Frequency of signal 2
-int PSC;						    // Variable to hold the Prescaler value
+int PSC;						    // Variable to hold the Pre-scaler value
 int Period = 1;					    // Variable to hold the Period
 uint32_t Fclock = 90000000;		    // APB1 Timer Clock Frequency
 
@@ -324,19 +324,19 @@ void Message_handler(uint8_t rx_buff[]){
 
 
 				// Calculating frequency from buffer value
-				temp_frequency  = ((Fclock/Ns)/((TIM2 ->PSC) - 1 )*(Period + 1));
-				itoa(temp_frequency, temp_buff,10);
+				// temp_frequency  = ((Fclock/Ns)/((TIM2 ->PSC) - 1 )*(Period + 1));
+				// itoa(temp_frequency, temp_buff,10);
 
 				// Building response
 				tx_buff[0] = '<'; 			// |<|     : Start of message byte.
 				tx_buff[1] = rx_buff[1];	// |ADDR|  : Device Address byte.
 				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
-				tx_buff[3] = temp_buff[3];	// |DATA1| : Data byte 1.
-				tx_buff[4] = temp_buff[4];	// |DATA2| : Data byte 2.
-				tx_buff[5] = temp_buff[5];	// |DATA3| : Data byte 3
-				tx_buff[6] = temp_buff[6];	// |DATA4| : Data byte 4.
-				tx_buff[7] = temp_buff[7];	// |DATA1| : Data byte 5.
-				tx_buff[8] = temp_buff[8];	// |DATA2| : Data byte 6.
+				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
+				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
+				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
+				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
+				tx_buff[7] = rx_buff[7];	// |DATA1| : Data byte 5.
+				tx_buff[8] = rx_buff[8];	// |DATA2| : Data byte 6.
 				tx_buff[9] = '>'; 			// |>|     : End of message byte.
 
 				// Toggling transmission light
@@ -375,19 +375,19 @@ void Message_handler(uint8_t rx_buff[]){
 				set_clock_TIM4();	// Set the new sine frequency by updating the associate clock frequency
 
 				// Calculating frequency from buffer value
-				temp_frequency  = ((Fclock/Ns)/((TIM4 ->PSC) - 1 )*(Period + 1));
-				itoa(temp_frequency, temp_buff,10);
+				// temp_frequency  = ((Fclock/Ns)/((TIM4 ->PSC) - 1 )*(Period + 1));
+				// itoa(temp_frequency, temp_buff,10);
 
 				// Building response
 				tx_buff[0] = '<'; 			// |<|     : Start of message byte.
 				tx_buff[1] = rx_buff[1];	// |ADDR|  : Device Address byte.
 				tx_buff[2] = rx_buff[2];	// |CMD|() : Command byte.
-				tx_buff[3] = temp_buff[3];	// |DATA1| : Data byte 1.
-				tx_buff[4] = temp_buff[4];	// |DATA2| : Data byte 2.
-				tx_buff[5] = temp_buff[5];	// |DATA3| : Data byte 3
-				tx_buff[6] = temp_buff[6];	// |DATA4| : Data byte 4.
-				tx_buff[7] = temp_buff[7];	// |DATA1| : Data byte 5.
-				tx_buff[8] = temp_buff[8];	// |DATA2| : Data byte 6.
+				tx_buff[3] = rx_buff[3];	// |DATA1| : Data byte 1.
+				tx_buff[4] = rx_buff[4];	// |DATA2| : Data byte 2.
+				tx_buff[5] = rx_buff[5];	// |DATA3| : Data byte 3
+				tx_buff[6] = rx_buff[6];	// |DATA4| : Data byte 4.
+				tx_buff[7] = rx_buff[7];	// |DATA1| : Data byte 5.
+				tx_buff[8] = rx_buff[8];	// |DATA2| : Data byte 6.
 				tx_buff[9] = '>'; 			// |>|     : End of message byte.
 
 				// Toggling transmission light
@@ -504,6 +504,7 @@ void Message_handler(uint8_t rx_buff[]){
 	// Clear rx buffer
 	for(int i = 0; i<uartSize_rx; i++){
 		rx_buff[i] = 0;
+		temp_buff[i] = 0;
 	}
 
 	// Toggling transmission light
