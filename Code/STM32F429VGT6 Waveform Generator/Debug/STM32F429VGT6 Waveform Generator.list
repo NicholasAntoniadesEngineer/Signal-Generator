@@ -2720,6 +2720,8 @@ void Message_handler(uint8_t rx_buff[]){
  8001804:	4b83      	ldr	r3, [pc, #524]	; (8001a14 <Message_handler+0x4d4>)
  8001806:	601a      	str	r2, [r3, #0]
 
+				//value_int = value_int*1.16; /// This code is specificially for control enclosure 4
+
 				// Boundary checks
 				if(value_int < 1){
  8001808:	4b82      	ldr	r3, [pc, #520]	; (8001a14 <Message_handler+0x4d4>)
@@ -2870,6 +2872,8 @@ void Message_handler(uint8_t rx_buff[]){
  80018f0:	4602      	mov	r2, r0
  80018f2:	4b48      	ldr	r3, [pc, #288]	; (8001a14 <Message_handler+0x4d4>)
  80018f4:	601a      	str	r2, [r3, #0]
+
+				//value_int = value_int*1.16; /// This code is specificially for control enclosure 4
 
 				// Boundary checks
 				if(value_int < 1){

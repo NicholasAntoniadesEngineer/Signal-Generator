@@ -70,9 +70,9 @@ int Res = 4096;				        // DAC resolution.
 								    // NS 80 seems to work up to 25kHz
 uint32_t Channel_1_sine_val[Ns];    // Look up table for all the first sine wave.
 uint32_t Channel_2_sine_val[Ns];    // Look up table for all the second sine wave.
-double Channel_1_sine_scale = 0.65; // Sine scale values. Max value = sine_scaled*3.3. Will result in a deformed signal.
-double Channel_2_sine_scale = 0.65; // Giving a max amplitude of 3.24V
-int sine_dc_offset = 480; 		    // DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Check
+double Channel_1_sine_scale = 0.68; // Sine scale values. Max value = sine_scaled*3.3. Will result in a deformed signal.
+double Channel_2_sine_scale = 0.68; // Giving a max amplitude of 3.24V
+int sine_dc_offset = 300; 		    // DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Check
 #define PI 3.1415926			    // Definition of PI
 int Freq_Signal_1 = 1000; 		    // Frequency of signal 1
 int Freq_Signal_2 = 1000; 		    // Frequency of signal 2
@@ -409,6 +409,8 @@ void Message_handler(uint8_t rx_buff[]){
 				amplitude_value[1] = rx_buff[8];
 				value_int = atoi(amplitude_value);
 
+				//value_int = value_int*1.16; /// This code is specificially for control enclosure 4
+
 				// Boundary checks
 				if(value_int < 1){
 					value_int = 1;
@@ -454,6 +456,8 @@ void Message_handler(uint8_t rx_buff[]){
 				amplitude_value[0] = rx_buff[7];
 				amplitude_value[1] = rx_buff[8];
 				value_int = atoi(amplitude_value);
+
+				//value_int = value_int*1.16; /// This code is specificially for control enclosure 4
 
 				// Boundary checks
 				if(value_int < 1){
