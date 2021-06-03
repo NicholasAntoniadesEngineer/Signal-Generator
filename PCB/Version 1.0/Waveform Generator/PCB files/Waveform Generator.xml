@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="D">
   <design>
-    <source>C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\PCB\Waveform Generator\Waveform Generator.sch</source>
-    <date>22 Feb 2021 15:12:14</date>
+    <source>C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\PCB\Version 1.0\Waveform Generator\PCB files\Waveform Generator.sch</source>
+    <date>01 Jun 2021 10:22:29</date>
     <tool>Eeschema (5.1.5)-3</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -633,7 +633,7 @@
       <tstamp>6085EE52</tstamp>
     </comp>
     <comp ref="C28">
-      <value>15u</value>
+      <value>10u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -721,7 +721,7 @@
       <tstamp>604A648B</tstamp>
     </comp>
     <comp ref="C27">
-      <value>15u</value>
+      <value>10u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -769,7 +769,7 @@
       <tstamp>607192DD</tstamp>
     </comp>
     <comp ref="C29">
-      <value>15u</value>
+      <value>10u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -785,7 +785,7 @@
       <tstamp>607192E9</tstamp>
     </comp>
     <comp ref="C30">
-      <value>15u</value>
+      <value>10u</value>
       <footprint>Capacitor_SMD:C_0402_1005Metric</footprint>
       <datasheet>~</datasheet>
       <libsource lib="Device" part="C_Small" description="Unpolarized capacitor, small symbol"/>
@@ -849,7 +849,7 @@
       <tstamp>60B507A5</tstamp>
     </comp>
     <comp ref="U1">
-      <value>STM32F427VITx</value>
+      <value>STM32F429VGT6</value>
       <footprint>Package_QFP:LQFP-100_14x14mm_P0.5mm</footprint>
       <datasheet>http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00071990.pdf</datasheet>
       <libsource lib="MCU_ST_STM32F4" part="STM32F427VITx" description="ARM Cortex-M4 MCU, 2048KB flash, 192KB RAM, 180MHz, 1.8-3.6V, 82 GPIO, LQFP-100"/>
@@ -1768,7 +1768,7 @@
       <uri>C:\Program Files\KiCad\share\kicad\library/Device.lib</uri>
     </library>
     <library logical="Extra Components">
-      <uri>C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\PCB\Waveform Generator/Extra Components.lib</uri>
+      <uri>C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\PCB\Version 1.0\Waveform Generator\PCB files/Extra Components.lib</uri>
     </library>
     <library logical="Interface_UART">
       <uri>C:\Program Files\KiCad\share\kicad\library/Interface_UART.lib</uri>
@@ -1792,7 +1792,7 @@
       <uri>C:\Program Files\KiCad\share\kicad\library/Transistor_FET.lib</uri>
     </library>
     <library logical="Waveform Generator-cache">
-      <uri>C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\PCB\Waveform Generator/Waveform Generator-cache.lib</uri>
+      <uri>C:\Users\Nanodyn - Spare\OneDrive - Nanodyn\Desktop\GIT repository\Waveform-generator\PCB\Version 1.0\Waveform Generator\PCB files/Waveform Generator-cache.lib</uri>
     </library>
   </libraries>
   <nets>
