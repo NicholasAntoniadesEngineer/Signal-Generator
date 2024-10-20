@@ -1,3 +1,0 @@
-(fp_lib_table
-  (lib (name Capacitive_Sensing_PCB)(type KiCad)(uri ${KIPRJMOD}/Capacitive_Sensing_PCB.pretty)(options "")(descr ""))
-)

@@ -1,5 +1,0 @@
-(sym_lib_table
-  (lib (name Amp_Relay)(type Legacy)(uri "C:/Users/stephen/Nanodyn/Nanodyn - Nanodyn_Systems_LabServer/Product Development/Projects/Sledgehammer/Renard/KiCad/Amp_Relay/Amp_Relay-LAPTOP-HUDS25TS.lib")(options "")(descr ""))
-  (lib (name Amp_Relay-LAPTOP-HUDS25TS-rescue)(type Legacy)(uri ${KIPRJMOD}/Amp_Relay-LAPTOP-HUDS25TS-rescue.lib)(options "")(descr ""))
-  (lib (name Amp_Relay-rescue)(type Legacy)(uri ${KIPRJMOD}/Amp_Relay-rescue.lib)(options "")(descr ""))
-)

@@ -1,4 +1,0 @@
-(fp_lib_table
-  (lib (name Amp_Input_Filter)(type KiCad)(uri ${KIPRJMOD}/Amp_Input_Filter.pretty)(options "")(descr ""))
-  (lib (name Amp_Relay)(type KiCad)(uri ${KIPRJMOD}/Amp_Relay.pretty)(options "")(descr ""))
-)

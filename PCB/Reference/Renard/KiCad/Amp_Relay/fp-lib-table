@@ -1,3 +1,0 @@
-(fp_lib_table
-  (lib (name Amp_Relay)(type KiCad)(uri ${KIPRJMOD}/Amp_Relay.pretty)(options "")(descr ""))
-)
