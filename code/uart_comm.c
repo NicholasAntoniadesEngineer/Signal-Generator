@@ -5,12 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Setting up UART communications*/
+/* Setting up UART communications */
 #define uartSize_rx 10
 #define uartSize_tx 10
+
 uint8_t rx_buff[uartSize_rx];
 uint8_t tx_buff[uartSize_tx];
-extern int Freq_Signal_1, Freq_Signal_2;
 
 int temp_frequency;
 int temp_sine_scale;
@@ -21,7 +21,7 @@ char amplitude_value[2];
 char frquency_value[6];
 int value_int;
 
-// for debugging
+// For debugging
 int counter = 0;
 
 void UART_Init(void) 
@@ -29,7 +29,7 @@ void UART_Init(void)
     HAL_UART_Receive(&huart2, rx_buff, uartSize_rx, 100);
 }
 
-void Message_handler(uint8_t rx_buff[]) 
+void Message_handler(uint8_t rx_buff[], int *Freq_Signal_1, int *Freq_Signal_2, double *Channel_1_sine_scale, double *Channel_2_sine_scale) 
 {
     // If statements to validate message integrity
     if ((rx_buff[0] == '<') && (rx_buff[9] == '>')) 
@@ -50,7 +50,7 @@ void Message_handler(uint8_t rx_buff[])
                 int value_int = atoi(frquency_value);
                 if (value_int < 500) value_int = 500;
                 if (value_int > 20000) value_int = 20000;
-                Freq_Signal_1 = value_int;
+                *Freq_Signal_1 = value_int; // Use pointer to update frequency
                 set_clock_TIM2(); // Update frequency
 
                 Build_Response(rx_buff, tx_buff);
@@ -65,7 +65,7 @@ void Message_handler(uint8_t rx_buff[])
                 int value_int = atoi(frquency_value);
                 if (value_int < 500) value_int = 500;
                 if (value_int > 20000) value_int = 20000;
-                Freq_Signal_2 = value_int;
+                *Freq_Signal_2 = value_int; // Use pointer to update frequency
                 set_clock_TIM4(); // Update frequency
 
                 Build_Response(rx_buff, tx_buff);
@@ -80,7 +80,7 @@ void Message_handler(uint8_t rx_buff[])
                 int value_int = atoi(amplitude_value);
                 if (value_int < 1) value_int = 1;
                 if (value_int > 68) value_int = 68;
-                Channel_1_sine_scale = (double)value_int / 100;
+                *Channel_1_sine_scale = (double)value_int / 100; // Use pointer to update amplitude
                 Get_channel_1_sine(); // Update sine wave
 
                 Build_Response(rx_buff, tx_buff);
@@ -95,7 +95,7 @@ void Message_handler(uint8_t rx_buff[])
                 int value_int = atoi(amplitude_value);
                 if (value_int < 1) value_int = 1;
                 if (value_int > 68) value_int = 68;
-                Channel_2_sine_scale = (double)value_int / 100;
+                *Channel_2_sine_scale = (double)value_int / 100; // Use pointer to update amplitude
                 Get_channel_2_sine(); // Update sine wave
 
                 Build_Response(rx_buff, tx_buff);
@@ -163,29 +163,5 @@ void Message_handler(uint8_t rx_buff[])
                 break;
         }
     }
-
-    // Clear rx buffer
-    memset(rx_buff, 0, uartSize_rx);
-    HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_RESET); // Receive
-    HAL_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, GPIO_PIN_RESET); // Busy
-    HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, GPIO_PIN_RESET); // Transmit
 }
 
-void Build_Response(uint8_t rx_buff[], uint8_t tx_buff[]) 
-{
-    // Building response based on rx_buff data
-    tx_buff[0] = '<';
-    tx_buff[1] = rx_buff[1]; // |ADDR| : Device Address byte
-    tx_buff[2] = rx_buff[2]; // |CMD|  : Command byte
-    for (int i = 3; i < 9; i++) {
-        tx_buff[i] = rx_buff[i]; // Copy data bytes
-    }
-    tx_buff[9] = '>'; // End of message byte
-}
-
-void Transmit_Response(void) 
-{
-    HAL_GPIO_WritePin(Direction_GPIO_Port, Direction_Pin, GPIO_PIN_SET); // Set MAX485 to transmitting
-    HAL_UART_Transmit(&huart2, tx_buff, strlen((char*)tx_buff), HAL_MAX_DELAY); // Send message in RS485
-    HAL_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, GPIO_PIN_SET); // Transmit
-}

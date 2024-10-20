@@ -6,18 +6,18 @@
 #include "gpio.h"
 #include "stdint.h"
 
+#define PI 3.1415926			    // Definition of PI
+#define Ns 80 			            // Number of samples, Adjusting Ns will affect the frequency of the output signal.
+                                    // NS 80 seems to work up to 25kHz
 double Channel_1_sine_scale = 0.68; // Sine scale values. Max value = sine_scaled*3.3. Will result in a deformed signal.
 double Channel_2_sine_scale = 0.68; // Giving a max amplitude of 3.24V
 int sine_dc_offset = 300; 		    // DC off set value (4096Bits/3300mV)*200mV = 248.24Bits. Check
-#define PI 3.1415926			    // Definition of PI
 int Freq_Signal_1 = 1000; 		    // Frequency of signal 1
 int Freq_Signal_2 = 1000; 		    // Frequency of signal 2
 int PSC;						    // Variable to hold the Pre-scaler value
 int Period = 1;					    // Variable to hold the Period
-uint32_t Fclock = 90000000;		    // APB1 Timer Clock Frequency
 int Res = 4096;				        // DAC resolution.
-#define Ns 80 			            // Number of samples, Adjusting Ns will affect the frequency of the output signal.
-								    // NS 80 seems to work up to 25kHz
+uint32_t Fclock = 90000000;		    // APB1 Timer Clock Frequency
 
 void SignalGen_Init(uint32_t* Channel_1_sine_val, uint32_t* Channel_2_sine_val) 
 {

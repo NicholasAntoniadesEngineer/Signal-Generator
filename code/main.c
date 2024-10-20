@@ -44,10 +44,6 @@ void SystemClock_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-/* Setting up signal generation */
-uint32_t Channel_1_sine_val[Ns];    // Look up table for all the first sine wave.
-uint32_t Channel_2_sine_val[Ns];    // Look up table for all the second sine wave.
-
 /* USER CODE END 0 */
 
 /**
@@ -58,13 +54,17 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 
+  int Freq_Signal_1 = 1000;  // Frequency of signal 1
+  int Freq_Signal_2 = 1000;  // Frequency of signal 2
+  double Channel_1_sine_scale = 0.68; // Sine scale value for channel 1
+  double Channel_2_sine_scale = 0.68; // Sine scale value for channel 2
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-
-	HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -86,6 +86,7 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM4_Init();
   MX_USART2_UART_Init();
+
   /* USER CODE BEGIN 2 */
   /* Perform initializations */
   SignalGen_Init(Channel_1_sine_val, Channel_2_sine_val);
@@ -96,7 +97,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	Message_handler(rx_buff);
+    // Pass pointers to variables to the Message_handler
+    Message_handler(rx_buff, &Freq_Signal_1, &Freq_Signal_2, &Channel_1_sine_scale, &Channel_2_sine_scale);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
