@@ -40,9 +40,7 @@ This project focuses on developing an Arbitrary Waveform Generator (AWG) that al
 The AWG frequency generation is controlled through the following equations:
 
 ### 1. Prescaler (PSC):
-\[
-PSC = \left( \frac{ \left( \frac{Fclock}{Ns} \right) }{Fsine \times (Period + 1)} \right) - 1
-\]
+PSC = ((Fclock / Ns) / (Fsine * (Period + 1))) - 1
 
 Where:
 - `Fclock` is the system clock frequency.
@@ -51,9 +49,7 @@ Where:
 - `Period` is the period of the waveform.
 
 ### 2. Sine Wave Frequency (Fsine):
-\[
-Fsine = \frac{ \left( \frac{Fclock}{Ns} \right) }{(Period + 1) \times (PSC + 1)}
-\]
+Fsine = (Fclock / Ns) / ((Period + 1) * (PSC + 1))
 
 ### Example Calculation:
 Given the following values:
@@ -63,9 +59,7 @@ Given the following values:
 - `PSC = 10`
 
 You can calculate the sine wave frequency (`Fsine`) as:
-\[
-Fsine = \frac{ \left( \frac{90MHz}{100} \right) }{(5 + 1) \times (10 + 1)} = 13.636 kHz
-\]
+Fsine = (90MHz / 100) / ((5 + 1) * (10 + 1)) = 13.636 kHz
 
 ## UART Message Protocol
 
