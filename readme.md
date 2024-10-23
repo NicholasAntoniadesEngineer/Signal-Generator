@@ -106,17 +106,6 @@ Ensure the system scales the output signal by 0.5 and offsets it by 500.
 
 ## Sprints
 
-### Sprint 1: Goals
-
-1. Program the STM32 MCU using ST-Link v2.
-2. Develop the UART message protocol for communication between CRIO and AWG.
-3. Write the UART bootloader software.
-
-### Sprint 2: Goals
-
-1. Program the manufactured PCBs using ST-Link v2.
-2. Write UART message handlers for communication.
-3. Complete the interface PCB for the amplifier.
 
 ## Videos and Resources
 
