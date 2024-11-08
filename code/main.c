@@ -55,7 +55,8 @@ static void init_config(app_state *state)
         .rx_buff = rx_buff,
         .tx_buff = tx_buff,
         .rx_size = sizeof(rx_buff),
-        .tx_size = sizeof(tx_buff)
+        .tx_size = sizeof(tx_buff),
+        .uart_timeout = 100
     };
 }
 
@@ -69,7 +70,7 @@ static void main_loop(app_state *state)
 {
     while (1)
     {
-        BSP_UART_Receive(&huart2, state->uart_config.rx_buff, state->uart_config.rx_size, 100);
+        BSP_UART_Receive(&huart2, state->uart_config.rx_buff, state->uart_config.rx_size, state->uart_config.uart_timeout);
 
         uint8_t* message = message_handler(&state->uart_config);
 
