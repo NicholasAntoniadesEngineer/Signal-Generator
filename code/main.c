@@ -11,15 +11,15 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "signal_generation.h"
-#include "uart_comm.h"
-#include "state_machine.h"
+
 #include "stm32_bsp.h"
+#include "signal_generation.h"
+#include "uart_message_handler.h"
+#include "state_machine.h"
 
 
 /* Function prototypes */
 static void init_config(app_state *state);
-static void init_peripherals(void);
 static void main_loop(app_state *state);
 
 
@@ -30,7 +30,8 @@ static void main_loop(app_state *state);
   */
 static void init_config(app_state *state)
 {
-    state->signal_config = (signal_config){
+    state->signal_config = (signal_config)
+    {
         .freq_signal_1 = 1000,
         .freq_signal_2 = 1000,
         .channel_1_sine_scale = 0.68,
@@ -41,10 +42,15 @@ static void init_config(app_state *state)
         .res = 4096,
         .fclock = 90000000,
         .channel_1_sine_val = {0},   
-        .channel_2_sine_val = {0}    
+        .channel_2_sine_val = {0},
+        .min_freq = 500,
+        .max_freq = 20000,
+        .min_amplitude = 1,
+        .max_amplitude = 68
     };
 
-    state->uart_config = (uart_config){
+    state->uart_config = (uart_config)
+    {
         .huart = &huart1,  
         .rx_buff = rx_buff,
         .tx_buff = tx_buff,
@@ -67,11 +73,10 @@ static void main_loop(app_state *state)
 
         uint8_t* message = message_handler(&state->uart_config);
 
-        if (message != NULL) {
-            handle_state(message[2], message, &state->signal_config);
-        }
+        if (message != NULL) state_machine(message, &state->signal_config);
     }
 }
+
 
 /**
   * @brief  The application entry point.
@@ -79,12 +84,15 @@ static void main_loop(app_state *state)
   */
 int main(void)
 {
-    app_state state;
-    init_config(&state);
+  app_state state;
 
-    init_peripherals();
+  init_config(&state);
 
-    signal_generation_init(&state.signal_config);
+  BSP_HAL_Init();
 
-    main_loop(&state);
+  init_peripherals();
+
+  signal_generation_init(&state.signal_config);
+
+  main_loop(&state);
 }

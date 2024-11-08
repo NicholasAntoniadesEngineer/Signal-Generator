@@ -25,6 +25,10 @@ typedef struct {
     uint32_t fclock;
     uint32_t channel_1_sine_val[Ns];
     uint32_t channel_2_sine_val[Ns];
+    int min_freq;
+    int max_freq;
+    int min_amplitude;
+    int max_amplitude;
 } signal_config;
 
 #define FREQ_SIGNAL_1 1000
