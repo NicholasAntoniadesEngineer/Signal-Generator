@@ -7,11 +7,10 @@
   ******************************************************************************
   */
 
-#include "main.h"
 #include <string.h>
-#include <stdio.h>
 #include <stdlib.h>
 
+#include "main.h"
 #include "stm32_bsp.h"
 #include "signal_generation.h"
 #include "uart_message_handler.h"

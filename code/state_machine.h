@@ -11,7 +11,8 @@
 #ifndef STATE_MACHINE_H
 #define STATE_MACHINE_H
 
-#include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct {
     double channel_1_sine_scale;

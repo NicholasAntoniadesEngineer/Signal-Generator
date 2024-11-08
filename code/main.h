@@ -12,8 +12,11 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include "signal_config.h"  // Assuming these headers define signal_config and uart_config
-#include "uart_config.h"
+#include <string.h>
+#include <stdlib.h>
+
+#include "signal_generation.h"
+#include "uart_message_handler.h"
 
 typedef struct {
     signal_config signal_config;

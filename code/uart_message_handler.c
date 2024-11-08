@@ -6,14 +6,11 @@
   * @date           : 2020
   ******************************************************************************
   */
-
-#include "uart_comm.h"
-#include "stm32_bsp.h"
-#include "gpio.h"
-#include "usart.h"
 #include <string.h>
-#include <stdio.h>
 #include <stdlib.h>
+
+#include "uart_message_handler.h"
+#include "stm32_bsp.h"
 
 uint8_t* message_handler(uart_config* config) 
 {

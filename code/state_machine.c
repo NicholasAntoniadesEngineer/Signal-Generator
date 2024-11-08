@@ -8,9 +8,11 @@
   ******************************************************************************
   */
 
+#include <string.h>
+#include <stdlib.h>
+
 #include "state_machine.h"
 #include "stm32_bsp.h"
-#include <stdlib.h>
 
 
 static void state_1(uint8_t rx_buff[], signal_config* config);

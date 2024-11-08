@@ -10,12 +10,12 @@
   ******************************************************************************
   */
 
+#include "math.h"
+#include <string.h>
+#include <stdlib.h>
+
 #include "signal_generation.h"
 #include "stm32_bsp.h"
-#include "math.h"
-#include "dac.h"
-#include "gpio.h"
-#include "stdint.h"
 
 #define PI 3.1415926			    // Definition of PI
 #define Ns 80 			            // Number of samples, Adjusting Ns will affect the frequency of the output signal.

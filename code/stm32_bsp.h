@@ -11,10 +11,11 @@
 #ifndef STM32_BSP_H
 #define STM32_BSP_H
 
+#include <string.h>
+#include <stdlib.h>
+
 #include "gpio.h"
 #include "tim.h"
-#include "dac.h"
-#include "usart.h"
 
 void BSP_HAL_Init(void);
 void BSP_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);

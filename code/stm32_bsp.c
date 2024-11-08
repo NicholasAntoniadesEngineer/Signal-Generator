@@ -8,6 +8,9 @@
   ******************************************************************************
   */
 
+#include <string.h>
+#include <stdlib.h>
+
 #include "stm32_bsp.h"
 #include "gpio.h"
 #include "tim.h"

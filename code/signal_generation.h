@@ -8,10 +8,11 @@
   ******************************************************************************
   */
 
+#include <string.h>
+#include <stdlib.h>
+
 #ifndef SIGNAL_GEN_H
 #define SIGNAL_GEN_H
-
-#include "stdint.h"
 
 typedef struct {
     double channel_1_sine_scale;

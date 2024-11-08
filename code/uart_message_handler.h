@@ -11,7 +11,8 @@
 #ifndef UART_COMM_H
 #define UART_COMM_H
 
-#include "stdint.h"
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct {
     UART_HandleTypeDef* huart;
