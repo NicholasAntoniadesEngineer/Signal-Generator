@@ -47,7 +47,8 @@ static void init_config(app_state *state)
         .min_freq = 500,
         .max_freq = 20000,
         .min_amplitude = 1,
-        .max_amplitude = 68
+        .max_amplitude = 68,
+        .Ns = 80
     };
 
     state->uart_config = (uart_config)

@@ -30,12 +30,10 @@ typedef struct {
     int max_freq;
     int min_amplitude;
     int max_amplitude;
+    int Ns;
 } signal_config;
 
-#define FREQ_SIGNAL_1 1000
-#define FREQ_SIGNAL_2 1000
-#define CHANNEL_1_SINE_SCALE 0.68
-#define CHANNEL_2_SINE_SCALE 0.68
+#define PI 3.1415926	           
 
 void signal_generation_init(signal_config* config);
 void get_channel_1_sine(uint32_t* channel_1_sine_val, signal_config* config);
