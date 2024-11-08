@@ -3,7 +3,7 @@
   * @file           : uart_comm.h
   * @brief          : Header for UART communication functions
   * @details        : Provides function prototypes for UART operations
-  * @date           : 2021
+  * @date           : 2020
   * @date           : Nicholas Antoniades
   ******************************************************************************
   */

@@ -3,7 +3,7 @@
   * @file           : main.c
   * @brief          : Main program body
   * @author         : Nicholas Antoniades
-  * @date           : 2021
+  * @date           : 2020
   ******************************************************************************
   */
 

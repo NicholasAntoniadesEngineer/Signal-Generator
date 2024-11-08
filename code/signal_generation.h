@@ -3,7 +3,7 @@
   * @file           : signal_generation.h
   * @brief          : Header for signal generation functions
   * @details        : Provides function prototypes for signal generation
-  * @date           : 2021
+  * @date           : 2020
   * @date           : Nicholas Antoniades
   ******************************************************************************
   */

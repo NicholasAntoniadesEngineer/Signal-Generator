@@ -4,7 +4,7 @@
   * @brief          : Header for main.c file.
   *                   This file contains the common defines of the application.
   * @details        : Defines the app_state structure and function prototypes.
-  * @date           : 2023
+  * @date           : 2020
   * @author         : Nicholas Antoniades
   ******************************************************************************
   */

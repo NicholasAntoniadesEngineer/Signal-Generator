@@ -3,7 +3,7 @@
   * @file           : uart_comm.c
   * @brief          : UART communication functions
   * @author         : Nicholas Antoniades
-  * @date           : 2021
+  * @date           : 2020
   ******************************************************************************
   */
 

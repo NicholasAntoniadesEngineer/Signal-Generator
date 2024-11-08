@@ -3,7 +3,7 @@
   * @file           : stm32_bsp.h
   * @brief          : Header for STM32 BSP functions
   * @details        : Provides function prototypes for HAL and BSP operations
-  * @date           : 2021
+  * @date           : 2020
   * @author         : Nicholas Antoniades
   ******************************************************************************
   */

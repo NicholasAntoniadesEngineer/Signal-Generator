@@ -5,7 +5,7 @@
   * @details        : Initializes and generates sine wave signals with configurable frequency and amplitude
   *                  on two independent DAC channels. Supports frequencies up to 25kHz with 80 samples
   *                  per period. Uses DMA for efficient waveform output and timer-based timing control.
-  * @date           : 2021
+  * @date           : 2020
   * @date           : Nicholas Antoniades
   ******************************************************************************
   */

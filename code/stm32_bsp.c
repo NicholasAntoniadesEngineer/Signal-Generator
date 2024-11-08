@@ -3,7 +3,7 @@
   * @file           : stm32_bsp.c
   * @brief          : Board Support Package for STM32
   * @details        : Encapsulates HAL and BSP functions for easier management
-  * @date           : 2021
+  * @date           : 2020
   * @author         : Nicholas Antoniades
   ******************************************************************************
   */

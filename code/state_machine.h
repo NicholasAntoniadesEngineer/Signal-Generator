@@ -3,7 +3,7 @@
   * @file           : state_machine.h
   * @brief          : Header for state machine functions
   * @details        : Provides function prototypes for state handling
-  * @date           : 2021
+  * @date           : 2020
   * @date           : Nicholas Antoniades
   ******************************************************************************
   */

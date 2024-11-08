@@ -3,7 +3,7 @@
   * @file           : state_machine.c
   * @brief          : State machine for handling commands
   * @details        : Processes commands to update signal parameters and states
-  * @date           : 2021
+  * @date           : 2020
   * @date           : Nicholas Antoniades
   ******************************************************************************
   */
