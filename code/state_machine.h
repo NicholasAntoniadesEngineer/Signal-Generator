@@ -1,8 +1,30 @@
+/**
+  ******************************************************************************
+  * @file           : state_machine.h
+  * @brief          : Header for state machine functions
+  * @details        : Provides function prototypes for state handling
+  * @date           : 2021
+  * @date           : Nicholas Antoniades
+  ******************************************************************************
+  */
+
 #ifndef STATE_MACHINE_H
 #define STATE_MACHINE_H
 
 #include <stdint.h>
 
-void handle_state(uint8_t command, uint8_t rx_buff[], int *Freq_Signal_1, int *Freq_Signal_2, double *Channel_1_sine_scale, double *Channel_2_sine_scale);
+typedef struct {
+    double channel_1_sine_scale;
+    double channel_2_sine_scale;
+    int sine_dc_offset;
+    int freq_signal_1;
+    int freq_signal_2;
+    int psc;
+    int period;
+    int res;
+    uint32_t fclock;
+} signal_config;
+
+void handle_state(uint8_t command, uint8_t rx_buff[], signal_config* config);
 
 #endif // STATE_MACHINE_H 

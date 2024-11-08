@@ -14,79 +14,61 @@
 #include "signal_generation.h"
 #include "uart_comm.h"
 #include "state_machine.h"
+#include "stm32_bsp.h"
 
-/* Define constants for signal frequencies and scales */
-#define FREQ_SIGNAL_1 1000
-#define FREQ_SIGNAL_2 1000
-#define CHANNEL_1_SINE_SCALE 0.68
-#define CHANNEL_2_SINE_SCALE 0.68
-
-/* Configuration struct for signal parameters */
-typedef struct {
-    int freq_signal_1;
-    int freq_signal_2;
-    double channel_1_sine_scale;
-    double channel_2_sine_scale;
-} signal_config;
 
 /* Function prototypes */
-void initialize_system(signal_config *config);
-void initialize_peripherals(void);
-void main_loop(signal_config *config);
+static void init_config(app_state *state);
+static void init_peripherals(void);
+static void main_loop(app_state *state);
 
 
 /**
   * @brief  Initialize system configuration and HAL library.
-  * @param  config: Pointer to the signal_config structure.
+  * @param  state: Pointer to the app_state structure.
   * @retval None
   */
-void initialize_system(signal_config *config)
+static void init_config(app_state *state)
 {
-    /* Initialize signal configuration */
-    config->freq_signal_1 = FREQ_SIGNAL_1;
-    config->freq_signal_2 = FREQ_SIGNAL_2;
-    config->channel_1_sine_scale = CHANNEL_1_SINE_SCALE;
-    config->channel_2_sine_scale = CHANNEL_2_SINE_SCALE;
+    state->signal_config = (signal_config){
+        .freq_signal_1 = 1000,
+        .freq_signal_2 = 1000,
+        .channel_1_sine_scale = 0.68,
+        .channel_2_sine_scale = 0.68,
+        .sine_dc_offset = 300,
+        .psc = 0,
+        .period = 1,
+        .res = 4096,
+        .fclock = 90000000,
+        .channel_1_sine_val = {0},   
+        .channel_2_sine_val = {0}    
+    };
 
-    /* Initialize the HAL Library */
-    HAL_Init();
+    state->uart_config = (uart_config){
+        .huart = &huart1,  
+        .rx_buff = rx_buff,
+        .tx_buff = tx_buff,
+        .rx_size = sizeof(rx_buff),
+        .tx_size = sizeof(tx_buff)
+    };
 }
 
-/**
-  * @brief  Initialize all configured peripherals.
-  * @retval None
-  */
-void initialize_peripherals(void)
-{
-    MX_GPIO_Init();
-    MX_DMA_Init();
-    MX_ADC1_Init();
-    MX_USART1_UART_Init();
-    MX_DAC_Init();
-    MX_TIM2_Init();
-    MX_TIM4_Init();
-    MX_USART2_UART_Init();
-    UART_Init();
-
-}
 
 /**
   * @brief  Main loop to handle incoming messages and update signal configuration.
-  * @param  config: Pointer to the signal_config structure.
+  * @param  state: Pointer to the app_state structure.
   * @retval None
   */
-void main_loop(signal_config *config)
+static void main_loop(app_state *state)
 {
     while (1)
     {
-        uint8_t* message = Message_handler();
+        BSP_UART_Receive(&huart2, state->uart_config.rx_buff, state->uart_config.rx_size, 100);
+
+        uint8_t* message = message_handler(&state->uart_config);
+
         if (message != NULL) {
-            handle_state(message[2], 
-                         message, 
-                         &config->freq_signal_1, 
-                         &config->freq_signal_2, 
-                         &config->channel_1_sine_scale, 
-                         &config->channel_2_sine_scale);
+            handle_state(message[2], message, &state->signal_config);
         }
     }
 }
@@ -97,13 +79,12 @@ void main_loop(signal_config *config)
   */
 int main(void)
 {
-    signal_config config;
+    app_state state;
+    init_config(&state);
 
-    initialize_system(&config);
+    init_peripherals();
 
-    initialize_peripherals();
+    signal_generation_init(&state.signal_config);
 
-    signal_generation_init(Channel_1_sine_val, Channel_2_sine_val);
-
-    main_loop(&config);
+    main_loop(&state);
 }

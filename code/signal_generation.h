@@ -1,12 +1,41 @@
+/**
+  ******************************************************************************
+  * @file           : signal_generation.h
+  * @brief          : Header for signal generation functions
+  * @details        : Provides function prototypes for signal generation
+  * @date           : 2021
+  * @date           : Nicholas Antoniades
+  ******************************************************************************
+  */
+
 #ifndef SIGNAL_GEN_H
 #define SIGNAL_GEN_H
 
 #include "stdint.h"
 
-void signal_generation_init(uint32_t* Channel_1_sine_val, uint32_t* Channel_2_sine_val);
-void Get_channel_1_sine(void);
-void Get_channel_2_sine(void);
-void set_clock_TIM2(void);
-void set_clock_TIM4(void);
+typedef struct {
+    double channel_1_sine_scale;
+    double channel_2_sine_scale;
+    int sine_dc_offset;
+    int freq_signal_1;
+    int freq_signal_2;
+    int psc;
+    int period;
+    int res;
+    uint32_t fclock;
+    uint32_t channel_1_sine_val[Ns];
+    uint32_t channel_2_sine_val[Ns];
+} signal_config;
+
+#define FREQ_SIGNAL_1 1000
+#define FREQ_SIGNAL_2 1000
+#define CHANNEL_1_SINE_SCALE 0.68
+#define CHANNEL_2_SINE_SCALE 0.68
+
+void signal_generation_init(signal_config* config);
+void get_channel_1_sine(uint32_t* channel_1_sine_val, signal_config* config);
+void get_channel_2_sine(uint32_t* channel_2_sine_val, signal_config* config);
+void set_clock_tim2(signal_config* config);
+void set_clock_tim4(signal_config* config);
 
 #endif // SIGNAL_GEN_H

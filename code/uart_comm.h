@@ -1,9 +1,26 @@
+/**
+  ******************************************************************************
+  * @file           : uart_comm.h
+  * @brief          : Header for UART communication functions
+  * @details        : Provides function prototypes for UART operations
+  * @date           : 2021
+  * @date           : Nicholas Antoniades
+  ******************************************************************************
+  */
+
 #ifndef UART_COMM_H
 #define UART_COMM_H
 
 #include "stdint.h"
 
-void UART_Init(void);
-void Message_handler(uint8_t rx_buff[]);
+typedef struct {
+    UART_HandleTypeDef* huart;
+    uint8_t* rx_buff;
+    uint8_t* tx_buff;
+    uint16_t rx_size;
+    uint16_t tx_size;
+} uart_config;
+
+uint8_t* message_handler(uart_config* config);
 
 #endif // UART_COMM_H
