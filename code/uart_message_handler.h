@@ -14,6 +14,9 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define RX_BUFF_SIZE 256
+#define TX_BUFF_SIZE 256
+
 typedef struct {
     UART_HandleTypeDef* huart;
     uint8_t* rx_buff;

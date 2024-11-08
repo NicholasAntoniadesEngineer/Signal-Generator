@@ -16,6 +16,8 @@
 #include "uart_message_handler.h"
 #include "state_machine.h"
 
+uint8_t rx_buff[RX_BUFF_SIZE];
+uint8_t tx_buff[TX_BUFF_SIZE];
 
 /* Function prototypes */
 static void init_config(app_state *state);
@@ -53,8 +55,8 @@ static void init_config(app_state *state)
         .huart = &huart1,  
         .rx_buff = rx_buff,
         .tx_buff = tx_buff,
-        .rx_size = sizeof(rx_buff),
-        .tx_size = sizeof(tx_buff),
+        .rx_size = RX_BUFF_SIZE,
+        .tx_size = TX_BUFF_SIZE,
         .uart_timeout = 100
     };
 }
