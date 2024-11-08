@@ -1,50 +1,95 @@
-/* USER CODE BEGIN Header */
 /**
   ******************************************************************************
   * @file           : main.c
   * @brief          : Main program body
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; Copyright (c) 2021 STMicroelectronics.
-  * All rights reserved.</center></h2>
-  *
-  * This software component is licensed by ST under BSD 3-Clause license,
-  * the "License"; You may not use this file except in compliance with the
-  * License. You may obtain a copy of the License at:
-  *                        opensource.org/licenses/BSD-3-Clause
-  *
+  * @author         : Nicholas Antoniades
+  * @date           : 2021
   ******************************************************************************
   */
-/* USER CODE END Header */
-/* Includes ------------------------------------------------------------------*/
-#include "main.h"
-#include "adc.h"
-#include "dac.h"
-#include "dma.h"
-#include "tim.h"
-#include "usart.h"
-#include "gpio.h"
 
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-#include "math.h"
+#include "main.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "signal_gen.h"
+#include "signal_generation.h"
 #include "uart_comm.h"
+#include "state_machine.h"
 
-/* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);
-/* USER CODE BEGIN PFP */
+/* Define constants for signal frequencies and scales */
+#define FREQ_SIGNAL_1 1000
+#define FREQ_SIGNAL_2 1000
+#define CHANNEL_1_SINE_SCALE 0.68
+#define CHANNEL_2_SINE_SCALE 0.68
 
-/* USER CODE END PFP */
+/* Configuration struct for signal parameters */
+typedef struct {
+    int freq_signal_1;
+    int freq_signal_2;
+    double channel_1_sine_scale;
+    double channel_2_sine_scale;
+} signal_config;
 
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
+/* Function prototypes */
+void initialize_system(signal_config *config);
+void initialize_peripherals(void);
+void main_loop(signal_config *config);
 
-/* USER CODE END 0 */
+
+/**
+  * @brief  Initialize system configuration and HAL library.
+  * @param  config: Pointer to the signal_config structure.
+  * @retval None
+  */
+void initialize_system(signal_config *config)
+{
+    /* Initialize signal configuration */
+    config->freq_signal_1 = FREQ_SIGNAL_1;
+    config->freq_signal_2 = FREQ_SIGNAL_2;
+    config->channel_1_sine_scale = CHANNEL_1_SINE_SCALE;
+    config->channel_2_sine_scale = CHANNEL_2_SINE_SCALE;
+
+    /* Initialize the HAL Library */
+    HAL_Init();
+}
+
+/**
+  * @brief  Initialize all configured peripherals.
+  * @retval None
+  */
+void initialize_peripherals(void)
+{
+    MX_GPIO_Init();
+    MX_DMA_Init();
+    MX_ADC1_Init();
+    MX_USART1_UART_Init();
+    MX_DAC_Init();
+    MX_TIM2_Init();
+    MX_TIM4_Init();
+    MX_USART2_UART_Init();
+    UART_Init();
+
+}
+
+/**
+  * @brief  Main loop to handle incoming messages and update signal configuration.
+  * @param  config: Pointer to the signal_config structure.
+  * @retval None
+  */
+void main_loop(signal_config *config)
+{
+    while (1)
+    {
+        uint8_t* message = Message_handler();
+        if (message != NULL) {
+            handle_state(message[2], 
+                         message, 
+                         &config->freq_signal_1, 
+                         &config->freq_signal_2, 
+                         &config->channel_1_sine_scale, 
+                         &config->channel_2_sine_scale);
+        }
+    }
+}
 
 /**
   * @brief  The application entry point.
@@ -52,124 +97,13 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
+    signal_config config;
 
-  int Freq_Signal_1 = 1000;  // Frequency of signal 1
-  int Freq_Signal_2 = 1000;  // Frequency of signal 2
-  double Channel_1_sine_scale = 0.68; // Sine scale value for channel 1
-  double Channel_2_sine_scale = 0.68; // Sine scale value for channel 2
+    initialize_system(&config);
 
-  /* USER CODE END 1 */
+    initialize_peripherals();
 
-  /* MCU Configuration--------------------------------------------------------*/
+    signal_generation_init(Channel_1_sine_val, Channel_2_sine_val);
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
-
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
-  /* Configure the system clock */
-  SystemClock_Config();
-
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
-
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_ADC1_Init();
-  MX_USART1_UART_Init();
-  MX_DAC_Init();
-  MX_TIM2_Init();
-  MX_TIM4_Init();
-  MX_USART2_UART_Init();
-
-  /* USER CODE BEGIN 2 */
-  /* Perform initializations */
-  SignalGen_Init(Channel_1_sine_val, Channel_2_sine_val);
-  UART_Init();
-  /* USER CODE END 2 */
-
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    // Pass pointers to variables to the Message_handler
-    Message_handler(rx_buff, &Freq_Signal_1, &Freq_Signal_2, &Channel_1_sine_scale, &Channel_2_sine_scale);
-
-    /* USER CODE END WHILE */
-
-    /* USER CODE BEGIN 3 */
-  }
-  /* USER CODE END 3 */
+    main_loop(&config);
 }
-
-/**
-  * @brief System Clock Configuration
-  * @retval None
-  */
-void SystemClock_Config(void)
-{
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-
-  /** Configure the main internal regulator output voltage
-  */
-  __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  /** Initializes the RCC Oscillators according to the specified parameters
-  * in the RCC_OscInitTypeDef structure.
-  */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
-  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
-  RCC_OscInitStruct.PLL.PLLM = 8;
-  RCC_OscInitStruct.PLL.PLLN = 180;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 7;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Activate the Over-Drive mode
-  */
-  if (HAL_PWREx_EnableOverDrive() != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Initializes the CPU, AHB and APB buses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
-
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
-  {
-    Error_Handler();
-  }
-}
-
-/* USER CODE BEGIN 4 */
-/* USER CODE END 4 */
-
-/**
-  * @brief  This function is executed in case of error occurrence.
-  * @retval None
-  */
-void Error_Handler(void)
-{
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-
-  /* USER CODE END Error_Handler_Debug */
-}
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

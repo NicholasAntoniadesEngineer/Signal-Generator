@@ -3,7 +3,7 @@
 
 #include "stdint.h"
 
-void SignalGen_Init(uint32_t* Channel_1_sine_val, uint32_t* Channel_2_sine_val);
+void signal_generation_init(uint32_t* Channel_1_sine_val, uint32_t* Channel_2_sine_val);
 void Get_channel_1_sine(void);
 void Get_channel_2_sine(void);
 void set_clock_TIM2(void);

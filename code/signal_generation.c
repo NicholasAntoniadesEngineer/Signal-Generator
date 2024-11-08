@@ -19,7 +19,7 @@ int Period = 1;					    // Variable to hold the Period
 int Res = 4096;				        // DAC resolution.
 uint32_t Fclock = 90000000;		    // APB1 Timer Clock Frequency
 
-void SignalGen_Init(uint32_t* Channel_1_sine_val, uint32_t* Channel_2_sine_val) 
+void signal_generation_init(uint32_t* Channel_1_sine_val, uint32_t* Channel_2_sine_val) 
 {
     set_clock_TIM2();
     set_clock_TIM4();
