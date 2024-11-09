@@ -24,8 +24,8 @@ typedef struct {
     uint16_t rx_size;
     uint16_t tx_size;
     uint16_t uart_timeout;
-} uart_config;
+} uart_state;
 
-uint8_t* message_handler(uart_config* config);
+uint8_t* message_handler(uart_state* state);
 
 #endif // UART_COMM_H

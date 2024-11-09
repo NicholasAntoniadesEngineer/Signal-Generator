@@ -31,14 +31,14 @@ typedef struct {
     int min_amplitude;
     int max_amplitude;
     int Ns;
-} signal_config;
+} signal_state;
 
 #define PI 3.1415926	           
 
-void signal_generation_init(signal_config* config);
-void get_channel_1_sine(uint32_t* channel_1_sine_val, signal_config* config);
-void get_channel_2_sine(uint32_t* channel_2_sine_val, signal_config* config);
-void set_clock_tim2(signal_config* config);
-void set_clock_tim4(signal_config* config);
+void signal_generation_init(signal_state* state);
+void get_channel_1_sine(uint32_t* channel_1_sine_val, signal_state* state);
+void get_channel_2_sine(uint32_t* channel_2_sine_val, signal_state* state);
+void set_clock_tim2(signal_state* state);
+void set_clock_tim4(signal_state* state);
 
 #endif // SIGNAL_GEN_H

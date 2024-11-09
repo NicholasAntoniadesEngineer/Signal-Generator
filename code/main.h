@@ -20,10 +20,10 @@
 
 typedef struct {
     signal_config signal_config;
-    uart_config uart_config;
+    uart_state uart_state;
 } app_state;
 
-void init_config(signal_config *signal_config_ptr, uart_config *uart_config);
+void init_config(signal_config *signal_config_ptr, uart_state *uart_state);
 void main_loop(app_state *state);
 
 #endif // MAIN_H 

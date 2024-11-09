@@ -24,8 +24,8 @@ typedef struct {
     int period;
     int res;
     uint32_t fclock;
-} signal_config;
+} signal_state;
 
-void handle_state(uint8_t command, uint8_t rx_buff[], signal_config* config);
+void handle_state(uint8_t command, uint8_t rx_buff[], signal_state* state);
 
 #endif // STATE_MACHINE_H 

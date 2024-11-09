@@ -31,7 +31,7 @@ static void main_loop(app_state *state);
   */
 static void init_config(app_state *state)
 {
-    state->signal_config = (signal_config)
+    state->signal_state = (signal_state)
     {
         .freq_signal_1 = 1000,
         .freq_signal_2 = 1000,
@@ -51,7 +51,7 @@ static void init_config(app_state *state)
         .Ns = 80
     };
 
-    state->uart_config = (uart_config)
+    state->uart_state = (uart_state)
     {
         .huart = &huart1,  
         .rx_buff = rx_buff,
@@ -72,11 +72,11 @@ static void main_loop(app_state *state)
 {
     while (1)
     {
-        BSP_UART_Receive(&huart2, state->uart_config.rx_buff, state->uart_config.rx_size, state->uart_config.uart_timeout);
+        BSP_UART_Receive(state->uart_state.huart, state->uart_state.rx_buff, state->uart_state.rx_size, state->uart_state.uart_timeout);
 
-        uint8_t* message = message_handler(&state->uart_config);
+        uint8_t* message = message_handler(state);
 
-        if (message != NULL) state_machine(message, &state->signal_config);
+        if (message != NULL) state_machine(message, &state->signal_state);
     }
 }
 
@@ -95,7 +95,7 @@ int main(void)
 
   init_peripherals();
 
-  signal_generation_init(&state.signal_config);
+  signal_generation_init(&state.signal_state);
 
   main_loop(&state);
 }
