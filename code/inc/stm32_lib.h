@@ -30,6 +30,14 @@ typedef struct {
     uint32_t channel;
 } stm32_sig_gen_state_t;
 
+// UART state structure
+typedef struct {
+    UART_HandleTypeDef *huart;
+    uint16_t rx_size;
+    uint16_t tx_size;
+    uint32_t uart_timeout;
+} stm32_uart_state_t;
+
 // Function prototypes
 void stm32_lib_init_ports(void);
 void stm32_lib_init_pwm_tim(TIM_HandleTypeDef *htim, uint32_t channel, uint32_t frequency);
@@ -52,8 +60,6 @@ void stm32_lib_ack_irq(void);
 void stm32_lib_init_exti(void);
 void stm32_lib_usart1_transmit(unsigned char DataToTx);
 unsigned char stm32_lib_usart1_receive(void);
-
-// Signal generator initialization
 void stm32_lib_sig_gen_init(stm32_sig_gen_state_t *state);
 
 #endif /* STM32_LIB_H_ */ 

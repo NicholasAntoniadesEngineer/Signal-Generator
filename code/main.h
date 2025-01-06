@@ -15,9 +15,6 @@
 #include "stm32_lib.h"
 #include "stm32_bsp.h"
 
-#define RX_BUFF_SIZE 256
-#define TX_BUFF_SIZE 256
-
 typedef struct {
     /* Signal generator states */
     stm32_sig_gen_state_t signal_1;
@@ -28,12 +25,7 @@ typedef struct {
 struct app_config {
     stm32_sig_gen_state_t signal_1;
     stm32_sig_gen_state_t signal_2;
-    struct {
-        UART_HandleTypeDef *huart;
-        uint16_t rx_size;
-        uint16_t tx_size;
-        uint32_t uart_timeout;
-    } uart;
+    stm32_uart_state_t uart;
 };
 
 #endif /* MAIN_H_ */ 

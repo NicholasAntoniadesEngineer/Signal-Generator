@@ -36,8 +36,8 @@ static const struct app_config config =
     },
     .uart = {
         .huart = &huart1,
-        .rx_size = RX_BUFF_SIZE,
-        .tx_size = TX_BUFF_SIZE,
+        .rx_size = 256,
+        .tx_size = 256,
         .uart_timeout = 100
     }
 };
@@ -54,10 +54,11 @@ static void main_loop(app_state_t *state)
 {
     while (1)
     {
-        stm32_bsp_uart_receive(state->uart_state.huart, state->uart_state.rx_buff, 
-                        state->uart_state.rx_size);
+        stm32_bsp_uart_receive(state->uart_state.huart, 
+                               state->uart_state.rx_buff, 
+                               state->uart_state.rx_size);
 
-        uint8_t* message = message_handler(&state->uart_state);
+        uint8_t *message = message_handler(&state->uart_state);
 
         if (message != NULL) state_machine(message, state);
     }
