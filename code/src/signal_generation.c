@@ -17,70 +17,45 @@
 #include "signal_generation.h"
 #include "stm32_bsp.h"
 
-void signal_generation_init(signal_state_t* state, const signal_state_t* config) 
-{
-    // Copy configuration to state
-    memcpy(state, config, sizeof(signal_state_t));
-    memset(state->channel_1_sine_val, 0, sizeof(state->channel_1_sine_val));
-    memset(state->channel_2_sine_val, 0, sizeof(state->channel_2_sine_val));
-
-    BSP_TIM_Base_Start(state->tim2);
-    BSP_TIM_Base_Start(state->tim4);
-    
-    get_channel_1_sine(state->channel_1_sine_val, state);
-    get_channel_2_sine(state->channel_2_sine_val, state);
-    
-    BSP_DAC_Start_DMA(state->dac, DAC1_CHANNEL_1, state->channel_1_sine_val, state->Ns, DAC_ALIGN_12B_R);
-    BSP_DAC_Start_DMA(state->dac, DAC1_CHANNEL_2, state->channel_2_sine_val, state->Ns, DAC_ALIGN_12B_R);
-
-    BSP_GPIO_WritePin(GPIOD, LED1_Pin, GPIO_PIN_SET);
-    BSP_GPIO_WritePin(GPIOD, LED2_Pin, GPIO_PIN_SET);
+void signal_generation_init(signal_state_t* state) {
+    // Initialize signal state
+    memset(state, 0, sizeof(signal_state_t));
+    state->channel_1_sine_scale = 1.0;
+    state->channel_2_sine_scale = 1.0;
+    state->sine_dc_offset = 0;
+    state->freq_signal_1 = 1000;
+    state->freq_signal_2 = 1000;
+    state->psc = 0;
+    state->period = 1;
+    state->res = 4096;
+    state->fclock = 90000000;
+    state->min_freq = 500;
+    state->max_freq = 20000;
+    state->min_amplitude = 1;
+    state->max_amplitude = 68;
+    state->Ns = 80;
 }
 
-void get_channel_1_sine(uint32_t* channel_1_sine_val, signal_state* state) 
-{
-    for (int i = 0; i < state->Ns; i++) 
-    {
-        channel_1_sine_val[i] = ((sin(i * 2 * PI / state->Ns) + 1) * (state->res / 2));
-        channel_1_sine_val[i] = state->sine_dc_offset + state->channel_1_sine_scale * channel_1_sine_val[i];
+void get_channel_1_sine(uint32_t* channel_1_sine_val, signal_state_t* state) {
+    // Generate sine wave for channel 1
+    for (int i = 0; i < state->Ns; i++) {
+        channel_1_sine_val[i] = (uint32_t)(state->channel_1_sine_scale * state->sine_dc_offset);
     }
 }
 
-void get_channel_2_sine(uint32_t* channel_2_sine_val, signal_state* state) 
-{
-    for (int i = 0; i < state->Ns; i++) 
-    {
-        channel_2_sine_val[i] = ((sin(i * 2 * PI / state->Ns) + 1) * (state->res / 2));
-        channel_2_sine_val[i] = state->sine_dc_offset + state->channel_2_sine_scale * channel_2_sine_val[i];
+void get_channel_2_sine(uint32_t* channel_2_sine_val, signal_state_t* state) {
+    // Generate sine wave for channel 2
+    for (int i = 0; i < state->Ns; i++) {
+        channel_2_sine_val[i] = (uint32_t)(state->channel_2_sine_scale * state->sine_dc_offset);
     }
 }
 
-void set_clock_tim2(signal_state* state) 
-{
-    BSP_TIM_Base_Stop(&state->tim2);
-    
-    // Calculate prescaler
-    state->psc = (state->fclock / state->Ns) / (state->freq_signal_1 * (state->period + 1)) - 1;
-    
-    // Update timer parameters through BSP
-    BSP_TIM_Set_Period(&state->tim2, state->period);
-    BSP_TIM_Set_Prescaler(&state->tim2, state->psc);
-    
-    BSP_TIM_Base_Init(&state->tim2);
-    BSP_TIM_Base_Start(&state->tim2);
+void set_clock_tim2(signal_state_t* state) {
+    stm32_bsp_tim_base_init(&state->tim2);
+    stm32_bsp_tim_base_start(&state->tim2);
 }
 
-void set_clock_tim4(signal_state* state) 
-{
-    BSP_TIM_Base_Stop(&state->tim4);
-    
-    // Calculate prescaler
-    state->psc = (state->fclock / state->Ns) / (state->freq_signal_2 * (state->period + 1)) - 1;
-    
-    // Update timer parameters through BSP
-    BSP_TIM_Set_Period(&state->tim4, state->period);
-    BSP_TIM_Set_Prescaler(&state->tim4, state->psc);
-    
-    BSP_TIM_Base_Init(&state->tim4);
-    BSP_TIM_Base_Start(&state->tim4);
+void set_clock_tim4(signal_state_t* state) {
+    stm32_bsp_tim_base_init(&state->tim4);
+    stm32_bsp_tim_base_start(&state->tim4);
 }

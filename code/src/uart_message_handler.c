@@ -12,16 +12,19 @@
 #include "uart_message_handler.h"
 #include "stm32_bsp.h"
 
-uint8_t* message_handler(uart_state* state) 
-{
-    if ((state->rx_buff[0] == '<') && (state->rx_buff[state->rx_size - 1] == '>')) 
-    {
-        BSP_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, GPIO_PIN_SET); // Receive
-        BSP_GPIO_WritePin(LED4_GPIO_Port, LED4_Pin, GPIO_PIN_RESET); // Busy
-        BSP_GPIO_WritePin(LED5_GPIO_Port, LED5_Pin, GPIO_PIN_RESET); // Transmit
+void uart_message_handler_init(uart_state_t* uart_state, const uart_config_t* config) {
+    // Initialize UART state
+    uart_state->huart = config->huart;
+    uart_state->rx_size = config->rx_size;
+    uart_state->tx_size = config->tx_size;
+    uart_state->uart_timeout = config->uart_timeout;
+}
 
-        return state->rx_buff;
-    }
-    return NULL;
+void uart_transmit_message(uart_state_t* uart_state, uint8_t* message, uint16_t size) {
+    stm32_bsp_uart_transmit(uart_state->huart, message, size);
+}
+
+void uart_receive_message(uart_state_t* uart_state, uint8_t* buffer, uint16_t size) {
+    stm32_bsp_uart_receive(uart_state->huart, buffer, size);
 }
 
