@@ -42,13 +42,12 @@ static const app_config_t config = {
     .port_config = {
         .pins_a = (pin_config_t[]) {
             { .pin = 0, .mode = GPIO_MODE_OUTPUT_PP, .pull = GPIO_NOPULL },
-            // Add more pin configurations as needed
         },
-        .num_pins_a = 1, // Update this count as needed
+        .num_pins_a = 1, 
         .pins_b = (pin_config_t[]) {
             { .pin = 1, .mode = GPIO_MODE_INPUT, .pull = GPIO_PULLUP },
         },
-        .num_pins_b = 1 // Update this count as needed
+        .num_pins_b = 1 
     }
 };
 
