@@ -232,9 +232,12 @@ void stm32_lib_unlock_crystal(void)
   RCC->CR &= ~RCC_CR_HSEON;
 }
 
-void stm32_lib_sig_gen_init(stm32_sig_gen_state_t *state)
+void stm32_lib_sig_gen_init(stm32_sig_gen_state_t *state, const stm32_sig_gen_state_t *config)
 {
     if (!state || !state->timer) return;
+
+    // Copy configuration to state
+    memcpy(state, config, sizeof(stm32_sig_gen_state_t));
 
     // Enable timer clock
     if (state->timer == TIM2)

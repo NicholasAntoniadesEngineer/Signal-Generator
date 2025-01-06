@@ -44,18 +44,10 @@ static const struct app_config config =
 
 static void init_config(app_state_t *state, const struct app_config *config)
 {
-    // Initialize signal generators
-    memcpy(&state->signal_1, &config->signal_1, sizeof(stm32_sig_gen_state_t));
-    memcpy(&state->signal_2, &config->signal_2, sizeof(stm32_sig_gen_state_t));
-    
-    stm32_lib_sig_gen_init(&state->signal_1);
-    stm32_lib_sig_gen_init(&state->signal_2);
+    stm32_lib_sig_gen_init(&state->signal_1, &config->signal_1);
+    stm32_lib_sig_gen_init(&state->signal_2, &config->signal_2);
 
-    // Initialize UART state
-    state->uart_state.huart = config->uart.huart;
-    state->uart_state.rx_size = config->uart.rx_size;
-    state->uart_state.tx_size = config->uart.tx_size;
-    state->uart_state.uart_timeout = config->uart.uart_timeout;
+    uart_message_handler_init(&state->uart_state, &config->uart);
 }
 
 static void main_loop(app_state_t *state)
@@ -73,7 +65,8 @@ static void main_loop(app_state_t *state)
 
 int main(void)
 {
-    stm32_bsp_hal_init();
+    stm32_bsp_gpio_init();
+    stm32_bsp_dma_init();
 
     init_config(&state, &config);
 

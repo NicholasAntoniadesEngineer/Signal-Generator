@@ -104,7 +104,6 @@ void stm32_bsp_tim_init(TIM_HandleTypeDef* htim, uint32_t instance)
 
 void stm32_bsp_gpio_init(void)
 {
-    /* Enable GPIO clocks */
     __HAL_RCC_GPIOA_CLK_ENABLE();
     __HAL_RCC_GPIOB_CLK_ENABLE();
     __HAL_RCC_GPIOC_CLK_ENABLE();
@@ -113,13 +112,9 @@ void stm32_bsp_gpio_init(void)
 
 void stm32_bsp_dma_init(void)
 {
-    /* Enable DMA1 clock */
     __HAL_RCC_DMA1_CLK_ENABLE();
-    
-    /* Enable DMA2 clock */
     __HAL_RCC_DMA2_CLK_ENABLE();
     
-    /* DMA interrupt init */
     HAL_NVIC_SetPriority(DMA1_Stream0_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(DMA1_Stream0_IRQn);
     HAL_NVIC_SetPriority(DMA1_Stream1_IRQn, 0, 0);
