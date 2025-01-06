@@ -18,7 +18,7 @@
 #include "dma.h"
 
 /* Initialization Functions */
-void BSP_HAL_Init(void)
+void stm32_bsp_hal_init(void)
 {
     HAL_Init();
     
@@ -37,7 +37,7 @@ void BSP_HAL_Init(void)
     MX_USART3_UART_Init();
 }
 
-void BSP_Init_State(bsp_state_t* state)
+void stm32_bsp_init_state(bsp_state_t* state)
 {
     /* Initialize state structure with default values */
     memset(state, 0, sizeof(bsp_state_t));
@@ -47,33 +47,33 @@ void BSP_Init_State(bsp_state_t* state)
 }
 
 /* GPIO Functions */
-void BSP_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState)
+void stm32_bsp_gpio_writepin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState)
 {
     HAL_GPIO_WritePin(GPIOx, GPIO_Pin, PinState);
 }
 
-GPIO_PinState BSP_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+GPIO_PinState stm32_bsp_gpio_readpin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
 {
     return HAL_GPIO_ReadPin(GPIOx, GPIO_Pin);
 }
 
 /* Timer Functions */
-void BSP_TIM_Base_Start(TIM_HandleTypeDef* htim)
+void stm32_bsp_tim_base_start(TIM_HandleTypeDef* htim)
 {
     HAL_TIM_Base_Start(htim);
 }
 
-void BSP_TIM_Base_Stop(TIM_HandleTypeDef* htim)
+void stm32_bsp_tim_base_stop(TIM_HandleTypeDef* htim)
 {
     HAL_TIM_Base_Stop(htim);
 }
 
-void BSP_TIM_Base_Init(TIM_HandleTypeDef* htim)
+void stm32_bsp_tim_base_init(TIM_HandleTypeDef* htim)
 {
     HAL_TIM_Base_Init(htim);
 }
 
-void BSP_TIM_PWM_Init(TIM_HandleTypeDef* htim, uint32_t channel, uint32_t frequency)
+void stm32_bsp_tim_pwm_init(TIM_HandleTypeDef* htim, uint32_t channel, uint32_t frequency)
 {
     /* Configure timer for PWM mode */
     TIM_OC_InitTypeDef sConfigOC = {0};
@@ -88,71 +88,71 @@ void BSP_TIM_PWM_Init(TIM_HandleTypeDef* htim, uint32_t channel, uint32_t freque
 }
 
 /* UART Functions */
-void BSP_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size)
+void stm32_bsp_uart_transmit(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size)
 {
     HAL_UART_Transmit(huart, data, size, HAL_MAX_DELAY);
 }
 
-void BSP_UART_Receive(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size)
+void stm32_bsp_uart_receive(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size)
 {
     HAL_UART_Receive(huart, data, size, HAL_MAX_DELAY);
 }
 
-void BSP_UART_Transmit_DMA(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size)
+void stm32_bsp_uart_transmit_dma(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size)
 {
     HAL_UART_Transmit_DMA(huart, data, size);
 }
 
-void BSP_UART_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size)
+void stm32_bsp_uart_receive_dma(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size)
 {
     HAL_UART_Receive_DMA(huart, data, size);
 }
 
 /* I2C Functions */
-void BSP_I2C_Read(I2C_HandleTypeDef *hi2c, uint16_t dev_addr, uint16_t reg_addr, uint8_t *data, uint16_t size)
+void stm32_bsp_i2c_read(I2C_HandleTypeDef *hi2c, uint16_t dev_addr, uint16_t reg_addr, uint8_t *data, uint16_t size)
 {
     HAL_I2C_Mem_Read(hi2c, dev_addr, reg_addr, I2C_MEMADD_SIZE_8BIT, data, size, HAL_MAX_DELAY);
 }
 
-void BSP_I2C_Write(I2C_HandleTypeDef *hi2c, uint16_t dev_addr, uint16_t reg_addr, uint8_t *data, uint16_t size)
+void stm32_bsp_i2c_write(I2C_HandleTypeDef *hi2c, uint16_t dev_addr, uint16_t reg_addr, uint8_t *data, uint16_t size)
 {
     HAL_I2C_Mem_Write(hi2c, dev_addr, reg_addr, I2C_MEMADD_SIZE_8BIT, data, size, HAL_MAX_DELAY);
 }
 
 /* ADC Functions */
-void BSP_ADC_Start(ADC_HandleTypeDef* hadc)
+void stm32_bsp_adc_start(ADC_HandleTypeDef* hadc)
 {
     HAL_ADC_Start(hadc);
 }
 
-void BSP_ADC_Stop(ADC_HandleTypeDef* hadc)
+void stm32_bsp_adc_stop(ADC_HandleTypeDef* hadc)
 {
     HAL_ADC_Stop(hadc);
 }
 
-void BSP_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* buffer, uint32_t length)
+void stm32_bsp_adc_start_dma(ADC_HandleTypeDef* hadc, uint32_t* buffer, uint32_t length)
 {
     HAL_ADC_Start_DMA(hadc, buffer, length);
 }
 
-void BSP_ADC_Stop_DMA(ADC_HandleTypeDef* hadc)
+void stm32_bsp_adc_stop_dma(ADC_HandleTypeDef* hadc)
 {
     HAL_ADC_Stop_DMA(hadc);
 }
 
-uint32_t BSP_ADC_ReadValue(ADC_HandleTypeDef* hadc)
+uint32_t stm32_bsp_adc_readvalue(ADC_HandleTypeDef* hadc)
 {
     HAL_ADC_PollForConversion(hadc, HAL_MAX_DELAY);
     return HAL_ADC_GetValue(hadc);
 }
 
 /* System Functions */
-uint32_t BSP_GetTick(void)
+uint32_t stm32_bsp_gettick(void)
 {
     return HAL_GetTick();
 }
 
-void BSP_Delay(uint32_t delay)
+void stm32_bsp_delay(uint32_t delay)
 {
     HAL_Delay(delay);
 } 

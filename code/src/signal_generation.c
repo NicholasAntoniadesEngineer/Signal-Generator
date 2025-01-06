@@ -17,16 +17,21 @@
 #include "signal_generation.h"
 #include "stm32_bsp.h"
 
-void signal_generation_init(signal_state* state) 
+void signal_generation_init(signal_state_t* state, const signal_state_t* config) 
 {
-    BSP_TIM_Base_Start(&state->tim2);
-    BSP_TIM_Base_Start(&state->tim4);
+    // Copy configuration to state
+    memcpy(state, config, sizeof(signal_state_t));
+    memset(state->channel_1_sine_val, 0, sizeof(state->channel_1_sine_val));
+    memset(state->channel_2_sine_val, 0, sizeof(state->channel_2_sine_val));
+
+    BSP_TIM_Base_Start(state->tim2);
+    BSP_TIM_Base_Start(state->tim4);
     
     get_channel_1_sine(state->channel_1_sine_val, state);
     get_channel_2_sine(state->channel_2_sine_val, state);
     
-    BSP_DAC_Start_DMA(&state->dac, DAC1_CHANNEL_1, state->channel_1_sine_val, state->Ns, DAC_ALIGN_12B_R);
-    BSP_DAC_Start_DMA(&state->dac, DAC1_CHANNEL_2, state->channel_2_sine_val, state->Ns, DAC_ALIGN_12B_R);
+    BSP_DAC_Start_DMA(state->dac, DAC1_CHANNEL_1, state->channel_1_sine_val, state->Ns, DAC_ALIGN_12B_R);
+    BSP_DAC_Start_DMA(state->dac, DAC1_CHANNEL_2, state->channel_2_sine_val, state->Ns, DAC_ALIGN_12B_R);
 
     BSP_GPIO_WritePin(GPIOD, LED1_Pin, GPIO_PIN_SET);
     BSP_GPIO_WritePin(GPIOD, LED2_Pin, GPIO_PIN_SET);

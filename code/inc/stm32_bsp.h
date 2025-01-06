@@ -51,6 +51,7 @@ void BSP_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
 void BSP_UART_Receive(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
 void BSP_UART_Transmit_DMA(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
 void BSP_UART_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
+void BSP_UART_Init(uart_state_t* uart_state, const uart_config_t* config);
 
 /* I2C Functions */
 void BSP_I2C_Read(I2C_HandleTypeDef *hi2c, uint16_t dev_addr, uint16_t reg_addr, uint8_t *data, uint16_t size);

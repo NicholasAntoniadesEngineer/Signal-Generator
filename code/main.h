@@ -18,15 +18,27 @@
 #include "signal_generation.h"
 #include "uart_message_handler.h"
 
-uint8_t rx_buff[RX_BUFF_SIZE];
-uint8_t tx_buff[TX_BUFF_SIZE];
+#define RX_BUFF_SIZE 12
+#define TX_BUFF_SIZE 12
+
+extern uint8_t rx_buff[RX_BUFF_SIZE];
+extern uint8_t tx_buff[TX_BUFF_SIZE];
 
 typedef struct {
-    signal_config signal_config;
-    uart_state uart_state;
-} app_state;
+    UART_HandleTypeDef* huart;
+    uint16_t rx_size;
+    uint16_t tx_size;
+    uint32_t uart_timeout;
+} uart_config_t;
 
-void init_config(signal_config *signal_config_ptr, uart_state *uart_state);
-void main_loop(app_state *state);
+struct app_config {
+    signal_state_t signal;
+    uart_config_t uart;
+};
+
+typedef struct {
+    signal_state_t signal_state;
+    uart_state_t uart_state;
+} app_state_t;
 
 #endif // MAIN_H 
