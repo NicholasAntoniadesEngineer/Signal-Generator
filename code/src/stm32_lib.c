@@ -10,39 +10,31 @@
 #include "stm32_lib.h"
 #include <stm32f0xx_exti.h>
 #include "stm32f051x8.h"
+#include "stm32_bsp.h"
 
-void stm32_lib_init_ports(void)
-{
-	//GPIOA
-	RCC->AHBENR |= RCC_AHBENR_GPIOAEN;	  // Enabling Port A clock
-	GPIOA->MODER &=~ GPIO_MODER_MODER0;	  // Map PA0 to input Start button.
-	GPIOA->PUPDR |= GPIO_PUPDR_PUPDR0_0;  // PA0 pull up resistor
-	GPIOA->MODER &=~ GPIO_MODER_MODER1;	  // Map PA1 to input EXTI1.
-	GPIOA->PUPDR |= GPIO_PUPDR_PUPDR1_0;  // PA1 pull up resistor
-	GPIOA->MODER |= GPIO_MODER_MODER2_1;  // set PA2 to AF ADC Load cell 1
-	GPIOA->MODER |= GPIO_MODER_MODER3_1;  // set PA3 to AF ADC Load cell 2
-	GPIOA->MODER |= GPIO_MODER_MODER4_1;  // set PA4 to AF ADC Flow 1
-	GPIOA->MODER |= GPIO_MODER_MODER5_1;  // set PA5 to AF ADC Bellow pressure
-	GPIOA->MODER |= GPIO_MODER_MODER6_1;  // set PA6 to AF ADC Peep pressure
-	GPIOA->MODER |= GPIO_MODER_MODER7_1;  // set PA7 to AF ADC BPM control
-	GPIOA->MODER &=~ GPIO_MODER_MODER11;  // Map PA10 to input Limit switch.
-	GPIOA->PUPDR |= GPIO_PUPDR_PUPDR11_0; // PA10 pull up resistor
-	GPIOA->MODER |= GPIO_MODER_MODER15_0; // set PA15 to output Insp pressure not achieved
+void stm32_lib_init_ports(port_config_t *port_config) {
+	if (!port_config) return;
 
-	//GPIOB
-	RCC-> AHBENR |= RCC_AHBENR_GPIOBEN;   // Enabling Port B clock
-	GPIOB->MODER |= GPIO_MODER_MODER0_1;  // set PB0 to AF ADC Volume control
-	GPIOB->MODER &=~ GPIO_MODER_MODER1;   // set PB1 to input Alarm off button
-	GPIOB->PUPDR |= GPIO_PUPDR_PUPDR1_0;  // PB1 pull up resistor
-	GPIOB->MODER |= GPIO_MODER_MODER2_0;  // set PB2 to output Direction Toggle
-	GPIOB->MODER |= GPIO_MODER_MODER3_0;  // set PB3 to output Peep pressure not achieved
-	GPIOB->MODER |= GPIO_MODER_MODER4_0;  // set PB4 to output Gas supply faulty
-	GPIOB->MODER |= GPIO_MODER_MODER5_0;  // set PB5 to output Electricity supply failure
-	GPIOB->MODER |= GPIO_MODER_MODER6_0;  // set PB6 to output Unsafe shut off
-	GPIOB->PUPDR |= GPIO_PUPDR_PUPDR7_0;  // set PB7 pull up resistor
-	GPIOB->MODER |= GPIO_MODER_MODER12_0; // set PB12 to output
-	GPIOB->MODER |= GPIO_MODER_MODER13_0; // set PB13 to output Tidal Volume not achieved
-	GPIOB->MODER |= GPIO_MODER_MODER14_0; // set PB14 to output Insp pressure not achieved
+	// Initialize GPIOA
+	RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+	for (int i = 0; i < port_config->num_pins_a; i++) {
+		GPIOA->MODER &= ~(0x3 << (port_config->pins_a[i].pin * 2));
+		GPIOA->MODER |= (port_config->pins_a[i].mode << (port_config->pins_a[i].pin * 2));
+		GPIOA->PUPDR &= ~(0x3 << (port_config->pins_a[i].pin * 2));
+		GPIOA->PUPDR |= (port_config->pins_a[i].pull << (port_config->pins_a[i].pin * 2));
+	}
+
+	// Initialize GPIOB
+	RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+	for (int i = 0; i < port_config->num_pins_b; i++) {
+		GPIOB->MODER &= ~(0x3 << (port_config->pins_b[i].pin * 2));
+		GPIOB->MODER |= (port_config->pins_b[i].mode << (port_config->pins_b[i].pin * 2));
+		GPIOB->PUPDR &= ~(0x3 << (port_config->pins_b[i].pin * 2));
+		GPIOB->PUPDR |= (port_config->pins_b[i].pull << (port_config->pins_b[i].pin * 2));
+	}
+
+	// Call BSP or HAL init if needed
+	stm32_bsp_gpio_init();
 }
 
 // Initializing the PWM output

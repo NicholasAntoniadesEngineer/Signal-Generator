@@ -38,6 +38,14 @@ typedef struct {
     uint32_t uart_timeout;
 } stm32_uart_state_t;
 
+// Port state structure
+typedef struct {
+    pin_config_t *pins_a;
+    int num_pins_a;
+    pin_config_t *pins_b;
+    int num_pins_b;
+} stm32_port_state_t;
+
 // Function prototypes
 void stm32_lib_init_ports(void);
 void stm32_lib_init_pwm_tim(TIM_HandleTypeDef *htim, uint32_t channel, uint32_t frequency);
