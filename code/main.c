@@ -12,7 +12,7 @@
 
 #include "main.h"
 #include "stm32_bsp.h"
-#include "signal_generation.h"
+#include "stm32_lib.h"
 #include "uart_message_handler.h"
 #include "state_machine.h"
 
@@ -20,26 +20,20 @@ static app_state_t state;
 
 static const struct app_config config = 
 {
-    .signal = {
-        .freq_signal_1 = 1000,
-        .freq_signal_2 = 1000,
-        .channel_1_sine_scale = 0.68,
-        .channel_2_sine_scale = 0.68,
-        .sine_dc_offset = 300,
-        .psc = 0,
-        .period = 1,
-        .res = 4096,
-        .fclock = 90000000,
-        .min_freq = 500,
-        .max_freq = 20000,
-        .min_amplitude = 1,
-        .max_amplitude = 68,
-        .Ns = 80,
-        .tim2 = &htim2,
-        .tim4 = &htim4,
-        .dac = &hdac
+    .signal_1 = {
+        .timer = &htim2,
+        .frequency = 1000,
+        .amplitude = 50,  
+        .offset = 0,
+        .channel = TIM_CHANNEL_3
     },
-    
+    .signal_2 = {
+        .timer = &htim4,
+        .frequency = 1000,
+        .amplitude = 50, 
+        .offset = 0,
+        .channel = TIM_CHANNEL_4
+    },
     .uart = {
         .huart = &huart1,
         .rx_size = RX_BUFF_SIZE,
@@ -50,8 +44,12 @@ static const struct app_config config =
 
 static void init_config(app_state_t *state, const struct app_config *config)
 {
-    // Initialize signal state
-    signal_generation_init(&state->signal_state, &config->signal);
+    // Initialize signal generators
+    memcpy(&state->signal_1, &config->signal_1, sizeof(stm32_sig_gen_state_t));
+    memcpy(&state->signal_2, &config->signal_2, sizeof(stm32_sig_gen_state_t));
+    
+    stm32_lib_sig_gen_init(&state->signal_1);
+    stm32_lib_sig_gen_init(&state->signal_2);
 
     // Initialize UART state
     stm32_bsp_uart_init(&state->uart_state, &config->uart);
@@ -66,7 +64,7 @@ static void main_loop(app_state_t *state)
 
         uint8_t* message = message_handler(state);
 
-        if (message != NULL) state_machine(message, &state->signal_state);
+        if (message != NULL) state_machine(message, state);
     }
 }
 

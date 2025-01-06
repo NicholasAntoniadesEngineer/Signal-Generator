@@ -9,36 +9,30 @@
   ******************************************************************************
   */
 
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MAIN_H_
+#define MAIN_H_
 
-#include <string.h>
-#include <stdlib.h>
+#include "stm32_lib.h"
+#include "stm32_bsp.h"
 
-#include "signal_generation.h"
-#include "uart_message_handler.h"
-
-#define RX_BUFF_SIZE 12
-#define TX_BUFF_SIZE 12
-
-extern uint8_t rx_buff[RX_BUFF_SIZE];
-extern uint8_t tx_buff[TX_BUFF_SIZE];
+#define RX_BUFF_SIZE 256
+#define TX_BUFF_SIZE 256
 
 typedef struct {
-    UART_HandleTypeDef* huart;
-    uint16_t rx_size;
-    uint16_t tx_size;
-    uint32_t uart_timeout;
-} uart_config_t;
-
-struct app_config {
-    signal_state_t signal;
-    uart_config_t uart;
-};
-
-typedef struct {
-    signal_state_t signal_state;
+    stm32_sig_gen_state_t signal_1;
+    stm32_sig_gen_state_t signal_2;
     uart_state_t uart_state;
 } app_state_t;
 
-#endif // MAIN_H 
+struct app_config {
+    stm32_sig_gen_state_t signal_1;
+    stm32_sig_gen_state_t signal_2;
+    struct {
+        UART_HandleTypeDef *huart;
+        uint16_t rx_size;
+        uint16_t tx_size;
+        uint32_t uart_timeout;
+    } uart;
+};
+
+#endif /* MAIN_H_ */ 
