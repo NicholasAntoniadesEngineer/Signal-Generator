@@ -45,17 +45,18 @@ static const app_config_t config = {
         },
         .num_pins_a = 1, 
         .pins_b = (pin_config_t[]) {
-            { .pin = 1, .mode = GPIO_MODE_INPUT, .pull = GPIO_PULLUP },
+            { .pin = 1, .mode = GPIO_MODE_OUTPUT_PP, .pull = GPIO_PULLUP },
         },
         .num_pins_b = 1 
     }
 };
 
-static void init_config(app_state_t *state, const app_config_t *config) {
+static void init_config(app_state_t *state, const app_config_t *config) 
+{
     stm32_lib_sig_gen_init(&state->signal_1, &config->signal_1);
     stm32_lib_sig_gen_init(&state->signal_2, &config->signal_2);
-    uart_message_handler_init(&state->uart_state, &config->uart);
-    stm32_lib_init_ports(&config->port_config);
+    stm32_lib_uart_init(&state->uart_state, &config->uart);
+    stm32_lib_port_init(&config->port_config);
 }
 
 static void main_loop(app_state_t *state)

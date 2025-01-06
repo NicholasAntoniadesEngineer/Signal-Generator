@@ -47,7 +47,7 @@ typedef struct {
 } stm32_port_state_t;
 
 // Function prototypes
-void stm32_lib_init_ports(void);
+void stm32_lib_port_init(void);
 void stm32_lib_init_pwm_tim(TIM_HandleTypeDef *htim, uint32_t channel, uint32_t frequency);
 void stm32_lib_init_pwm(int frequency);
 void stm32_lib_init_adc(void);
@@ -69,5 +69,6 @@ void stm32_lib_init_exti(void);
 void stm32_lib_usart1_transmit(unsigned char DataToTx);
 unsigned char stm32_lib_usart1_receive(void);
 void stm32_lib_sig_gen_init(stm32_sig_gen_state_t *state);
+void stm32_lib_port_init(stm32_uart_state_t *uart_state, const stm32_uart_state_t *config);
 
 #endif /* STM32_LIB_H_ */ 

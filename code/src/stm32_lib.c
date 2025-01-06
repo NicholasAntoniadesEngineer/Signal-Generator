@@ -12,7 +12,7 @@
 #include "stm32f051x8.h"
 #include "stm32_bsp.h"
 
-void stm32_lib_init_ports(port_config_t *port_config) {
+void stm32_lib_port_init(port_config_t *port_config) {
 	if (!port_config) return;
 
 	// Initialize GPIOA
@@ -301,4 +301,14 @@ void stm32_lib_pwm(void)
     TIM2->CCER |= TIM_CCER_CC3E; //Compare 3 output enable
     TIM2->CCER |= TIM_CCER_CC4E; //Compare 4 output enable
     TIM2->CR1 |= TIM_CR1_CEN;    //Counter enable
+}
+
+void stm32_lib_uart_init(stm32_uart_state_t *uart_state, const stm32_uart_state_t *config) {
+    if (!uart_state || !config) return;
+
+    // Copy configuration to state
+    memcpy(uart_state, config, sizeof(stm32_uart_state_t));
+
+    // Initialize UART hardware
+    stm32_bsp_uart_init(uart_state->huart, (uint32_t)uart_state->huart->Instance, uart_state->huart->Init.BaudRate);
 }
