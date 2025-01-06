@@ -11,7 +11,7 @@
 #include <stm32f0xx_exti.h>
 #include "stm32f051x8.h"
 
-void lib_init_ports(void)
+void stm32_lib_init_ports(void)
 {
 	//GPIOA
 	RCC->AHBENR |= RCC_AHBENR_GPIOAEN;	  // Enabling Port A clock
@@ -46,7 +46,7 @@ void lib_init_ports(void)
 }
 
 // Initializing the PWM output
-void lib_init_pwm(int frequency)
+void stm32_lib_init_pwm(int frequency)
 {
 	#define GPIO_AFRH_AFR11_AF2 ((uint32_t)0x00002000)		/*Macros to be defined*/
 	RCC->AHBENR |= RCC_AHBENR_GPIOBEN; 						// Enable clock for GPIOB
@@ -62,7 +62,7 @@ void lib_init_pwm(int frequency)
 }
 
 // Initializing the ADC
-void lib_init_adc(void)
+void stm32_lib_init_adc(void)
 {
 	ADC1 -> CR |= ADC_CR_ADCAL;          // ADC calibration
 	RCC -> APB2ENR |= RCC_APB2ENR_ADCEN; // Enabling the ADC clock in the RCC APB  periperal clock enableregister
@@ -73,7 +73,7 @@ void lib_init_adc(void)
 }
 
 // Initializing the ADC to a specific pin
-int lib_adc_input(int input, int resolution)
+int stm32_lib_adc_input(int input, int resolution)
 {
     ADC1->CFGR1 |= (resolution << 3);	/* configure resolution,12,10,8,6 bits */
     ADC1->CHSELR = (1 <<  input);		// channel select where input ranges from ADC-in 0-13
@@ -82,7 +82,7 @@ int lib_adc_input(int input, int resolution)
     return ADC1->DR;					// return value
 }
 
-int lib_adc_awd_check(void)
+int stm32_lib_adc_awd_check(void)
 {
 	if((ADC1->ISR & 0x80) == 1)
 	{	// Check if AWD status bit is high
@@ -93,7 +93,7 @@ int lib_adc_awd_check(void)
 	}
 }
 
-void lib_adc_awd_8bit(int ADC_channel, int ADC_Low_threshhold, int ADC_High_threshhold)
+void stm32_lib_adc_awd_8bit(int ADC_channel, int ADC_Low_threshhold, int ADC_High_threshhold)
 {
 	// ADC_Low_threshhold = (ADC_Low_threshhold*256)/3.3;
 	// ADC_High_threshhold = (ADC_High_threshhold*256)/3.3;
@@ -107,7 +107,7 @@ void lib_adc_awd_8bit(int ADC_channel, int ADC_Low_threshhold, int ADC_High_thre
 }
 
 // Fetching ADC data
-int lib_adc_data(void)
+int stm32_lib_adc_data(void)
 {
 	ADC1 ->CR |= ADC_CR_ADSTART;		// Starts ADC conversion
 	while((ADC1 -> ISR & 0b100) ==0 );	// Waits for the End of conversion flag to be set
@@ -115,37 +115,37 @@ int lib_adc_data(void)
 }
 
 // Creating a delay by iterating through a loop
-void lib_delay(int time) {
+void stm32_lib_delay(int time) {
 	// time given in milli seconds
 	time = time * 727;
 	while (time > 0) {time--;}
 }
 
 // Check for button press GPIOA
-int lib_check_button_gpioa(int button) {
+int stm32_lib_check_button_gpioa(int button) {
 	if ((GPIOA->IDR & (0b1 << button)) == 0) {
-		lib_debounce();
+		stm32_lib_debounce();
 		return 1;
 	} else { return 0; }
 }
 // Check for button press GPIOB
-int lib_check_button_gpiob(int button) 
+int stm32_lib_check_button_gpiob(int button) 
 {
 	if ((GPIOB->IDR & (0b1 << button)) == 0) {
-		lib_debounce();
+		stm32_lib_debounce();
 		return 1;
 	} else { return 0; }
 }
 
 // Check for button debouncee
-void lib_debounce(void) 
+void stm32_lib_debounce(void) 
 {
 	int x = 36350;		// 50 milliseconds
 	while (x > 0) {x--;}
 }
 
 // Enabling Timer 6 interrupt
-void lib_init_tim6(uint32_t arr, uint32_t psc)
+void stm32_lib_init_tim6(uint32_t arr, uint32_t psc)
 {
     RCC -> APB1ENR |= (1 << 4);		// Enable Tim6 in the peripheral clock enable register
     TIM6 -> PSC = psc;
@@ -158,13 +158,13 @@ void lib_init_tim6(uint32_t arr, uint32_t psc)
 }
 
 // Acknowledging timer interrupt
-void lib_ack_irq(void)
+void stm32_lib_ack_irq(void)
 {
         TIM6->SR &= ~(1 << 0);	// Set interrupt acknowledge flag to zero (not 1)
 }
 
 // Initializing the External Interrupt
-void lib_init_exti(void)
+void stm32_lib_init_exti(void)
 {
 	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGCOMPEN;		// Enables the clock for the sys config controller.
 	SYSCFG->EXTICR[1] |=SYSCFG_EXTICR1_EXTI1_PA;    // Map PA1 to EXTI1.
@@ -174,7 +174,7 @@ void lib_init_exti(void)
 }
 
 
-void lib_init_usart1(void)
+void stm32_lib_init_usart1(void)
 {
 	// Must enable usart1_DE and the associated pins AF
 	// Program the M bits in USARTx_CR1 to define the word length.
@@ -194,7 +194,7 @@ void lib_init_usart1(void)
 	USART1->CR1 |= USART_CR1_RE;						// Enable USART1_RX
 }
 
-void lib_usart1_transmit(unsigned char DataToTx)
+void stm32_lib_usart1_transmit(unsigned char DataToTx)
 {
 	// wait until TXE = 1 before writing int tdr
 
@@ -202,7 +202,7 @@ void lib_usart1_transmit(unsigned char DataToTx)
 	while((USART1 -> ISR & USART_ISR_TC) == 0); // wait: transmission complete
 }
 
-unsigned char lib_usart1_receive(void)
+unsigned char stm32_lib_usart1_receive(void)
 {
 	unsigned char DataRx = 'z';					  // global
 	while((USART1 -> ISR & USART_ISR_RXNE) == 0); // exits loop when data is received
@@ -211,7 +211,7 @@ unsigned char lib_usart1_receive(void)
 	return DataRx;
 }
 
-void lock_crystal(void) 
+void stm32_lib_lock_crystal(void) 
 {
   RCC->CR |= RCC_CR_HSEON; // enable HSE
   while(!(RCC->CR & RCC_CR_HSERDY)); // hange here until HSE ready
@@ -225,7 +225,7 @@ void lock_crystal(void)
   while(!(RCC->CFGR & RCC_CFGR_SWS_PLL)); // hang until SYSLK switched
 }
 
-void unlock_crystal(void) 
+void stm32_lib_unlock_crystal(void) 
 {
   RCC->CFGR &= ~RCC_CFGR_SW; // clear the SYSCLK selection bits, causing SYSCLK to be sourced from HSI
   while(RCC->CFGR & RCC_CFGR_SWS_PLL); // hang until SYSLK no longer PLL
@@ -274,36 +274,36 @@ void stm32_lib_sig_gen_init(stm32_sig_gen_state_t *state)
     state->timer->Instance->CR1 |= TIM_CR1_CEN;
 }
 
-void PWM(void)
+void stm32_lib_pwm(void)
 {
-	/*Macros to be defined*/
-	#define GPIO_AFRH_AFR10_AF2 ((uint32_t)0x00000200)
-	#define GPIO_AFRH_AFR11_AF2 ((uint32_t)0x00002000)
+    /*Macros to be defined*/
+    #define GPIO_AFRH_AFR10_AF2 ((uint32_t)0x00000200)
+    #define GPIO_AFRH_AFR11_AF2 ((uint32_t)0x00002000)
 
-	//Initialising clocks and pins for PWM output
-	RCC->AHBENR |= RCC_AHBENR_GPIOBEN; 	  // Enable clock for GPIOB
-	RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;	  // Enable TIM2
-	GPIOB->MODER |= GPIO_MODER_MODER10_1; // set PB10 to AF
-	GPIOB->MODER |= GPIO_MODER_MODER11_1; // set PB11 to AF
+    //Initialising clocks and pins for PWM output
+    RCC->AHBENR |= RCC_AHBENR_GPIOBEN;     // Enable clock for GPIOB
+    RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;    // Enable TIM2
+    GPIOB->MODER |= GPIO_MODER_MODER10_1; // set PB10 to AF
+    GPIOB->MODER |= GPIO_MODER_MODER11_1; // set PB11 to AF
 
-	//Choosing AF for pins, MAPPING them to TIM2 CH3 and CH4
-	GPIOB->AFR[1] |= (GPIO_AFRH_AFR10_AF2&(0b10<<8)); //Enable AF2 for PB10 in GPIOB AFR10
-	GPIOB->AFR[1] |= (GPIO_AFRH_AFR11_AF2&(0b10<<12));//Enable AF2 for PB11 in GPIOB AFR11
+    //Choosing AF for pins, MAPPING them to TIM2 CH3 and CH4
+    GPIOB->AFR[1] |= (GPIO_AFRH_AFR10_AF2&(0b10<<8)); //Enable AF2 for PB10 in GPIOB AFR10
+    GPIOB->AFR[1] |= (GPIO_AFRH_AFR11_AF2&(0b10<<12));//Enable AF2 for PB11 in GPIOB AFR11
 
-	// specify PWM mode: OCxM bits in CCMRx. We want mode 1
-	TIM2->CCMR2 |= (TIM_CCMR2_OC3M_2 | TIM_CCMR2_OC3M_1); // PWM Mode 1
-	TIM2->CCMR2 |= (TIM_CCMR2_OC4M_2 | TIM_CCMR2_OC4M_1); // PWM Mode 1
+    // specify PWM mode: OCxM bits in CCMRx. We want mode 1
+    TIM2->CCMR2 |= (TIM_CCMR2_OC3M_2 | TIM_CCMR2_OC3M_1); // PWM Mode 1
+    TIM2->CCMR2 |= (TIM_CCMR2_OC4M_2 | TIM_CCMR2_OC4M_1); // PWM Mode 1
 
-	//Setting signal frequency
-	TIM2->ARR = 48000; // f = 1 KHz
-	TIM2->PSC = 0;
+    //Setting signal frequency
+    TIM2->ARR = 48000; // f = 1 KHz
+    TIM2->PSC = 0;
 
-	//PWM Duty cycle based on fractions of ARR
-	TIM2->CCR3 = 0 * 480; // Red = 20%
-	TIM2->CCR4 = 20 * 480; // Green = 90%
+    //PWM Duty cycle based on fractions of ARR
+    TIM2->CCR3 = 0 * 480; // Red = 20%
+    TIM2->CCR4 = 20 * 480; // Green = 90%
 
-	// Enable output compare for CH3 and CH4
-	TIM2->CCER |= TIM_CCER_CC3E; //Compare 3 output enable
-	TIM2->CCER |= TIM_CCER_CC4E; //Compare 4 output enable
-	TIM2->CR1 |= TIM_CR1_CEN;    //Counter enable
+    // Enable output compare for CH3 and CH4
+    TIM2->CCER |= TIM_CCER_CC3E; //Compare 3 output enable
+    TIM2->CCER |= TIM_CCER_CC4E; //Compare 4 output enable
+    TIM2->CR1 |= TIM_CR1_CEN;    //Counter enable
 }
