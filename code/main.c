@@ -52,7 +52,10 @@ static void init_config(app_state_t *state, const struct app_config *config)
     stm32_lib_sig_gen_init(&state->signal_2);
 
     // Initialize UART state
-    stm32_bsp_uart_init(&state->uart_state, &config->uart);
+    state->uart_state.huart = config->uart.huart;
+    state->uart_state.rx_size = config->uart.rx_size;
+    state->uart_state.tx_size = config->uart.tx_size;
+    state->uart_state.uart_timeout = config->uart.uart_timeout;
 }
 
 static void main_loop(app_state_t *state)
@@ -60,9 +63,9 @@ static void main_loop(app_state_t *state)
     while (1)
     {
         stm32_bsp_uart_receive(state->uart_state.huart, state->uart_state.rx_buff, 
-                        state->uart_state.rx_size, state->uart_state.uart_timeout);
+                        state->uart_state.rx_size);
 
-        uint8_t* message = message_handler(state);
+        uint8_t* message = message_handler(&state->uart_state);
 
         if (message != NULL) state_machine(message, state);
     }

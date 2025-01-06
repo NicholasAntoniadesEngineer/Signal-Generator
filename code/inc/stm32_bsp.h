@@ -33,51 +33,47 @@ typedef struct {
 /* Function Prototypes */
 
 /* Initialization Functions */
-void BSP_HAL_Init(void);
-void BSP_Init_State(bsp_state_t* state);
+void stm32_bsp_hal_init(void);
+void stm32_bsp_init_state(bsp_state_t* state);
+
+/* Peripheral Initialization Functions */
+void stm32_bsp_adc_init(ADC_HandleTypeDef* hadc, uint32_t instance);
+void stm32_bsp_i2c_init(I2C_HandleTypeDef* hi2c, uint32_t instance);
+void stm32_bsp_uart_init(UART_HandleTypeDef* huart, uint32_t instance, uint32_t baudrate);
+void stm32_bsp_dac_init(DAC_HandleTypeDef* hdac);
+void stm32_bsp_tim_init(TIM_HandleTypeDef* htim, uint32_t instance);
+void stm32_bsp_gpio_init(void);
+void stm32_bsp_dma_init(void);
 
 /* GPIO Functions */
-void BSP_GPIO_WritePin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
-GPIO_PinState BSP_GPIO_ReadPin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+void stm32_bsp_gpio_writepin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIO_PinState PinState);
+GPIO_PinState stm32_bsp_gpio_readpin(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
 /* Timer Functions */
-void BSP_TIM_Base_Start(TIM_HandleTypeDef* htim);
-void BSP_TIM_Base_Stop(TIM_HandleTypeDef* htim);
-void BSP_TIM_Base_Init(TIM_HandleTypeDef* htim);
-void BSP_TIM_PWM_Init(TIM_HandleTypeDef* htim, uint32_t channel, uint32_t frequency);
+void stm32_bsp_tim_base_start(TIM_HandleTypeDef* htim);
+void stm32_bsp_tim_base_stop(TIM_HandleTypeDef* htim);
+void stm32_bsp_tim_base_init(TIM_HandleTypeDef* htim);
+void stm32_bsp_tim_pwm_init(TIM_HandleTypeDef* htim, uint32_t channel, uint32_t frequency);
 
 /* UART Functions */
-void BSP_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
-void BSP_UART_Receive(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
-void BSP_UART_Transmit_DMA(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
-void BSP_UART_Receive_DMA(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
-void BSP_UART_Init(uart_state_t* uart_state, const uart_config_t* config);
+void stm32_bsp_uart_transmit(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
+void stm32_bsp_uart_receive(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
+void stm32_bsp_uart_transmit_dma(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
+void stm32_bsp_uart_receive_dma(UART_HandleTypeDef *huart, uint8_t *data, uint16_t size);
 
 /* I2C Functions */
-void BSP_I2C_Read(I2C_HandleTypeDef *hi2c, uint16_t dev_addr, uint16_t reg_addr, uint8_t *data, uint16_t size);
-void BSP_I2C_Write(I2C_HandleTypeDef *hi2c, uint16_t dev_addr, uint16_t reg_addr, uint8_t *data, uint16_t size);
+void stm32_bsp_i2c_read(I2C_HandleTypeDef *hi2c, uint16_t dev_addr, uint16_t reg_addr, uint8_t *data, uint16_t size);
+void stm32_bsp_i2c_write(I2C_HandleTypeDef *hi2c, uint16_t dev_addr, uint16_t reg_addr, uint8_t *data, uint16_t size);
 
 /* ADC Functions */
-void BSP_ADC_Start(ADC_HandleTypeDef* hadc);
-void BSP_ADC_Stop(ADC_HandleTypeDef* hadc);
-void BSP_ADC_Start_DMA(ADC_HandleTypeDef* hadc, uint32_t* buffer, uint32_t length);
-void BSP_ADC_Stop_DMA(ADC_HandleTypeDef* hadc);
-uint32_t BSP_ADC_ReadValue(ADC_HandleTypeDef* hadc);
+void stm32_bsp_adc_start(ADC_HandleTypeDef* hadc);
+void stm32_bsp_adc_stop(ADC_HandleTypeDef* hadc);
+void stm32_bsp_adc_start_dma(ADC_HandleTypeDef* hadc, uint32_t* buffer, uint32_t length);
+void stm32_bsp_adc_stop_dma(ADC_HandleTypeDef* hadc);
+uint32_t stm32_bsp_adc_readvalue(ADC_HandleTypeDef* hadc);
 
 /* System Functions */
-uint32_t BSP_GetTick(void);
-void BSP_Delay(uint32_t delay);
-
-/* Handle Declarations */
-extern ADC_HandleTypeDef hadc1;
-extern I2C_HandleTypeDef hi2c1;
-extern I2C_HandleTypeDef hi2c3;
-extern UART_HandleTypeDef huart1;
-extern UART_HandleTypeDef huart2;
-extern UART_HandleTypeDef huart3;
-extern DAC_HandleTypeDef hdac;
-extern TIM_HandleTypeDef htim2;
-extern TIM_HandleTypeDef htim3;
-extern TIM_HandleTypeDef htim4;
+uint32_t stm32_bsp_gettick(void);
+void stm32_bsp_delay(uint32_t delay);
 
 #endif /* STM32_BSP_H_ */ 

@@ -19,6 +19,7 @@
 #define TX_BUFF_SIZE 256
 
 typedef struct {
+    /* Signal generator states */
     stm32_sig_gen_state_t signal_1;
     stm32_sig_gen_state_t signal_2;
     uart_state_t uart_state;

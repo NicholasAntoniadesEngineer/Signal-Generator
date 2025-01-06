@@ -22,19 +22,8 @@ void stm32_bsp_hal_init(void)
 {
     HAL_Init();
     
-    /* Initialize all configured peripherals */
-    MX_GPIO_Init();
-    MX_DMA_Init();
-    MX_ADC1_Init();
-    MX_I2C1_Init();
-    MX_USART1_UART_Init();
-    MX_USART2_UART_Init();
-    MX_I2C3_Init();
-    MX_DAC_Init();
-    MX_TIM2_Init();
-    MX_TIM3_Init();
-    MX_TIM4_Init();
-    MX_USART3_UART_Init();
+    stm32_bsp_gpio_init();
+    stm32_bsp_dma_init();
 }
 
 void stm32_bsp_init_state(bsp_state_t* state)
@@ -44,6 +33,97 @@ void stm32_bsp_init_state(bsp_state_t* state)
     state->pressure_threshold = 0.0f;
     state->runFlag = 0;
     state->toggleValue = 0;
+}
+
+/* Peripheral Initialization Functions */
+void stm32_bsp_adc_init(ADC_HandleTypeDef* hadc, uint32_t instance)
+{
+    hadc->Instance = (ADC_TypeDef*)instance;
+    hadc->Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+    hadc->Init.Resolution = ADC_RESOLUTION_12B;
+    hadc->Init.DataAlign = ADC_DATAALIGN_RIGHT;
+    hadc->Init.ScanConvMode = DISABLE;
+    hadc->Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+    hadc->Init.ContinuousConvMode = DISABLE;
+    hadc->Init.DMAContinuousRequests = DISABLE;
+    hadc->Init.DiscontinuousConvMode = DISABLE;
+    hadc->Init.ExternalTrigConv = ADC_SOFTWARE_START;
+    hadc->Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+    
+    HAL_ADC_Init(hadc);
+}
+
+void stm32_bsp_i2c_init(I2C_HandleTypeDef* hi2c, uint32_t instance)
+{
+    hi2c->Instance = (I2C_TypeDef*)instance;
+    hi2c->Init.ClockSpeed = 100000;
+    hi2c->Init.DutyCycle = I2C_DUTYCYCLE_2;
+    hi2c->Init.OwnAddress1 = 0;
+    hi2c->Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+    hi2c->Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+    hi2c->Init.OwnAddress2 = 0;
+    hi2c->Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+    hi2c->Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+    
+    HAL_I2C_Init(hi2c);
+}
+
+void stm32_bsp_uart_init(UART_HandleTypeDef* huart, uint32_t instance, uint32_t baudrate)
+{
+    huart->Instance = (USART_TypeDef*)instance;
+    huart->Init.BaudRate = baudrate;
+    huart->Init.WordLength = UART_WORDLENGTH_8B;
+    huart->Init.StopBits = UART_STOPBITS_1;
+    huart->Init.Parity = UART_PARITY_NONE;
+    huart->Init.Mode = UART_MODE_TX_RX;
+    huart->Init.HwFlowCtl = UART_HWCONTROL_NONE;
+    huart->Init.OverSampling = UART_OVERSAMPLING_16;
+    
+    HAL_UART_Init(huart);
+}
+
+void stm32_bsp_dac_init(DAC_HandleTypeDef* hdac)
+{
+    hdac->Instance = DAC;
+    
+    HAL_DAC_Init(hdac);
+}
+
+void stm32_bsp_tim_init(TIM_HandleTypeDef* htim, uint32_t instance)
+{
+    htim->Instance = (TIM_TypeDef*)instance;
+    htim->Init.Prescaler = 0;
+    htim->Init.CounterMode = TIM_COUNTERMODE_UP;
+    htim->Init.Period = 0xFFFF;
+    htim->Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+    htim->Init.RepetitionCounter = 0;
+    htim->Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+    
+    HAL_TIM_Base_Init(htim);
+}
+
+void stm32_bsp_gpio_init(void)
+{
+    /* Enable GPIO clocks */
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    __HAL_RCC_GPIOB_CLK_ENABLE();
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+    __HAL_RCC_GPIOD_CLK_ENABLE();
+}
+
+void stm32_bsp_dma_init(void)
+{
+    /* Enable DMA1 clock */
+    __HAL_RCC_DMA1_CLK_ENABLE();
+    
+    /* Enable DMA2 clock */
+    __HAL_RCC_DMA2_CLK_ENABLE();
+    
+    /* DMA interrupt init */
+    HAL_NVIC_SetPriority(DMA1_Stream0_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(DMA1_Stream0_IRQn);
+    HAL_NVIC_SetPriority(DMA1_Stream1_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(DMA1_Stream1_IRQn);
 }
 
 /* GPIO Functions */
