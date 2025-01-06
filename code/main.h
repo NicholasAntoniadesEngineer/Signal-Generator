@@ -18,6 +18,9 @@
 #include "signal_generation.h"
 #include "uart_message_handler.h"
 
+uint8_t rx_buff[RX_BUFF_SIZE];
+uint8_t tx_buff[TX_BUFF_SIZE];
+
 typedef struct {
     signal_config signal_config;
     uart_state uart_state;

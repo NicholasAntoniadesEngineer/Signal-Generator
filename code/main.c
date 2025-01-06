@@ -19,19 +19,14 @@
 uint8_t rx_buff[RX_BUFF_SIZE];
 uint8_t tx_buff[TX_BUFF_SIZE];
 
-/* Function prototypes */
-static void init_config(app_state *state);
-static void main_loop(app_state *state);
-
-
 /**
   * @brief  Initialize system configuration and HAL library.
   * @param  state: Pointer to the app_state structure.
   * @retval None
   */
-static void init_config(app_state *state)
+static void init_config(app_state_t *state)
 {
-    state->signal_state = (signal_state)
+    state->signal_state = (signal_state_t)
     {
         .freq_signal_1 = 1000,
         .freq_signal_2 = 1000,
@@ -48,10 +43,13 @@ static void init_config(app_state *state)
         .max_freq = 20000,
         .min_amplitude = 1,
         .max_amplitude = 68,
-        .Ns = 80
+        .Ns = 80,
+        .tim2 = htim2,
+        .tim4 = htim4,
+        .dac = hdac
     };
 
-    state->uart_state = (uart_state)
+    state->uart_state = (uart_state_t)
     {
         .huart = &huart1,  
         .rx_buff = rx_buff,
@@ -62,13 +60,12 @@ static void init_config(app_state *state)
     };
 }
 
-
 /**
   * @brief  Main loop to handle incoming messages and update signal configuration.
   * @param  state: Pointer to the app_state structure.
   * @retval None
   */
-static void main_loop(app_state *state)
+static void main_loop(app_state_t *state)
 {
     while (1)
     {
@@ -80,14 +77,13 @@ static void main_loop(app_state *state)
     }
 }
 
-
 /**
   * @brief  The application entry point.
   * @retval int
   */
 int main(void)
 {
-  app_state state;
+  app_state_t state;
 
   init_config(&state);
 
