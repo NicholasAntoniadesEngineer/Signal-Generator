@@ -1,4 +1,4 @@
-# Arbitrary Waveform Generator
+# Arbitrary Waveform Generator (2019)
 
 ## Project Overview
 
