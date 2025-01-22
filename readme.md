@@ -16,27 +16,7 @@ The Arbitrary Waveform Generator was successfully deployed in an industrial suga
 - **Signal Characteristics**: Programmable waveforms with controlled frequency sweeps to target various mineral compositions
 
 ### Working Principle
-The system generates precisely controlled electromagnetic fields that influence the crystallization process of scale-forming minerals. By affecting nucleation sites within the fluid:
-- Promotes formation of suspended particles rather than adherent scale
-- Modifies crystal structure of forming scale to reduce adhesion
-- Creates a more easily removable powder form of scale
-
-### Performance Metrics
-- Demonstrated 40-60% reduction in scale buildup
-- Reduced maintenance intervals for pipe cleaning
-- Zero chemical additives required
-- Minimal energy consumption compared to traditional treatment methods
-
-## Definitions
-
-1. **DDS**: Direct Digital Synthesis.
-2. **RTOS**: A Real-Time Operating System designed to serve real-time applications that process data as it comes in without buffer delays.
-
-## Requirements
-
-- Output voltage: -2V to 2V peak-to-peak signal.
-- Frequency range: 0-20kHz.
-- Programmable via TTL or other logic.
+The system generates precisely controlled electromagnetic fields that influence the crystallization process of scale-forming minerals. By affecting nucleation sites within the fluid
 
 ## Features
 
@@ -44,19 +24,6 @@ The system generates precisely controlled electromagnetic fields that influence 
 - **Real-Time Operating System (RTOS)**: Ensures deterministic behavior for time-sensitive applications.
 - **Programmable**: Supports control over frequency and amplitude via digital logic interfaces such as TTL.
 - **Power Supply**: Operates with a wide input range and provides regulated outputs for the system.
-
-## PCB Considerations
-
-- USB interface for programming.
-- USB Device Firmware Upgrade (DFU) mode for easy firmware updates.
-- Switch between power circuitry and the rest of the board.
-- Level shifting circuitry.
-- DIP switches for boot mode settings.
-- Fuses, reset buttons, and ESD protection.
-- Reverse polarity protection.
-- Debugging interface with SWD pins.
-- Integrated temperature sensor and MAX485 for RS485 communication.
-- Power supply with +/-5V output.
 
 ## Waveform Generation Calculations
 
