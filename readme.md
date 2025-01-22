@@ -1,4 +1,4 @@
-# Arbitrary Waveform Generator (2020)
+# Arbitrary Waveform Magnetic Field Generator (2020)
 
 ## Project Overview
 
