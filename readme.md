@@ -4,6 +4,8 @@
 
 This project focuses on developing an Arbitrary Waveform Generator (AWG) that allows the control of input signal frequency and amplitude through digital logic, interfacing with a CRIO (Compact Reconfigurable Input/Output) system. The system is designed to output a signal within the range of -2V to 2V peak-to-peak and supports a frequency range of 0-20kHz. The AWG is programmable via TTL or other logic interfaces.
 
+This signal is then amplified and fed into a large coil to generate a magnetic field at the desired frequency and intensity.
+
 ## Industrial Application: Electromagnetic Scale Prevention
 
 ### Overview
